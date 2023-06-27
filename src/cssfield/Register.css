@@ -1,0 +1,240 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    background-image: linear-gradient(90deg, #73228B, #490F80);
+}
+
+.register-container {
+    display: flex;
+    justify-content: center;
+    padding-top: 2.5%;
+}
+
+.register-card {
+    border-radius: 20px;
+    height: 695px;
+    width: 1000px;
+    box-shadow: 5px 5px 50px 5px black;
+}
+
+.register-card-left {
+    display: flex;
+    float: left;
+}
+
+.register-card-right {
+    border-radius: 0px 20px 20px 0px;
+    height: 696px;
+    width: 400px;
+    background-color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    float: right;
+}
+
+.register-card-right>div>h1 {
+    color: #73228B;
+    font-size: 40px;
+    letter-spacing: 2px;
+}
+
+.user-register > h1 {
+    display: flex;
+    justify-content: center;
+}
+
+#description {
+    display: flex;
+    justify-content: center;
+    color: #73228B;
+    font-size: 20px;
+}
+
+.input-group-register >input {
+    text-decoration: none;
+    background-color: #D3D3D3;
+    transition: all 0.5s ease-in-out;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding-left: 70px;
+    width: 200px;
+    height: 40px;
+    margin: 15px 15px;
+}
+
+.input-group-register >input::placeholder {
+    color: white;
+}
+
+.acconut-register {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: #73228B;
+    font-size: 15px;
+    padding-top: 15px;
+    margin: 15px 15px;
+}
+
+
+.register-btn {
+    padding-top: 25px;
+}
+
+.register-btn>button {
+    background-image: linear-gradient(-90deg, #73228B, #490F80);
+    transition: all 0.5s ease-in-out;
+    border-radius: 20px;
+    font-size: 20px;
+    cursor: pointer;
+    border: none;
+    width: 200px;
+    height: 40px;
+    margin-top: 5px;
+    color: white;
+}
+
+.register-btn>button:hover {
+    transform: scale(0.9);
+    box-shadow: 2px 2px 30px 3px #73228B;
+}
+
+.register-rocket-img {
+    height: 700px;
+    width: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px 0px 0px 20px;
+}
+
+
+/** MEDIA QUERİES **/
+
+
+/* 800px */
+
+@media (max-width: 800px) {
+
+    .register-card-left > img {
+        display: none;
+    }
+
+    .register-container > .register-card {
+        height: 600px;
+        width: 400px;
+    }
+
+    .register-row > .register-card-right {
+        border-radius: 20px;
+        height: 600px;
+        width: 400px;
+    }
+
+    .register-card-right>div>h1 {
+        color: #73228B;
+        font-size: 50px;
+        letter-spacing: 2px;
+    }
+
+    .acconut-register {
+        font-size: 9px;
+    }
+
+    
+}
+
+/* 800px */
+
+
+/* 1200px */
+
+@media (max-width: 1200px) {
+
+    .register-container {
+        padding: 2.5%;
+    }
+
+    .register-card {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 20px;
+        border-radius: 20px;
+        height: 640px;
+        width: 800px;
+        box-shadow: 5px 5px 50px 5px black;
+    }
+
+    .register-rocket-img {
+        height: 700px;
+        width: 500px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 20px 0px 0px 20px;
+    }
+
+    .register-card-right {
+        border-radius: 0px 20px 20px 0px;
+        height: 698px;
+        width: 300px;
+        background-color: #FFFFFF;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        float: right;
+    }
+
+    .register-card-right>div>h1 {
+        display: flex;
+        justify-content: center;
+        color: #73228B;
+        font-size: 30px;
+        letter-spacing: 2px;
+    }
+
+    #description {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 50px;
+        color: #73228B;
+        font-size: 10px;
+    }
+
+    .input-group-register>input {
+        text-decoration: none;
+        background-color: #D3D3D3;
+        transition: all 0.5s ease-in-out;
+        color: white;
+        border: none;
+        border-radius: 20px;
+        padding-left: 90px;
+        width: 150px;
+        height: 35px;
+        margin: 15px;
+    }
+
+    .forget-password > div {
+        display: inline-block;
+        align-items: center;
+        padding: 0px 15px 0px 15px;
+        color: #73228B;
+        font-size: 13px;
+        padding-top: 15px;
+    }
+
+    .register-btn>button {
+        width: 180px;
+        height: 30px;
+        margin: 10px;
+    }
+
+}
+
+/* 1200px */

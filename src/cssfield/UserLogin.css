@@ -1,0 +1,274 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    background-image: linear-gradient(90deg, #73228B, #490F80);
+}
+
+.userlogin-container {
+    display: flex;
+    justify-content: center;
+    padding-top: 2.5%;
+}
+
+.userlogin-card {
+    border-radius: 20px;
+    height: 695px;
+    width: 1000px;
+    box-shadow: 5px 5px 50px 5px black;
+}
+
+.user-card-left {
+    display: flex;
+    float: left;
+}
+
+.user-card-right {
+    border-radius: 0px 20px 20px 0px;
+    height: 696px;
+    width: 400px;
+    background-color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    float: right;
+}
+
+.user-card-right>div>h1 {
+    color: #73228B;
+    font-size: 40px;
+    letter-spacing: 2px;
+}
+
+#description {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 50px;
+    color: #73228B;
+    font-size: 20px;
+    padding: 0px 20px 0px 20px;
+}
+
+.user-login>h1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.input-group-user>input {
+    text-decoration: none;
+    background-color: #D3D3D3;
+    transition: all 0.5s ease-in-out;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding-left: 70px;
+    width: 200px;
+    height: 40px;
+    margin: 20px;
+}
+
+.input-group-user>input::placeholder {
+    color: white;
+}
+
+.forget-password>div {
+    display: inline-block;
+    align-items: center;
+    padding: 0px 40px 0px 40px;
+    color: #73228B;
+    font-size: 15px;
+    padding-top: 15px;
+}
+
+input[type="checkbox"] {
+    display: none;
+}
+
+label {
+    display: inline-block;
+    padding: 5px 5px;
+    border: 1px solid #490F80;
+    cursor: pointer;
+    border-radius: 2px;
+}
+
+input[type="checkbox"]:checked+label {
+    background-color: #73228B;
+    color: #fff;
+}
+
+.user-login-btn {
+    padding-top: 25px;
+}
+
+.user-login-btn>button {
+    background-image: linear-gradient(90deg, #73228B, #490F80);
+    transition: all 0.3s ease-in-out;
+    border-radius: 20px;
+    font-size: 20px;
+    cursor: pointer;
+    border: none;
+    width: 200px;
+    height: 40px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: white;
+}
+
+.user-login-btn>button:hover {
+    transform: scale(0.9);
+    box-shadow: 2px 2px 30px 3px #73228B;
+}
+
+
+.user-rocket-img {
+    height: 700px;
+    width: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px 0px 0px 20px;
+}
+
+
+/** background: linear-gradient(90 deg rgba(115, 34, 139) 0%, rgba(97, 25, 133) 50%, rgba(73, 15, 178) 100%); **/
+
+/** first-color =  #73228B  **/
+/** second-color =  #490F80  **/
+
+
+/** MEDIA QUERIES  **/
+
+
+
+/* 800px */
+
+@media (max-width: 800px) {
+
+    .user-card-left>img {
+        display: none;
+    }
+
+    .userlogin-container>.userlogin-card {
+        height: 600px;
+        width: 400px;
+    }
+
+    .userlogin-row>.user-card-right {
+        border-radius: 20px;
+        height: 600px;
+        width: 400px;
+    }
+
+    .user-card-right>div>h1 {
+        color: #73228B;
+        font-size: 50px;
+        letter-spacing: 2px;
+    }
+
+    .input-group-user>input {
+        text-decoration: none;
+        background-color: #D3D3D3;
+        transition: all 0.5s ease-in-out;
+        color: white;
+        border: none;
+        border-radius: 20px;
+        padding-left: 30px;
+        width: 200px;
+        height: 60px;
+        margin: 20px;
+    }
+
+
+}
+
+/* 800px */
+
+/* 1200px */
+
+@media (max-width: 1200px) {
+
+    .userlogin-container {
+        padding: 2.5%;
+    }
+
+    .userlogin-card {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 20px;
+        border-radius: 20px;
+        height: 640px;
+        width: 800px;
+        box-shadow: 5px 5px 50px 5px black;
+    }
+
+    .user-rocket-img {
+        height: 700px;
+        width: 500px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 20px 0px 0px 20px;
+    }
+
+    .user-card-right {
+        border-radius: 0px 20px 20px 0px;
+        height: 698px;
+        width: 300px;
+        background-color: #FFFFFF;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        float: right;
+    }
+
+    .user-card-right>div>h1 {
+        display: flex;
+        justify-content: center;
+        color: #73228B;
+        font-size: 30px;
+        letter-spacing: 2px;
+    }
+
+    #description {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 50px;
+        color: #73228B;
+        font-size: 10px;
+    }
+
+    .input-group-user>input {
+        text-decoration: none;
+        background-color: #D3D3D3;
+        transition: all 0.5s ease-in-out;
+        color: white;
+        border: none;
+        border-radius: 20px;
+        padding-left: 60px;
+        width: 170px;
+        height: 35px;
+        margin: 15px;
+    }
+
+    .forget-password>div {
+        display: inline-block;
+        align-items: center;
+        padding: 0px 15px 0px 15px;
+        color: #73228B;
+        font-size: 13px;
+        padding-top: 15px;
+    }
+
+    .user-login-btn>button {
+        width: 180px;
+        height: 30px;
+    }
+
+}
+
+/* 1200px */
