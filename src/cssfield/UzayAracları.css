@@ -1,0 +1,98 @@
+.space-vehicle-container {
+    height: 650px;
+    max-height: 650px;
+    width: 1100px;
+    background-color: #273046;
+
+    display: flex;
+    float: right;
+    margin-right: 3.2%;
+    margin-top: 30px;
+    border-radius: 5px;
+
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+
+    overflow-y: scroll;
+}
+
+#space-vehicle-title {
+    color: white;
+    font-size: 25px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin: 10px 0px 10px 25px;
+    padding: 5px;
+
+    border-bottom: 1px solid #161D30;
+
+}
+
+.product-card {
+    height: 250px;
+    width: 1050px;
+    background-image: linear-gradient( 120deg, #161D30, black);
+
+    margin-top: 30px;
+    border-radius: 5px;
+    margin-left: 2.2%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.comment-rocket {
+    display: flex;
+    align-items: start;
+    color: white;
+
+    flex-direction: column;
+
+    margin-left: 2%;
+}
+
+.comment-rocket > h1 {
+    font-size: 25px;
+    margin: 0;
+}
+
+.comment-rocket > p {
+    font-size: 15px;
+    color: white;
+}
+
+#rocket-price {
+    font-size: 15px;
+    color: white;
+    background-color: #7465F2;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.rocket-img > img {
+    height: 250px;
+    width: 250px;
+
+    float: right;
+    border-radius: 0px 5px 5px 0px;
+
+}
+
+.btn-group {
+    display: flex;
+    align-items: center;
+}
+
+.btn-group > a {
+    margin-left: 25px;
+    padding: 5px;
+    font-size: 15px;
+
+    background-color: #7465F2;
+    border-radius: 5px;
+    text-decoration: none;
+    color: white;
+}

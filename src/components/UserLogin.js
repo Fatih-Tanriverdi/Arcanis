@@ -47,7 +47,7 @@ export default function App() {
                                     </Link>
                                 </div>
                             </div>
-                            <Link to="/" className="user-login-btn">
+                            <Link to="/adminpanel" className="user-login-btn">
                                 <button>LOGIN</button>
                             </Link>
                             <Link to="/register" className="user-register-btn">

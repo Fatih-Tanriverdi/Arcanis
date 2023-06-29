@@ -5,6 +5,10 @@ body {
     background-image: linear-gradient(90deg, #73228B, #490F80);
 }
 
+a {
+    color: #73228B;
+}
+
 .userlogin-container {
     display: flex;
     justify-content: center;
