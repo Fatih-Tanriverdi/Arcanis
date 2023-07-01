@@ -1,5 +1,5 @@
 import React from 'react';
-import "../cssfield/UsersList.css";
+import "../cssfield/Orders.css";
 import { Select, Space, Tag, Table, Pagination, Input, Button, DatePicker } from 'antd';
 import { useState } from 'react';
 import AdminPanel from './AdminPanel';
@@ -229,7 +229,7 @@ const data = [
 ];
 
 
-export default function UsersList() {
+export default function Orders() {
 
     const [loading, setLoading] = useState(false);
     const [dataSource, setDataSource] = useState([]);
@@ -243,7 +243,7 @@ export default function UsersList() {
                 <Space direction="vertical" size={12}>
                     <RangePicker style={{
                         width: 320,
-                    }}/>
+                    }} />
                 </Space>
                 <Space>
                     <Select

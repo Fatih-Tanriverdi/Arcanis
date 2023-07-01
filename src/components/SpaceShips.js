@@ -1,7 +1,7 @@
 import React from 'react'
-import "../cssfield/UzayAracları.css";
+import "../cssfield/SpaceShips.css";
 
-export default function Anasayfa() {
+export default function SpaceShips() {
     return (
         <body>
             <section>
@@ -93,10 +93,9 @@ export default function Anasayfa() {
                             </div>
                         </div>
                     </div>
-                    
-                    
                 </article>
             </section>
         </body>
     )
 }
+

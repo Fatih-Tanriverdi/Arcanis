@@ -1,8 +1,9 @@
-body {
+.user-login-body-color {
     margin: 0;
     padding: 0;
+    height: auto;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    background-image: linear-gradient(90deg, #73228B, #490F80);
+    background-image: linear-gradient(120deg, #73228B, #490F80);
 }
 
 a {
@@ -19,6 +20,7 @@ a {
     border-radius: 20px;
     height: 695px;
     width: 1000px;
+    margin-bottom: 3.6%;
     box-shadow: 5px 5px 50px 5px black;
 }
 

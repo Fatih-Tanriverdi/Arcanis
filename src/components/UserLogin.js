@@ -3,9 +3,10 @@ import "../cssfield/UserLogin.css";
 import { Link } from "react-router-dom";
 
 
+
 export default function App() {
     return (
-        <body>
+        <body className="user-login-body-color">
             <section className="userlogin-container">
                 {/** Article Bağlangıç **/}
                 <article className="userlogin-card">
@@ -37,7 +38,7 @@ export default function App() {
                             <div className="forget-password">
                                 <div>
                                     <p className="checkbox">
-                                        <input type="checkbox" id="myCheckbox"/>
+                                        <input type="checkbox" id="myCheckbox" />
                                         <label for="myCheckbox"></label> Remember
                                     </p>
                                 </div>
@@ -47,7 +48,7 @@ export default function App() {
                                     </Link>
                                 </div>
                             </div>
-                            <Link to="/adminpanel" className="user-login-btn">
+                            <Link to="/admin" className="user-login-btn">
                                 <button>LOGIN</button>
                             </Link>
                             <Link to="/register" className="user-register-btn">

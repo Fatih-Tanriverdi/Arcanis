@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 export default function App() {
     return (
-        <body>
+        <body className="recover-body-color">
             <section className="recover-container">
                 {/** Article Bağlangıç **/}
                 <article className="recover-card">

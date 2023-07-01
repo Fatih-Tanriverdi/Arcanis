@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 export default function App() {
     return (
-        <body>
+        <body className="register-body-color">
             <section className="register-container">
                 {/** Article Bağlangıç **/}
                 <article className="register-card">
