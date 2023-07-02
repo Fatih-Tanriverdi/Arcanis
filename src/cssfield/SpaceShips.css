@@ -21,13 +21,7 @@
 
     display: flex;
     justify-content: center;
-    align-items: center;
-
-    margin: 10px 0px 10px 25px;
-    padding: 5px;
-
-    border-bottom: 1px solid #161D30;
-
+    align-items: center
 }
 
 .product-card {
@@ -54,12 +48,12 @@
     margin-left: 2%;
 }
 
-.comment-rocket > h1 {
+.comment-rocket > h2 {
     font-size: 25px;
     margin: 0;
 }
 
-.comment-rocket > p {
+.comment-rocket > span {
     font-size: 15px;
     color: white;
 }
@@ -95,4 +89,30 @@
     border-radius: 5px;
     text-decoration: none;
     color: white;
+}
+
+
+@media screen and (max-width: 1200px) {
+    .space-vehicle-container {
+        width: 950px;
+        height: 550px;
+    }
+
+    .product-card {
+        width: 900px;
+    }
+
+    #space-vehicle-title {
+        font-size: 20px;
+    }
+
+    .comment-rocket > h2 {
+        font-size: 20px;
+    }
+
+    .comment-rocket > span {
+        font-size: 10px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
 }

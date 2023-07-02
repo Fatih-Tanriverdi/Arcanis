@@ -14,7 +14,13 @@
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
-.search-bar>h1 {
+.search-bar-item > .search-bar-item-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.search-bar-item  > .search-bar-item-top > h1 {
     font-size: 17px;
     margin-left: 38px;
     display: inline-block;
@@ -28,8 +34,12 @@
     margin-right: 5%;
 }
 
-.search-bar > .ant-space {
-    float: right;
+.search-bar > .ant-space > .ant-space-item {
+    width: 400px;
+}
+
+.ant-space > .ant-space-item {
+    width: 320px;
     margin-top: 1.5%;
     margin-right: 3.5%;
 }
@@ -37,7 +47,7 @@
 .ant-space-item > div {
     background-color: #273046;
     border-color: #858B9B;
-    
+    width: 300px;
 }
 
 .ant-picker > .ant-picker-input > input::placeholder {
@@ -224,3 +234,26 @@ td {
 }
 
 /* SHOW ENTRIES */
+
+.ant-space-item > .ant-select {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 35px;
+    margin-bottom: 0;
+    padding: 0;
+    width: 320px;
+}
+
+
+/** MEDIA QUERIES  **/
+
+@media screen and (max-width: 1200px) {
+    .container > .search-bar {
+        width: 950px;
+    }
+
+    .container > .list-group {
+        width: 950px;
+    }
+}
