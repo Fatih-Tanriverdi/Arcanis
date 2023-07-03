@@ -41,7 +41,16 @@ Bir admin paneli için sayfalandırma özellikleri sağlayan bir araçtır. Admi
 
 -------------------------------------
 
+# Roket Kiralama Sitesi - Responsive Çalışması
 
+Rocket kiralama sitesinin responsive tasarımı yapılmıştır. Düzenli bir şekilde çalışan ve farklı ekran boyutlarına uyum sağlayabilen bir web sitesi oluşturmak için kullanılan teknikleri ve yöntemleri içermektedir.
+
+## Özellikler
+
+- Mobil, tablet ve masaüstü gibi farklı ekran boyutlarına uyum sağlar.
+- Responsive web tasarımının temel prensiplerini kullanır.
+- Medya sorguları ve CSS özellikleri kullanılarak farklı ekran boyutlarına özgü düzenleri sağlar.
+- Menüler, formlar ve içerikler gibi farklı bileşenlerin responsive tasarımını içerir.
 
 
 
