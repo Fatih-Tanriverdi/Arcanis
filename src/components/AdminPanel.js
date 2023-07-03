@@ -16,85 +16,87 @@ import Orders from './Orders';
 
 export default function () {
     return (
-        <body id='admin-panel-body'>
-            <section className='admin-container'>
-                <Row>
-                    <Col sm={4} md={4}>
-                        <aside className='col-4'>
-                            <div className='aside'>
-                                <row>
-                                    <div className='renta-rocket'>
-                                        <img className='admin-rocket-img' src='/images/rocket-img.png' />
-                                        <h1>Renta Rocket</h1>
-                                    </div>
-                                    <div className='navigate'>
-                                        <ul>
-                                            <li id='navigate-style'>
-                                                <Link to={"mainpage"}>
-                                                    <div className='icon-style'>
-                                                        <AiOutlineHome />
-                                                        <p><a />Anasayfa</p>
-                                                    </div>
-                                                </Link>
-                                            </li>
-                                            <li>
-                                                <Link to="spaceships">
-                                                    <div className='icon-style'>
-                                                        <AiOutlineRocket />
-                                                        <p><a />Uzay Araçları</p>
-                                                    </div>
-                                                </Link>
-                                            </li>
-                                            <li>
-                                                <Link to="userlist">
-                                                    <div className='icon-style'>
-                                                        <AiOutlineUser />
-                                                        <p><a />Kullanıcılar</p>
-                                                    </div>
-                                                </Link>
-                                            </li>
-                                            <li>
-                                                <Link to="orders">
-                                                    <div className='icon-style'>
-                                                        <BsClipboardCheck />
-                                                        <p><a />Siparişler</p>
-                                                    </div>
-                                                </Link>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </row>
+        <Container id='admin-panel-body'>
+            <Row className='admin-container-aside'>
+                <Col sm={12} className='admin-col-4'>
+                    <div className='aside'>
+                        <row>
+                            <div className='renta-rocket'>
+                                <img className='admin-rocket-img' src='/images/rocket-img.png' />
+                                <h1>Renta Rocket</h1>
                             </div>
-                        </aside>
-                        <footer>
-                        </footer>
-                    </Col>
-                    <Col sm={8} md={8}>
-                        <container className="col-8">
-                            <navbar>
-                                <div className='header'>
+                            <div className='navigate'>
+                                <ul>
+                                    <li id='navigate-style'>
+                                        <Link to={"mainpage"}>
+                                            <div id='icon-home-position-sm' className='icon-style'>
+                                                <AiOutlineHome />
+                                                <p><a />Anasayfa</p>
+                                            </div>
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link to="spaceships">
+                                            <div id='icon-home-position-sm' className='icon-style'>
+                                                <AiOutlineRocket />
+                                                <p><a />Uzay Araçları</p>
+                                            </div>
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link to="userlist">
+                                            <div id='icon-home-position-sm' className='icon-style'>
+                                                <AiOutlineUser />
+                                                <p><a />Kullanıcılar</p>
+                                            </div>
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link to="orders">
+                                            <div id='icon-home-position-sm' className='icon-style'>
+                                                <BsClipboardCheck />
+                                                <p><a />Siparişler</p>
+                                            </div>
+                                        </Link>
+                                    </li>
+                                </ul>
+                            </div>
+                        </row>
+                    </div>
+                    <footer>
+                    </footer>
+                </Col>
+            </Row>
+            <Row className='admin-container-header'>
+                <Col sm={12} className='admin-col-8'>
+                    <container className="col-8">
+                        <navbar>
+                            <div className='header'>
+                                <div className='header-position'>
                                     <div className='admin-info'>
                                         <h1>Fatih Tanrıverdi</h1>
                                         <span>Admin</span>
                                     </div>
-                                    <img className='admin-img' src='/images/fatihtan.jpg' />
+                                    <div className='header-img'>
+                                        <img className='admin-img' src='/images/fatihtan.jpg' />
+                                    </div>
                                 </div>
-                            </navbar>
-                            <article>
-                                <div>
-                                    <Routes>
-                                        <Route exact path="mainpage" Component={MainPage} />
-                                        <Route exact path="userlist" Component={UsersList} />
-                                        <Route exact path="spaceships" Component={SpaceShips} />
-                                        <Route exact path="orders" Component={Orders} />
-                                    </Routes>
-                                </div>
-                            </article>
-                        </container>
-                    </Col>
-                </Row>
-            </section>
-        </body>
+                            </div>
+                        </navbar>
+                        <article>
+                            <div>
+                                <Routes>
+                                    <Route exact path="mainpage" Component={MainPage} />
+                                    <Route exact path="userlist" Component={UsersList} />
+                                    <Route exact path="spaceships" Component={SpaceShips} />
+                                    <Route exact path="orders" Component={Orders} />
+                                </Routes>
+                            </div>
+                        </article>
+                    </container>
+                </Col>
+            </Row>
+        </Container>
     )
 }
 

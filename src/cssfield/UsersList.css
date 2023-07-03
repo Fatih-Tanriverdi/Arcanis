@@ -1,3 +1,8 @@
+#icon-home-position-sm > svg {
+    font-size: 20px !important;
+    margin-right: 10px !important;
+}
+
 /* SEARCH BAR */
 
 .search-bar {
@@ -34,14 +39,10 @@
     margin-right: 5%;
 }
 
-.search-bar > .ant-space > .ant-space-item {
-    width: 400px;
-}
-
 .ant-space > .ant-space-item {
-    width: 320px;
+    width: 321px;
     margin-top: 1.5%;
-    margin-right: 3.5%;
+    margin-left: 4%;
 }
 
 .ant-space-item > div {
@@ -52,6 +53,18 @@
 
 .ant-picker > .ant-picker-input > input::placeholder {
     color: white;
+}
+
+.ant-select-arrow > span {
+    margin-right: 15px;
+}
+
+.search-bar-item-top > .ant-space  {
+    margin-right: 35px;
+}
+
+.ant-select-selection-item {
+    width: 300px;
 }
 
 /* SEARCH BAR */
@@ -73,10 +86,6 @@
     overflow-y: scroll;
 }
 
-.ant-table-thead>th {
-    background-color: #273046;
-}
-
 .ant-table-cell {
     color: white !important;
     border-color: #858B9B !important;
@@ -87,7 +96,7 @@
     background-color: #343C56 !important;
     border-top: 1px solid #273046;
     border-radius: 0px;
-    padding: 10px;
+    padding: 15px;
 }
 
 .ant-table-container {
@@ -95,7 +104,7 @@
 }
 
 td {
-    padding: 6px !important;
+    padding: 10px !important;
 }
 
 .ant-table-cell-row-hover {
@@ -158,7 +167,6 @@ td {
 .ant-pagination-options {
     margin-right: 10px;
 }
-
 
 /* PAGINATION */
 
@@ -249,11 +257,97 @@ td {
 /** MEDIA QUERIES  **/
 
 @media screen and (max-width: 1200px) {
-    .container > .search-bar {
-        width: 950px;
+    .search-bar {
+        width: 1000px;
     }
 
-    .container > .list-group {
-        width: 950px;
+    .list-group {
+        width: 1000px;
+        height: 400px;
+    }
+
+    svg {
+        font-size: 10px;
+        padding: 0;
+        margin: 0;
+    }
+
+    .ant-table .ant-table-container .ant-table-content>table>thead.ant-table-thead .ant-table-cell {
+        padding: 5px !important;
+    }
+
+    td {
+        padding: 5px !important;
+    }
+
+    .ant-table-head > tr {
+        height: 5px;
+    }
+
+    .ant-table-column-sorter-inner > svg {
+        margin: 0;
+        padding: 0;
+    }
+
+    .ant-space-item > div {
+        background-color: #273046;
+        border-color: #858B9B;
+        width: 250px;
+        margin-right: 60%;
+    }
+
+    .ant-space > .ant-space-item {
+        width: 275px;
+        margin-top: 2.5%;
+        margin-right: 4%;
+    }
+
+}
+
+
+@media screen and (max-width: 768px) {
+
+    .search-bar {
+        width: 510px;
+        height: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .search-bar-item {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .search-bar-item-top {
+        position: relative;
+        flex-direction: column;
+    }
+
+    .search-bar-item-bottom > div {
+        position: relative;
+        flex-direction: column;
+    }
+
+    .list-group {
+        width: 510px;
+        height: 400px;
+    }
+
+    .ant-space-item > div {
+        width: 280px;
+        margin-bottom: 20px;
+    }
+
+    .ant-select-selection-item {
+        width: 260px;
+    }
+
+    .search-bar-item  > .search-bar-item-top > h1 {
+        font-size: 20px;
+        margin-right: 20%;
     }
 }

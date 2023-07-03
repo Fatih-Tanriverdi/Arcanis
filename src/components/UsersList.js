@@ -23,9 +23,6 @@ const columns = [
         title: 'EMAIL',
         dataIndex: 'age',
         key: 'age',
-        sorter: (record1, record2) => {
-            return record1.age > record2.age
-        }
     },
     {
         title: 'PLAN',
@@ -250,98 +247,92 @@ export default function UsersList() {
                         </div>
                         <div className='search-bar-item-bottom'>
                             <Space>
-                                <Select
-                                    defaultValue="Select Role"
-                                    style={{
-                                    }}
-                                    onChange={handleChange}
-                                    options={[
-                                        {
-                                            value: 'jack',
-                                            label: 'Jack',
-                                        },
-                                        {
-                                            value: 'lucy',
-                                            label: 'Lucy',
-                                        },
-                                        {
-                                            value: 'Yiminghe',
-                                            label: 'yiminghe',
-                                        },
-                                        {
-                                            value: 'disabled',
-                                            label: 'Disabled',
-                                            disabled: true,
-                                        },
-                                    ]}
-                                />
-                                <Select
-                                    defaultValue="Select Plan"
-                                    style={{
-                                    }}
-                                    onChange={handleChange}
-                                    options={[
-                                        {
-                                            value: 'jack',
-                                            label: 'Jack',
-                                        },
-                                        {
-                                            value: 'lucy',
-                                            label: 'Lucy',
-                                        },
-                                        {
-                                            value: 'Yiminghe',
-                                            label: 'yiminghe',
-                                        },
-                                        {
-                                            value: 'disabled',
-                                            label: 'Disabled',
-                                            disabled: true,
-                                        },
-                                    ]}
-                                />
-                                <Select
-                                    defaultValue="Select Status"
-                                    style={{
-                                    }}
-                                    onChange={handleChange}
-                                    options={[
-                                        {
-                                            value: 'jack',
-                                            label: 'Jack',
-                                        },
-                                        {
-                                            value: 'lucy',
-                                            label: 'Lucy',
-                                        },
-                                        {
-                                            value: 'Yiminghe',
-                                            label: 'yiminghe',
-                                        },
-                                        {
-                                            value: 'disabled',
-                                            label: 'Disabled',
-                                            disabled: true,
-                                        },
-                                    ]}
-                                />
+                                <div>
+                                    <Select
+                                        defaultValue="Select Role"
+                                        style={{
+                                        }}
+                                        onChange={handleChange}
+                                        options={[
+                                            {
+                                                value: 'jack',
+                                                label: 'Jack',
+                                            },
+                                            {
+                                                value: 'lucy',
+                                                label: 'Lucy',
+                                            },
+                                            {
+                                                value: 'Yiminghe',
+                                                label: 'yiminghe',
+                                            },
+                                            {
+                                                value: 'disabled',
+                                                label: 'Disabled',
+                                                disabled: true,
+                                            },
+                                        ]}
+                                    />
+                                </div>
+                                <div>
+                                    <Select
+                                        defaultValue="Select Plan"
+                                        style={{
+                                        }}
+                                        onChange={handleChange}
+                                        options={[
+                                            {
+                                                value: 'jack',
+                                                label: 'Jack',
+                                            },
+                                            {
+                                                value: 'lucy',
+                                                label: 'Lucy',
+                                            },
+                                            {
+                                                value: 'Yiminghe',
+                                                label: 'yiminghe',
+                                            },
+                                            {
+                                                value: 'disabled',
+                                                label: 'Disabled',
+                                                disabled: true,
+                                            },
+                                        ]}
+                                    />
+                                </div>
+                                <div>
+                                    <Select
+                                        defaultValue="Select Status"
+                                        style={{
+                                        }}
+                                        onChange={handleChange}
+                                        options={[
+                                            {
+                                                value: 'jack',
+                                                label: 'Jack',
+                                            },
+                                            {
+                                                value: 'lucy',
+                                                label: 'Lucy',
+                                            },
+                                            {
+                                                value: 'Yiminghe',
+                                                label: 'yiminghe',
+                                            },
+                                            {
+                                                value: 'disabled',
+                                                label: 'Disabled',
+                                                disabled: true,
+                                            },
+                                        ]}
+                                    />
+                                </div>
                             </Space>
                         </div>
                     </div>
                 </div>
                 <div className='list-group'>
-                    <div className='show-entries'>
-                        <span> Show</span>
-                        <Space>
-                            <Select
-                                defaultValue='10'
-                                style={{
-                                    width: 60,
-                                }}
-                            />
-                        </Space>
-                        <span> entries</span>
-                    </div>
                     <Button className='add-btn' type="text">Add New User</Button>
                     <div className='input-user-group'>
                         <span>Search: </span>

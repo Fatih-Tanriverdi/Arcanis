@@ -20,12 +20,28 @@ Projemizin amacı, kullanıcıların roket kiralama platformuna güvenli bir şe
 
 Roket kiralama projesinde kullanıcı giriş ekranını başarıyla oluşturduktan sonra, yöneticilere roket kiralama işlemlerini kolaylıkla yönetebilecekleri ve gerekli işlevleri gerçekleştirebilecekleri bir arayüz tasarladım.
 
-## özellikler
+## Özellikler
 
 - **Giriş ve Yetkilendirme:** Admin paneline erişim sınırlanmalı ve sadece yetkilendirilmiş yöneticilerin giriş yapabilmesi sağlamaktadır.
 - **Kullanıcı Yönetimi:** Admin paneli, yöneticilere yeni kullanıcı hesapları oluşturma, mevcut kullanıcıları düzenleme veya silme gibi işlemleri gerçekleştirme imkanı sunmaktadır.
 - **Roket Yönetimi:** Admin paneli, roketlerin eklenmesi, düzenlenmesi ve silinmesi gibi roket yönetimi işlemlerini sağlamaktadır.
 - **Sipariş Yönetimi:** Admin paneli, kullanıcıların yaptığı rezervasyonları görüntüleme, onaylama veya iptal etme gibi rezervasyon yönetimi işlemlerini sunmaktadır.
+
+-------------------------------------
+
+# Roket Kiralama Sitesi - Admin Panel Sayfalandırma 
+
+Bir admin paneli için sayfalandırma özellikleri sağlayan bir araçtır. Admin paneli, yöneticilerin bir web uygulaması üzerinden kullanıcıları, içerikleri ve diğer yönetim işlevlerini yönetmelerine olanak tanır. Bu projede, sayfalandırma işlemleri için geliştiriciye kolaylık sağlamak amacıyla bir dizi bileşen ve yardımcı fonksiyonlar bulunmaktadır.
+
+## Özellikler
+
+- **Filtreleme ve arama:** Veri listesini filtrelemek ve arama yapmak için kullanıcı dostu araçlar sağlar.
+- **Sıralama:** Verileri belirli bir sıraya göre sıralamak için kullanılabilir.
+- **Veri düzenleme ve silme:** Sayfalama işlevleriyle birlikte, kullanıcılar verileri düzenleyebilir veya silme işlemleri gerçekleştirebilir.
+
+-------------------------------------
+
+
 
 
 
