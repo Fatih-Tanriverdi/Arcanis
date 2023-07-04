@@ -1,14 +1,16 @@
 .space-vehicle-container {
     height: 650px;
     max-height: 650px;
-    width: 1100px;
+    width: 1050px;
     background-color: #273046;
 
-    display: flex;
-    float: right;
     margin-right: 3.2%;
     margin-top: 30px;
     border-radius: 5px;
+
+    display: flex;
+    justify-content: center;
+    align-items: start;
 
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 
@@ -21,21 +23,23 @@
 
     display: flex;
     justify-content: center;
-    align-items: center
+    align-items: center;
+
 }
 
 .product-card {
-    height: 250px;
-    width: 1050px;
-    background-image: linear-gradient(120deg, #161D30, black);
+    height: 400px;
+    width: 750px;
+    background-image: linear-gradient(90deg, #161D30, black);
 
     margin-top: 30px;
     border-radius: 5px;
-    margin-left: 2.2%;
 
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
 .comment-rocket {
@@ -56,24 +60,26 @@
 .comment-rocket>span {
     font-size: 15px;
     color: white;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    margin-right: 20px;
 }
 
 #rocket-price {
-    font-size: 15px;
+    font-size: 20px;
     color: white;
-    background-color: #7465F2;
     padding: 5px;
     border-radius: 5px;
 }
 
 .rocket-img>img {
-    height: 250px;
+    height: 400px;
     width: 250px;
 
     float: right;
     border-radius: 0px 5px 5px 0px;
+
+    border-left: 1px solid #7465F2;
 
 }
 
@@ -82,15 +88,29 @@
     align-items: center;
 }
 
-.btn-group>a {
-    margin-left: 25px;
-    padding: 5px;
-    font-size: 15px;
-
+.btn-group>button {
+    float: right;
+    display: inline-block;
+    height: 40px;
+    width: 176px;
+    margin: 0 40px 0 16px;
+    box-sizing: border-box;
+    border: transparent;
+    border-radius: 60px;
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: #ffffff;
     background-color: #7465F2;
-    border-radius: 5px;
-    text-decoration: none;
-    color: white;
+    cursor: pointer;
+    outline: none;
+
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.btn-group>button:hover {
+    background-color: #161D30;
 }
 
 

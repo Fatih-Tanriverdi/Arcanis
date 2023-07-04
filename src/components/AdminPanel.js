@@ -46,7 +46,10 @@ export default function () {
                                     <li>
                                         <Link to="userlist">
                                             <div id='icon-home-position-sm' className='icon-style'>
-                                                <AiOutlineUser />
+                                                <AiOutlineUser 
+                                                style={{
+                                                    fontSize: '30px',
+                                                }}/>
                                                 <p><a />Kullanıcılar</p>
                                             </div>
                                         </Link>

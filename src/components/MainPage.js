@@ -6,7 +6,7 @@ export default function MainPage() {
     return (
         <Container className='main-page-body' >
             <Row className='main-page-container'>
-                <Col sm={12} >
+                <Col sm={12} md={8} lg={8} >
                     {/* Tam genişlikte içerik */}
                 </Col>
             </Row>

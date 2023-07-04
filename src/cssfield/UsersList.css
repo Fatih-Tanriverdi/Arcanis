@@ -1,4 +1,4 @@
-#icon-home-position-sm > svg {
+#icon-home-position-sm>svg {
     font-size: 20px !important;
     margin-right: 10px !important;
 }
@@ -6,26 +6,25 @@
 /* SEARCH BAR */
 
 .search-bar {
-    width: 1100px;
+    width: 1050px;
     height: 115px;
     background-color: #273046;
 
     margin-right: 3.2%;
 
-    float: right;
     margin-top: 30px;
     border-radius: 5px;
 
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
-.search-bar-item > .search-bar-item-top {
+.search-bar-item>.search-bar-item-top {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.search-bar-item  > .search-bar-item-top > h1 {
+.search-bar-item>.search-bar-item-top>h1 {
     font-size: 17px;
     margin-left: 38px;
     display: inline-block;
@@ -39,32 +38,32 @@
     margin-right: 5%;
 }
 
-.ant-space > .ant-space-item {
+.ant-space>.ant-space-item {
     width: 321px;
     margin-top: 1.5%;
     margin-left: 4%;
 }
 
-.ant-space-item > div {
+.ant-space-item>div {
     background-color: #273046;
     border-color: #858B9B;
-    width: 300px;
+    width: 285px;
 }
 
-.ant-picker > .ant-picker-input > input::placeholder {
+.ant-picker>.ant-picker-input>input::placeholder {
     color: white;
 }
 
-.ant-select-arrow > span {
+.ant-select-arrow>span {
     margin-right: 15px;
 }
 
-.search-bar-item-top > .ant-space  {
+.search-bar-item-top>.ant-space {
     margin-right: 35px;
 }
 
 .ant-select-selection-item {
-    width: 300px;
+    width: 270px;
 }
 
 /* SEARCH BAR */
@@ -72,11 +71,10 @@
 /* LIST GROUP */
 
 .list-group {
-    width: 1100px;
+    width: 1050px;
     height: 510px;
     background-color: #273046;
 
-    float: right;
     margin-right: 3.2%;
     margin-top: 30px;
     border-radius: 5px;
@@ -232,7 +230,7 @@ td {
     margin: 0.9%;
 }
 
-.show-entries > span {
+.show-entries>span {
     color: white;
     margin: 1.5%;
 }
@@ -243,7 +241,7 @@ td {
 
 /* SHOW ENTRIES */
 
-.ant-space-item > .ant-select {
+.ant-space-item>.ant-select {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -280,24 +278,24 @@ td {
         padding: 5px !important;
     }
 
-    .ant-table-head > tr {
+    .ant-table-head>tr {
         height: 5px;
     }
 
-    .ant-table-column-sorter-inner > svg {
+    .ant-table-column-sorter-inner>svg {
         margin: 0;
         padding: 0;
     }
 
-    .ant-space-item > div {
+    .ant-space-item>div {
         background-color: #273046;
         border-color: #858B9B;
-        width: 250px;
+        width: 260px;
         margin-right: 60%;
     }
 
-    .ant-space > .ant-space-item {
-        width: 275px;
+    .ant-space>.ant-space-item {
+        width: 260px;
         margin-top: 2.5%;
         margin-right: 4%;
     }
@@ -327,9 +325,10 @@ td {
         flex-direction: column;
     }
 
-    .search-bar-item-bottom > div {
+    .search-bar-item-bottom>div {
         position: relative;
         flex-direction: column;
+        margin-right: 10px;
     }
 
     .list-group {
@@ -337,16 +336,16 @@ td {
         height: 400px;
     }
 
-    .ant-space-item > div {
-        width: 280px;
-        margin-bottom: 20px;
+    .ant-space-item>div {
+        width: 285px;
+        margin-bottom: 10px;
     }
 
     .ant-select-selection-item {
         width: 260px;
     }
 
-    .search-bar-item  > .search-bar-item-top > h1 {
+    .search-bar-item>.search-bar-item-top>h1 {
         font-size: 20px;
         margin-right: 20%;
     }

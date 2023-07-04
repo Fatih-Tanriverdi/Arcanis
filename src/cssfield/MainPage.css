@@ -1,13 +1,7 @@
-.main-page-body {
-    position: relative;
-    right: 25px;
-    top: 80px;
-}
-
 .main-page-container {
     height: 650px;
     max-height: 650px;
-    width: 1100px;
+    width: 1050px;
     background-color: #273046;
 
     position: absolute;
@@ -25,11 +19,11 @@
 
     .main-page-body {
         position: relative;
-        right: 100px;
+        right: 0px;
     }
 
     .main-page-container {
-        margin-top: 10px;
+        margin-top: 20px;
         height: 550px;
         width: 1000px;
     }
@@ -37,14 +31,10 @@
 
 @media screen and (max-width: 768px) {
 
-    .main-page-body {
-        position: relative;
-        right: 442px;
-    }
 
     .main-page-container {
         height: 500px;
         width: 510px;
-        margin-top: 10px;
+        margin-top: 20px;
     }
 }
