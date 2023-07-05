@@ -18,52 +18,45 @@
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
-.search-bar-item>.search-bar-item-top {
+.search-bar-item-top>h1 {
+    display: inline-block;
+    margin-left: 20px;
+    font-size: 25px;
+    color: white;
+}
+
+.search-bar-item-bottom {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
 }
 
-.search-bar-item>.search-bar-item-top>h1 {
-    font-size: 17px;
-    margin-left: 38px;
-    display: inline-block;
-    color: white;
-}
-
 .ant-select:not(.ant-select-costumize-input) .ant-select-selector {
-    background-color: transparent;
+    background-color: transparent !important;
     border-color: #858B9B;
     color: white;
     margin-right: 5%;
+    width: 240px;
 }
 
-.ant-space>.ant-space-item {
-    width: 321px;
-    margin-top: 1.5%;
-    margin-left: 4%;
+input::placeholder {
+    color: white !important;
 }
 
-.ant-space-item>div {
-    background-color: #273046;
-    border-color: #858B9B;
-    width: 285px;
+#range-picker-userlist {
+    width: 100px;
 }
 
-.ant-picker>.ant-picker-input>input::placeholder {
+#range-picker-userlist::placeholder {
     color: white;
 }
 
-.ant-select-arrow>span {
-    margin-right: 15px;
+.ant-space-item > div::placeholder {
+    color: white;
 }
 
-.search-bar-item-top>.ant-space {
-    margin-right: 35px;
-}
-
-.ant-select-selection-item {
-    width: 270px;
+.ant-picker-focused > div {
+    background-color: transparent !important;
 }
 
 /* SEARCH BAR */
@@ -166,6 +159,10 @@ td {
     margin-right: 10px;
 }
 
+.table {
+    position: static;
+}
+
 /* PAGINATION */
 
 /* INPUT */
@@ -261,12 +258,12 @@ td {
 
     .list-group {
         width: 1000px;
-        height: 400px;
+        height: 420px;
     }
 
     svg {
         font-size: 10px;
-        padding: 0;
+        padding-top: 10px;
         margin: 0;
     }
 
@@ -287,17 +284,13 @@ td {
         padding: 0;
     }
 
-    .ant-space-item>div {
-        background-color: #273046;
-        border-color: #858B9B;
-        width: 260px;
-        margin-right: 60%;
+    .ant-select:not(.ant-select-costumize-input) .ant-select-selector {
+        margin-right: 6%;
+        width: 225px;
     }
-
-    .ant-space>.ant-space-item {
-        width: 260px;
-        margin-top: 2.5%;
-        margin-right: 4%;
+    
+    #range-picker-userlist {
+        width: 100px;
     }
 
 }
@@ -307,7 +300,7 @@ td {
 
     .search-bar {
         width: 510px;
-        height: auto;
+        height: 300px;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -322,7 +315,6 @@ td {
 
     .search-bar-item-top {
         position: relative;
-        flex-direction: column;
     }
 
     .search-bar-item-bottom>div {
@@ -333,20 +325,28 @@ td {
 
     .list-group {
         width: 510px;
-        height: 400px;
-    }
-
-    .ant-space-item>div {
-        width: 285px;
-        margin-bottom: 10px;
-    }
-
-    .ant-select-selection-item {
-        width: 260px;
+        height: 300px;
     }
 
     .search-bar-item>.search-bar-item-top>h1 {
         font-size: 20px;
-        margin-right: 20%;
+        float: left;
+        margin-right: 40px;
+        margin-top: 0;
+    }
+
+    .ant-select:not(.ant-select-costumize-input) .ant-select-selector {
+        margin-right: 6%;
+        margin-top: 3%;
+        width: 400px;
+    }
+    
+    #range-picker-userlist {
+        width: 230px;
+    }
+
+    svg {
+        font-size: 10px;
+        padding-right: 10px;
     }
 }

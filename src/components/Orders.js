@@ -1,6 +1,7 @@
 import React from 'react';
 import "../cssfield/Orders.css";
 import { Select, Space, Tag, Table, Pagination, Input, Button, DatePicker } from 'antd';
+import { Container, Row, Col } from 'react-grid-system';
 import { useState } from 'react';
 import AdminPanel from './AdminPanel';
 
@@ -240,13 +241,18 @@ export default function UsersList() {
                     <div className='search-bar-item'>
                         <div className='search-bar-item-top'>
                             <h1>Search Filter</h1>
-                            <Space direction="vertical" size={12}>
-                                <RangePicker style={{
-                                }} />
-                            </Space>
                         </div>
                         <div className='search-bar-item-bottom'>
                             <Space>
+                                <div>
+                                    <RangePicker id='range-picker-userlist'
+                                        style={{
+                                            backgroundColor: "transparent",
+                                            color: "white",
+                                            borderColor: "#858B9B"
+                                        }}
+                                    />
+                                </div>
                                 <div>
                                     <Select
                                         defaultValue="Select Role"
@@ -346,7 +352,7 @@ export default function UsersList() {
                             pagination={{
                                 current: page,
                                 pageSize: pageSize,
-                                total: 500,
+                                total: 100,
                                 onChange: (page, pageSize) => {
                                     setPage(page);
                                     setPageSize(pageSize);

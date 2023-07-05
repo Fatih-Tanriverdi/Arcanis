@@ -241,12 +241,18 @@ export default function UsersList() {
                     <div className='search-bar-item'>
                         <div className='search-bar-item-top'>
                             <h1>Search Filter</h1>
-                            <Space>
-                                <DatePicker id='range-picker-userlist' />
-                            </Space>
                         </div>
                         <div className='search-bar-item-bottom'>
                             <Space>
+                                <div>
+                                    <RangePicker id='range-picker-userlist' 
+                                    style={{
+                                        backgroundColor: "transparent",
+                                        color: "white",
+                                        borderColor: "#858B9B"
+                                    }}
+                                    />
+                                </div>
                                 <div>
                                     <Select
                                         defaultValue="Select Role"
@@ -346,7 +352,7 @@ export default function UsersList() {
                             pagination={{
                                 current: page,
                                 pageSize: pageSize,
-                                total: 500,
+                                total: 100,
                                 onChange: (page, pageSize) => {
                                     setPage(page);
                                     setPageSize(pageSize);
