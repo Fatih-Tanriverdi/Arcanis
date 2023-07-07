@@ -3,15 +3,16 @@ import "../cssfield/AdminPanel.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { AiOutlineHome, AiOutlineRocket, AiOutlineUser } from "react-icons/ai";
 import { BsClipboardCheck } from "react-icons/bs";
+import { BiExit } from "react-icons/bi";
 import { Link } from "react-router-dom";
 import { Container, Row, Col } from 'react-grid-system';
-import UsersList from './UsersList';
-import UzayAracları from './SpaceShips';
-import Anasayfa from './SpaceShips';
+import UsersList from '../websitepages/UsersList';
+import UzayAracları from '../websitepages/SpaceShips';
+import Anasayfa from '../websitepages/SpaceShips';
 import AdminPanel from './AdminPanel';
-import MainPage from './MainPage';
-import SpaceShips from './SpaceShips';
-import Orders from './Orders';
+import MainPage from '../websitepages/MainPage';
+import SpaceShips from '../websitepages/SpaceShips';
+import Orders from '../websitepages/Orders';
 
 
 export default function () {
@@ -59,6 +60,14 @@ export default function () {
                                             <div id='icon-home-position-sm' className='icon-style'>
                                                 <BsClipboardCheck />
                                                 <p><a />Siparişler</p>
+                                            </div>
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link to="/">
+                                            <div id='icon-home-position-sm' className='icon-style adminpanel-exit-btn-position'>
+                                                <BiExit />
+                                                <p><a />Çıkış</p>
                                             </div>
                                         </Link>
                                     </li>

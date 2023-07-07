@@ -3,10 +3,11 @@ import Register from "./components/Register";
 import RecoverPassword from "./components/RecoverPassword";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import AdminPanel from "./components/AdminPanel";
-import UsersList from "./components/UsersList";
-import MainPage from "./components/MainPage";
-import Orders from "./components/Orders";
-import SpaceShips from "./components/SpaceShips";
+import UsersList from "./websitepages/UsersList";
+import MainPage from "./websitepages/MainPage";
+import Orders from "./websitepages/Orders";
+import SpaceShips from "./websitepages/SpaceShips";
+import Modal from "./components/Modal";
 
 
 

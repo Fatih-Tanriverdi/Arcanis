@@ -52,6 +52,8 @@ Rocket kiralama sitesinin responsive tasarımı yapılmıştır. Düzenli bir ş
 - Medya sorguları ve CSS özellikleri kullanılarak farklı ekran boyutlarına özgü düzenleri sağlar.
 - Menüler, formlar ve içerikler gibi farklı bileşenlerin responsive tasarımını içerir.
 
+-------------------------------------
+
 
 
 

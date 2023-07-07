@@ -60,7 +60,6 @@ body {
     margin-top: 5px;
 }
 
-
 .navigate>ul>li>a {
     color: white;
     text-decoration: none;
@@ -84,6 +83,9 @@ body {
     color: white;
 }
 
+.adminpanel-exit-btn-position {
+    margin-top: 400px !important;
+}
 /* NAVİGATE */
 
 /* HEADER */
@@ -194,16 +196,15 @@ body {
         display: none;
     }
 
-    .navigate-style > .icon-home-position-sm > svg {
-        font-size: 30px !important;
-        padding-bottom: 25px !important;
-    }
-
     .navigate>ul>li:hover {
         display: flex;
         justify-content: center;
         align-items: center;
-        padding-top: 25%;
+
+        background-color: transparent !important;
+        border-radius: 0px !important;
+        margin-left: 0px !important;
+        
     }
 
     .admin-info>span {
@@ -213,7 +214,11 @@ body {
     .admin-img {
         margin-bottom: 15px;
     }
-
+    
+    .navigate>ul>li>a :hover {
+        color: white;
+        
+    }
 }
 
 @media screen and (max-width: 768px) {
@@ -252,10 +257,11 @@ body {
 
     .navigate>ul>li {
         display: inline-flex;
-        float: right;
-        align-items: center;
+        float: left !important;
+        justify-content: center !important;
+        align-items: center !important;
         padding-top: 2.5%;
-        padding-left: 5%;
+        padding-left: 4%;
     }
 
     .navigate>ul>li:hover {
@@ -264,10 +270,6 @@ body {
         margin-left: 0px;
         margin: 0px;
         padding-top: 5%;
-    }
-
-    .icon-home-position-sm {
-        margin-right: 25px;
     }
 
 
@@ -279,7 +281,6 @@ body {
         display: inline-block;
         justify-content: center;
         align-items: center;
-
     }
 
     .renta-rocket {
@@ -293,5 +294,10 @@ body {
         font-size: 20px;
         padding-left: 5%;
         margin: 0;
+    }
+
+    .adminpanel-exit-btn-position {
+        margin-top: 7px !important;
+        margin-right: 0px !important;
     }
 }
