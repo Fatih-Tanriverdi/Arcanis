@@ -1,19 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import "../cssfield/UsersList.css";
-import { Select, Space, Tag, Table, Pagination, Input, Button, DatePicker, Modal, Dropdown, message, InputNumber } from 'antd';
+import { Select, Space, Tag, Table, Input, Button, DatePicker, Modal, InputNumber } from 'antd';
 import { TiTimes } from 'react-icons/ti';
 import { AiOutlineSave } from "react-icons/ai";
 import { UserOutlined } from '@ant-design/icons';
-import { Container, Row, Col } from 'react-grid-system';
 import { useState } from 'react';
+
+const { RangePicker } = DatePicker;
 
 const handleChange = (value) => {
     console.log(`selected ${value}`);
 };
 
-const { RangePicker } = DatePicker;
-
-const showTotal = (total) => `Total ${total} items`;
+const onChange = (date, dateString) => {
+    console.log(date, dateString);
+};
 
 const columns = [
     {
@@ -228,35 +229,6 @@ const data = [
 
 ];
 
-
-const onChange = (date, dateString) => {
-    console.log(date, dateString);
-};
-
-
-const items = [
-    {
-        label: '1st menu item',
-        key: '1',
-    },
-    {
-        label: '2nd menu item',
-        key: '2',
-    },
-    {
-        label: '3rd menu item',
-        key: '3',
-    },
-    {
-        label: '4rd menu item',
-        key: '4',
-    },
-];
-
-const menuProps = {
-    items,
-};
-
 export default function UsersList() {
 
     const [loading, setLoading] = useState(false);
@@ -448,14 +420,33 @@ export default function UsersList() {
                                     </div>
                                     <div className='modal-dropdown-container'>
                                         <h5>Plan</h5>
-                                        <Dropdown
-                                            menu={{
-                                                items,
+                                        <Select
+                                            id='modal-dropdown-button'
+                                            defaultValue="Select Plan"
+                                            style={{
+                                                color: "white", marginLeft: "10px", marginBottom: "20px ", marginTop: "10px", width: "220px",
                                             }}
-                                            placement="bottomLeft"
-                                        >
-                                            <Button placeholder='Garanti BBVA' style={{ color: "white", marginLeft: "10px", marginBottom: "20px ", marginTop: "10px" }} id='modal-dropdown-button'>Plan</Button>
-                                        </Dropdown>
+                                            onChange={handleChange}
+                                            options={[
+                                                {
+                                                    value: 'jack',
+                                                    label: 'Jack',
+                                                },
+                                                {
+                                                    value: 'lucy',
+                                                    label: 'Lucy',
+                                                },
+                                                {
+                                                    value: 'Yiminghe',
+                                                    label: 'yiminghe',
+                                                },
+                                                {
+                                                    value: 'disabled',
+                                                    label: 'Disabled',
+                                                    disabled: true,
+                                                },
+                                            ]}
+                                        />
                                     </div>
                                     <div className='modal-textbox-container'>
                                         <h5>E-mail Adres</h5>
@@ -463,14 +454,33 @@ export default function UsersList() {
                                     </div>
                                     <div className='modal-role-dropdown-container'>
                                         <h5>Role</h5>
-                                        <Dropdown
-                                            menu={{
-                                                items,
+                                        <Select
+                                            id='modal-dropdown-button'
+                                            defaultValue="Select Role"
+                                            style={{
+                                                color: "white", marginLeft: "10px", marginBottom: "20px ", marginTop: "10px"
                                             }}
-                                            placement="bottomLeft"
-                                        >
-                                            <Button placeholder='Garanti BBVA' style={{ color: "white", marginLeft: "10px", marginBottom: "20px ", marginTop: "10px" }} id='modal-dropdown-button'>Role</Button>
-                                        </Dropdown>
+                                            onChange={handleChange}
+                                            options={[
+                                                {
+                                                    value: 'jack',
+                                                    label: 'Jack',
+                                                },
+                                                {
+                                                    value: 'lucy',
+                                                    label: 'Lucy',
+                                                },
+                                                {
+                                                    value: 'Yiminghe',
+                                                    label: 'yiminghe',
+                                                },
+                                                {
+                                                    value: 'disabled',
+                                                    label: 'Disabled',
+                                                    disabled: true,
+                                                },
+                                            ]}
+                                        />
                                     </div>
                                     <div className='input-text-style'>
                                         <h5>Açıklama</h5>
@@ -478,14 +488,33 @@ export default function UsersList() {
                                     </div>
                                     <div className='modal-status-dropdown-container'>
                                         <h5>Status</h5>
-                                        <Dropdown
-                                            menu={{
-                                                items,
+                                        <Select
+                                            id='modal-dropdown-button'
+                                            defaultValue="Select Status"
+                                            style={{
+                                                color: "white", marginLeft: "10px", marginBottom: "20px ", marginTop: "10px"
                                             }}
-                                            placement="bottomLeft"
-                                        >
-                                            <Button placeholder='Garanti BBVA' style={{ color: "white", marginLeft: "10px", marginBottom: "20px ", marginTop: "10px" }} id='modal-dropdown-button'>Status</Button>
-                                        </Dropdown>
+                                            onChange={handleChange}
+                                            options={[
+                                                {
+                                                    value: 'jack',
+                                                    label: 'Jack',
+                                                },
+                                                {
+                                                    value: 'lucy',
+                                                    label: 'Lucy',
+                                                },
+                                                {
+                                                    value: 'Yiminghe',
+                                                    label: 'yiminghe',
+                                                },
+                                                {
+                                                    value: 'disabled',
+                                                    label: 'Disabled',
+                                                    disabled: true,
+                                                },
+                                            ]}
+                                        />
                                     </div>
                                 </div>
                             </Space>
