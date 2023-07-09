@@ -6,6 +6,10 @@
     background-image: linear-gradient(120deg, #73228B, #490F80) !important;
 }
 
+html {
+    background-color: white !important;
+}
+
 a {
     color: #73228B ;
 }

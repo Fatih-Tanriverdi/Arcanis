@@ -1,18 +1,15 @@
 import React from 'react';
-import "../cssfield/AdminPanel.css";
+import "./AdminPanel.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { AiOutlineHome, AiOutlineRocket, AiOutlineUser } from "react-icons/ai";
 import { BsClipboardCheck } from "react-icons/bs";
 import { BiExit } from "react-icons/bi";
 import { Link } from "react-router-dom";
 import { Container, Row, Col } from 'react-grid-system';
-import UsersList from '../websitepages/UsersList';
-import UzayAracları from '../websitepages/SpaceShips';
-import Anasayfa from '../websitepages/SpaceShips';
-import AdminPanel from './AdminPanel';
-import MainPage from '../websitepages/MainPage';
-import SpaceShips from '../websitepages/SpaceShips';
-import Orders from '../websitepages/Orders';
+import UsersList from '../userlist-page/UsersList';
+import MainPage from "../main-page/MainPage";
+import SpaceShips from '../rockets-page/SpaceShips';
+import Orders from '../';
 
 
 export default function () {
@@ -98,7 +95,7 @@ export default function () {
                         <article>
                             <div>
                                 <Routes>
-                                    <Route exact path="mainpage" Component={MainPage} />
+                                    <Route exact path="mainpage" element={<MainPage />} />
                                     <Route exact path="userlist" Component={UsersList} />
                                     <Route exact path="spaceships" Component={SpaceShips} />
                                     <Route exact path="orders" Component={Orders} />

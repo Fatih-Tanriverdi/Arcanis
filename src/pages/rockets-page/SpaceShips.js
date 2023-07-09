@@ -1,5 +1,5 @@
 import React from 'react'
-import "../cssfield/SpaceShips.css";
+import "../rockets-page/SpaceShips.css";
 import { Container, Row, Col } from 'react-grid-system';
 
 export default function SpaceShips() {

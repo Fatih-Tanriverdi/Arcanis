@@ -1,5 +1,5 @@
 import React from "react";
-import "../cssfield/Register.css";
+import "../register/Register.css";
 import { Link } from "react-router-dom";
 
 

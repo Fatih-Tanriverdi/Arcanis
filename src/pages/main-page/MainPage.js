@@ -1,5 +1,5 @@
 import React from 'react'
-import "../cssfield/MainPage.css";
+import "../main-page/MainPage.css";
 import { Container, Row, Col } from 'react-grid-system';
 
 export default function MainPage() {

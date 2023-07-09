@@ -1,9 +1,8 @@
 import React from 'react';
-import "../cssfield/Orders.css";
+import "../orders-page/Orders.css";
 import { Select, Space, Tag, Table, Pagination, Input, Button, DatePicker } from 'antd';
 import { Container, Row, Col } from 'react-grid-system';
 import { useState } from 'react';
-import AdminPanel from '../components/AdminPanel';
 
 const handleChange = (value) => {
     console.log(`selected ${value}`);

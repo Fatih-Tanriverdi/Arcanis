@@ -1,5 +1,5 @@
 import React from "react";
-import "../cssfield/UserLogin.css";
+import "../user-login/UserLogin.css";
 import { Link, useNavigate } from "react-router-dom";
 import { AiOutlineUser } from "react-icons/ai";
 import { useState, useEffect } from "react";
@@ -10,34 +10,24 @@ export default function App() {
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [emailAddress, setEmailAdress] = useState('');
 
-    
-
-    const history = useNavigate();
-
-    useEffect(() => {
-        if (localStorage.getItem('user-info')){
-            history.push("/")
-        }
-
-    }, [])
 
     async function login () {
-        console.warn(username, password)
-        let result = await fetch("lambalog.com/api/auth/login",{
+        console.warn(username, password, emailAddress)
+        let result = await fetch("https://lambalog.com/api/auth/login", {
             method: "POST",
             headers: {
-                "Content-Type": "application/json",
-                "Accept": "application/json"
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
             },
-            body: JSON.stringify({username: username, password: password})
-        });
+
+            body: JSON.stringify({ username: username, password: password, emailAddress: emailAddress, })
+            
+        })
         result = await result.json();
-        localStorage.setItem("user-info", JSON.stringify(result))
+        localStorage.setItem("user-info", JSON.stringify(result));
     }
-
-    
-
 
 
     return (
@@ -64,7 +54,7 @@ export default function App() {
                                     prefix={<AiOutlineUser />}
                                     className="user-name"
                                     type="text"
-                                    placeholder="Username"
+                                    placeholder="Username / E-mail Adress"
                                 />
                                 <br />
                                 <input

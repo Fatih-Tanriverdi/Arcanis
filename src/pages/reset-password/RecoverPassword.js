@@ -1,5 +1,5 @@
 import React from "react";
-import "../cssfield/RecoverPassword.css";
+import "../reset-password/RecoverPassword.css";
 import { AiFillBackward } from "react-icons/ai";
 import { Link } from "react-router-dom";
 
