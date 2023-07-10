@@ -1,11 +1,14 @@
 import React from "react";
 import "../register/Register.css";
 import { Link } from "react-router-dom";
+import { AiOutlineMail, AiOutlineUser } from "react-icons/ai";
+import { RiLockPasswordLine } from "react-icons/ri";
+import { Input } from 'antd';
 
 
 export default function App() {
     return (
-        <body className="register-body-color">
+        <section className="register-body-color">
             <section className="register-container">
                 {/** Article Bağlangıç **/}
                 <article className="register-card">
@@ -22,28 +25,28 @@ export default function App() {
                                 <p id="description">welcome to the website</p>
                             </div>
                             <div className="input-group-register">
-                                <input
-                                    className="e-mail"
-                                    type="e-mail"
-                                    placeholder="E-mail"
+                                <Input
+                                    placeholder="Enter your E-mail"
+                                    prefix={<AiOutlineMail className="site-form-item-icon" />}
+                                    
                                 />
                                 <br />
-                                <input
-                                    className="username"
-                                    type="text"
+                                <Input
                                     placeholder="Username"
+                                    prefix={<AiOutlineUser className="site-form-item-icon" />}
+                                    style={{
+                                        marginTop: "10px",
+                                        marginBottom: "10px"
+                                    }}
                                 />
                                 <br />
-                                <input
-                                    className="password"
-                                    type="password"
+                                <Input.Password
                                     placeholder="Password"
+                                    prefix={<RiLockPasswordLine />}
                                 />
                             </div>
                             <Link to="/" className="acconut-register">
-                                <a>
                                     Do you already have an account?
-                                </a>
                             </Link>
                             <div className="register-btn">
                                 <button>REGISTER</button>
@@ -54,7 +57,7 @@ export default function App() {
                 </article>
                 {/** Article Bitiş **/}
             </section>
-        </body>
+        </section>
     );
 }
 

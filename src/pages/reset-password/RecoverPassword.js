@@ -1,12 +1,13 @@
 import React from "react";
 import "../reset-password/RecoverPassword.css";
-import { AiFillBackward } from "react-icons/ai";
+import { AiFillBackward, AiOutlineMail, AiOutlineInfoCircle } from "react-icons/ai";
 import { Link } from "react-router-dom";
+import { Input, Tooltip } from 'antd';
 
 
 export default function App() {
     return (
-        <body className="recover-body-color">
+        <section className="recover-body-color">
             <section className="recover-container">
                 {/** Article Bağlangıç **/}
                 <article className="recover-card">
@@ -31,15 +32,19 @@ export default function App() {
                             </Link>
                             <div className="user-recover">
                                 <h1>RESET PASSWORD</h1>
-                                <p id="description">Have you forgotten your password ?
+                                <span id="description">Have you forgotten your password ?
                                     <p>Dont't worry, enter the email address you used to create your profile and we'll sen you instructions for generating a new one.</p>
-                                </p>
+                                </span>
                             </div>
                             <div className="input-group-recover">
-                                <input
-                                    className="e-mail"
-                                    type="e-mail"
-                                    placeholder="E-mail"
+                                <Input
+                                    placeholder="Enter your E-mail"
+                                    prefix={<AiOutlineMail className="site-form-item-icon" />}
+                                    suffix={
+                                        <Tooltip title="Extra information">
+                                            <AiOutlineInfoCircle style={{ color: 'white' }} />
+                                        </Tooltip>
+                                    }
                                 />
                             </div>
                             <div className="send-btn">
@@ -51,6 +56,6 @@ export default function App() {
                 </article>
                 {/** Article Bitiş **/}
             </section>
-        </body>
+        </section>
     );
 } 

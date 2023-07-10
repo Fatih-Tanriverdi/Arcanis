@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react';
 import "../userlist-page/UsersList.css";
 import { Select, Space, Tag, Table, Input, Button, DatePicker, Modal, InputNumber } from 'antd';
 import { TiTimes } from 'react-icons/ti';
 import { AiOutlineSave } from "react-icons/ai";
 import { UserOutlined } from '@ant-design/icons';
 import { useState } from 'react';
+import { Container, Row, Col } from 'react-grid-system';
 
 const { RangePicker } = DatePicker;
 
@@ -251,7 +251,7 @@ export default function UsersList() {
     };
 
     return (
-        <body id='user-list-body'>
+        <Container id='user-list-body'>
             <div className='container'>
                 <div className='search-bar'>
                     <div className='search-bar-item'>
@@ -368,7 +368,7 @@ export default function UsersList() {
                             pagination={{
                                 current: page,
                                 pageSize: pageSize,
-                                total: 100,
+                                total: 20,
                                 onChange: (page, pageSize) => {
                                     setPage(page);
                                     setPageSize(pageSize);
@@ -522,7 +522,7 @@ export default function UsersList() {
                     </Modal>
                 </div>
             </div>
-        </body>
+        </Container>
     )
 }
 

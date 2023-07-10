@@ -17,7 +17,7 @@ export default function App() {
       <Route path="/" element={<UserLogin />} />
       <Route path="/register" element={<Register />} />
       <Route path="/recoverpassword" element={<RecoverPassword />} />
-      <Route path="admin" element={<AdminPanel />}>
+      <Route path="admin/*" element={<AdminPanel />}>
         <Route path="userlist" element={<UsersList />} />
         <Route path="spaceships" element={<SpaceShips />} />
         <Route path="mainpage" element={<MainPage />} />

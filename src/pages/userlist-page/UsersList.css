@@ -535,7 +535,24 @@ td {
 
 /* MODAL EXİT BUTTON */
 
+.modal-usarname-style > .ant-input-affix-wrapper.css-dev-only-do-not-override-12upa3x {
+    background-color: transparent !important;
+    width: 220px !important;
+    height: 32px !important;
+    border-radius: 5px !important;
+    border-color: #858B9B !important;
+}
+
+.input-text-style > .ant-input-affix-wrapper.css-dev-only-do-not-override-12upa3x {
+    background-color: transparent !important;
+    width: 220px !important;
+    height: 32px !important;
+    border-radius: 5px !important;
+    border-color: #858B9B !important;
+}
+
 /* MODAL */
+
 
 
 

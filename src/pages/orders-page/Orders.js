@@ -1,8 +1,8 @@
 import React from 'react';
 import "../orders-page/Orders.css";
-import { Select, Space, Tag, Table, Pagination, Input, Button, DatePicker } from 'antd';
-import { Container, Row, Col } from 'react-grid-system';
+import { Select, Space, Tag, Table, Input, Button, DatePicker } from 'antd';
 import { useState } from 'react';
+import { Container, Row, Col } from 'react-grid-system';
 
 const handleChange = (value) => {
     console.log(`selected ${value}`);
@@ -234,7 +234,7 @@ export default function UsersList() {
     const [pageSize, setPageSize] = useState(10);
 
     return (
-        <body id='user-list-body'>
+        <Container id='user-list-body'>
             <div className='container'>
                 <div className='search-bar'>
                     <div className='search-bar-item'>
@@ -351,7 +351,7 @@ export default function UsersList() {
                             pagination={{
                                 current: page,
                                 pageSize: pageSize,
-                                total: 100,
+                                total: 20,
                                 onChange: (page, pageSize) => {
                                     setPage(page);
                                     setPageSize(pageSize);
@@ -361,6 +361,6 @@ export default function UsersList() {
                     </div>
                 </div>
             </div>
-        </body>
+        </Container>
     )
 }
