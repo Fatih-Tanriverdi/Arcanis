@@ -2,7 +2,7 @@ import React from 'react';
 import "../orders-page/Orders.css";
 import { Select, Space, Tag, Table, Input, Button, DatePicker } from 'antd';
 import { useState } from 'react';
-import { Container, Row, Col } from 'react-grid-system';
+import { Container } from 'react-grid-system';
 
 const handleChange = (value) => {
     console.log(`selected ${value}`);

@@ -123,6 +123,20 @@ a {
     border-color: #73228B !important;
 }
 
+/* Error Message */
+
+#error-message {
+    z-index: 1 !important;
+    font-size: 15px !important;
+    padding: 10px !important;
+    margin-top: 10px;
+    border-radius: 5px !important;
+    background-color: #73228B !important;
+    color: white;
+}
+
+/* Error Message */
+
 /** background: linear-gradient(90 deg rgba(115, 34, 139) 0%, rgba(97, 25, 133) 50%, rgba(73, 15, 178) 100%); **/
 
 /** first-color =  #73228B  **/

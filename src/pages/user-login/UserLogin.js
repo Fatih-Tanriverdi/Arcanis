@@ -4,9 +4,9 @@ import Button from "../../components/button/ButtonLogin";
 import { Link, useNavigate } from "react-router-dom";
 import { AiOutlineUser } from "react-icons/ai";
 import { RiLockPasswordLine } from "react-icons/ri";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Input, Checkbox } from 'antd';
-
+import { login } from '../../services/AuthServices.js';
 
 
 export default function App() {
@@ -14,26 +14,41 @@ export default function App() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [emailAddress, setEmailAdress] = useState('');
-    
-    const onChange = (e) => {
+    const [error, setError] = useState(null);
+
+    const checkBox = (e) => {
         console.log(`checked = ${e.target.checked}`);
     };
 
-    async function login() {
-        console.warn(username, password, emailAddress)
-        let result = await fetch("https://lambalog.com/api/auth/login", {
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            },
+    const navigate = useNavigate();
 
-            body: JSON.stringify({ username: username, password: password, emailAddress: emailAddress, })
+    const handleChange = async (event) => {
+        event.preventDefault();
+        console.warn(username, password, emailAddress);
 
-        })
-        result = await result.json();
-        localStorage.setItem("user-info", JSON.stringify(result));
-    }
+        if (username === '' || password === '') {
+            setError('Kullanıcı adı ve şifre boş olamaz.');
+            return;
+        }
+
+        try {
+            const data = await login(username, password, emailAddress);
+            const token = data.token;
+            if (token) {
+                localStorage.setItem("user-info", JSON.stringify(data));
+                navigate("/admin");
+            } else {
+                setError('Kullanıcı adı veya şifre hatalı.');
+            }
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+
+    const ErrorMessage = ({ message }) => {
+        return <div id="error-message"><p>{message}</p></div>;
+    };
 
 
     return (
@@ -79,7 +94,7 @@ export default function App() {
                             </div>
                             <div className="forget-password">
                                 <div>
-                                    <Checkbox onChange={onChange} style={{ color: "#73228B" }}>Remember</Checkbox>
+                                    <Checkbox onChange={checkBox} style={{ color: "#73228B" }}>Remember</Checkbox>
                                 </div>
                                 <div>
                                     <Link to="/recoverpassword">
@@ -87,7 +102,12 @@ export default function App() {
                                     </Link>
                                 </div>
                             </div>
-                            <Button />
+                            <div>
+                                {error && <ErrorMessage message={error} />}
+                            </div>
+                            <Link className="user-login-btn">
+                                <button onClick={handleChange} type="submit">LOGIN</button>
+                            </Link>
                             <Link to="/register" className="user-register-btn">
                                 New here? Create an Account
                             </Link>
