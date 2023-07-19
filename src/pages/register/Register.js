@@ -4,7 +4,7 @@ import "../register/Register.css";
 import { Link, useNavigate } from "react-router-dom";
 import { AiOutlineMail, AiOutlineUser } from "react-icons/ai";
 import { RiLockPasswordLine } from "react-icons/ri";
-import { login } from '../../services/AuthServices.js';
+import { login } from '../../services/auth-service.js';
 import { Input } from 'antd';
 import { useState } from 'react';
 

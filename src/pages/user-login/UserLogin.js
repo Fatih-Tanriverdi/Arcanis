@@ -6,44 +6,77 @@ import { AiOutlineUser } from "react-icons/ai";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { useState, useEffect, useContext } from "react";
 import { Input, Checkbox } from 'antd';
-import { login } from '../../services/AuthServices.js';
+import { login } from '../../services/auth-service.js';
 
 
 export default function App() {
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const [emailAddress, setEmailAdress] = useState('');
     const [error, setError] = useState(null);
 
     const checkBox = (e) => {
         console.log(`checked = ${e.target.checked}`);
     };
 
+
     const navigate = useNavigate();
 
     const handleChange = async (event) => {
         event.preventDefault();
-        console.warn(username, password, emailAddress);
 
-        if (username === '' || password === '') {
-            setError('Kullanıcı adı ve şifre boş olamaz.');
-            return;
-        }
+        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
-        try {
-            const data = await login(username, password, emailAddress);
-            const token = data.token;
-            if (token) {
-                localStorage.setItem("user-info", JSON.stringify(data));
-                navigate("/admin");
-            } else {
-                setError('Kullanıcı adı veya şifre hatalı.');
+        const inputElement = document.getElementById('user-name-input');
+        const inputValue = inputElement.value.trim();
+
+        if (emailRegex.test(inputValue)) {
+
+            const username = '';
+            const emailAddress = inputValue;
+
+            try {
+                const data = await login(username, password, emailAddress);
+                const token = data.token;
+                if (token) {
+                    localStorage.setItem('user-info', JSON.stringify(data));
+                    navigate('/admin');
+                } else {
+                    setError('Kullanıcı adı veya şifre yanlış.');
+                }
+            } catch (error) {
+                console.error(error);
             }
-        } catch (error) {
-            console.error(error);
+        } else {
+            const username = inputValue;
+            const emailAddress = '';
+
+            if (username === '') {
+                setError('Kullanıcı adı boş olamaz.');
+                return;
+            }
+
+            if (password === '') {
+                setError('Şifre boş olamaz.');
+                return;
+            }
+
+            try {
+                const data = await login(username, password, emailAddress);
+                const token = data.token;
+                if (token) {
+                    localStorage.setItem('user-info', JSON.stringify(data));
+                    navigate('/admin');
+                } else {
+                    setError('Kullanıcı adı veya şifre yanlış.');
+                }
+            } catch (error) {
+                console.error(error);
+            }
         }
     };
+
+
 
 
     const ErrorMessage = ({ message }) => {
@@ -120,4 +153,3 @@ export default function App() {
         </section>
     );
 }
-

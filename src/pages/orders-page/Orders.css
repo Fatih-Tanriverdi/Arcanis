@@ -10,7 +10,7 @@
     height: 115px;
     background-color: #273046;
 
-    margin-right: 3.2%;
+    margin-left: -1.25% !important;
 
     margin-top: 30px;
     border-radius: 5px;
@@ -68,7 +68,7 @@ input::placeholder {
     height: 510px;
     background-color: #273046;
 
-    margin-right: 3.2%;
+    margin-left: -1.25% !important;
     margin-top: 30px;
     border-radius: 5px;
 

@@ -1,6 +1,8 @@
 .user-login-body-color {
     margin: 0;
     padding: 0;
+    height: 100% !important;
+    width: 100% !important;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     background-image: linear-gradient(120deg, #73228B, #490F80) !important;
 }

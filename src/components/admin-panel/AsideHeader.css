@@ -125,13 +125,14 @@ body {
 .admin-info {
     flex-direction: column;
     margin-right: 10px;
+    margin-bottom: -5px;
 }
 
 .admin-info>h1 {
     font-size: 15px;
     display: flex;
     align-items: center;
-    margin-bottom: 0px;
+    margin-bottom: -2px;
     color: white;
 }
 
