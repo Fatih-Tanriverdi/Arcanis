@@ -10,7 +10,7 @@
 .register-container {
     display: flex;
     justify-content: center;
-    padding-top: 2.5%;
+    padding-top: 2.95% !important;
 }
 
 .register-card {

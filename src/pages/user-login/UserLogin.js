@@ -19,7 +19,6 @@ export default function App() {
         console.log(`checked = ${e.target.checked}`);
     };
 
-
     const navigate = useNavigate();
 
     const handleChange = async (event) => {
@@ -75,8 +74,6 @@ export default function App() {
             }
         }
     };
-
-
 
 
     const ErrorMessage = ({ message }) => {
