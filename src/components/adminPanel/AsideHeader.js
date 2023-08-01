@@ -1,21 +1,26 @@
 import React from 'react';
 import "./AsideHeader.css";
 import { Routes, Route } from "react-router-dom";
-import { useState, useEffect, useContext } from "react";
 import { AiOutlineHome, AiOutlineRocket, AiOutlineUser } from "react-icons/ai";
 import { BsClipboardCheck } from "react-icons/bs";
 import { BiExit } from "react-icons/bi";
 import { Link } from "react-router-dom";
 import { Container, Row, Col } from 'react-grid-system';
 import UsersList from '../../pages/userlist-page/UsersList';
-import MainPage from "../../pages/main-page/MainPage";
-import SpaceShips from '../../pages/rockets-page/SpaceShips';
-import Orders from '../../pages/orders-page/Orders';
+import MainPage from "../../pages/main/MainPage";
+import SpaceShips from '../../pages/rockets/SpaceShips';
+import Orders from '../../pages/orders/Orders';
 
 
 
 
 export default function () {
+
+
+    const handleLogout = () => {
+        localStorage.removeItem('access-token');
+    };
+
 
     return (
         <Container id='admin-panel-body'>
@@ -66,9 +71,9 @@ export default function () {
                                     </li>
                                     <li>
                                         <Link to="/">
-                                            <div id='icon-home-position-sm' className='icon-style adminpanel-exit-btn-position'>
+                                            <div  id='icon-home-position-sm exit-btn' className='icon-style adminpanel-exit-btn-position'>
                                                 <BiExit />
-                                                <p>Çıkış</p>
+                                                <p onClick={handleLogout}>Çıkış</p>
                                             </div>
                                         </Link>
                                     </li>

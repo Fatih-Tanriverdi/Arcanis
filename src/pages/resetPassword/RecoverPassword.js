@@ -1,5 +1,5 @@
 import React from "react";
-import "../reset-password/RecoverPassword.css";
+import "../resetPassword/RecoverPassword.css";
 import { AiFillBackward, AiOutlineMail, AiOutlineInfoCircle } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { Input, Tooltip } from 'antd';

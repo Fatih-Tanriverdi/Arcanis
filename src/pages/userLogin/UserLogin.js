@@ -1,12 +1,12 @@
 import React from "react";
-import "../user-login/UserLogin.css";
+import "./UserLogin.css";
 import Button from "../../components/button/ButtonLogin";
 import { Link, useNavigate } from "react-router-dom";
 import { AiOutlineUser } from "react-icons/ai";
 import { RiLockPasswordLine } from "react-icons/ri";
-import { useState, useEffect, useContext } from "react";
+import { useState } from "react";
 import { Input, Checkbox } from 'antd';
-import { login } from '../../services/auth-service.js';
+import { login } from '../../services/authService.js';
 
 
 export default function App() {
@@ -21,8 +21,20 @@ export default function App() {
 
     const navigate = useNavigate();
 
-    const handleChange = async (event) => {
-        event.preventDefault();
+    const loginAndNavigate = async (username, password, emailAddress) => {
+
+        const token = await login(username, password, emailAddress);
+
+        if (token) {
+            localStorage.setItem('access-token', token);
+            navigate('/admin');
+        } else {
+            setError('Kullanıcı adı veya şifre yanlış.');
+        }
+    };
+
+    const handleChange = async (e) => {
+        e.preventDefault();
 
         const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
@@ -30,22 +42,10 @@ export default function App() {
         const inputValue = inputElement.value.trim();
 
         if (emailRegex.test(inputValue)) {
-
             const username = '';
             const emailAddress = inputValue;
 
-            try {
-                const data = await login(username, password, emailAddress);
-                const token = data.token;
-                if (token) {
-                    localStorage.setItem('user-info', JSON.stringify(data));
-                    navigate('/admin');
-                } else {
-                    setError('Kullanıcı adı veya şifre yanlış.');
-                }
-            } catch (error) {
-                console.error(error);
-            }
+            loginAndNavigate(username, password, emailAddress);
         } else {
             const username = inputValue;
             const emailAddress = '';
@@ -53,28 +53,14 @@ export default function App() {
             if (username === '') {
                 setError('Kullanıcı adı boş olamaz.');
                 return;
-            }
-
-            if (password === '') {
+            } else if (password === '') {
                 setError('Şifre boş olamaz.');
                 return;
             }
 
-            try {
-                const data = await login(username, password, emailAddress);
-                const token = data.token;
-                if (token) {
-                    localStorage.setItem('user-info', JSON.stringify(data));
-                    navigate('/admin');
-                } else {
-                    setError('Kullanıcı adı veya şifre yanlış.');
-                }
-            } catch (error) {
-                console.error(error);
-            }
+            loginAndNavigate(username, password, emailAddress);
         }
     };
-
 
     const ErrorMessage = ({ message }) => {
         return <div id="error-message"><p>{message}</p></div>;

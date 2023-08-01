@@ -1,5 +1,5 @@
 import React from 'react';
-import "../orders-page/Orders.css";
+import "../orders/Orders.css";
 import { Select, Space, Tag, Table, Input, Button, DatePicker } from 'antd';
 import { useState } from 'react';
 import { Container } from 'react-grid-system';

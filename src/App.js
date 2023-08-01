@@ -1,13 +1,13 @@
 import React from 'react';
-import UserLogin from "./pages/user-login/UserLogin";
+import UserLogin from "./pages/userLogin/UserLogin";
 import Register from "./pages/register/Register";
-import RecoverPassword from "./pages/reset-password/RecoverPassword";
+import RecoverPassword from "./pages/resetPassword/RecoverPassword";
 import { Routes, Route } from "react-router-dom";
-import AdminPanel from "./pages/admin-panel/AdminPanel";
+import AdminPanel from "./pages/admin/AdminPanel";
 import UsersList from "./pages/userlist-page/UsersList";
-import MainPage from "./pages/main-page/MainPage";
-import Orders from "./pages/orders-page/Orders";
-import SpaceShips from "./pages/rockets-page/SpaceShips";
+import MainPage from "./pages/main/MainPage";
+import Orders from "./pages/orders/Orders";
+import SpaceShips from "./pages/rockets/SpaceShips";
 
 
 
