@@ -35,32 +35,28 @@ export default function App() {
 
     const handleChange = async (e) => {
         e.preventDefault();
-
+    
+        const inputValue = document.getElementById('user-name-input').value.trim();
+    
         const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-
-        const inputElement = document.getElementById('user-name-input');
-        const inputValue = inputElement.value.trim();
-
         if (emailRegex.test(inputValue)) {
             const username = '';
             const emailAddress = inputValue;
-
+    
             loginAndNavigate(username, password, emailAddress);
         } else {
             const username = inputValue;
             const emailAddress = '';
-
-            if (username === '') {
-                setError('Kullanıcı adı boş olamaz.');
-                return;
-            } else if (password === '') {
-                setError('Şifre boş olamaz.');
+    
+            if (username === '' || password === '') {
+                setError('Kullanıcı adı veya şifre boş olamaz.');
                 return;
             }
-
+    
             loginAndNavigate(username, password, emailAddress);
         }
     };
+    
 
     const ErrorMessage = ({ message }) => {
         return <div id="error-message"><p>{message}</p></div>;
@@ -90,7 +86,7 @@ export default function App() {
                                     onChange={(e) => setUsername(e.target.value)}
                                     id="user-name-input"
                                     placeholder="Username / E-mail Adress"
-                                    prefix={<AiOutlineUser className="site-form-item-icon" />}
+                                    prefix={<AiOutlineUser style={{marginLeft: "-15px"}}/>}
                                     style={{
                                         marginTop: "10px",
                                     }}

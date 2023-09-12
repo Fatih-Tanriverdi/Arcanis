@@ -1,5 +1,5 @@
 
-export const login = async (username, password, emailAddress, e) => {
+export const login = async (username, password, emailAddress) => {
     try {
         const response = await fetch("http://lambalog.com/api/auth/login", {
             method: "POST",
@@ -25,13 +25,11 @@ export const login = async (username, password, emailAddress, e) => {
 
 };
 
-
-
 export const checkToken = () => {
 
     var localStorageToken = localStorage.getItem('access-token');
 
-    if (localStorageToken == null || localStorageToken == '') {
+    if (localStorageToken === null || localStorageToken === '') {
         window.location.href = '/';
         return false;
     } else {

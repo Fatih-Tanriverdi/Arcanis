@@ -13,12 +13,10 @@ import Orders from '../../pages/orders/Orders';
 
 
 
-
 export default function () {
 
-
     const handleLogout = () => {
-        localStorage.removeItem('access-token');
+        localStorage.removeItem('access-token'); 
     };
 
 
