@@ -6,6 +6,7 @@ import { RiLockPasswordLine } from "react-icons/ri";
 import { Input } from 'antd';
 
 export default function App() {
+    const navigate = useNavigate();
     const [error, setError] = useState(null);
     const [values, setValues] = useState({
         name: "",
@@ -17,13 +18,17 @@ export default function App() {
         password: ""
     });
 
-    const navigate = useNavigate();
-
     const handleInput = (e) => {
         const { name, value } = e.target;
         setValues((prev) => ({ ...prev, [name]: value }));
     };
 
+    const maskPhoneNumber = (phoneNumber) => {
+        if (phoneNumber.length === 10) {
+            return `(${phoneNumber.substring(1, 4)}) ${phoneNumber.substring(4, 7)}-${phoneNumber.substring(7)}`;
+        }
+        return phoneNumber;
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -36,20 +41,21 @@ export default function App() {
             body: JSON.stringify(values)
         })
 
-        console.log(response);
-
         if (!response.ok) {
             const errorData = await response.json();
             setError(errorData.message || "Kullanıcı kaydı yapılamadı.");
             return;
+        } else if (values.name === "" || values.surname === "" || values.emailAddress === "" || values.phoneNumber === "" || values.username === "" || values.password === "") {
+            setError("Kullanıcı bilgileri boş bırakılamaz");
         } else {
             navigate("/");
             console.log("Kullanıcı Kaydı Başarılı.");
         }
+
     };
 
     const ErrorMessage = ({ message }) => {
-        return <div id="error-message"><p>{message}</p></div>;
+        return <div id="error-message-register"><p>{message}</p></div>;
     };
 
     return (
@@ -97,7 +103,7 @@ export default function App() {
                                     onChange={handleInput}
                                     type="password"
                                     placeholder="Enter your Password"
-                                    prefix={<RiLockPasswordLine style={{marginLeft: "13px"}}/>}
+                                    prefix={<RiLockPasswordLine style={{ marginLeft: "13px" }} />}
                                     style={{
                                         marginBottom: "20px"
                                     }}
@@ -125,10 +131,10 @@ export default function App() {
                                 <Input
                                     className="ınputRegister"
                                     name="phoneNumber"
-                                    value={values.phoneNumber}
+                                    value={maskPhoneNumber(values.phoneNumber)}
                                     onChange={handleInput}
                                     type="text"
-                                    placeholder="Enter your Phone Number"
+                                    placeholder="(000) 000-0000"
                                     prefix={<AiOutlinePhone className="site-form-item-icon" />}
                                 />
                                 <Link to="/" className="acconut-register">

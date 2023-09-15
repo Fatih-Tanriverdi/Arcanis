@@ -11,6 +11,7 @@ import { login } from '../../services/authService.js';
 
 export default function App() {
 
+    const navigate = useNavigate();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState(null);
@@ -18,8 +19,6 @@ export default function App() {
     const checkBox = (e) => {
         console.log(`checked = ${e.target.checked}`);
     };
-
-    const navigate = useNavigate();
 
     const loginAndNavigate = async (username, password, emailAddress) => {
 
@@ -30,6 +29,7 @@ export default function App() {
             navigate('/admin');
         } else {
             setError('Kullanıcı adı veya şifre yanlış.');
+            navigate('/');
         }
     };
 
@@ -50,7 +50,7 @@ export default function App() {
     
             if (username === '' || password === '') {
                 setError('Kullanıcı adı veya şifre boş olamaz.');
-                return;
+                navigate('/');
             }
     
             loginAndNavigate(username, password, emailAddress);
@@ -61,7 +61,6 @@ export default function App() {
     const ErrorMessage = ({ message }) => {
         return <div id="error-message"><p>{message}</p></div>;
     };
-
 
     return (
         <section className="user-login-body-color">
