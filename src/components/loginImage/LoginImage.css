@@ -1,0 +1,25 @@
+.image-left {
+    display: flex;
+    float: left;
+}
+
+.image-position {
+    height: 700px;
+    width: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px 0px 0px 20px;
+}
+
+/** MEDIA QUERIES  **/
+
+/* 800px */
+@media (max-width: 800px) {
+
+    .image-left>img {
+        display: none;
+    }
+}
+
+/* 800px */

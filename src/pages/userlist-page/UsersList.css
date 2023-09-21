@@ -622,7 +622,7 @@ td {
 
     #modal-footer-button-style>.ant-btn-primary>div {
         display: flex !important;
-        justify-content: end !important;
+        justify-content: flex-end !important;
         align-items: center !important;
     }
 
@@ -632,7 +632,7 @@ td {
 
     #modal-footer-button-style>.ant-btn-default>div {
         display: flex !important;
-        justify-content: end !important;
+        justify-content: flex-end !important;
         align-items: center !important;
     }
 

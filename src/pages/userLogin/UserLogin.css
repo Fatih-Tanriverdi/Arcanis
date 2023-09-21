@@ -8,7 +8,7 @@
 }
 
 a {
-    color: #73228B ;
+    color: #73228B;
 }
 
 .userlogin-container {
@@ -23,11 +23,6 @@ a {
     width: 1000px;
     margin-bottom: 3.6%;
     box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
-}
-
-.user-card-left {
-    display: flex;
-    float: left;
 }
 
 .user-card-right {
@@ -63,47 +58,11 @@ a {
     align-items: center;
 }
 
-.ant-input-affix-wrapper.ant-input-password {
-    background-color: #D3D3D3 !important;
-    border-color: #73228B !important;
-    width: 270px !important;
-    height: 40px !important;
-    color: white !important;
-    border-radius: 20px !important;
-}
-
-.ant-input-affix-wrapper.ant-input-password > input {
-    color: white !important;
-}
-
-.ant-input-affix-wrapper.css-dev-only-do-not-override-12upa3x {
-    background-color: #D3D3D3 !important;
-    border-color: #73228B !important;
-    width: 270px !important;
-    height: 40px !important;
-    color: white !important;
-    border-radius: 20px !important;
-}
-
-.ant-input-affix-wrapper.css-dev-only-do-not-override-12upa3x > input {
-    color: white !important;
-}
-
 .forget-password>div {
     display: inline-block;
     align-items: center;
-    padding: 0px 20px 0px 20px;
+    padding: 15px 20px 15px 20px;
     font-size: 15px;
-    padding-top: 15px;
-}
-
-.user-rocket-img {
-    height: 700px;
-    width: 600px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 20px 0px 0px 20px;
 }
 
 .ant-checkbox-wrapper {
@@ -116,7 +75,7 @@ a {
     background-color: white !important;
 }
 
-.ant-checkbox-inner{
+.ant-checkbox-inner {
     background: #73228B !important;
     border-color: #73228B !important;
 }
@@ -136,22 +95,14 @@ a {
 /* Error Message */
 
 /** background: linear-gradient(90 deg rgba(115, 34, 139) 0%, rgba(97, 25, 133) 50%, rgba(73, 15, 178) 100%); **/
-
 /** first-color =  #73228B  **/
 /** second-color =  #490F80  **/
 
-
 /** MEDIA QUERIES  **/
-
-
 
 /* 800px */
 
 @media (max-width: 800px) {
-
-    .user-card-left>img {
-        display: none;
-    }
 
     .userlogin-container>.userlogin-card {
         height: 600px;
@@ -183,15 +134,14 @@ a {
         margin: 20px;
     }
 
-    .ant-input-prefix > svg {
+    .ant-input-prefix>svg {
         font-size: 15px !important;
         margin-bottom: 10px !important;
     }
 
-    .ant-input-suffix > span {
+    .ant-input-suffix>span {
         margin-bottom: 10px !important;
     }
-
 
 }
 
@@ -280,12 +230,12 @@ a {
         height: 30px;
     }
 
-    .ant-input-prefix > svg {
+    .ant-input-prefix>svg {
         font-size: 15px !important;
         margin-bottom: 10px !important;
     }
 
-    .ant-input-suffix > span {
+    .ant-input-suffix>span {
         margin-bottom: 10px !important;
     }
 

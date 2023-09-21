@@ -3,7 +3,7 @@ import "../resetPassword/RecoverPassword.css";
 import { AiFillBackward, AiOutlineMail, AiOutlineInfoCircle } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { Input, Tooltip } from 'antd';
-
+import LoginImage from '../../components/loginImage/LoginImage';
 
 export default function App() {
     return (
@@ -12,9 +12,7 @@ export default function App() {
                 {/** Article Bağlangıç **/}
                 <article className="recover-card">
                     {/** Card-Left Başlangıç **/}
-                    <article className="card-left-recover">
-                        <img className="recover-rocket-img" src="/images/rocket-img.png" />
-                    </article>
+                    <LoginImage />
                     {/** Card-Left Bitiş **/}
                     <div className="recover-row">
                         {/** Card-Right Başlangıç **/}
@@ -47,9 +45,9 @@ export default function App() {
                                     }
                                 />
                             </div>
-                            <div className="send-btn">
+                            <Link className="auth-btn">
                                 <button>SEND</button>
-                            </div>
+                            </Link>
                         </article>
                         {/** Card-Right Bitiş **/}
                     </div>

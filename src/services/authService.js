@@ -43,7 +43,6 @@ export const checkToken = () => {
         })
             .then((response) => {
                 if (response.status !== 200) {
-                    alert('Geçersiz token. Lütfen giriş yapın.');
                     window.location.href = '/';
                 }
             })

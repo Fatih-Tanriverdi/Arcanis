@@ -1,8 +1,8 @@
-.user-login-btn {
+.auth-btn {
     padding-top: 25px;
 }
 
-.user-login-btn>button {
+.auth-btn>button {
     background-image: linear-gradient(90deg, #73228B, #490F80);
     transition: all 0.3s ease-in-out;
     border-radius: 20px;
@@ -16,7 +16,7 @@
     color: white;
 }
 
-.user-login-btn>button:hover {
+.auth-btn>button:hover {
     transform: scale(0.9);
     box-shadow: 2px 2px 30px 3px #73228B;
 }

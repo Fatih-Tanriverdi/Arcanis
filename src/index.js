@@ -3,8 +3,6 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import './index.css';
 import { BrowserRouter } from 'react-router-dom';
-import AuthService from "./services/authService";
-/**import 'bootstrap/dist/css/bootstrap.min.css';**/
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

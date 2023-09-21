@@ -1,6 +1,8 @@
 import React from "react";
 import "./UserLogin.css";
-import Button from "../../components/button/ButtonLogin";
+import "../../components/button/ButtonLogin.css";
+import "../../components/auth-input/AuthInput.css";
+import LoginImage from '../../components/loginImage/LoginImage';
 import { Link, useNavigate } from "react-router-dom";
 import { AiOutlineUser } from "react-icons/ai";
 import { RiLockPasswordLine } from "react-icons/ri";
@@ -35,28 +37,28 @@ export default function App() {
 
     const handleChange = async (e) => {
         e.preventDefault();
-    
+
         const inputValue = document.getElementById('user-name-input').value.trim();
-    
+
         const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
         if (emailRegex.test(inputValue)) {
             const username = '';
             const emailAddress = inputValue;
-    
+
             loginAndNavigate(username, password, emailAddress);
         } else {
             const username = inputValue;
             const emailAddress = '';
-    
+
             if (username === '' || password === '') {
                 setError('Kullanıcı adı veya şifre boş olamaz.');
                 navigate('/');
             }
-    
+
             loginAndNavigate(username, password, emailAddress);
         }
     };
-    
+
 
     const ErrorMessage = ({ message }) => {
         return <div id="error-message"><p>{message}</p></div>;
@@ -68,9 +70,7 @@ export default function App() {
                 {/** Article Bağlangıç **/}
                 <article className="userlogin-card">
                     {/** Card-Left Başlangıç **/}
-                    <article className="user-card-left">
-                        <img className="user-rocket-img" src="/images/rocket-img.png" />
-                    </article>
+                    <LoginImage />
                     {/** Card-Left Bitiş **/}
                     <article className="userlogin-row">
                         {/** Card-Right Başlangıç **/}
@@ -85,7 +85,7 @@ export default function App() {
                                     onChange={(e) => setUsername(e.target.value)}
                                     id="user-name-input"
                                     placeholder="Username / E-mail Adress"
-                                    prefix={<AiOutlineUser style={{marginLeft: "-15px"}}/>}
+                                    prefix={<AiOutlineUser style={{ marginLeft: "-15px" }} />}
                                     style={{
                                         marginTop: "10px",
                                     }}
@@ -116,7 +116,7 @@ export default function App() {
                             <div>
                                 {error && <ErrorMessage message={error} />}
                             </div>
-                            <Link className="user-login-btn">
+                            <Link className="auth-btn">
                                 <button onClick={handleChange} type="submit">LOGIN</button>
                             </Link>
                             <Link to="/register" className="user-register-btn">

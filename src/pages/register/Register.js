@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "../register/Register.css";
 import { Link, useNavigate } from "react-router-dom";
 import { AiOutlineMail, AiOutlineUser, AiOutlinePhone } from "react-icons/ai";
+import LoginImage from '../../components/loginImage/LoginImage';
 import { RiLockPasswordLine } from "react-icons/ri";
 import { Input } from 'antd';
 
@@ -25,7 +26,7 @@ export default function App() {
 
     const maskPhoneNumber = (phoneNumber) => {
         if (phoneNumber.length === 10) {
-            return `(${phoneNumber.substring(1, 4)}) ${phoneNumber.substring(4, 7)}-${phoneNumber.substring(7)}`;
+            return `0 (${phoneNumber.substring(0, 3)}) ${phoneNumber.substring(3, 6)}-${phoneNumber.substring(6, 8)}-${phoneNumber.substring(8, 10)}`;
         }
         return phoneNumber;
     };
@@ -64,9 +65,7 @@ export default function App() {
                 {/* Article Bağlangıç */}
                 <article className="register-card">
                     {/* Card-Left Başlangıç */}
-                    <article className="register-card-left">
-                        <img className="register-rocket-img" src="/images/rocket-img.png" alt="Rocket" />
-                    </article>
+                    <LoginImage />
                     {/* Card-Left Bitiş */}
                     <div className="register-row">
                         {/* Card-Right Başlangıç */}
@@ -134,7 +133,7 @@ export default function App() {
                                     value={maskPhoneNumber(values.phoneNumber)}
                                     onChange={handleInput}
                                     type="text"
-                                    placeholder="(000) 000-0000"
+                                    placeholder="0 (000) 000-00-00"
                                     prefix={<AiOutlinePhone className="site-form-item-icon" />}
                                 />
                                 <Link to="/" className="acconut-register">
@@ -142,9 +141,9 @@ export default function App() {
                                 </Link>
                             </form>
                             {error && <ErrorMessage message={error} />}
-                            <div className="register-btn">
+                            <Link className="auth-btn">
                                 <button type="submit" onClick={handleSubmit}>REGISTER</button>
-                            </div>
+                            </Link>
                         </article>
                         {/* Card-Right Bitiş */}
                     </div>

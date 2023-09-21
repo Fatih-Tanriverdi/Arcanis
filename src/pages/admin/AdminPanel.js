@@ -4,7 +4,7 @@ import AsideHeader from '../../components/adminPanel/AsideHeader';
 import { useEffect } from "react";
 import { checkToken } from '../../services/authService';
 
-export default function () {
+export default function AdminPanel() {
 
     useEffect(() => {
         checkToken();
