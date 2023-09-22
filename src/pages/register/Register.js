@@ -3,6 +3,7 @@ import "../register/Register.css";
 import { Link, useNavigate } from "react-router-dom";
 import { AiOutlineMail, AiOutlineUser, AiOutlinePhone } from "react-icons/ai";
 import LoginImage from '../../components/loginImage/LoginImage';
+import AuthButton from "../../components/button/AuthButton";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { Input } from 'antd';
 
@@ -141,9 +142,7 @@ export default function App() {
                                 </Link>
                             </form>
                             {error && <ErrorMessage message={error} />}
-                            <Link className="auth-btn">
-                                <button type="submit" onClick={handleSubmit}>REGISTER</button>
-                            </Link>
+                            <AuthButton text="REGISTER" onClick={handleSubmit}/>
                         </article>
                         {/* Card-Right Bitiş */}
                     </div>

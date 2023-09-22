@@ -4,6 +4,7 @@ import { AiFillBackward, AiOutlineMail, AiOutlineInfoCircle } from "react-icons/
 import { Link } from "react-router-dom";
 import { Input, Tooltip } from 'antd';
 import LoginImage from '../../components/loginImage/LoginImage';
+import AuthButton from "../../components/button/AuthButton";
 
 export default function App() {
     return (
@@ -45,9 +46,7 @@ export default function App() {
                                     }
                                 />
                             </div>
-                            <Link className="auth-btn">
-                                <button>SEND</button>
-                            </Link>
+                            <AuthButton text="SEND"/>
                         </article>
                         {/** Card-Right Bitiş **/}
                     </div>

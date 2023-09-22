@@ -27,28 +27,3 @@ export default function App() {
     </Routes>
   );
 }
-
-/*  
-<>
-  <Routes>
-    <Route path="/" element={<UserLogin />} />
-    <Route path="/register" element={<Register />} />
-    <Route path="/recoverpassword" element={<RecoverPassword />} />
-    <Route path="/adminpanel" element={<AdminPanel />} />
-    <Route path="/userlist" element={<UsersList />} />
-    <Route path="/uzayaracları" element={<UzayAracları />} />
-  </Routes>
-
-  <Routes>
-      <Route path="/" element={<UserLogin />} />
-      <Route path="/register" element={<Register />} />
-      <Route path="/recoverpassword" element={<RecoverPassword />} />
-      <Route path="admin" element={<AdminPanel />}>
-        <Route path="userlist" element={<UsersList />} />
-        <Route path="spaceships" element={<SpaceShips />} />
-        <Route path="mainpage" element={<MainPage />} />
-        <Route path="orders" element={<Orders />} />
-      </Route>
-    </Routes>
-</>
-*/

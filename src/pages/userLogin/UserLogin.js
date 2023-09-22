@@ -1,6 +1,5 @@
-import React from "react";
 import "./UserLogin.css";
-import "../../components/button/ButtonLogin.css";
+import AuthButton from "../../components/button/AuthButton";
 import "../../components/auth-input/AuthInput.css";
 import LoginImage from '../../components/loginImage/LoginImage';
 import { Link, useNavigate } from "react-router-dom";
@@ -23,42 +22,38 @@ export default function App() {
     };
 
     const loginAndNavigate = async (username, password, emailAddress) => {
-
         const token = await login(username, password, emailAddress);
-
         if (token) {
             localStorage.setItem('access-token', token);
             navigate('/admin');
-        } else {
-            setError('Kullanıcı adı veya şifre yanlış.');
+        } else if (!token) {
+            setError('Kullanıcı adı, şifre veya e-posta yanlış.');
             navigate('/');
         }
     };
-
+    
     const handleChange = async (e) => {
         e.preventDefault();
-
         const inputValue = document.getElementById('user-name-input').value.trim();
-
+        const password = document.getElementById('password-input').value.trim();
         const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-        if (emailRegex.test(inputValue)) {
+    
+        if (inputValue === '' && password === '') {
+            setError('Kullanıcı adı, şifre veya e-posta boş olamaz.');
+        } else if (inputValue === '') {
+            setError('Kullanıcı adı boş olamaz.');
+        } else if (password === '') {
+            setError('Şifre boş olamaz.');
+        } else if (emailRegex.test(inputValue)) {
             const username = '';
             const emailAddress = inputValue;
-
             loginAndNavigate(username, password, emailAddress);
         } else {
             const username = inputValue;
             const emailAddress = '';
-
-            if (username === '' || password === '') {
-                setError('Kullanıcı adı veya şifre boş olamaz.');
-                navigate('/');
-            }
-
             loginAndNavigate(username, password, emailAddress);
         }
-    };
-
+    };    
 
     const ErrorMessage = ({ message }) => {
         return <div id="error-message"><p>{message}</p></div>;
@@ -116,9 +111,7 @@ export default function App() {
                             <div>
                                 {error && <ErrorMessage message={error} />}
                             </div>
-                            <Link className="auth-btn">
-                                <button onClick={handleChange} type="submit">LOGIN</button>
-                            </Link>
+                            <AuthButton text="LOGIN" onClick={handleChange}/>
                             <Link to="/register" className="user-register-btn">
                                 New here? Create an Account
                             </Link>

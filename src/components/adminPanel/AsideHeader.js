@@ -103,9 +103,9 @@ export default function () {
                             <div>
                                 <Routes>
                                     <Route exact path="mainpage" element={<MainPage />} />
-                                    <Route exact path="userlist" Component={UsersList} />
-                                    <Route exact path="spaceships" Component={SpaceShips} />
-                                    <Route exact path="orders" Component={Orders} />
+                                    <Route exact path="userlist" element={<UsersList />} />
+                                    <Route exact path="spaceships" element={<SpaceShips />} />
+                                    <Route exact path="orders" element={<Orders />} />
                                 </Routes>
                             </div>
                         </article>

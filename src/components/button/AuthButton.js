@@ -1,13 +1,13 @@
 import React from 'react'
 import { Link } from "react-router-dom";
-import "../button/ButtonLogin.css";
+import "../button/AuthButton.css";
 
-export default function ButtonLogin() {
+export default function AuthButton(props) {
 
     return (
         <div>
             <Link to="/admin" className="auth-btn">
-                <button type="submit">LOGIN</button>
+                <button onClick={props.onClick} type="submit">{props.text}</button>
             </Link>
         </div>
     )

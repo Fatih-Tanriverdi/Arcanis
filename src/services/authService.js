@@ -1,4 +1,3 @@
-
 export const login = async (username, password, emailAddress) => {
     try {
         const response = await fetch("http://lambalog.com/api/auth/login", {
