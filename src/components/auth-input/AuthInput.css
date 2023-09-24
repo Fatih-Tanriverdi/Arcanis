@@ -35,6 +35,10 @@
     height: 40px;
 }
 
+.input-group-register {
+    margin-bottom: 20px !important;
+}
+
 .ant-input-affix-wrapper {
     margin-bottom: 0;
     display: flex;
@@ -44,4 +48,9 @@
 
 .input-group-register >input::placeholder {
     color: white;
+}
+
+.ınputRegister,
+.ınputRegisterPassword {
+    margin-bottom: 20px !important;
 }

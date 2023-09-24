@@ -1,0 +1,32 @@
+.icon-style {
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+}
+
+.navigate>ul>li>a {
+    color: white;
+    text-decoration: none;
+    font-size: 15px;
+}
+
+.navigate>ul>li {
+    flex-direction: column;
+    list-style: none;
+    border-radius: 15px 0px 0px 15px;
+    transition: all 0.3s ease;
+}
+
+.navigate>ul>li:hover {
+    background-color: #7465F2;
+    border-radius: 15px 0px 0px 15px;
+    margin-left: 10px;
+}
+
+.navigate>ul>li>a :hover {
+    color: white;
+}
+
+.adminpanel-exit-btn-position {
+    margin-top: 400px !important;
+}

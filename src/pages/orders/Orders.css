@@ -6,11 +6,11 @@
 /* SEARCH BAR */
 
 .search-bar {
-    width: 1050px;
+    width: 1080px;
     height: 115px;
     background-color: #273046;
 
-    margin-left: -1.25% !important;
+    margin-left: -2% !important;
 
     margin-top: 30px;
     border-radius: 5px;
@@ -64,11 +64,11 @@ input::placeholder {
 /* LIST GROUP */
 
 .list-group {
-    width: 1050px;
+    width: 1080px;
     height: 510px;
     background-color: #273046;
 
-    margin-left: -1.25% !important;
+    margin-left: -2% !important;
     margin-top: 30px;
     border-radius: 5px;
 

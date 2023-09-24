@@ -3,19 +3,18 @@ import AuthButton from "../../components/button/AuthButton";
 import "../../components/auth-input/AuthInput.css";
 import LoginImage from '../../components/loginImage/LoginImage';
 import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { Checkbox, Input } from 'antd';
+import { login } from '../../services/authService.js';
 import { AiOutlineUser } from "react-icons/ai";
 import { RiLockPasswordLine } from "react-icons/ri";
-import { useState } from "react";
-import { Input, Checkbox } from 'antd';
-import { login } from '../../services/authService.js';
-
 
 export default function App() {
 
     const navigate = useNavigate();
+    const [error, setError] = useState(null);
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const [error, setError] = useState(null);
 
     const checkBox = (e) => {
         console.log(`checked = ${e.target.checked}`);
@@ -31,13 +30,13 @@ export default function App() {
             navigate('/');
         }
     };
-    
+
     const handleChange = async (e) => {
         e.preventDefault();
         const inputValue = document.getElementById('user-name-input').value.trim();
         const password = document.getElementById('password-input').value.trim();
         const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    
+
         if (inputValue === '' && password === '') {
             setError('Kullanıcı adı, şifre veya e-posta boş olamaz.');
         } else if (inputValue === '') {
@@ -53,7 +52,7 @@ export default function App() {
             const emailAddress = '';
             loginAndNavigate(username, password, emailAddress);
         }
-    };    
+    };
 
     const ErrorMessage = ({ message }) => {
         return <div id="error-message"><p>{message}</p></div>;
@@ -81,9 +80,6 @@ export default function App() {
                                     id="user-name-input"
                                     placeholder="Username / E-mail Adress"
                                     prefix={<AiOutlineUser style={{ marginLeft: "-15px" }} />}
-                                    style={{
-                                        marginTop: "10px",
-                                    }}
                                 />
                                 <br />
                                 <Input.Password
@@ -92,29 +88,21 @@ export default function App() {
                                     onChange={(e) => setPassword(e.target.value)}
                                     prefix={<RiLockPasswordLine />}
                                     placeholder="Password"
-                                    style={{
-                                        backgroundColor: "black",
-                                        marginTop: "10px",
-                                    }}
                                 />
                             </div>
                             <div className="forget-password">
                                 <div>
-                                    <Checkbox onChange={checkBox} style={{ color: "#73228B" }}>Remember</Checkbox>
+                                    <Checkbox className="checkbox-color" onChange={checkBox} style={{ color: "#73228B" }}><p style={{ color: "#73228B" }}>Remember</p></Checkbox>
                                 </div>
                                 <div>
-                                    <Link to="/recoverpassword">
-                                        Reset Password
-                                    </Link>
+                                    <Link to="/recoverpassword">Reset Password</Link>
                                 </div>
                             </div>
                             <div>
                                 {error && <ErrorMessage message={error} />}
                             </div>
-                            <AuthButton text="LOGIN" onClick={handleChange}/>
-                            <Link to="/register" className="user-register-btn">
-                                New here? Create an Account
-                            </Link>
+                            <AuthButton text="LOGIN" onClick={handleChange} />
+                            <Link to="/register" className="user-register-btn">New here? Create an Account</Link>
                         </form>
                         {/** Card-Right Bitiş **/}
                     </article>

@@ -1,14 +1,13 @@
 body {
     margin: 0 !important;
     padding: 0 !important;
-    max-height: 783px !important;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    background-color: #161D30;
 }
 
-.navigate-style > .icon-home-position-sm > svg {
-    font-size: 30px !important;
-    padding-bottom: 5px !important;
+#admin-panel-body {
+    display: flex !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 .col-8 {
@@ -23,10 +22,13 @@ body {
 /* NAVİGATE */
 
 .aside {
-    width: 240px;
+    width: 270px;
     height: 783px;
     background-color: #273046;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+
+    margin-left: -20px !important;
+    margin-right: 20px !important;
 }
 
 .admin-rocket-img {
@@ -45,7 +47,7 @@ body {
     border-bottom: solid #161D30;
 }
 
-.renta-rocket > img {
+.renta-rocket>img {
     margin-top: 2.5%;
 }
 
@@ -55,47 +57,14 @@ body {
     color: #7465F2;
 }
 
-.icon-style {
-    display: flex;
-    align-items: center;
-    margin-top: 5px;
-}
-
-.navigate>ul>li>a {
-    color: white;
-    text-decoration: none;
-    font-size: 15px;
-}
-
-.navigate>ul>li {
-    flex-direction: column;
-    list-style: none;
-    border-radius: 15px 0px 0px 15px;
-    transition: all 0.3s ease;
-}
-
-.navigate>ul>li:hover {
-    background-color: #7465F2;
-    border-radius: 15px 0px 0px 15px;
-    margin-left: 10px;
-}
-
-.navigate>ul>li>a :hover {
-    color: white;
-}
-
-.adminpanel-exit-btn-position {
-    margin-top: 400px !important;
-}
 /* NAVİGATE */
 
 /* HEADER */
 
 .header {
-    width: 1050px;
-    height: 50px;
+    width: 1080px !important;
     background-color: #273046;
-    margin-right: 3.2%;
+    margin-right: 30px !important;
     margin-top: 30px;
     border-radius: 5px;
 
@@ -144,20 +113,22 @@ body {
     color: white;
 }
 
+.admin-container-aside,
+.admin-container-header {
+    background-color: #161D30;
+    padding: 0px !important;
+    margin: 0px !important;
+}
 
 /* HEADER */
 
+/* BUTTON */
 
-.admin-container-aside {
-    position: relative;
-    right: 166px;
+.css-dev-only-do-not-override-12upa3x {
+    color: white !important;
 }
 
-.admin-container-header {
-    position: relative;
-    bottom: 790px;
-    left: 150px;
-}
+/* BUTTON */
 
 /** MEDIA QUERIES  **/
 
@@ -173,7 +144,7 @@ body {
         margin-top: 20px;
     }
 
-    .renta-rocket > img {
+    .renta-rocket>img {
         margin-top: 0%;
         margin-right: 2.5%;
     }
@@ -205,7 +176,7 @@ body {
         background-color: transparent !important;
         border-radius: 0px !important;
         margin-left: 0px !important;
-        
+
     }
 
     .admin-info>span {
@@ -215,10 +186,10 @@ body {
     .admin-img {
         margin-bottom: 15px;
     }
-    
+
     .navigate>ul>li>a :hover {
         color: white;
-        
+
     }
 }
 
@@ -274,7 +245,7 @@ body {
     }
 
 
-    .icon-style > svg {
+    .icon-style>svg {
         font-size: 20px;
     }
 
@@ -290,7 +261,7 @@ body {
         border-bottom: 0;
     }
 
-    .renta-rocket > h1 {
+    .renta-rocket>h1 {
         display: flex;
         font-size: 20px;
         padding-left: 5%;

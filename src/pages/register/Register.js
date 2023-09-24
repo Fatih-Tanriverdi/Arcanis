@@ -1,11 +1,9 @@
 import React, { useState } from "react";
 import "../register/Register.css";
 import { Link, useNavigate } from "react-router-dom";
-import { AiOutlineMail, AiOutlineUser, AiOutlinePhone } from "react-icons/ai";
 import LoginImage from '../../components/loginImage/LoginImage';
 import AuthButton from "../../components/button/AuthButton";
-import { RiLockPasswordLine } from "react-icons/ri";
-import { Input } from 'antd';
+import { AuthInputEmail, AuthInputUsername, AuthInputPassword, AuthInputName, AuthInputSurname, AuthInputPhoneNumber} from '../../components/auth-input/AuthInput';
 
 export default function App() {
     const navigate = useNavigate();
@@ -76,73 +74,18 @@ export default function App() {
                                 <p id="description">welcome to the website</p>
                             </div>
                             <form className="input-group-register">
-                                <Input
-                                    className="ınputRegister"
-                                    name="emailAddress"
-                                    value={values.emailAddress}
-                                    onChange={handleInput}
-                                    type="email"
-                                    placeholder="Enter your E-mail"
-                                    prefix={<AiOutlineMail className="site-form-item-icon" />}
-                                />
-                                <br />
-                                <Input
-                                    name="username"
-                                    className="ınputRegister"
-                                    value={values.username}
-                                    onChange={handleInput}
-                                    type="text"
-                                    placeholder="Enter your Username"
-                                    prefix={<AiOutlineUser className="site-form-item-icon" />}
-                                />
-                                <br />
-                                <Input.Password
-                                    className="ınputRegisterPassword"
-                                    name="password"
-                                    value={values.password}
-                                    onChange={handleInput}
-                                    type="password"
-                                    placeholder="Enter your Password"
-                                    prefix={<RiLockPasswordLine style={{ marginLeft: "13px" }} />}
-                                    style={{
-                                        marginBottom: "20px"
-                                    }}
-                                />
-                                <Input
-                                    className="ınputRegister"
-                                    name="name"
-                                    value={values.name}
-                                    onChange={handleInput}
-                                    type="text"
-                                    placeholder="Enter your Name"
-                                    prefix={<AiOutlineUser className="site-form-item-icon" />}
-                                />
-                                <br />
-                                <Input
-                                    className="ınputRegister"
-                                    name="surname"
-                                    value={values.surname}
-                                    onChange={handleInput}
-                                    type="text"
-                                    placeholder="Enter your Last Name"
-                                    prefix={<AiOutlineUser />}
-                                />
-                                <br />
-                                <Input
-                                    className="ınputRegister"
-                                    name="phoneNumber"
-                                    value={maskPhoneNumber(values.phoneNumber)}
-                                    onChange={handleInput}
-                                    type="text"
-                                    placeholder="0 (000) 000-00-00"
-                                    prefix={<AiOutlinePhone className="site-form-item-icon" />}
-                                />
+                                <AuthInputEmail value={values.emailAddress} onChange={handleInput}/>
+                                <AuthInputUsername value={values.username} onChange={handleInput} placeholder="Enter your Username"/>
+                                <AuthInputPassword value={values.password} onChange={handleInput}/>
+                                <AuthInputName value={values.name} onChange={handleInput}/>
+                                <AuthInputSurname value={values.surname} onChange={handleInput}/>
+                                <AuthInputPhoneNumber value={maskPhoneNumber(values.phoneNumber)} onChange={handleInput}/>
                                 <Link to="/" className="acconut-register">
                                     Do you already have an account?
                                 </Link>
                             </form>
                             {error && <ErrorMessage message={error} />}
-                            <AuthButton text="REGISTER" onClick={handleSubmit}/>
+                            <AuthButton text="REGISTER" onClick={handleSubmit} />
                         </article>
                         {/* Card-Right Bitiş */}
                     </div>

@@ -1,10 +1,10 @@
 import React from "react";
 import "../resetPassword/RecoverPassword.css";
-import { AiFillBackward, AiOutlineMail, AiOutlineInfoCircle } from "react-icons/ai";
+import { AiFillBackward } from "react-icons/ai";
 import { Link } from "react-router-dom";
-import { Input, Tooltip } from 'antd';
 import LoginImage from '../../components/loginImage/LoginImage';
 import AuthButton from "../../components/button/AuthButton";
+import { AuthInputEmail } from '../../components/auth-input/AuthInput';
 
 export default function App() {
     return (
@@ -36,17 +36,9 @@ export default function App() {
                                 </span>
                             </div>
                             <div className="input-group-recover">
-                                <Input
-                                    placeholder="Enter your E-mail"
-                                    prefix={<AiOutlineMail className="site-form-item-icon" />}
-                                    suffix={
-                                        <Tooltip title="Extra information">
-                                            <AiOutlineInfoCircle style={{ color: 'white' }} />
-                                        </Tooltip>
-                                    }
-                                />
+                                <AuthInputEmail />
                             </div>
-                            <AuthButton text="SEND"/>
+                            <AuthButton text="SEND" />
                         </article>
                         {/** Card-Right Bitiş **/}
                     </div>

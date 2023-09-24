@@ -1,10 +1,10 @@
 .space-vehicle-container {
     height: 650px;
     max-height: 650px;
-    width: 1050px;
+    width: 1080px;
     background-color: #273046;
 
-    margin-left: -1.9% !important;
+    margin-left: -3% !important;
     margin-top: 30px;
     border-radius: 5px;
 
