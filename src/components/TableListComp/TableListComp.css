@@ -1,0 +1,153 @@
+/* LIST GROUP */
+
+.list-group {
+    width: 1080px;
+    height: 510px;
+    background-color: #273046;
+
+    margin-right: 3.2%;
+    margin-top: 30px;
+    border-radius: 5px;
+
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+
+    overflow-y: scroll;
+}
+
+.ant-table-cell {
+    color: white !important;
+    border-color: #858B9B !important;
+}
+
+.ant-table .ant-table-container .ant-table-content>table>thead.ant-table-thead .ant-table-cell {
+    background-color: #343C56 !important;
+    border-top: 1px solid #273046;
+    border-radius: 0px;
+    padding: 15px;
+}
+
+.ant-table-container {
+    background-color: #273046 !important;
+}
+
+td {
+    padding: 10px !important;
+}
+
+.ant-table-cell-row-hover {
+    background-color: #858B9B !important;
+    color: whitesmoke !important;
+}
+
+.ant-table-tbody>tr>td {
+    color: #858B9B;
+}
+
+.ant-table-cell>a {
+    color: #7465F2 !important;
+}
+
+.ant-table-cell-row-hover>a {
+    color: white !important;
+}
+
+.ant-space-item>a {
+    color: white;
+}
+
+.ant-table-column-sort {
+    background-color: #273046;
+    color: black;
+}
+
+/* LIST GROUP */
+
+/* PAGINATION */
+
+.ant-pagination {
+    color: white !important;
+    float: right;
+    font-size: 12px;
+    margin-top: 1%;
+    margin-right: 3%;
+}
+
+.ant-pagination-prev>button {
+    color: white !important;
+}
+
+.ant-pagination-next>button {
+    color: white !important;
+}
+
+.ant-pagination-item>a {
+    color: white !important;
+}
+
+.ant-pagination-item-active {
+    background-color: #7465F2 !important;
+    border-color: white !important;
+    border-radius: 50% !important;
+}
+
+.ant-pagination-options {
+    margin-right: 10px;
+}
+
+.table {
+    position: static;
+}
+
+/* PAGINATION */
+
+/* INPUT */
+
+.input-user-group {
+    display: flex;
+    float: right;
+    align-items: center;
+    margin-right: 5px;
+    margin: 0.9%;
+}
+
+.input-user-group>span {
+    font-size: 15px;
+    margin-right: 5px;
+    color: white;
+}
+
+.ant-input {
+    height: 30px;
+    width: 200px;
+    float: right;
+    background-color: transparent;
+    border-color: #858B9B;
+}
+
+.search-input::placeholder {
+    color: white;
+}
+
+/* INPUT */
+
+/* ADD BUTTON */
+
+.add-btn {
+    display: flex;
+    float: right;
+    margin: 0.9%;
+    background-color: #7465F2;
+    color: white;
+
+    height: 30px;
+    width: auto;
+
+    transition: all 0.3s ease-in-out;
+}
+
+.add-btn:hover {
+    background-color: #161D30 !important;
+    color: white !important;
+}
+
+/* ADD BUTTON */

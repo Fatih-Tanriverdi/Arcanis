@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import "../register/Register.css";
 import { Link, useNavigate } from "react-router-dom";
 import LoginImage from '../../components/loginImage/LoginImage';
-import AuthButton from "../../components/button/AuthButton";
-import { AuthInputEmail, AuthInputUsername, AuthInputPassword, AuthInputName, AuthInputSurname, AuthInputPhoneNumber} from '../../components/auth-input/AuthInput';
+import AuthButton from "../../components/buttonLogin/AuthButton";
+import { AuthInputEmail, AuthInputUsername, AuthInputPassword, AuthInputName, AuthInputSurname, AuthInputPhoneNumber} from '../../components/authInput/AuthInput';
 
 export default function App() {
     const navigate = useNavigate();

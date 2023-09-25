@@ -1,30 +1,24 @@
-import React from 'react';
-import "../orders/Orders.css";
-import { Space, Tag, Table, Input, Button } from 'antd';
-import { useState } from 'react';
-import { Container } from 'react-grid-system';
-import { SearchDropdown, SearchRangePicker } from '../../components/SearchBarItem/SearchBarItem';
-
-const handleChange = (value) => {
-    console.log(`selected ${value}`);
-};
+import { Button, Input, Table } from 'antd';
+import React, { useState } from 'react';
+import '../TableListComp/TableListComp.css';
+import { Tag, Space } from 'antd';
 
 const columns = [
     {
         title: 'USER',
         dataIndex: 'user',
         key: 'user',
-        render: (text) => <a href='none'>{text}</a>,
+        render: (text) => <a href="none">{text}</a>
     },
     {
         title: 'EMAIL',
         dataIndex: 'age',
-        key: 'age',
+        key: 'age'
     },
     {
         title: 'PLAN',
         dataIndex: 'plan',
-        key: 'plan',
+        key: 'plan'
     },
     {
         title: 'ROLE',
@@ -71,7 +65,7 @@ const columns = [
         key: 'action',
         render: (_, record) => (
             <Space size="middle">
-                <a href='none'>:</a>
+                <a href="none">:</a>
             </Space>
         ),
     },
@@ -222,55 +216,40 @@ const data = [
 
 ];
 
-
-export default function UsersList() {
+export function TableListComp() {
 
     const [loading] = useState(false);
     const [page, setPage] = useState(1);
     const [pageSize, setPageSize] = useState(10);
+    const [setOpen] = useState(false);
+
+    const showModal = () => {
+        setOpen(true);
+    };
 
     return (
-        <Container id='user-list-body'>
-            <div className='container'>
-                <div className='search-bar'>
-                    <div className='search-bar-item'>
-                        <div className='search-bar-item-top'>
-                            <h1>Search Filter</h1>
-                        </div>
-                        <div className='search-bar-item-bottom'>
-                            <Space>
-                                <SearchRangePicker />
-                                <SearchDropdown onChange={handleChange} />
-                                <SearchDropdown onChange={handleChange} />
-                                <SearchDropdown onChange={handleChange} />
-                            </Space>
-                        </div>
-                    </div>
-                </div>
-                <div className='list-group'>
-                    <Button className='add-btn' type="text">Add New User</Button>
-                    <div className='input-user-group'>
-                        <span>Search: </span>
-                        <Input className='search-input' />
-                    </div>
-                    <div className='table'>
-                        <Table
-                            loading={loading}
-                            columns={columns}
-                            dataSource={data}
-                            pagination={{
-                                current: page,
-                                pageSize: pageSize,
-                                total: 20,
-                                onChange: (page, pageSize) => {
-                                    setPage(page);
-                                    setPageSize(pageSize);
-                                }
-                            }}
-                        />
-                    </div>
-                </div>
+        <div className='list-group'>
+            <Button className='add-btn' type="text" onClick={showModal}>Add New User</Button>
+            <div className='input-user-group'>
+                <span>Search: </span>
+                <Input className='search-input' />
             </div>
-        </Container>
+            <div className='table'>
+                <Table
+                    loading={loading}
+                    columns={columns}
+                    dataSource={data}
+                    pagination={{
+                        current: page,
+                        pageSize: pageSize,
+                        total: 20,
+                        onChange: (page, pageSize) => {
+                            setPage(page);
+                            setPageSize(pageSize);
+                        }
+                    }}
+                />
+            </div>
+        </div>
     )
 }

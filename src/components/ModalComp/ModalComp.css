@@ -1,0 +1,315 @@
+/* MODAL */
+
+.ant-modal-header {
+    background-color: #273046 !important;
+
+    color: white;
+    border-bottom: 1px solid white !important;
+}
+
+.ant-modal-header>.ant-modal-title {
+    color: white;
+}
+
+.ant-modal-content {
+    background-color: #273046 !important;
+}
+
+.ant-modal-body {
+    height: 664px !important;
+    width: auto !important;
+    margin-top: 0px !important;
+
+    overflow-y: scroll;
+}
+
+.ant-modal {
+    float: right;
+    margin: 0px !important;
+    padding: 0px !important;
+
+    position: sticky !important;
+}
+
+#modal-footer-button-style {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+
+#modal-footer-button-style>.ant-btn-default {
+    width: 230px !important;
+    background-color: #D92C1F !important;
+    border: none;
+
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+
+#modal-footer-button-style>.ant-btn-default>div {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+
+#modal-footer-button-style>button>div>p {
+    color: white;
+}
+
+#modal-footer-button-style>.ant-btn-primary>div {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+
+#modal-footer-button-style>.ant-btn-primary {
+    width: 230px !important;
+    background-color: #11B76A !important;
+    border: none;
+
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+
+.ant-input-affix-wrapper {
+    border-color: #858B9B !important;
+}
+
+.ant-picker {
+    border-color: #858B9B !important;
+}
+
+/* MODAL H5 STYLE */
+
+.datepicker-style>h5 {
+    color: white;
+    font-size: 8px;
+    background-color: #273046 !important;
+
+    margin: 0px !important;
+    padding: 0px !important;
+
+    position: absolute;
+    top: 57px;
+    left: 280px;
+
+    z-index: 1 !important;
+}
+
+.modal-dropdown-container>h5 {
+    color: white;
+    font-size: 8px;
+    background-color: #273046 !important;
+
+    margin: 0px !important;
+    padding: 0px !important;
+
+    position: absolute;
+    top: 120px;
+    left: 280px;
+
+    z-index: 1 !important;
+}
+
+.modal-textbox-container>h5 {
+    color: white;
+    font-size: 8px;
+    background-color: #273046 !important;
+
+    margin: 0px !important;
+    padding: 0px !important;
+
+    position: absolute;
+    top: 181px;
+    left: 50px;
+
+    z-index: 1 !important;
+}
+
+.input-text-style>h5 {
+    color: white;
+    font-size: 8px;
+    background-color: #273046 !important;
+
+    margin: 0px !important;
+    padding: 0px !important;
+
+    position: absolute;
+    top: 243px;
+    left: 50px;
+
+    z-index: 1 !important;
+}
+
+.modal-role-dropdown-container>h5 {
+    color: white;
+    font-size: 8px;
+    background-color: #273046 !important;
+
+    margin: 0px !important;
+    padding: 0px !important;
+
+    position: absolute;
+    top: 182px;
+    left: 280px;
+
+    z-index: 1 !important;
+}
+
+.modal-status-dropdown-container>h5 {
+    color: white;
+    font-size: 8px;
+    background-color: #273046 !important;
+
+    margin: 0px !important;
+    padding: 0px !important;
+
+    position: absolute;
+    top: 243px;
+    left: 280px;
+
+    z-index: 1 !important;
+}
+
+.modal-usarname-style>h5 {
+    color: white;
+    font-size: 8px;
+    background-color: #273046 !important;
+
+    margin: 0px !important;
+    padding: 0px !important;
+
+    position: absolute;
+    top: 57px;
+    left: 50px;
+
+    z-index: 1 !important;
+}
+
+.modal-usarname-style>input {
+    border-color: #858B9B !important;
+}
+
+/* MODAL H5 STYLE */
+
+/* MODAL TEXTAREA STYLE */
+
+.ant-input-affix-wrapper {
+    width: 220px !important;
+    height: 32px !important;
+
+    background-color: transparent !important;
+
+    color: white !important;
+}
+
+.ant-input-suffix>span {
+    color: white !important;
+}
+
+.modal-usarname-style>input {
+    padding-bottom: 30px !important;
+}
+
+/* MODAL TEXTAREA STYLE */
+
+/* MODAL DROPDOWN */
+
+.ant-space {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ant-space>.ant-space-item>.modal-list>div {
+    float: left !important;
+}
+
+#date-picker-style {
+    width: 180px !important;
+}
+
+.ant-picker {
+    background-color: transparent !important;
+}
+
+/* MODAL DROPDOWN */
+
+/* MODAL INPUT NUMBER */
+
+.ant-input-number {
+    width: 220px !important;
+    background-color: transparent !important;
+    border-color: #858B9B !important;
+}
+
+.ant-input-number-input-wrap>input {
+    color: white !important;
+}
+
+/* MODAL INPUT NUMBER */
+
+/* MODAL DROPDOWN */
+
+#modal-dropdown-button {
+    width: 220px !important;
+
+    background-color: transparent !important;
+}
+
+#modal-dropdown-button>span {
+    float: left;
+}
+
+/* MODAL DROPDOWN */
+
+/* MODAL TEXTBOX */
+
+.modal-textbox-container>input {
+    width: 220px !important;
+    height: 32px !important;
+
+    border-color: #858B9B !important;
+}
+
+/* MODAL TEXTBOX */
+
+/* MODAL EXİT BUTTON */
+
+.modal-exit-button-style {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* MODAL EXİT BUTTON */
+
+.modal-usarname-style>.ant-input-affix-wrapper.css-dev-only-do-not-override-12upa3x {
+    background-color: transparent !important;
+    width: 220px !important;
+    height: 32px !important;
+    border-radius: 5px !important;
+    border-color: #858B9B !important;
+}
+
+.input-text-style>.ant-input-affix-wrapper.css-dev-only-do-not-override-12upa3x {
+    background-color: transparent !important;
+    width: 220px !important;
+    height: 32px !important;
+    border-radius: 5px !important;
+    border-color: #858B9B !important;
+}
+
+/* MODAL */
+
+.ant-space-item>.ant-select {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 35px;
+    margin-bottom: 0;
+    padding: 0;
+    width: 320px;
+}

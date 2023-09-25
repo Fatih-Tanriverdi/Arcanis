@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from "react-router-dom";
-import "../button/AuthButton.css";
+import "./AuthButton.css";
 
 export default function AuthButton(props) {
 

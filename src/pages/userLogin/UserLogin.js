@@ -1,6 +1,6 @@
 import "./UserLogin.css";
-import AuthButton from "../../components/button/AuthButton";
-import "../../components/auth-input/AuthInput.css";
+import AuthButton from "../../components/buttonLogin/AuthButton";
+import "../../components/authInput/AuthInput.css";
 import LoginImage from '../../components/loginImage/LoginImage';
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";

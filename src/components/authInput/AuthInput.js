@@ -2,7 +2,7 @@ import React from 'react';
 import { Input, Tooltip } from 'antd';
 import { AiOutlineInfoCircle, AiOutlineMail, AiOutlinePhone, AiOutlineUser } from 'react-icons/ai';
 import { RiLockPasswordLine } from 'react-icons/ri';
-import "../auth-input/AuthInput.css";
+import "./AuthInput.css";
 
 export function AuthInputEmail(props) {
     return (

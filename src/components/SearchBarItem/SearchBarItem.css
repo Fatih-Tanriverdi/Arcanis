@@ -1,0 +1,19 @@
+.ant-select:not(.ant-select-costumize-input) .ant-select-selector {
+    background-color: transparent !important;
+    border-color: #858B9B;
+    color: white;
+    margin-right: 10%;
+    width: 225px !important; 
+}
+
+#range-picker-userlist {
+    width: 100px;
+}
+
+#range-picker-userlist::placeholder {
+    color: white;
+}
+
+.ant-picker-focused>div {
+    background-color: transparent !important;
+}

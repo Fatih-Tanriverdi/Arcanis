@@ -3,8 +3,8 @@ import "../resetPassword/RecoverPassword.css";
 import { AiFillBackward } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import LoginImage from '../../components/loginImage/LoginImage';
-import AuthButton from "../../components/button/AuthButton";
-import { AuthInputEmail } from '../../components/auth-input/AuthInput';
+import AuthButton from "../../components/buttonLogin/AuthButton";
+import { AuthInputEmail } from '../../components/authInput/AuthInput';
 
 export default function App() {
     return (

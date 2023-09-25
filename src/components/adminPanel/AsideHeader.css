@@ -22,13 +22,13 @@ body {
 /* NAVİGATE */
 
 .aside {
-    width: 270px;
+    width: 250px;
     height: 783px;
     background-color: #273046;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 
     margin-left: -20px !important;
-    margin-right: 20px !important;
+    margin-right: 30px !important;
 }
 
 .admin-rocket-img {
@@ -64,7 +64,7 @@ body {
 .header {
     width: 1080px !important;
     background-color: #273046;
-    margin-right: 30px !important;
+    margin-right: 40px !important;
     margin-top: 30px;
     border-radius: 5px;
 

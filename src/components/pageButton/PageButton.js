@@ -10,7 +10,7 @@ export function PageButton(props) {
                 <li>
                     <Link to={props.to}>
                         <Button type='link' id='icon-home-position-sm' className={props.className} icon={props.icon} size="large" onClick={props.onClick}>
-                            {props.text}
+                            <a href={props.href}>{props.text}</a>
                         </Button>
                     </Link>
                 </li>
