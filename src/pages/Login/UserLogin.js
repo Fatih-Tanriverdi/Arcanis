@@ -1,11 +1,11 @@
-import "./UserLogin.css";
-import AuthButton from "../../components/buttonLogin/AuthButton";
-import "../../components/authInput/AuthInput.css";
-import LoginImage from '../../components/loginImage/LoginImage';
+import "../Login/UserLogin.css";
+import AuthButton from "../../components/ButtonLogin/AuthButton";
+import "../../components/AuthInput/AuthInput.css";
+import LoginImage from '../../components/LoginImage/LoginImage';
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { Checkbox, Input } from 'antd';
-import { login } from '../../services/authService.js';
+import { login } from '../../services/AuthService.js';
 import { AiOutlineUser } from "react-icons/ai";
 import { RiLockPasswordLine } from "react-icons/ri";
 
@@ -15,43 +15,32 @@ export default function App() {
     const [error, setError] = useState(null);
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    const url = "http://lambalog.com/api/auth/login";
 
     const checkBox = (e) => {
         console.log(`checked = ${e.target.checked}`);
     };
 
-    const loginAndNavigate = async (username, password, emailAddress) => {
-        const token = await login(username, password, emailAddress);
-        if (token) {
-            localStorage.setItem('access-token', token);
-            navigate('/admin');
-        } else if (!token) {
-            setError('Kullanıcı adı, şifre veya e-posta yanlış.');
-            navigate('/');
-        }
+    const loginAndNavigate = async (username, password, emailAddress, url) => {
+        const token = await login(username, password, emailAddress, url);
+        const tokenLogin = token ? localStorage.setItem('access-token', token) : setError('Kullanıcı adı, şifre veya e-posta yanlış.') ;
+        tokenLogin ? navigate('/') : navigate('/admin');
     };
 
     const handleChange = async (e) => {
         e.preventDefault();
         const inputValue = document.getElementById('user-name-input').value.trim();
         const password = document.getElementById('password-input').value.trim();
-        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
-        if (inputValue === '' && password === '') {
-            setError('Kullanıcı adı, şifre veya e-posta boş olamaz.');
-        } else if (inputValue === '') {
-            setError('Kullanıcı adı boş olamaz.');
-        } else if (password === '') {
-            setError('Şifre boş olamaz.');
-        } else if (emailRegex.test(inputValue)) {
-            const username = '';
-            const emailAddress = inputValue;
-            loginAndNavigate(username, password, emailAddress);
-        } else {
-            const username = inputValue;
-            const emailAddress = '';
-            loginAndNavigate(username, password, emailAddress);
-        }
+        const isEmail = emailRegex.test(inputValue);
+        const username = isEmail ? '' : inputValue;
+        const emailAddress = isEmail ? inputValue : '';
+
+        const errorMessage =
+            inputValue === '' && password === '' ? 'Kullanıcı adı, şifre veya e-posta boş olamaz.' :
+            inputValue === '' ? 'Kullanıcı adı boş olamaz.' : password === '' ? 'Şifre boş olamaz.' : '';
+            errorMessage ? setError(errorMessage) : loginAndNavigate(username, password, emailAddress, url);
     };
 
     const ErrorMessage = ({ message }) => {

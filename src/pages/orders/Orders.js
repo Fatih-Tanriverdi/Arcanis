@@ -1,9 +1,10 @@
-import React from 'react';
-import "../orders/Orders.css";
+import React, { useEffect } from 'react';
+import "./Orders.css";
 import { Space, Tag, Table, Input, Button } from 'antd';
 import { useState } from 'react';
 import { Container } from 'react-grid-system';
 import { SearchDropdown, SearchRangePicker } from '../../components/SearchBarItem/SearchBarItem';
+import { checkToken } from '../../services/AuthService';
 
 const handleChange = (value) => {
     console.log(`selected ${value}`);
@@ -228,6 +229,10 @@ export default function UsersList() {
     const [loading] = useState(false);
     const [page, setPage] = useState(1);
     const [pageSize, setPageSize] = useState(10);
+
+    useEffect(() => {
+        checkToken();
+    }, []);
 
     return (
         <Container id='user-list-body'>

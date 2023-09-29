@@ -1,5 +1,5 @@
 import React from 'react';
-import '../productCard/ProductCard.css';
+import './ProductCard.css';
 
 export function ProductCard(props) {
     return (

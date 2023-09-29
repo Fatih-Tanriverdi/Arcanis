@@ -1,20 +1,15 @@
-export const login = async (username, password, emailAddress) => {
+export const login = async ( username, password, emailAddress, url ) => {
     try {
-        const response = await fetch("http://lambalog.com/api/auth/login", {
+        const response = await fetch(url, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'
             },
-            body: JSON.stringify({ username: username, password: password, emailAddress: emailAddress })
+            body: JSON.stringify({ username, password, emailAddress })
         });
 
-        if (!response.ok) {
-            throw new Error('Kullanıcı adı veya şifre yanlış.');
-        }
-
         const data = await response.json();
-
         return data.token;
 
     } catch (error) {
@@ -25,8 +20,7 @@ export const login = async (username, password, emailAddress) => {
 };
 
 export const checkToken = () => {
-
-    var localStorageToken = localStorage.getItem('access-token');
+    const localStorageToken = localStorage.getItem('access-token');
 
     if (localStorageToken === null || localStorageToken === '') {
         window.location.href = '/';

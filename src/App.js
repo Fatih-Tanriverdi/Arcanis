@@ -1,18 +1,15 @@
-import React from 'react';
-import UserLogin from "./pages/userLogin/UserLogin";
-import Register from "./pages/register/Register";
-import RecoverPassword from "./pages/resetPassword/RecoverPassword";
+import UserLogin from "./pages/Login/UserLogin";
+import Register from "./pages/Register/Register";
+import RecoverPassword from "./pages/PasswordReset/RecoverPassword";
 import { Routes, Route } from "react-router-dom";
-import AdminPanel from "./pages/admin/AdminPanel";
-import UsersList from "./pages/userlist-page/UsersList";
-import MainPage from "./pages/main/MainPage";
-import Orders from "./pages/orders/Orders";
-import SpaceShips from "./pages/rockets/SpaceShips";
-
-
-
+import AdminPanel from "./pages/Admin/AdminPanel";
+import UsersList from "./pages/Users/UsersList";
+import MainPage from "./pages/Main/MainPage";
+import Orders from "./pages/Orders/Orders";
+import SpaceShips from "./pages/Products/SpaceShips";
 
 export default function App() {
+
   return (
     <Routes>
       <Route path="/" element={<UserLogin />} />

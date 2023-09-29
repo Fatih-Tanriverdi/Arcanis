@@ -2,8 +2,7 @@
     background-color: transparent !important;
     border-color: #858B9B;
     color: white;
-    margin-right: 10%;
-    width: 225px !important; 
+    width: 235px !important; 
 }
 
 #range-picker-userlist {
@@ -16,4 +15,10 @@
 
 .ant-picker-focused>div {
     background-color: transparent !important;
+}
+
+.SelectRolePosition,
+.RangePickerPosition  {
+    margin-right: 5px !important;
+    margin-bottom: -10px !important;
 }

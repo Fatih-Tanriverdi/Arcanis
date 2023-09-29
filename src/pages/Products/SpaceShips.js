@@ -1,9 +1,15 @@
-import React from 'react'
-import "../rockets/SpaceShips.css";
+import React, { useEffect } from 'react'
+import "../Products/SpaceShips.css";
 import { Container, Row, Col } from 'react-grid-system';
-import { ProductCard } from '../../components/productCard/ProductCard';
+import { ProductCard } from '../../components/ProductCard/ProductCard';
+import { checkToken } from '../../services/AuthService';
 
 export default function SpaceShips() {
+
+    useEffect(() => {
+        checkToken();
+    }, []);
+
     return (
         <Container>
             <section>

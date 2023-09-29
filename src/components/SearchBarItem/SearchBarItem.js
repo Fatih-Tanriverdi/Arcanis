@@ -5,7 +5,7 @@ const { RangePicker } = DatePicker;
 
 export function SearchDropdown(props) {
     return (
-        <div>
+        <div className='SelectRolePosition'>
             <Select
                 defaultValue="Select Role"
                 style={{
@@ -37,7 +37,7 @@ export function SearchDropdown(props) {
 
 export function SearchRangePicker() {
     return (
-        <div>
+        <div className='RangePickerPosition'>
             <RangePicker id='range-picker-userlist'
                 style={{
                     backgroundColor: "transparent",

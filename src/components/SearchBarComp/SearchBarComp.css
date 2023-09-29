@@ -1,9 +1,9 @@
 .search-bar {
-    width: 1080px;
-    height: 115px;
+    width: 1080px !important;
+    min-height: 118px !important;
     background-color: #273046;
 
-    margin-right: 3.2%;
+    margin-left: -1.9% !important;
 
     margin-top: 30px;
     border-radius: 5px;
@@ -11,21 +11,22 @@
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
+.search-bar-item-top {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-left: 35px !important;
+}
+
 .search-bar-item-top>h1 {
-    display: inline-block;
-    margin-left: 4.5% !important;
     font-size: 25px;
     color: white;
 }
 
 .search-bar-item-bottom {
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
-}
-
-#userlist-select-role {
-    width: 225px !important;
 }
 
 input::placeholder {

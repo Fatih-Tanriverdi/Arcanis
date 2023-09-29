@@ -1,0 +1,642 @@
+#icon-home-position-sm>svg {
+    font-size: 20px !important;
+    margin-right: 10px !important; 
+}
+
+/* LİST GROUP */
+.list-group {
+    width: 1080px;
+    height: 510px;
+    background-color: #273046;
+
+    margin-left: -1.9% !important;
+    margin-top: 30px;
+    border-radius: 5px;
+
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+
+    overflow-y: scroll;
+}
+/* LİST GROUP */
+
+/* SHOW ENTRIES */
+
+.show-entries {
+    display: flex;
+    float: left;
+    align-items: center;
+    margin: 0.9%;
+}
+
+.show-entries>span {
+    color: white;
+    margin: 1.5%;
+}
+
+.anticon {
+    color: white;
+}
+
+/* SHOW ENTRIES */
+
+/* MODAL */
+
+.modal-list {
+    display: flex !important;
+    flex-wrap: wrap !important;
+}
+
+.modal-list > div {
+    width: calc(49.90% - 10px) !important;
+}
+
+.ant-modal-header {
+    background-color: #273046 !important;
+
+    color: white;
+    border-bottom: 1px solid white !important;
+}
+
+.ant-modal-header>.ant-modal-title {
+    color: white;
+}
+
+.ant-modal-content {
+    background-color: #273046 !important;
+}
+
+.ant-modal-body {
+    height: 664px !important;
+    width: auto !important;
+    margin-top: 0px !important;
+
+    overflow-y: scroll;
+}
+
+.ant-modal {
+    float: right;
+    margin: 0px !important;
+    padding: 0px !important;
+
+    position: sticky !important;
+}
+
+#modal-footer-button-style {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+
+#modal-footer-button-style>.ant-btn-default {
+    width: 230px !important;
+    background-color: #D92C1F !important;
+    border: none;
+
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+
+#modal-footer-button-style>.ant-btn-default>div {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+
+#modal-footer-button-style>button>div>p {
+    color: white;
+}
+
+#modal-footer-button-style>.ant-btn-primary>div {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+
+#modal-footer-button-style>.ant-btn-primary {
+    width: 230px !important;
+    background-color: #11B76A !important;
+    border: none;
+
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+
+.ant-input-affix-wrapper {
+    border-color: #858B9B !important;
+}
+
+.ant-picker {
+    border-color: #858B9B !important;
+}
+
+/* MODAL H5 STYLE */
+
+.datepicker-style>h5 {
+    color: white;
+    font-size: 8px;
+    background-color: #273046 !important;
+
+    margin: 0px !important;
+    padding: 0px !important;
+
+    position: absolute;
+    top: 57px;
+    left: 280px;
+
+    z-index: 1 !important;
+}
+
+.modal-dropdown-container>h5 {
+    color: white;
+    font-size: 8px;
+    background-color: #273046 !important;
+
+    margin: 0px !important;
+    padding: 0px !important;
+
+    position: absolute;
+    top: 120px;
+    left: 280px;
+
+    z-index: 1 !important;
+}
+
+.modal-textbox-container>h5 {
+    color: white;
+    font-size: 8px;
+    background-color: #273046 !important;
+
+    margin: 0px !important;
+    padding: 0px !important;
+
+    position: absolute;
+    top: 181px;
+    left: 50px;
+
+    z-index: 1 !important;
+}
+
+.input-text-style>h5 {
+    color: white;
+    font-size: 8px;
+    background-color: #273046 !important;
+
+    margin: 0px !important;
+    padding: 0px !important;
+
+    position: absolute;
+    top: 243px;
+    left: 50px;
+
+    z-index: 1 !important;
+}
+
+.modal-role-dropdown-container>h5 {
+    color: white;
+    font-size: 8px;
+    background-color: #273046 !important;
+
+    margin: 0px !important;
+    padding: 0px !important;
+
+    position: absolute;
+    top: 182px;
+    left: 280px;
+
+    z-index: 1 !important;
+}
+
+.modal-status-dropdown-container>h5 {
+    color: white;
+    font-size: 8px;
+    background-color: #273046 !important;
+
+    margin: 0px !important;
+    padding: 0px !important;
+
+    position: absolute;
+    top: 243px;
+    left: 280px;
+
+    z-index: 1 !important;
+}
+
+.modal-usarname-style>h5 {
+    color: white;
+    font-size: 8px;
+    background-color: #273046 !important;
+
+    margin: 0px !important;
+    padding: 0px !important;
+
+    position: absolute;
+    top: 57px;
+    left: 50px;
+
+    z-index: 1 !important;
+}
+
+.modal-usarname-style>input {
+    border-color: #858B9B !important;
+}
+
+/* MODAL H5 STYLE */
+
+/* MODAL TEXTAREA STYLE */
+
+.ant-input-affix-wrapper {
+    width: 220px !important;
+    height: 32px !important;
+
+    background-color: transparent !important;
+
+    color: white !important;
+}
+
+.ant-input-suffix>span {
+    color: white !important;
+}
+
+.modal-usarname-style>input {
+    padding-bottom: 30px !important;
+}
+
+/* MODAL TEXTAREA STYLE */
+
+/* MODAL DROPDOWN */
+
+.ant-space {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ant-space>.ant-space-item>.modal-list>div {
+    float: left !important;
+}
+
+#date-picker-style {
+    width: 180px !important;
+}
+
+.ant-picker {
+    background-color: transparent !important;
+}
+
+/* MODAL DROPDOWN */
+
+/* MODAL INPUT NUMBER */
+
+.ant-input-number {
+    width: 220px !important;
+    background-color: transparent !important;
+    border-color: #858B9B !important;
+}
+
+.ant-input-number-input-wrap>input {
+    color: white !important;
+}
+
+/* MODAL INPUT NUMBER */
+
+/* MODAL DROPDOWN */
+
+#modal-dropdown-button {
+    width: 220px !important;
+
+    background-color: transparent !important;
+}
+
+#modal-dropdown-button>span {
+    float: left;
+}
+
+/* MODAL DROPDOWN */
+
+/* MODAL TEXTBOX */
+
+.modal-textbox-container>input {
+    width: 220px !important;
+    height: 32px !important;
+
+    border-color: #858B9B !important;
+}
+
+/* MODAL TEXTBOX */
+
+/* MODAL EXİT BUTTON */
+
+.modal-exit-button-style {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* MODAL EXİT BUTTON */
+
+.modal-usarname-style>.ant-input-affix-wrapper.css-dev-only-do-not-override-12upa3x {
+    background-color: transparent !important;
+    width: 220px !important;
+    height: 32px !important;
+    border-radius: 5px !important;
+    border-color: #858B9B !important;
+}
+
+.input-text-style>.ant-input-affix-wrapper.css-dev-only-do-not-override-12upa3x {
+    background-color: transparent !important;
+    width: 220px !important;
+    height: 32px !important;
+    border-radius: 5px !important;
+    border-color: #858B9B !important;
+}
+
+/* MODAL */
+
+.ant-space-item>.ant-select {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 35px;
+    margin-bottom: 0;
+    padding: 0;
+    width: 320px;
+}
+
+/** MEDIA QUERIES  **/
+
+@media screen and (max-width: 1200px) {
+
+    .list-group {
+        width: 1000px;
+        height: 420px;
+    }
+
+    svg {
+        font-size: 15px;
+        padding-top: 10px;
+        margin: 0;
+    }
+
+    .ant-table .ant-table-container .ant-table-content>table>thead.ant-table-thead .ant-table-cell {
+        padding: 5px !important;
+    }
+
+    td {
+        padding: 5px !important;
+    }
+
+    .ant-table-head>tr {
+        height: 5px;
+    }
+
+    .ant-table-column-sorter-inner>svg {
+        margin: 0;
+        padding: 0;
+    }
+
+    .ant-select:not(.ant-select-costumize-input) .ant-select-selector {
+        margin-right: 6%;
+        width: 225px;
+    }
+
+    #range-picker-userlist {
+        width: 100px;
+    }
+
+    /* MODAL RESPONSİVE */
+
+    .ant-modal-body {
+        height: 560px !important;
+        width: auto !important;
+
+        overflow-y: scroll;
+    }
+
+    #modal-footer-button-style>.ant-btn-primary>div {
+        display: flex !important;
+        justify-content: flex-end !important;
+        align-items: center !important;
+    }
+
+    .ant-btn-primary>div>svg {
+        padding-bottom: 10px !important;
+    }
+
+    #modal-footer-button-style>.ant-btn-default>div {
+        display: flex !important;
+        justify-content: flex-end !important;
+        align-items: center !important;
+    }
+
+    .ant-btn-default>div>svg {
+        padding-bottom: 10px !important;
+    }
+
+    /* MODAL RESPONSİVE */
+
+}
+
+@media screen and (max-width: 768px) {
+
+    .search-bar {
+        width: 510px;
+        height: 300px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .search-bar-item {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .search-bar-item-top {
+        position: relative;
+    }
+
+    .search-bar-item-bottom>div {
+        position: relative;
+        flex-direction: column;
+        margin-right: 10px;
+    }
+
+    .list-group {
+        width: 510px;
+        height: 300px;
+    }
+
+    .search-bar-item>.search-bar-item-top>h1 {
+        font-size: 20px;
+        float: left;
+        margin-right: 40px;
+        margin-top: 0;
+    }
+
+    .ant-select:not(.ant-select-costumize-input) .ant-select-selector {
+        margin-right: 6%;
+        margin-top: 3%;
+        width: 400px;
+    }
+
+    #range-picker-userlist {
+        width: 230px;
+    }
+
+    svg {
+        font-size: 10px;
+        padding-right: 10px;
+    }
+
+    /* MODAL RESPONSİVE */
+
+    .ant-modal-body {
+        height: 560px !important;
+        width: auto !important;
+
+        overflow-y: scroll;
+    }
+
+    #date-picker-style {
+        width: 400px !important;
+    }
+
+    .ant-input-number {
+        width: 448px !important;
+    }
+
+    #modal-dropdown-button {
+        width: 448px !important;
+    }
+
+    .modal-textbox-container>input {
+        width: 448px !important;
+        height: 32px !important;
+    }
+
+    #modal-username-style-input {
+        width: 400px !important;
+    }
+
+    #modal-comment-style {
+        margin-right: 200px;
+    }
+
+    .ant-input-affix-wrapper {
+        width: 448px !important;
+    }
+
+    /* MODAL H5 STYLE */
+
+    .datepicker-style>h5 {
+        color: white;
+        font-size: 8px;
+        background-color: #273046 !important;
+
+        margin: 0px !important;
+        padding: 0px !important;
+
+        position: absolute;
+        top: 120px;
+        left: 50px;
+
+        z-index: 1 !important;
+    }
+
+    .modal-dropdown-container>h5 {
+        color: white;
+        font-size: 8px;
+        background-color: #273046 !important;
+
+        margin: 0px !important;
+        padding: 0px !important;
+
+        position: absolute;
+        top: 243px;
+        left: 50px;
+
+        z-index: 1 !important;
+    }
+
+    .modal-textbox-container>h5 {
+        color: white;
+        font-size: 8px;
+        background-color: #273046 !important;
+
+        margin: 0px !important;
+        padding: 0px !important;
+
+        position: absolute;
+        top: 305px;
+        left: 50px;
+
+        z-index: 1 !important;
+    }
+
+    .input-text-style>h5 {
+        color: white;
+        font-size: 8px;
+        background-color: #273046 !important;
+
+        margin: 0px !important;
+        padding: 0px !important;
+
+        position: absolute;
+        top: 429px;
+        left: 50px;
+
+        z-index: 1 !important;
+    }
+
+    .modal-role-dropdown-container>h5 {
+        color: white;
+        font-size: 8px;
+        background-color: #273046 !important;
+
+        margin: 0px !important;
+        padding: 0px !important;
+
+        position: absolute;
+        top: 367px;
+        left: 50px;
+
+        z-index: 1 !important;
+    }
+
+    .modal-status-dropdown-container>h5 {
+        color: white;
+        font-size: 8px;
+        background-color: #273046 !important;
+
+        margin: 0px !important;
+        padding: 0px !important;
+
+        position: absolute;
+        top: 491px;
+        left: 50px;
+
+        z-index: 1 !important;
+    }
+
+    .modal-usarname-style>h5 {
+        color: white;
+        font-size: 8px;
+        background-color: #273046 !important;
+
+        margin: 0px !important;
+        padding: 0px !important;
+
+        position: absolute;
+        top: 57px;
+        left: 50px;
+
+        z-index: 1 !important;
+    }
+
+    /* MODAL H5 STYLE */
+    /* MODAL RESPONSİVE */
+}

@@ -1,5 +1,5 @@
 import React from 'react';
-import '../loginImage/LoginImage.css';
+import './LoginImage.css';
 
 export default function LoginImage() {
     return (

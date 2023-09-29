@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import "../register/Register.css";
+import "./Register.css";
 import { Link, useNavigate } from "react-router-dom";
-import LoginImage from '../../components/loginImage/LoginImage';
-import AuthButton from "../../components/buttonLogin/AuthButton";
-import { AuthInputEmail, AuthInputUsername, AuthInputPassword, AuthInputName, AuthInputSurname, AuthInputPhoneNumber} from '../../components/authInput/AuthInput';
+import LoginImage from '../../components/LoginImage/LoginImage';
+import AuthButton from "../../components/ButtonLogin/AuthButton";
 
-export default function App() {
+import { AuthInputEmail, AuthInputUsername, AuthInputPassword, AuthInputName, AuthInputSurname, AuthInputPhoneNumber } from '../../components/AuthInput/AuthInput';
+
+export default function Register() {
     const navigate = useNavigate();
     const [error, setError] = useState(null);
     const [values, setValues] = useState({
@@ -17,6 +18,7 @@ export default function App() {
         isActive: true,
         password: ""
     });
+    const url = "http://lambalog.com/api/user/register";
 
     const handleInput = (e) => {
         const { name, value } = e.target;
@@ -24,16 +26,13 @@ export default function App() {
     };
 
     const maskPhoneNumber = (phoneNumber) => {
-        if (phoneNumber.length === 10) {
-            return `0 (${phoneNumber.substring(0, 3)}) ${phoneNumber.substring(3, 6)}-${phoneNumber.substring(6, 8)}-${phoneNumber.substring(8, 10)}`;
-        }
-        return phoneNumber;
+        return phoneNumber.replace(/(\d{3})(\d{3})(\d{2})(\d{2})/, '($1) $2-$3-$4');
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const response = await fetch("http://lambalog.com/api/user/register", {
+        const response = await fetch(url, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
@@ -41,17 +40,13 @@ export default function App() {
             body: JSON.stringify(values)
         })
 
-        if (!response.ok) {
-            const errorData = await response.json();
-            setError(errorData.message || "Kullanıcı kaydı yapılamadı.");
-            return;
-        } else if (values.name === "" || values.surname === "" || values.emailAddress === "" || values.phoneNumber === "" || values.username === "" || values.password === "") {
-            setError("Kullanıcı bilgileri boş bırakılamaz");
-        } else {
-            navigate("/");
-            console.log("Kullanıcı Kaydı Başarılı.");
-        }
+        const errorData = await response.json();
 
+        const errorMessage = !response.ok
+            ? errorData.message || "Kullanıcı kaydı yapılamadı." : values.name === "" || values.surname === "" ||
+                values.emailAddress === "" || values.phoneNumber === "" || values.username === "" ||
+                values.password === "" ? "Kullanıcı bilgileri boş bırakılamaz" : "";
+        errorMessage ? setError(errorMessage) : navigate("/");
     };
 
     const ErrorMessage = ({ message }) => {
@@ -74,12 +69,12 @@ export default function App() {
                                 <p id="description">welcome to the website</p>
                             </div>
                             <form className="input-group-register">
-                                <AuthInputEmail value={values.emailAddress} onChange={handleInput}/>
-                                <AuthInputUsername value={values.username} onChange={handleInput} placeholder="Enter your Username"/>
-                                <AuthInputPassword value={values.password} onChange={handleInput}/>
-                                <AuthInputName value={values.name} onChange={handleInput}/>
-                                <AuthInputSurname value={values.surname} onChange={handleInput}/>
-                                <AuthInputPhoneNumber value={maskPhoneNumber(values.phoneNumber)} onChange={handleInput}/>
+                                <AuthInputEmail value={values.emailAddress} onChange={handleInput} />
+                                <AuthInputUsername value={values.username} onChange={handleInput} placeholder="Enter your Username" />
+                                <AuthInputPassword value={values.password} onChange={handleInput} />
+                                <AuthInputName value={values.name} onChange={handleInput} />
+                                <AuthInputSurname value={values.surname} onChange={handleInput} />
+                                <AuthInputPhoneNumber value={maskPhoneNumber(values.phoneNumber)} onChange={handleInput} />
                                 <Link to="/" className="acconut-register">
                                     Do you already have an account?
                                 </Link>

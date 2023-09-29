@@ -1,4 +1,4 @@
-import { Button, Input, Table } from 'antd';
+import { Table } from 'antd';
 import React, { useState } from 'react';
 import '../TableListComp/TableListComp.css';
 import { Tag, Space } from 'antd';
@@ -221,35 +221,23 @@ export function TableListComp() {
     const [loading] = useState(false);
     const [page, setPage] = useState(1);
     const [pageSize, setPageSize] = useState(10);
-    const [setOpen] = useState(false);
-
-    const showModal = () => {
-        setOpen(true);
-    };
 
     return (
-        <div className='list-group'>
-            <Button className='add-btn' type="text" onClick={showModal}>Add New User</Button>
-            <div className='input-user-group'>
-                <span>Search: </span>
-                <Input className='search-input' />
-            </div>
-            <div className='table'>
-                <Table
-                    loading={loading}
-                    columns={columns}
-                    dataSource={data}
-                    pagination={{
-                        current: page,
-                        pageSize: pageSize,
-                        total: 20,
-                        onChange: (page, pageSize) => {
-                            setPage(page);
-                            setPageSize(pageSize);
-                        }
-                    }}
-                />
-            </div>
+        <div className='table'>
+            <Table
+                loading={loading}
+                columns={columns}
+                dataSource={data}
+                pagination={{
+                    current: page,
+                    pageSize: pageSize,
+                    total: 20,
+                    onChange: (page, pageSize) => {
+                        setPage(page);
+                        setPageSize(pageSize);
+                    }
+                }}
+            />
         </div>
     )
 }
