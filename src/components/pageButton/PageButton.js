@@ -4,12 +4,13 @@ import { Link } from 'react-router-dom';
 import { Button } from 'antd';
 
 export function PageButton(props) {
+
     return (
         <div className='navigate'>
             <ul>
                 <li>
                     <Link to={props.to}>
-                        <Button type='link' id='icon-home-position-sm' className={props.className} icon={props.icon} size="large" onClick={props.onClick}>
+                        <Button type='link' classNames="btn-aktif" id='icon-home-position-sm' className={props.className} icon={props.icon} size="large" onClick={props.onClick}>
                             <a href={props.href}>{props.text}</a>
                         </Button>
                     </Link>

@@ -23,9 +23,18 @@ export default function App() {
     };
 
     const loginAndNavigate = async (username, password, emailAddress, url) => {
-        const token = await login(username, password, emailAddress, url);
-        const tokenLogin = token ? localStorage.setItem('access-token', token) : setError('Kullanıcı adı, şifre veya e-posta yanlış.') ;
-        tokenLogin ? navigate('/') : navigate('/admin');
+        const { token, isAdmin } = await login(username, password, emailAddress, url);
+
+        if (token && isAdmin) {
+            navigate('/admin');
+            localStorage.setItem('access-token', token);
+        } else if (token && !isAdmin) {
+            navigate('/customer');
+            localStorage.setItem('access-token', token);
+        } else {
+            setError('Kullanıcı adı, şifre veya e-posta yanlış.');
+            navigate('/');
+        }
     };
 
     const handleChange = async (e) => {
@@ -39,8 +48,8 @@ export default function App() {
 
         const errorMessage =
             inputValue === '' && password === '' ? 'Kullanıcı adı, şifre veya e-posta boş olamaz.' :
-            inputValue === '' ? 'Kullanıcı adı boş olamaz.' : password === '' ? 'Şifre boş olamaz.' : '';
-            errorMessage ? setError(errorMessage) : loginAndNavigate(username, password, emailAddress, url);
+                inputValue === '' ? 'Kullanıcı adı boş olamaz.' : password === '' ? 'Şifre boş olamaz.' : '';
+        errorMessage ? setError(errorMessage) : loginAndNavigate(username, password, emailAddress, url);
     };
 
     const ErrorMessage = ({ message }) => {

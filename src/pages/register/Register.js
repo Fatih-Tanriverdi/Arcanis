@@ -3,7 +3,6 @@ import "./Register.css";
 import { Link, useNavigate } from "react-router-dom";
 import LoginImage from '../../components/LoginImage/LoginImage';
 import AuthButton from "../../components/ButtonLogin/AuthButton";
-
 import { AuthInputEmail, AuthInputUsername, AuthInputPassword, AuthInputName, AuthInputSurname, AuthInputPhoneNumber } from '../../components/AuthInput/AuthInput';
 
 export default function Register() {

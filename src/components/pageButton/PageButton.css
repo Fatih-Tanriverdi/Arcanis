@@ -8,18 +8,23 @@
     flex-direction: column;
     list-style: none;
     border-radius: 15px 0px 0px 15px;
-    transition: all 0.3s ease;
 }
 
 .navigate>ul>li a {
     text-decoration: none;
 }
 
-.navigate>ul>li:hover {
+.icon-style.active {
+    background-color: #7465F2;
+    border-radius: 15px 0px 0px 15px;
+    width: 210px;
+}
+
+/* .navigate>ul>li:hover {
     background-color: #7465F2;
     border-radius: 15px 0px 0px 15px;
     padding-left: 10px;
-}
+} */
 
 .adminpanel-exit-btn-position {
     margin-top: 400px !important;

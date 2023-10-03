@@ -1,21 +1,48 @@
-import React from 'react';
+import { useEffect, useState } from 'react';
 import './ProductCard.css';
+import { Link } from 'react-router-dom';
 
-export function ProductCard(props) {
+export function ProductCard({ defaultImage }) {
+    const [planets, setPlanets] = useState([]);
+
+    useEffect(() => {
+        const localStorageToken = localStorage.getItem('access-token');
+        fetch("http://lambalog.com/api/planets", {
+            method: "GET",
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': `Bearer ${localStorageToken}`
+            }
+        })
+            .then(response => response.json())
+            .then(data => setPlanets(data))
+    }, [])
+
     return (
-        <div className='product-card'>
-            <div className='comment-rocket'>
-                <h2>Falcon-9 Space Rocket</h2>
-                <span>Falcon 9 is a reusable, two-stage rocket designed and manufactured by SpaceX for the reliable and safe transport of people and payloads into Earth orbit and beyond. Falcon 9 is the world’s first orbital class reusable rocket. Reusability allows SpaceX to refly the most expensive parts of the rocket, which in turn drives down the cost of space access.
-                </span>
-                <div className='btn-group'>
-                    <span id='rocket-price'>500.000 $</span>
-                    <button href='/'>Hemen Kirala</button>
+        <>
+            {planets.map(planet => (
+                <div className='product-card' key={planet.id}>
+                    <div className='comment-rocket'>
+                        <h2>{planet.name}</h2>
+                        <p className='product-description'>{planet.description}</p>
+                        <div>
+                            <Link to="productdetails" className='product-btn-group'>
+                                <button >Detaylı İncele</button>
+                            </Link>
+                        </div>
+                    </div>
+                    <div className='rocket-img'>
+                        <img alt='none' src={defaultImage || planet.imageUrl} />
+                    </div>
                 </div>
-            </div>
-            <div className='rocket-img'>
-                <img alt='none' src='/images/falcon-9.jpeg' />
-            </div>
-        </div>
+            ))}
+        </>
     )
 }
+
+ProductCard.defaultProps = {
+    defaultImage: "/images/falcon-9.jpeg",
+};
+
+

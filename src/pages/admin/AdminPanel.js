@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import "./AdminPanel.css";
 import { Routes, Route } from "react-router-dom";
 import { AiOutlineHome, AiOutlineRocket, AiOutlineUser } from "react-icons/ai";
@@ -13,6 +13,11 @@ import { PageButton } from '../../components/PageButton/PageButton';
 import { checkToken } from '../../services/AuthService';
 
 export default function AsideHeader() {
+    const [activeButton, setActiveButton] = useState("");
+
+    const handleButtonClick = (buttonText) => {
+        setActiveButton(buttonText);
+    };
 
     const handleLogout = () => {
         localStorage.removeItem('access-token');
@@ -33,10 +38,10 @@ export default function AsideHeader() {
                                 <h1>Renta Rocket</h1>
                             </div>
                         </div>
-                        <PageButton to={"mainpage"} className='icon-style' icon={<AiOutlineHome />} text="Anasayfa" />
-                        <PageButton to="spaceships" className='icon-style' icon={<AiOutlineRocket />} text="Uzay Araçları" />
-                        <PageButton to="userlist" className='icon-style' icon={<AiOutlineUser />} text="Kullanıcılar" />
-                        <PageButton to="orders" icon={<BsClipboardCheck />} text="Siparişler" className='icon-style' />
+                        <PageButton to={"mainpage"} className={`icon-style ${activeButton === "Anasayfa" ? 'active' : ''}`} icon={<AiOutlineHome />} onClick={() => handleButtonClick("Anasayfa")} text="Anasayfa" />
+                        <PageButton to="spaceships" className={`icon-style ${activeButton === "Uzay Araçları" ? 'active' : ''}`} icon={<AiOutlineRocket />} onClick={() => handleButtonClick("Uzay Araçları")} text="Uzay Araçları" />
+                        <PageButton to="userlist" className={`icon-style ${activeButton === "Kullanıcılar" ? 'active' : ''}`} icon={<AiOutlineUser />} onClick={() => handleButtonClick("Kullanıcılar")} text="Kullanıcılar" />
+                        <PageButton to="orders" icon={<BsClipboardCheck />} onClick={() => handleButtonClick("Siparişler")} text="Siparişler" className={`icon-style ${activeButton === "Siparişler" ? 'active' : ''}`} />
                         <PageButton to="/" icon={<BiExit />} onClick={handleLogout} text="Çıkış" className='icon-style adminpanel-exit-btn-position' />
                     </div>
                 </Col>

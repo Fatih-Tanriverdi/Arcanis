@@ -1,0 +1,107 @@
+/** first-color =  #273046  **/
+/** second-color =  #161D30  **/
+/** third-color =  #5D5E9C  **/
+/** fourth-color =  #858B9B  **/
+
+html {
+    background-color: #161D30 !important;
+}
+
+body {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+#admin-panel-body {
+    display: flex !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+/** first-color =  #273046  **/
+/** second-color =  #161D30  **/
+/** third-color =  #5D5E9C  **/
+/** fourth-color =  #858B9B  **/
+
+/* HEADER */
+
+.header-customer {
+    width: 1410px !important; 
+    height: 80px !important;
+    background-color: #273046;
+    margin-top: 30px;
+    border-radius: 5px;
+
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.customer-img {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+
+    margin-top: 1.5% !important;
+    margin-left: 0.5% !important;
+    margin-right: 2% !important;
+
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.customer-img {
+    float: right !important;
+}
+
+.customer-info {
+    flex-direction: column;
+    margin-right: 10px;
+    float: right !important;
+}
+
+.customer-info>h1 {
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 0px;
+    color: white;
+    margin-top: 23% !important;
+}
+
+.customer-info>span {
+    font-size: 10px;
+    float: right;
+    margin-top: 0px;
+    color: white;
+}
+
+.admin-container-header {
+    background-color: #161D30;
+    padding: 0px !important;
+    margin: 0px !important;
+}
+/* HEADER */
+
+/* BUTTON */
+
+.css-dev-only-do-not-override-12upa3x {
+    color: white !important;
+}
+
+.customer-btn {
+    float: left !important;
+    display: flex;
+}
+
+.customer-btn-hover {
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+}
+
+.customer-btn-hover.active {
+    border-bottom-color: #7465F2;
+    border-bottom-width: 3px !important;
+    border-radius: 0 !important;
+    color: #7465F2 !important;
+}
+/* BUTTON */
