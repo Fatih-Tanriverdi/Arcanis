@@ -20,6 +20,8 @@
     color: white;
     font-size: 25px;
 
+    margin: 20px !important;
+    border-bottom: solid 1px white !important;
     display: flex;
     justify-content: center;
     align-items: center;

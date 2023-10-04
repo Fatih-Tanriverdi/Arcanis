@@ -1,23 +1,26 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './ProductCard.css';
 import { Link } from 'react-router-dom';
+import { fetchPlanets } from '../../services/RocketService';
 
 export function ProductCard({ defaultImage }) {
     const [planets, setPlanets] = useState([]);
+    const [setSelectedPlanetId] = useState(null);
 
     useEffect(() => {
-        const localStorageToken = localStorage.getItem('access-token');
-        fetch("http://lambalog.com/api/planets", {
-            method: "GET",
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-                'Authorization': `Bearer ${localStorageToken}`
-            }
-        })
-            .then(response => response.json())
-            .then(data => setPlanets(data))
-    }, [])
+        async function getPlanets() {
+            const data = await fetchPlanets().catch(error => {
+                console.error('API request failed:', error);
+                return [];
+            });
+            setPlanets(data);
+        }
+        getPlanets();
+    }, []);
+
+    const handlePlanetClick = (planetId) => {
+        setSelectedPlanetId(planetId);
+    };
 
     return (
         <>
@@ -26,11 +29,9 @@ export function ProductCard({ defaultImage }) {
                     <div className='comment-rocket'>
                         <h2>{planet.name}</h2>
                         <p className='product-description'>{planet.description}</p>
-                        <div>
-                            <Link to="productdetails" className='product-btn-group'>
-                                <button >Detaylı İncele</button>
-                            </Link>
-                        </div>
+                        <Link to={`/planets/${planet.id}`} className='product-btn-group'>
+                            <button onClick={() => handlePlanetClick(planet.id)}>Detaylı İncele</button>
+                        </Link>
                     </div>
                     <div className='rocket-img'>
                         <img alt='none' src={defaultImage || planet.imageUrl} />
@@ -44,5 +45,3 @@ export function ProductCard({ defaultImage }) {
 ProductCard.defaultProps = {
     defaultImage: "/images/falcon-9.jpeg",
 };
-
-

@@ -25,8 +25,8 @@ export default function App() {
       <Route path="about" element={<About />} />
       <Route path="ticket" element={<Ticket />} />
       <Route path="iletisim" element={<Iletisim />} />
-      <Route path="/planets/*" element={<Planets />}>
-        <Route path="productdetails" element={<ProductDetails />} >
+      <Route path="/planets" element={<Planets />}>
+        <Route path="/planets/:productId" element={<ProductDetails />} >
         </Route>
       </Route>
       <Route path="admin/*" element={<AdminPanel />}>

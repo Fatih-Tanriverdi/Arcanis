@@ -1,13 +1,28 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import "./Ticket.css";
 import { Select, Space, DatePicker } from 'antd';
 import { Link } from 'react-router-dom';
 import { TfiHeadphoneAlt } from "react-icons/tfi";
-import { BsCreditCard2Back, BsCashCoin, BsPeople, BsStopwatchFill, BsCoin } from "react-icons/bs";
+import { BsCreditCard2Back, BsCashCoin, BsPeople, BsStopwatchFill, BsCoin, BsGeoAlt } from "react-icons/bs";
+import { fetchPlanets } from '../../services/RocketService';
 
 export default function Ticket() {
 
+    const { Option } = Select;
     const { RangePicker } = DatePicker;
+    const [planets, setPlanets] = useState([]);
+
+    useEffect(() => {
+        async function getPlanets() {
+            const data = await fetchPlanets()
+            .catch(error => {
+                console.error('API request failed:', error);
+                return [];
+            });
+            setPlanets(data);
+        }
+        getPlanets();
+    }, []);
 
     return (
         <>
@@ -16,51 +31,34 @@ export default function Ticket() {
                     <div className='ticket-search'>
                         <Space wrap className='ticket-dropdown-style'>
                             <Select
-                                defaultValue="lucy"
+                                suffixIcon={<BsGeoAlt style={{ marginRight: '260px', color: "white" }} />}
+                                defaultValue="Kalkış Noktası"
                                 bordered={false}
-                                options={[
-                                    {
-                                        value: 'jack',
-                                        label: 'Jack',
-                                    },
-                                    {
-                                        value: 'lucy',
-                                        label: 'Lucy',
-                                    },
-                                    {
-                                        value: 'Yiminghe',
-                                        label: 'yiminghe',
-                                    },
-                                ]}
-                            />
+                            >
+                                {planets.map(planet => (
+                                    <Option key={planet.id} value={planet.id}>
+                                        {planet.name}
+                                    </Option>
+                                ))}
+                            </Select>
                         </Space>
                         <Space wrap className='ticket-dropdown-style'>
                             <Select
-                                defaultValue="lucy"
-                                style={{
-                                    width: 120,
-                                }}
+                                suffixIcon={<BsGeoAlt style={{ marginRight: '260px', color: "white" }} />}
+                                defaultValue="Varış Noktası"
                                 bordered={false}
-                                options={[
-                                    {
-                                        value: 'jack',
-                                        label: 'Jack',
-                                    },
-                                    {
-                                        value: 'lucy',
-                                        label: 'Lucy',
-                                    },
-                                    {
-                                        value: 'Yiminghe',
-                                        label: 'yiminghe',
-                                    },
-                                ]}
-                            />
+                            >
+                                {planets.map(planet => (
+                                    <Option key={planet.id} value={planet.id}>
+                                        {planet.name}
+                                    </Option>
+                                ))}
+                            </Select>
                         </Space>
                         <Space direction="vertical" size={12}>
-                            <RangePicker bordered={false} />
+                            <RangePicker bordered={false} placeholder={['Gidiş Tarihi', 'Dönüş Tarihi']} />
                         </Space>
-                        <Link to="productdetails" className='ticket-btn-group'>
+                        <Link className='ticket-btn-group'>
                             <button>Seyahat Bileti Bul</button>
                         </Link>
                     </div>

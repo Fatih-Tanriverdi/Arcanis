@@ -14,10 +14,10 @@ export default function Register() {
         emailAddress: "",
         phoneNumber: "",
         username: "",
-        isActive: true,
         password: ""
     });
-    const url = "http://lambalog.com/api/user/register";
+    const url = "http://lambalog.com/api/users/register";
+    const phoneNumberWithoutMask = values.phoneNumber.replace(/[^0-9]/g, '');
 
     const handleInput = (e) => {
         const { name, value } = e.target;
@@ -34,10 +34,14 @@ export default function Register() {
         const response = await fetch(url, {
             method: "POST",
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
             },
-            body: JSON.stringify(values)
-        })
+            body: JSON.stringify({
+                ...values,
+                phoneNumber: phoneNumberWithoutMask
+            })
+        });
 
         const errorData = await response.json();
 

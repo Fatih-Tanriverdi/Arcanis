@@ -12,7 +12,7 @@ body {
     padding: 0 !important;
 }
 
-#admin-panel-body {
+#customer-panel-body {
     display: flex !important;
     margin: 0 !important;
     padding: 0 !important;
@@ -41,15 +41,11 @@ body {
     width: 40px;
     border-radius: 50%;
 
-    margin-top: 1.5% !important;
-    margin-left: 0.5% !important;
-    margin-right: 2% !important;
+    margin-top: 20px !important;
+    margin-right: 20px !important;
+    float: right !important;
 
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-}
-
-.customer-img {
-    float: right !important;
 }
 
 .customer-info {
@@ -74,7 +70,7 @@ body {
     color: white;
 }
 
-.admin-container-header {
+.customer-container-header {
     background-color: #161D30;
     padding: 0px !important;
     margin: 0px !important;
@@ -105,3 +101,24 @@ body {
     color: #7465F2 !important;
 }
 /* BUTTON */
+
+.customer-exit {
+    display: flex;
+    float: right !important;
+}
+
+.customer-ext-btn {
+    margin-top: 25px !important;
+    margin-right: 10px !important;
+    cursor: pointer;
+}
+
+.customer-page-container {
+    height: 623px !important;
+    width: 1410px !important;
+
+    margin-top: 20px;
+    margin-bottom: 30px;
+
+    border-radius: 5px;
+}

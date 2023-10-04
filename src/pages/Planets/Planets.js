@@ -17,7 +17,6 @@ export default function SpaceShips() {
                         <article className='planets-container'>
                             <div className='product-list'>
                                 <h1 id='planets-title'>Planets</h1>
-                                <hr />
                                 <ProductCard />
                             </div>
                         </article>

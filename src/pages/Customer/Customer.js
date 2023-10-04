@@ -1,13 +1,15 @@
 import "./Customer.css";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Link } from "react-router-dom";
 import { Container, Row, Col } from 'react-grid-system';
 import About from "../../pages/About/About";
 import Planets from '../../pages/Planets/Planets';
 import Iletisim from '../../pages/Iletisim/Iletisim';
 import { PageButton } from '../../components/PageButton/PageButton';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Ticket from "../Ticket/Ticket";
 import ProductDetails from "../ProductDetails/ProductDetails";
+import { checkToken } from '../../services/AuthService';
+import { IoExitOutline } from "react-icons/io5";
 
 export default function AsideHeader() {
 
@@ -17,9 +19,17 @@ export default function AsideHeader() {
         setActiveButton(buttonText);
     };
 
+    const handleLogout = () => {
+        localStorage.removeItem('access-token');
+    };
+
+    useEffect(() => {
+        checkToken();
+    }, []);
+
     return (
-        <Container id='admin-panel-body'>
-            <Row className='admin-container-header'>
+        <Container id='customer-panel-body'>
+            <Row className='customer-container-header'>
                 <Col>
                     <section>
                         <article className='header-customer'>
@@ -30,24 +40,33 @@ export default function AsideHeader() {
                                     <PageButton text="Hakkımızda" to="about" className={`customer-btn-hover ${activeButton === "Hakkımızda" ? 'active' : ''}`} onClick={() => handleButtonClick("Hakkımızda")} />
                                     <PageButton text="İletişim" to="iletisim" className={`customer-btn-hover ${activeButton === "İletişim" ? 'active' : ''}`} onClick={() => handleButtonClick("İletişim")} />
                                 </div>
-                                <div>
-                                    <img alt='admin' className='customer-img' src='/images/fatihtan.jpg' />
-                                </div>
-                                <div className='customer-info'>
-                                    <h1>Fatih Tanrıverdi</h1>
-                                    <span>Admin</span>
+                                <div className="customer-exit">
+                                    <div className='customer-info'>
+                                        <h1>Fatih</h1>
+                                        <span>Admin</span>
+                                    </div>
+                                    <div>
+                                        <img alt='admin' className='customer-img' src='/images/fatihtan.jpg' />
+                                    </div>
+                                    <Link to="/" className="customer-ext-btn">
+                                        <IoExitOutline onClick={handleLogout} alt="Çıkış" style={{ color: "white", fontSize: "30px" }} />
+                                    </Link>
                                 </div>
                             </div>
                         </article>
                         <article>
                             <div>
-                                <Routes>
-                                    <Route exact path="about" element={<About />} />
-                                    <Route exact path="ticket" element={<Ticket />} />
-                                    <Route exact path="planets" element={<Planets />} />
-                                    <Route exact path="iletisim" element={<Iletisim />} />
-                                    <Route path="productdetails" element={<ProductDetails />} />
-                                </Routes>
+                                <container className='customer-page-body' >
+                                    <div className='customer-page-container'>
+                                        <Routes>
+                                            <Route exact path="about" element={<About />} />
+                                            <Route exact path="ticket" element={<Ticket />} />
+                                            <Route exact path="iletisim" element={<Iletisim />} />
+                                            <Route exact path="planets/" element={<Planets />} />
+                                            <Route exact path="/planets/:productId" element={<ProductDetails />} />
+                                        </Routes>
+                                    </div>
+                                </container>
                             </div>
                         </article>
                     </section>

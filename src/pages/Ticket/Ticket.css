@@ -73,7 +73,9 @@
     width: 300px !important;
 
     margin-top: 25px !important;
-    margin-left: 0 !important;
+
+    margin: 0;
+    padding: 0;
 }
 
 .ticket-search .ant-picker-input {
@@ -86,6 +88,14 @@
 }
 
 .ticket-search .ant-picker-suffix > span {
+    margin-top: 30px !important;
+}
+
+.ant-picker-input > input {
+    color: white !important;
+}
+
+.ticket-search .ant-picker-range-separator > span {
     margin-top: 30px !important;
 }
 
