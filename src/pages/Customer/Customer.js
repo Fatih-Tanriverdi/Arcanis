@@ -10,10 +10,12 @@ import Ticket from "../Ticket/Ticket";
 import ProductDetails from "../ProductDetails/ProductDetails";
 import { checkToken } from '../../services/AuthService';
 import { IoExitOutline } from "react-icons/io5";
+import { fetchUser } from '../../services/UserService';
 
 export default function AsideHeader() {
 
     const [activeButton, setActiveButton] = useState("");
+    const [userInfo, setUserInfo] = useState({});
 
     const handleButtonClick = (buttonText) => {
         setActiveButton(buttonText);
@@ -25,6 +27,18 @@ export default function AsideHeader() {
 
     useEffect(() => {
         checkToken();
+    }, []);
+
+    useEffect(() => {
+        async function getUsers() {
+            const data = await fetchUser()
+                .catch(error => {
+                    console.error('API request failed:', error);
+                    return [];
+                });
+            setUserInfo(data);
+        }
+        getUsers();
     }, []);
 
     return (
@@ -42,8 +56,7 @@ export default function AsideHeader() {
                                 </div>
                                 <div className="customer-exit">
                                     <div className='customer-info'>
-                                        <h1>Fatih</h1>
-                                        <span>Admin</span>
+                                        <h1>{userInfo.name} {userInfo.surname}</h1>
                                     </div>
                                     <div>
                                         <img alt='admin' className='customer-img' src='/images/fatihtan.jpg' />

@@ -1,12 +1,40 @@
-import React from "react";
+import React, { useState } from "react";
 import "../PasswordReset/RecoverPassword.css";
-import { AiFillBackward } from "react-icons/ai";
+import { AiFillBackward, AiOutlineInfoCircle, AiOutlineMail } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import LoginImage from '../../components/LoginImage/LoginImage';
 import AuthButton from "../../components/ButtonLogin/AuthButton";
-import { AuthInputEmail } from '../../components/AuthInput/AuthInput';
+import { Input, Tooltip, Modal, Button } from "antd";
+import styles from "../PasswordReset/ModalComponent.module.css";
 
 export default function App() {
+
+    const [emailAddress, setEmailAddress] = useState("");
+    const [modalVisible, setModalVisible] = useState(false);
+    const [modalContent, setModalContent] = useState("");
+
+    const resetPassword = async () => {
+        try {
+            const response = await fetch(`http://lambalog.com/api/users/forgot-password?mailAddress=${emailAddress}`, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json"
+                },
+            });
+            if (response.status !== 200) {
+                const data = await response.json();
+                console.error(data);
+                throw new Error(data.error || "Email Adresi Gönderilemedi.");
+            }
+            setModalContent("Şifre sıfırlama e-postası başarıyla gönderildi. Lütfen e-postanızı kontrol edin.");
+            setModalVisible(true);
+        } catch (error) {
+            setModalContent(error.message);
+            setModalVisible(true);
+        }
+    }
+
     return (
         <section className="recover-body-color">
             <section className="recover-container">
@@ -35,10 +63,40 @@ export default function App() {
                                     <p>Dont't worry, enter the email address you used to create your profile and we'll sen you instructions for generating a new one.</p>
                                 </span>
                             </div>
-                            <div className="input-group-recover">
-                                <AuthInputEmail />
+                            <div> 
+                                <Modal
+                                    className={styles.modalContainer}
+                                    visible={modalVisible}
+                                    onCancel={() => setModalVisible(false)}
+                                    title="Bildirim"
+                                    footer={[
+                                        <Link to="/">
+                                            <Button style={{background: "#73228B", borderColor: "white"}}>
+                                                Tamam
+                                            </Button>
+                                        </Link>
+                                    ]}
+                                >
+                                    {modalContent}
+                                </Modal>
                             </div>
-                            <AuthButton text="SEND" />
+                            <div className="input-group-recover">
+                                <Input
+                                    className="ınputRegister"
+                                    name="emailAddress"
+                                    value={emailAddress}
+                                    onChange={(e) => setEmailAddress(e.target.value)}
+                                    type="email"
+                                    placeholder="Enter your E-mail"
+                                    prefix={<AiOutlineMail className="site-form-item-icon" />}
+                                    suffix={
+                                        <Tooltip title="Extra information">
+                                            <AiOutlineInfoCircle style={{ color: 'white' }} />
+                                        </Tooltip>
+                                    }
+                                />
+                            </div>
+                            <AuthButton text="SEND" onClick={resetPassword} />
                         </article>
                         {/** Card-Right Bitiş **/}
                     </div>

@@ -1,0 +1,4 @@
+.modalContainer > div,
+.modalContainer > div > div {
+    background-color: #73228B !important;
+}

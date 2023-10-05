@@ -6,7 +6,7 @@ export default function AuthButton(props) {
 
     return (
         <div>
-            <Link to="/admin" className="auth-btn">
+            <Link to={props.to} className="auth-btn">
                 <button onClick={props.onClick} type="submit">{props.text}</button>
             </Link>
         </div>
