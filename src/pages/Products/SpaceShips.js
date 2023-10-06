@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import "../Products/SpaceShips.css";
 import { Container, Row, Col } from 'react-grid-system';
-import { ProductCard } from '../../components/ProductCard/ProductCard';
+import { PlanetCard } from '../../components/PlanetCard/PlanetCard';
 import { checkToken } from '../../services/AuthService';
 
 export default function SpaceShips() {
@@ -19,10 +19,7 @@ export default function SpaceShips() {
                             <div className='product-list'>
                                 <h1 id='space-vehicle-title'>Space Ships</h1>
                                 <hr />
-                                <ProductCard />
-                                <ProductCard />
-                                <ProductCard />
-                                <ProductCard />
+                                <PlanetCard />
                             </div>
                         </article>
                     </Col>

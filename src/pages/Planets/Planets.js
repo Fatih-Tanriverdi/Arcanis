@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import "./Planets.css";
-import { ProductCard } from '../../components/ProductCard/ProductCard';
+import { PlanetCard } from '../../components/PlanetCard/PlanetCard';
 import { checkToken } from '../../services/AuthService';
 
 export default function SpaceShips() {
@@ -17,7 +17,7 @@ export default function SpaceShips() {
                         <article className='planets-container'>
                             <div className='product-list'>
                                 <h1 id='planets-title'>Planets</h1>
-                                <ProductCard />
+                                <PlanetCard />
                             </div>
                         </article>
                     </div>

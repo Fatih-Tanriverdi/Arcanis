@@ -66,6 +66,7 @@
 
 .ticket-btn-group>button:hover {
     background-color: #161D30;
+    transition: 0.1s all ease-in;
 }
 
 .ticket-search .ant-select {

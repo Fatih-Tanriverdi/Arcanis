@@ -73,6 +73,7 @@
 
 .ant-modal-body {
     width: auto !important;
+    height: auto !important;
     margin-top: 0px !important;
 
     overflow-y: scroll;

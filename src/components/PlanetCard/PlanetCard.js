@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import './ProductCard.css';
+import './PlanetCard.css';
 import { Link } from 'react-router-dom';
 import { fetchPlanets } from '../../services/RocketService';
 
-export function ProductCard({ defaultImage }) {
+export function PlanetCard({ defaultImage }) {
     const [planets, setPlanets] = useState([]);
-    const [setSelectedPlanetId] = useState(null);
 
     useEffect(() => {
         async function getPlanets() {
@@ -18,10 +17,6 @@ export function ProductCard({ defaultImage }) {
         getPlanets();
     }, []);
 
-    const handlePlanetClick = (planetId) => {
-        setSelectedPlanetId(planetId);
-    };
-
     return (
         <>
             {planets.map(planet => (
@@ -29,8 +24,8 @@ export function ProductCard({ defaultImage }) {
                     <div className='comment-rocket'>
                         <h2>{planet.name}</h2>
                         <p className='product-description'>{planet.description}</p>
-                        <Link to={`/planets/${planet.id}`} className='product-btn-group'>
-                            <button onClick={() => handlePlanetClick(planet.id)}>Detaylı İncele</button>
+                        <Link to={`/planet/${planet.id}`} className='product-btn-group'>
+                            <button>Detaylı İncele</button>
                         </Link>
                     </div>
                     <div className='rocket-img'>
@@ -42,6 +37,6 @@ export function ProductCard({ defaultImage }) {
     )
 }
 
-ProductCard.defaultProps = {
+PlanetCard.defaultProps = {
     defaultImage: "/images/falcon-9.jpeg",
 };

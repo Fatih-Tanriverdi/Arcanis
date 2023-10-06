@@ -1,16 +1,16 @@
 import "./Customer.css";
 import { Routes, Route, Link } from "react-router-dom";
-import { Container, Row, Col } from 'react-grid-system';
+import { Row, Col } from 'react-grid-system';
 import About from "../../pages/About/About";
 import Planets from '../../pages/Planets/Planets';
 import Iletisim from '../../pages/Iletisim/Iletisim';
 import { PageButton } from '../../components/PageButton/PageButton';
 import { useEffect, useState } from "react";
 import Ticket from "../Ticket/Ticket";
-import ProductDetails from "../ProductDetails/ProductDetails";
 import { checkToken } from '../../services/AuthService';
 import { IoExitOutline } from "react-icons/io5";
 import { fetchUser } from '../../services/UserService';
+import PlanetDetails from "../PlanetDetails/PlanetDetails";
 
 export default function AsideHeader() {
 
@@ -42,7 +42,7 @@ export default function AsideHeader() {
     }, []);
 
     return (
-        <Container id='customer-panel-body'>
+        <container id='customer-panel-body'>
             <Row className='customer-container-header'>
                 <Col>
                     <section>
@@ -75,8 +75,8 @@ export default function AsideHeader() {
                                             <Route exact path="about" element={<About />} />
                                             <Route exact path="ticket" element={<Ticket />} />
                                             <Route exact path="iletisim" element={<Iletisim />} />
-                                            <Route exact path="planets/" element={<Planets />} />
-                                            <Route exact path="/planets/:productId" element={<ProductDetails />} />
+                                            <Route exact path="planets" element={<Planets />} />
+                                            <Route exact path="/planet/:id" element={<PlanetDetails />} />
                                         </Routes>
                                     </div>
                                 </container>
@@ -85,6 +85,6 @@ export default function AsideHeader() {
                     </section>
                 </Col>
             </Row>
-        </Container>
+        </container>
     )
 }

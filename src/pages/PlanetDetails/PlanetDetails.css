@@ -1,0 +1,68 @@
+.product-global {
+    height: 784px !important;
+    background-color: #161D30 !important;
+
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+
+.product-details-body {
+    height: 720px !important;
+    width: 1410px !important;
+
+    border-radius: 5px !important;
+    background-color: #273046 !important;
+
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.product-details-container>div {
+    display: flex;
+    flex-direction: column !important;
+    align-items: center;
+}
+
+.planet-img {
+    width: 100% !important;
+    height: 300px !important;
+    object-fit: cover !important;
+    border-radius: 5px !important;
+}
+
+.planet-details>p {
+    color: white;
+    text-align: center;
+
+    margin-right: 10px;
+    margin-left: 10px;
+
+    font-size: 18px;
+}
+
+.planet-details>h1 {
+    color: white;
+    text-align: center;
+
+    border-bottom: 2px solid white;
+    width: 80%;
+}
+
+.planet-details-icon {
+    font-size: 25px !important;
+    color: white;
+    position: absolute;
+    left: 3% !important;
+    top: 6% !important;
+    padding: 3px !important;
+
+    border-radius: 50% !important;
+    background-color: #161D30;
+}
+
+.planet-details-icon:hover {
+    background-color: white;
+    color: #161D30;
+
+    transition: 0.2s all ease-in;
+}
