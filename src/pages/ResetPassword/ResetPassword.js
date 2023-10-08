@@ -1,39 +1,28 @@
 import React, { useState } from "react";
-import "../PasswordReset/RecoverPassword.css";
+import "./ResetPassword.css";
 import { AiFillBackward, AiOutlineInfoCircle, AiOutlineMail } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import LoginImage from '../../components/LoginImage/LoginImage';
 import AuthButton from "../../components/ButtonLogin/AuthButton";
 import { Input, Tooltip, Modal, Button } from "antd";
-import styles from "../PasswordReset/ModalComponent.module.css";
+import { ClipLoader } from 'react-spinners';
+import { resetPassword } from '../../services/AuthService'
+import styles from "../ResetPassword/ModalComponent.module.css";
 
 export default function App() {
-
     const [emailAddress, setEmailAddress] = useState("");
     const [modalVisible, setModalVisible] = useState(false);
     const [modalContent, setModalContent] = useState("");
+    const [loading, setLoading] = useState(false);
 
-    const resetPassword = async () => {
-        try {
-            const response = await fetch(`http://lambalog.com/api/users/forgot-password?mailAddress=${emailAddress}`, {
-                method: "GET",
-                headers: {
-                    "Content-Type": "application/json",
-                    "Accept": "application/json"
-                },
-            });
-            if (response.status !== 200) {
-                const data = await response.json();
-                console.error(data);
-                throw new Error(data.error || "Email Adresi Gönderilemedi.");
-            }
-            setModalContent("Şifre sıfırlama e-postası başarıyla gönderildi. Lütfen e-postanızı kontrol edin.");
-            setModalVisible(true);
-        } catch (error) {
-            setModalContent(error.message);
-            setModalVisible(true);
-        }
-    }
+    const handleResetPassword = async () => {
+        setLoading(true);
+        const data = await resetPassword(emailAddress);
+        console.log(data);
+        setModalVisible(true);
+        setModalContent("Şifre sıfırlama talimatları gönderildi.");
+        setLoading(false);
+    };
 
     return (
         <section className="recover-body-color">
@@ -63,7 +52,7 @@ export default function App() {
                                     <p>Dont't worry, enter the email address you used to create your profile and we'll sen you instructions for generating a new one.</p>
                                 </span>
                             </div>
-                            <div> 
+                            <div>
                                 <Modal
                                     className={styles.modalContainer}
                                     visible={modalVisible}
@@ -71,7 +60,7 @@ export default function App() {
                                     title="Bildirim"
                                     footer={[
                                         <Link to="/">
-                                            <Button style={{background: "#73228B", borderColor: "white"}}>
+                                            <Button style={{ background: "#73228B", borderColor: "white" }}>
                                                 Tamam
                                             </Button>
                                         </Link>
@@ -96,7 +85,8 @@ export default function App() {
                                     }
                                 />
                             </div>
-                            <AuthButton text="SEND" onClick={resetPassword} />
+                            {loading && <ClipLoader color={"#73228B"} />}
+                            <AuthButton text="SEND" onClick={handleResetPassword} />
                         </article>
                         {/** Card-Right Bitiş **/}
                     </div>

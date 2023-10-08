@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import './PlanetDetails.css';
 import { Link, useParams } from 'react-router-dom';
 import { IoIosArrowBack } from 'react-icons/io';
+import { fetchPlanetDetails } from '../../services/PlanetService';
+import { ClipLoader } from 'react-spinners';
 
 export default function PlanetDetails() {
     const [planetDetails, setPlanetDetails] = useState(null);
@@ -10,21 +12,8 @@ export default function PlanetDetails() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const localStorageToken = localStorage.getItem('access-token');
-                const response = await fetch(`http://lambalog.com/api/planets/${id}`, {
-                    method: "GET",
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json',
-                        'Authorization': `Bearer ${localStorageToken}`
-                    }
-                });
-                if (response.status === 200) {
-                    const data = await response.json();
-                    setPlanetDetails(data);
-                } else {
-                    console.error("Hata oluştu: ", response.statusText);
-                }
+                const data = await fetchPlanetDetails(id);
+                setPlanetDetails(data);
             } catch (error) {
                 console.error("Hata oluştu: ", error);
             }
@@ -46,7 +35,7 @@ export default function PlanetDetails() {
                             <p>{planetDetails.description}</p>
                         </div>
                     ) : (
-                        <p>Yükleniyor...</p>
+                        <div className='planet-spinner'><ClipLoader color={"#fff"}/></div>
                     )}
                 </div>
             </div>

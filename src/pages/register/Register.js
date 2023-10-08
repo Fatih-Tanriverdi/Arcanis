@@ -3,11 +3,14 @@ import "./Register.css";
 import { Link, useNavigate } from "react-router-dom";
 import LoginImage from '../../components/LoginImage/LoginImage';
 import AuthButton from "../../components/ButtonLogin/AuthButton";
+import { registerUser } from '../../services/AuthService';
+import { ClipLoader } from 'react-spinners';
 import { AuthInputEmail, AuthInputUsername, AuthInputPassword, AuthInputName, AuthInputSurname, AuthInputPhoneNumber } from '../../components/AuthInput/AuthInput';
 
 export default function Register() {
     const navigate = useNavigate();
     const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(false);
     const [values, setValues] = useState({
         name: "",
         surname: "",
@@ -16,8 +19,6 @@ export default function Register() {
         username: "",
         password: ""
     });
-    const url = "http://lambalog.com/api/users/register";
-    const phoneNumberWithoutMask = values.phoneNumber.replace(/[^0-9]/g, '');
 
     const handleInput = (e) => {
         const { name, value } = e.target;
@@ -29,27 +30,11 @@ export default function Register() {
     };
 
     const handleSubmit = async (e) => {
+        setLoading(true);
         e.preventDefault();
-
-        const response = await fetch(url, {
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            },
-            body: JSON.stringify({
-                ...values,
-                phoneNumber: phoneNumberWithoutMask
-            })
-        });
-
-        const errorData = await response.json();
-
-        const errorMessage = !response.ok
-            ? errorData.message || "Kullanıcı kaydı yapılamadı." : values.name === "" || values.surname === "" ||
-                values.emailAddress === "" || values.phoneNumber === "" || values.username === "" ||
-                values.password === "" ? "Kullanıcı bilgileri boş bırakılamaz" : "";
+        const errorMessage = await registerUser(values);
         errorMessage ? setError(errorMessage) : navigate("/");
+        setLoading(false);
     };
 
     const ErrorMessage = ({ message }) => {
@@ -83,6 +68,7 @@ export default function Register() {
                                 </Link>
                             </form>
                             {error && <ErrorMessage message={error} />}
+                            {loading && <ClipLoader color={"#73228B"} />}
                             <AuthButton text="REGISTER" onClick={handleSubmit} />
                         </article>
                         {/* Card-Right Bitiş */}

@@ -13,7 +13,7 @@ export function AuthInputEmail(props) {
             onChange={props.onChange}
             type="email"
             placeholder="Enter your E-mail"
-            prefix={<AiOutlineMail className="site-form-item-icon" />}
+            prefix={<AiOutlineMail className="site-form-item-icon" style={{marginLeft: "13px"}}/>}
             suffix={
                 <Tooltip title="Extra information">
                     <AiOutlineInfoCircle style={{ color: 'white' }} />

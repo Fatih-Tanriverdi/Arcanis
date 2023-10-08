@@ -1,6 +1,6 @@
 import UserLogin from "./pages/Login/UserLogin";
 import Register from "./pages/Register/Register";
-import RecoverPassword from "./pages/PasswordReset/RecoverPassword";
+import RecoverPassword from "./pages/ResetPassword/ResetPassword";
 import { Routes, Route } from "react-router-dom";
 import AdminPanel from "./pages/Admin/AdminPanel";
 import UsersList from "./pages/Users/UsersList";
@@ -11,7 +11,7 @@ import Customer from "./pages/Customer/Customer";
 import Ticket from "./pages/Ticket/Ticket";
 import Planets from "./pages/Planets/Planets";
 import About from "./pages/About/About";
-import Iletisim from "./pages/Iletisim/Iletisim";
+import Iletisim from "./pages/ Communication/Iletisim";
 import PlanetDetails from "./pages/PlanetDetails/PlanetDetails";
 
 export default function App() {

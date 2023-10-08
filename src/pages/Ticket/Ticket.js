@@ -4,7 +4,7 @@ import { Select, Space, DatePicker } from 'antd';
 import { Link } from 'react-router-dom';
 import { TfiHeadphoneAlt } from "react-icons/tfi";
 import { BsCreditCard2Back, BsCashCoin, BsPeople, BsStopwatchFill, BsCoin, BsGeoAlt } from "react-icons/bs";
-import { fetchPlanets } from '../../services/RocketService';
+import { fetchPlanets } from '../../services/PlanetService';
 
 export default function Ticket() {
 

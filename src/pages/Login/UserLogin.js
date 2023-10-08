@@ -8,23 +8,23 @@ import { Checkbox, Input } from 'antd';
 import { login } from '../../services/AuthService.js';
 import { AiOutlineUser } from "react-icons/ai";
 import { RiLockPasswordLine } from "react-icons/ri";
+import { ClipLoader } from 'react-spinners';
 
 export default function App() {
-
     const navigate = useNavigate();
+    const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    const url = "http://lambalog.com/api/auth/login";
 
     const checkBox = (e) => {
         console.log(`checked = ${e.target.checked}`);
     };
 
-    const loginAndNavigate = async (username, password, emailAddress, url) => {
-        const { token, isAdmin } = await login(username, password, emailAddress, url);
-
+    const loginAndNavigate = async (username, password, emailAddress) => {
+        setLoading(true);
+        const { token, isAdmin } = await login(username, password, emailAddress);
         if (token && isAdmin) {
             navigate('/admin');
             localStorage.setItem('access-token', token);
@@ -35,6 +35,7 @@ export default function App() {
             setError('Kullanıcı adı, şifre veya e-posta yanlış.');
             navigate('/');
         }
+        setLoading(false);
     };
 
     const handleChange = async (e) => {
@@ -49,7 +50,7 @@ export default function App() {
         const errorMessage =
             inputValue === '' && password === '' ? 'Kullanıcı adı, şifre veya e-posta boş olamaz.' :
                 inputValue === '' ? 'Kullanıcı adı boş olamaz.' : password === '' ? 'Şifre boş olamaz.' : '';
-        errorMessage ? setError(errorMessage) : loginAndNavigate(username, password, emailAddress, url);
+        errorMessage ? setError(errorMessage) : loginAndNavigate(username, password, emailAddress);
     };
 
     const ErrorMessage = ({ message }) => {
@@ -99,7 +100,8 @@ export default function App() {
                             <div>
                                 {error && <ErrorMessage message={error} />}
                             </div>
-                            <AuthButton text="LOGIN" onClick={handleChange} />
+                            {loading && <ClipLoader color={"#73228B"} />}
+                            <AuthButton text="LOGIN" onClick={handleChange}/>
                             <Link to="/register" className="user-register-btn">New here? Create an Account</Link>
                         </form>
                         {/** Card-Right Bitiş **/}

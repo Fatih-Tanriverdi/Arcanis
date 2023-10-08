@@ -1,3 +1,4 @@
+/* FetchUser */
 export async function fetchUser() {
     try {
         const localStorageToken = localStorage.getItem('access-token');
@@ -18,3 +19,4 @@ export async function fetchUser() {
         throw error;
     }
 }
+/* FetchUser */

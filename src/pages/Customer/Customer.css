@@ -37,6 +37,7 @@ body {
     width: 40px;
     border-radius: 50%;
 
+    background-color: #fff;
     margin-top: 20px !important;
     margin-right: 20px !important;
     float: right !important;
@@ -104,9 +105,16 @@ body {
 }
 
 .customer-ext-btn {
-    margin-top: 25px !important;
-    margin-right: 10px !important;
+    margin-top: 10% !important;
+    margin-right: 15px !important;
     cursor: pointer;
+    font-size: 35px !important;
+    color: white !important;
+}
+
+.customer-ext-btn:hover {
+    color: #7465F2 !important;
+    transition: 0.2s all ease-in;
 }
 
 .customer-page-container {

@@ -3,7 +3,7 @@ import { Routes, Route, Link } from "react-router-dom";
 import { Row, Col } from 'react-grid-system';
 import About from "../../pages/About/About";
 import Planets from '../../pages/Planets/Planets';
-import Iletisim from '../../pages/Iletisim/Iletisim';
+import Iletisim from '../ Communication/Iletisim';
 import { PageButton } from '../../components/PageButton/PageButton';
 import { useEffect, useState } from "react";
 import Ticket from "../Ticket/Ticket";
@@ -59,10 +59,10 @@ export default function AsideHeader() {
                                         <h1>{userInfo.name} {userInfo.surname}</h1>
                                     </div>
                                     <div>
-                                        <img alt='admin' className='customer-img' src='/images/fatihtan.jpg' />
+                                        <img alt='admin' className='customer-img' src='/images/CustomerPP.png' />
                                     </div>
                                     <Link to="/" className="customer-ext-btn">
-                                        <IoExitOutline onClick={handleLogout} alt="Çıkış" style={{ color: "white", fontSize: "30px" }} />
+                                        <IoExitOutline onClick={handleLogout} alt="Çıkış"/>
                                     </Link>
                                 </div>
                             </div>

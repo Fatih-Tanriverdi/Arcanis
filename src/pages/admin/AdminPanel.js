@@ -11,9 +11,11 @@ import SpaceShips from '../../pages/Products/SpaceShips';
 import Orders from '../../pages/Orders/Orders';
 import { PageButton } from '../../components/PageButton/PageButton';
 import { checkToken } from '../../services/AuthService';
+import { fetchUser } from '../../services/UserService';
 
 export default function AsideHeader() {
     const [activeButton, setActiveButton] = useState("");
+    const [userInfo, setUserInfo] = useState({});
 
     const handleButtonClick = (buttonText) => {
         setActiveButton(buttonText);
@@ -25,6 +27,18 @@ export default function AsideHeader() {
 
     useEffect(() => {
         checkToken();
+    }, []);
+
+    useEffect(() => {
+        async function getUser() {
+            const data = await fetchUser()
+                .catch(error => {
+                    console.error('API request failed:', error);
+                    return [];
+                })
+            setUserInfo(data);
+        }
+        getUser();
     }, []);
 
     return (
@@ -52,11 +66,11 @@ export default function AsideHeader() {
                         <article className='header'>
                             <div className='header-position'>
                                 <div className='admin-info'>
-                                    <h1>Fatih Tanrıverdi</h1>
+                                    <h1>{userInfo.name} {userInfo.surname}</h1>
                                     <span>Admin</span>
                                 </div>
                                 <div className='header-img'>
-                                    <img alt='admin' className='admin-img' src='/images/fatihtan.jpg' />
+                                    <img alt='admin' className='admin-img' src='/images/AdminPP.avif' />
                                 </div>
                             </div>
                         </article>
