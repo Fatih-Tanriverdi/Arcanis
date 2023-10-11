@@ -22,7 +22,7 @@ export default function PlanetDetails() {
     }, [id]);
 
     return (
-        <body className='product-global'>
+        <body className='product-body-color'>
             <div className='product-details-body'>
                 <div className='product-details-container'>
                     {planetDetails ? (
@@ -35,7 +35,7 @@ export default function PlanetDetails() {
                             <p>{planetDetails.description}</p>
                         </div>
                     ) : (
-                        <div className='planet-spinner'><ClipLoader color={"#fff"}/></div>
+                        <div className='planet-spinner'><ClipLoader color={"#fff"} /></div>
                     )}
                 </div>
             </div>

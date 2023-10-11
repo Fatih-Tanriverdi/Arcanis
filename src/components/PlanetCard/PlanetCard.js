@@ -24,7 +24,7 @@ export function PlanetCard({ defaultImage }) {
         <>
             {loading ? (
                 <div className='planetcard-spinner'>
-                    <div className='planetcard-spinner'><ClipLoader color={"#fff"}/></div>
+                    <div className='planetcard-spinner'><ClipLoader color={"#fff"} /></div>
                 </div>
             ) : (
                 planets.map(planet => (

@@ -1,66 +1,84 @@
-.ticket-page-body {
-    height: 300px !important;
-    width: 1410px !important;
+.ticket-page-container {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
 
+.ticket-page-body-position {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+}
 
-    margin-top: 20px;
-    margin-bottom: 30px;
-
-    border-radius: 5px;
+.ticket-page-body {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 32rem;
+    height: 100%;
+    width: 95.5%;
+    margin: 0 auto;
+    margin-bottom: 1rem;
+    border-radius: 0.5rem;
     background-color: #273046;
-    background-image: url("../../../public/images/gezegenler.png");
+    background-position: center;
     background-size: cover;
-
+    background-image: url("../../../public/images/gezegenler.png");
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
 .ticket-page-footer {
-    height: 300px !important;
-    width: 1410px !important;
-
-    margin-top: 20px;
-    margin-bottom: 30px;
-
-    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 32rem;
+    height: 100%;
+    width: 95.5%;
+    margin: 0 auto;
+    border-radius: 0.5rem;
     background-color: #273046;
-
-
+    background-position: center;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
-
 
 /* SEARCH */
 
 .ticket-search {
-    height: 275px !important;
-    width: 350px !important;
-    margin-right: 30px !important;
-    
-    background-color: rgba(27, 30, 46, 0.9); 
-    border-radius: 5px !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    max-height: 25rem !important;
+    height: 100%;
+    max-width: 30rem !important;
+    width: 100%;
+    margin: 3rem;
+
+    background-color: rgba(27, 30, 46, 0.9);
+    border-radius: 0.5rem !important;
+
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
 .ticket-btn-group>button {
     display: inline-block;
-    margin-left: 11% !important;
-    height: 40px;
-    width: 270px;
+    height: 2.5rem;
+    width: 20rem;
     box-sizing: border-box;
     border: transparent;
-    border-radius: 60px;
-    font-size: 12px;
-    font-weight: 500;
+    border-radius: 6rem;
+    font-size: 1rem;
     text-transform: uppercase;
-    letter-spacing: 0.2em;
+    letter-spacing: 0.2rem;
     color: #ffffff;
     background-color: #7465F2;
     cursor: pointer;
-    outline: none;
-    margin-top: 20px !important;
-
+    margin: 2rem ;
+    
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
@@ -70,55 +88,53 @@
 }
 
 .ticket-search .ant-select {
-    border-bottom: 1px solid #7465F2;
-    width: 300px !important;
-
-    margin-top: 25px !important;
-
+    border-bottom: 0.1rem solid #7465F2;
+    margin-top: 2rem !important;
+    width: 25rem;
     margin: 0;
     padding: 0;
 }
 
 .ticket-search .ant-picker-input {
-    border-bottom: 1px solid #7465F2;
-    width: 125px !important;
-    margin-top: 30px !important;
-
+    border-bottom: 0.1rem solid #7465F2;
+    width: 10rem !important;
+    margin-top: 1rem !important;
     margin: 0;
     padding: 0;
 }
 
-.ticket-search .ant-picker-suffix > span {
-    margin-top: 30px !important;
+.ticket-search .ant-picker-suffix>span {
+    margin-top: 3rem !important;
 }
 
-.ant-picker-input > input {
+.ant-picker-input>input {
     color: white !important;
 }
 
-.ticket-search .ant-picker-range-separator > span {
-    margin-top: 30px !important;
+.ticket-search .ant-picker-range-separator>span {
+    margin-top: 3rem !important;
 }
 
 /* SEARCH */
 
 /* DESCRİPTİON */
 
-.ticket-decription > h1 {
+.ticket-decription>h1 {
     color: white !important;
 }
 
 .desk-box-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-gap: 20px; /* İstenilen aralığı ayarlayabilirsiniz */
+    grid-gap: 2rem;
+    margin: 3rem;
 }
 
 .desc-box {
-    height: 75px !important;
-    width: 100px !important;
+    height: 8rem !important;
+    width: 8rem !important;
     color: white !important;
-    padding: 10px;
+    padding: 1rem;
 
     display: flex;
     justify-content: center;
@@ -126,16 +142,83 @@
     align-items: center;
 
     background-color: rgba(27, 30, 46, 0.8);
-    border-radius: 5px !important;
+    border-radius: 0.5rem !important;
+
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
 .desc-box > svg {
-    font-size: 40px !important;
+    color: white;
+    font-size: 2rem !important;
 }
 
-.desc-box > p {
-    font-size: 9px !important;
+.desc-box>p {
+    font-size: 0.5rem !important;
     text-align: center;
 }
 
 /* DESCRİPTİON */
+
+@media screen and (min-width: 700px) {
+    .ticket-page-body-position {
+        flex-direction: row;
+    }
+
+    .ticket-search {
+        min-height: 27.5rem !important;
+        height: 100%;
+        min-width: 35rem !important;
+        width: 100%;
+    }
+
+    .desc-box {
+        height: 10rem !important;
+        width: 10rem !important;
+    }
+
+    .desc-box > svg {
+        font-size: 4rem !important;
+    }
+    
+    .desc-box>p {
+        font-size: 0.9rem !important;
+    }
+
+    .ticket-btn-group>button {
+        height: 4rem;
+        width: 28rem;
+        font-size: 1.2rem;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .ticket-page-body-position {
+        flex-direction: row;
+    }
+
+    .ticket-search {
+        min-height: 27.5rem !important;
+        height: 100%;
+        min-width: 35rem !important;
+        width: 100%;
+    }
+
+    .desc-box {
+        height: 10rem !important;
+        width: 10rem !important;
+    }
+
+    .desc-box > svg {
+        font-size: 4rem !important;
+    }
+    
+    .desc-box>p {
+        font-size: 0.9rem !important;
+    }
+
+    .ticket-btn-group>button {
+        height: 4rem;
+        width: 28rem;
+        font-size: 1.2rem;
+    }
+}

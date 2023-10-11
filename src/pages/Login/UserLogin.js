@@ -62,50 +62,50 @@ export default function App() {
             <section className="userlogin-container">
                 {/** Article Bağlangıç **/}
                 <article className="userlogin-card">
-                    {/** Card-Left Başlangıç **/}
-                    <LoginImage />
-                    {/** Card-Left Bitiş **/}
-                    <article className="userlogin-row">
-                        {/** Card-Right Başlangıç **/}
-                        <form className="user-card-right">
-                            <div className="user-login">
-                                <h1>USER LOGIN</h1>
-                                <p id="description">welcome to the website</p>
-                            </div>
-                            <div className="input-group-user">
-                                <Input
-                                    value={username}
-                                    onChange={(e) => setUsername(e.target.value)}
-                                    id="user-name-input"
-                                    placeholder="Username / E-mail Adress"
-                                    prefix={<AiOutlineUser style={{ marginLeft: "-15px" }} />}
-                                />
-                                <br />
-                                <Input.Password
-                                    id="password-input"
-                                    value={password}
-                                    onChange={(e) => setPassword(e.target.value)}
-                                    prefix={<RiLockPasswordLine />}
-                                    placeholder="Password"
-                                />
-                            </div>
-                            <div className="forget-password">
-                                <div>
-                                    <Checkbox className="checkbox-color" onChange={checkBox} style={{ color: "#73228B" }}><p style={{ color: "#73228B" }}>Remember</p></Checkbox>
+                    <div className="user-card-position">
+                        {/** Card-Left Başlangıç **/}
+                        <LoginImage />
+                        {/** Card-Left Bitiş **/}
+                        <article className="userlogin-row">
+                            {/** Card-Right Başlangıç **/}
+                            <form className="user-card-right">
+                                <div className="user-card-content">
+                                    <div id="user-login">
+                                        <h1>USER LOGIN</h1>
+                                        <p id="description">welcome to the website</p>
+                                    </div>
+                                    <div className="input-group-user">
+                                        <Input
+                                            value={username}
+                                            onChange={(e) => setUsername(e.target.value)}
+                                            id="user-name-input"
+                                            placeholder="Username / E-mail Adress"
+                                            prefix={<AiOutlineUser />}
+                                        />
+                                        <br />
+                                        <Input.Password
+                                            id="password-input"
+                                            value={password}
+                                            onChange={(e) => setPassword(e.target.value)}
+                                            prefix={<RiLockPasswordLine />}
+                                            placeholder="Password"
+                                        />
+                                    </div>
+                                    <div className="forget-password">
+                                        <Checkbox className="checkbox-color" onChange={checkBox} style={{ color: "#73228B" }}><p className="forget-password-custom">Remember</p></Checkbox>
+                                        <Link to="/recoverpassword"><p className="forget-password-custom">Reset Password</p></Link>
+                                    </div>
+                                    <div>
+                                        {error && <ErrorMessage message={error} />}
+                                    </div>
+                                    {loading && <ClipLoader color={"#73228B"} />}
+                                    <AuthButton text="LOGIN" onClick={handleChange} />
+                                    <Link to="/register" className="user-register-btn"><p>New here? Create an Account</p></Link>
                                 </div>
-                                <div>
-                                    <Link to="/recoverpassword">Reset Password</Link>
-                                </div>
-                            </div>
-                            <div>
-                                {error && <ErrorMessage message={error} />}
-                            </div>
-                            {loading && <ClipLoader color={"#73228B"} />}
-                            <AuthButton text="LOGIN" onClick={handleChange}/>
-                            <Link to="/register" className="user-register-btn">New here? Create an Account</Link>
-                        </form>
-                        {/** Card-Right Bitiş **/}
-                    </article>
+                            </form>
+                            {/** Card-Right Bitiş **/}
+                        </article>
+                    </div>
                 </article>
                 {/** Article Bitiş **/}
             </section>

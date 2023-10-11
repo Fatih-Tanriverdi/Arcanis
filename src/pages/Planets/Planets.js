@@ -10,19 +10,13 @@ export default function SpaceShips() {
     }, []);
 
     return (
-        <container>
-            <section>
-                <div>
-                    <div className='space-ship-col' sm={12} md={8} lg={8}>
-                        <article className='planets-container'>
-                            <div className='product-list'>
-                                <h1 id='planets-title'>Planets</h1>
-                                <PlanetCard />
-                            </div>
-                        </article>
-                    </div>
+        <container className='space-ship-col'>
+            <article className='planets-container'>
+                <h1 id='planets-title'>Planets</h1>
+                <div className='planet-list'>
+                    <PlanetCard />
                 </div>
-            </section>
+            </article>
         </container>
     )
 }

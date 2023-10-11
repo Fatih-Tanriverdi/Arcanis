@@ -1,25 +1,30 @@
-.product-global {
-    height: 784px !important;
-    background-color: #161D30 !important;
+.product-body-color {
+    background-color: #161D30;
+}
 
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
+body {
+    background-color: #161D30;
 }
 
 .product-details-body {
-    height: 720px !important;
-    width: 1410px !important;
-
-    border-radius: 5px !important;
-    background-color: #273046 !important;
-
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center; 
+    min-height: 65rem;
+    height: 100%;
+    width: 95.5%;
+    margin-top: 1.6%;
+    margin-left: 2.3%;
+    border-radius: 0.5rem;
+    background-color: #273046;
+    background-position: center;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
-.product-details-container>div {
+.product-details-container {
     display: flex;
-    flex-direction: column !important;
+    justify-content: center;
     align-items: center;
 }
 
@@ -37,7 +42,7 @@
     margin-right: 10px;
     margin-left: 10px;
 
-    font-size: 18px;
+    font-size: 1.2rem;
 }
 
 .planet-details>h1 {
@@ -45,7 +50,7 @@
     text-align: center;
 
     border-bottom: 2px solid white;
-    width: 80%;
+    width: 100%;
 }
 
 .planet-details-icon {
@@ -72,4 +77,16 @@
     align-items: center !important;
     margin-top: 20% ;
     font-size: 50px;
+}
+
+@media screen and (min-width: 700px) {
+    .planet-details>p {
+        font-size: 1.6rem;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .planet-details>p {
+        font-size: 1.8rem;
+    }
 }

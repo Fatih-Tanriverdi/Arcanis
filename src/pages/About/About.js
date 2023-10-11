@@ -4,8 +4,8 @@ import "./About.css";
 export default function About() {
     return (
         <>
-            <container className='about-page-body' >
-                <div className='about-page-container'>
+            <container className='about-page-container' >
+                <div className='about-page-body'>
                     
                 </div>
             </container>

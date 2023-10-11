@@ -1,245 +1,115 @@
 .user-login-body-color {
-    margin: 0;
-    padding: 0;
-    height: 100% !important;
-    width: 100% !important;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    height: 100%;
+    width: 100%;
     background-image: linear-gradient(90deg, #73228B, #490F80) !important;
 }
 
-a {
-    color: #73228B;
-}
-
-.userlogin-container {
-    display: flex;
-    justify-content: center;
-    padding-top: 2.95% !important;
-}
-
-.userlogin-card {
-    border-radius: 20px;
-    height: 695px;
-    width: 1000px;
-    margin-bottom: 3.6%;
-    box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
-}
-
 .user-card-right {
-    border-radius: 0px 20px 20px 0px;
-    height: 696px;
-    width: 400px;
-    background-color: #FFFFFF;
-    display: flex;
+    background-position: center;
+    background-color: #fff;
+    min-height: 70rem;
+    height: 100%;
+    min-width: 30rem;
+    margin: 4rem;
+    border-radius: 2rem;
+}
+
+.user-card-right > div {
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    float: right;
 }
 
-.user-card-right>div>h1 {
-    color: #73228B;
-    font-size: 40px;
-    letter-spacing: 2px;
+.user-card-content > div {
+    margin: 1rem;
 }
 
-#description {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 50px;
-    color: #73228B;
-    font-size: 20px;
-    padding: 0px 20px 0px 20px;
-}
-
-.user-login>h1 {
+.user-card-content {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.forget-password>div {
-    display: inline-block;
+#user-login {
+    margin-top: 2rem;
+}
+
+#user-login > p,
+#user-login > h1 {
+    margin-top: 5rem;
+    font-size: 3rem;
+    color: #73228B;
+}
+
+.forget-password {
+    display: flex;
     align-items: center;
-    padding: 15px 20px 15px 20px;
-    font-size: 15px;
 }
 
-.ant-checkbox-wrapper {
-    margin-left: 0px !important;
-    margin-top: 10px !important;
-    margin-bottom: 20px !important;
+.forget-password-custom {
+    color: #73228B;
+    font-size: 1.5rem;
+    margin-right: 1.5rem;
+    margin-left: 1.5rem;
 }
 
-.ant-checkbox {
-    background-color: white !important;
-}
 
-.ant-checkbox-inner {
-    background: #73228B !important;
-    border-color: #73228B !important;
-}
-
-/* Error Message */
-
-#error-message {
-    z-index: 1 !important;
-    font-size: 15px !important;
-    padding: 10px !important;
-    margin-top: 10px;
-    border-radius: 5px !important;
-    background-color: #73228B !important;
-    color: white;
-}
-
-/* Error Message */
-
-/** background: linear-gradient(90 deg rgba(115, 34, 139) 0%, rgba(97, 25, 133) 50%, rgba(73, 15, 178) 100%); **/
-/** first-color =  #73228B  **/
-/** second-color =  #490F80  **/
-
-/** MEDIA QUERIES  **/
-
-/* 800px */
-
-@media (max-width: 800px) {
-
-    .userlogin-container>.userlogin-card {
-        height: 600px;
-        width: 400px;
-        box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
-    }
-
-    .userlogin-row>.user-card-right {
-        border-radius: 20px;
-        height: 600px;
-        width: 400px;
-    }
-
-    .user-card-right>div>h1 {
-        color: #73228B;
-        font-size: 50px;
-        letter-spacing: 2px;
-    }
-
-    .input-group-user>input {
-        text-decoration: none;
-        background-color: #D3D3D3;
-        transition: all 0.5s ease-in-out;
-        color: white;
-        border: none;
-        border-radius: 20px;
-        padding-left: 30px;
-        width: 200px;
-        height: 60px;
-        margin: 20px;
-    }
-
-    .ant-input-prefix>svg {
-        font-size: 15px !important;
-        margin-bottom: 10px !important;
-    }
-
-    .ant-input-suffix>span {
-        margin-bottom: 10px !important;
-    }
-
-}
-
-/* 800px */
-
-/* 1200px */
-
-@media (max-width: 1200px) {
-
-    .userlogin-container {
-        padding: 2.5%;
-        height: 100% !important;
-    }
-
-    .userlogin-card {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin: 20px;
-        border-radius: 20px;
-        height: 640px;
-        width: 800px;
-    }
-
-    .user-rocket-img {
-        height: 700px;
-        width: 500px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border-radius: 20px 0px 0px 20px;
-    }
+@media screen and (min-width: 700px) {
 
     .user-card-right {
-        border-radius: 0px 20px 20px 0px;
-        height: 698px;
-        width: 300px;
-        background-color: #FFFFFF;
+        margin-left: 0;
+        margin-right: 0;
+        border-radius: 0 2rem 2rem 0;
+        min-height: 65rem;
+    }
+
+    .user-card-position {
         display: flex;
-        flex-direction: column;
         justify-content: center;
         align-items: center;
-        float: right;
     }
 
-    .user-card-right>div>h1 {
-        display: flex;
-        justify-content: center;
+    #user-login > p {
+        font-size: 2rem;
+    }
+
+    .user-register-btn > p {
+        font-size: 1.5rem;
+    }
+
+    .forget-password-custom {
         color: #73228B;
-        font-size: 30px;
-        letter-spacing: 2px;
+        font-size: 1.3rem;
+        margin-right: 1rem;
+        margin-left: 1rem;
     }
-
-    #description {
-        display: flex;
-        justify-content: center;
-        margin-bottom: 50px;
-        color: #73228B;
-        font-size: 10px;
-    }
-
-    .input-group-user>input {
-        text-decoration: none;
-        background-color: #D3D3D3;
-        transition: all 0.5s ease-in-out;
-        color: white;
-        border: none;
-        border-radius: 20px;
-        padding-left: 60px;
-        width: 170px;
-        height: 35px;
-        margin: 15px;
-    }
-
-    .forget-password>div {
-        display: inline-block;
-        align-items: center;
-        padding: 0px 15px 0px 15px;
-        color: #73228B;
-        font-size: 13px;
-        padding-top: 15px;
-    }
-
-    .user-login-btn>button {
-        width: 180px;
-        height: 30px;
-    }
-
-    .ant-input-prefix>svg {
-        font-size: 15px !important;
-        margin-bottom: 10px !important;
-    }
-
-    .ant-input-suffix>span {
-        margin-bottom: 10px !important;
-    }
-
 }
 
-/* 1200px */
+@media screen and (min-width: 1200px) {
+    .user-card-right {
+        margin-left: 0;
+        margin-right: 0;
+        border-radius: 0 2rem 2rem 0;
+        min-height: 71rem;
+        min-width: 35rem;
+    }
+
+    .user-card-position {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #user-login > p {
+        font-size: 2.5rem;
+    }
+
+    .user-register-btn > p {
+        font-size: 1.7rem;
+    }
+
+    .forget-password-custom {
+        color: #73228B;
+        font-size: 1.5rem;
+        margin-right: 1.3rem;
+        margin-left: 1.3rem;
+    }
+}

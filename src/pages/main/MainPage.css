@@ -13,28 +13,3 @@
 
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
-
-
-@media screen and (max-width: 1200px) {
-
-    .main-page-body {
-        position: relative;
-        right: 0px;
-    }
-
-    .main-page-container {
-        margin-top: 20px;
-        height: 550px;
-        width: 1000px;
-    }
-}
-
-@media screen and (max-width: 768px) {
-
-
-    .main-page-container {
-        height: 500px;
-        width: 510px;
-        margin-top: 20px;
-    }
-}

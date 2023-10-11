@@ -3,33 +3,34 @@
 }
 
 .ant-input-affix-wrapper.css-dev-only-do-not-override-12upa3x {
+    background-position: center !important;
     background-color: #D3D3D3 !important;
     border-color: #73228B !important;
-    width: 270px !important;
-    height: 40px !important;
+    width: 28rem !important;
+    height: 4rem !important;
     color: white !important;
-    border-radius: 20px !important;
+    border-radius: 2rem !important;
+    margin-bottom: 1rem;
 }
 
 .ant-input-affix-wrapper.css-dev-only-do-not-override-12upa3x > input {
     color: white !important;
 }
 
-.input-group-register {
-    margin-bottom: 20px !important;
-}
-
-.ant-input-affix-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 .input-group-register >input::placeholder {
     color: white;
 }
 
-.ınputRegister,
-.ınputRegisterPassword {
-    margin-bottom: 15px !important;
+
+@media screen and (min-width: 700px) {
+    .ant-input-affix-wrapper.css-dev-only-do-not-override-12upa3x {
+        width: 24rem !important;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .ant-input-affix-wrapper.css-dev-only-do-not-override-12upa3x {
+        width: 28rem !important;
+        margin-bottom: 2rem;
+    }
 }

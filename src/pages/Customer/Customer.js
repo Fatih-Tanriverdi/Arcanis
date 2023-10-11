@@ -49,10 +49,10 @@ export default function AsideHeader() {
                         <article className='header-customer'>
                             <div className='header-position-customer'>
                                 <div className="customer-btn">
-                                    <PageButton text="Bilet Al" to="ticket" className={`customer-btn-hover ${activeButton === "Bilet Al" ? 'active' : ''}`} onClick={() => handleButtonClick("Bilet Al")} />
-                                    <PageButton text="Gezegenler" to="planets" className={`customer-btn-hover ${activeButton === "Gezegenler" ? 'active' : ''}`} onClick={() => handleButtonClick("Gezegenler")} />
-                                    <PageButton text="Hakkımızda" to="about" className={`customer-btn-hover ${activeButton === "Hakkımızda" ? 'active' : ''}`} onClick={() => handleButtonClick("Hakkımızda")} />
-                                    <PageButton text="İletişim" to="iletisim" className={`customer-btn-hover ${activeButton === "İletişim" ? 'active' : ''}`} onClick={() => handleButtonClick("İletişim")} />
+                                    <PageButton id="customer-btn-position" text="Bilet Al" to="ticket" className={`customer-btn-hover ${activeButton === "Bilet Al" ? 'active' : ''}`} onClick={() => handleButtonClick("Bilet Al")} />
+                                    <PageButton id="customer-btn-position" text="Gezegenler" to="planets" className={`customer-btn-hover ${activeButton === "Gezegenler" ? 'active' : ''}`} onClick={() => handleButtonClick("Gezegenler")} />
+                                    <PageButton id="customer-btn-position" text="Hakkımızda" to="about" className={`customer-btn-hover ${activeButton === "Hakkımızda" ? 'active' : ''}`} onClick={() => handleButtonClick("Hakkımızda")} />
+                                    <PageButton id="customer-btn-position" text="İletişim" to="iletisim" className={`customer-btn-hover ${activeButton === "İletişim" ? 'active' : ''}`} onClick={() => handleButtonClick("İletişim")} />
                                 </div>
                                 <div className="customer-exit">
                                     <div className='customer-info'>
@@ -62,7 +62,7 @@ export default function AsideHeader() {
                                         <img alt='admin' className='customer-img' src='/images/CustomerPP.png' />
                                     </div>
                                     <Link to="/" className="customer-ext-btn">
-                                        <IoExitOutline onClick={handleLogout} alt="Çıkış"/>
+                                        <IoExitOutline onClick={handleLogout} alt="Çıkış" />
                                     </Link>
                                 </div>
                             </div>
@@ -72,11 +72,12 @@ export default function AsideHeader() {
                                 <container className='customer-page-body' >
                                     <div className='customer-page-container'>
                                         <Routes>
-                                            <Route exact path="about" element={<About />} />
-                                            <Route exact path="ticket" element={<Ticket />} />
-                                            <Route exact path="iletisim" element={<Iletisim />} />
-                                            <Route exact path="planets" element={<Planets />} />
-                                            <Route exact path="/planet/:id" element={<PlanetDetails />} />
+                                            <Route path="/*" element={<Ticket />} />
+                                            <Route path="about" element={<About />} />
+                                            <Route path="ticket" element={<Ticket />} />
+                                            <Route path="iletisim" element={<Iletisim />} />
+                                            <Route path="planets" element={<Planets />} />
+                                            <Route path="/planet/:id" element={<PlanetDetails />} />
                                         </Routes>
                                     </div>
                                 </container>

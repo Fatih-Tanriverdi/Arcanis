@@ -1,193 +1,71 @@
 .register-body-color {
-    margin: 0;
-    padding: 0;
-    height: 100% !important;
-    width: 100% !important;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    background-image: linear-gradient(120deg, #73228B, #490F80);
+    background-image: linear-gradient(90deg, #73228B, #490F80) !important;
 }
 
-.register-container {
+.register-card-right{
+    background-position: center;
+    background-color: #fff;
+    min-height: 70rem;
+    margin: 4rem;
+    border-radius: 1rem;
+
     display: flex;
-    justify-content: center;
-    padding-top: 2.95% !important;
-}
-
-.register-card {
-    border-radius: 20px;
-    height: 695px;
-    width: 1000px;
-    margin-bottom: 3.6%;
-    box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
-}
-
-.register-card-right {
-    border-radius: 0px 20px 20px 0px;
-    height: 696px;
-    width: 400px;
-    background-color: #FFFFFF;
-    display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    float: right;
 }
 
-.register-card-right>div>h1 {
+.user-register > h1 {
+    font-size: 3rem;
     color: #73228B;
-    font-size: 40px;
-    letter-spacing: 2px;
 }
 
-.user-register>h1 {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 0;
-}
-
-#description {
-    display: flex;
-    justify-content: center;
+.user-register > p {
+    margin-top: 1rem;
+    font-size: 2rem;
     color: #73228B;
-    font-size: 20px;
-}
-
-.acconut-register {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    color: #73228B;
-    font-size: 15px;
-}
-
-#error-message-register {
-    z-index: 1 !important;
-    font-size: 15px !important;
-    padding: 5px !important;
-    margin-top: 20px;
-    border-radius: 5px !important;
-    background-color: #73228B !important;
-    color: white;
 }
 
 
-/** MEDIA QUERİES **/
-
-
-/* 800px */
-
-@media (max-width: 800px) {
-
-    .register-container>.register-card {
-        height: 600px;
-        width: 400px;
-    }
-
-    .register-row>.register-card-right {
-        border-radius: 20px;
-        height: 600px;
-        width: 400px;
-    }
-
-    .register-card-right>div>h1 {
-        color: #73228B;
-        font-size: 50px;
-        letter-spacing: 2px;
-    }
-
-    .acconut-register {
-        font-size: 9px;
-    }
-
-
-}
-
-/* 800px */
-
-/* 1200px */
-
-@media (max-width: 1200px) {
-
-    .register-container {
-        padding: 2.5%;
+@media screen and (min-width: 700px) {
+    .register-card-right {
+        margin-left: 0;
+        margin-right: 0;
+        border-radius: 0 2rem 2rem 0;
+        min-height: 65rem;
+        min-width: 30rem;
     }
 
     .register-card {
         display: flex;
         justify-content: center;
         align-items: center;
-        margin: 20px;
-        border-radius: 20px;
-        height: 640px;
-        width: 800px;
-        box-shadow: 5px 5px 50px 5px black;
     }
 
-    .register-rocket-img {
-        height: 700px;
-        width: 500px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border-radius: 20px 0px 0px 20px;
+    .acconut-register > p {
+        font-size: 1.5rem;
     }
-
-    .register-card-right {
-        border-radius: 0px 20px 20px 0px;
-        height: 698px;
-        width: 300px;
-        background-color: #FFFFFF;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        float: right;
-    }
-
-    .register-card-right>div>h1 {
-        display: flex;
-        justify-content: center;
-        color: #73228B;
-        font-size: 30px;
-        letter-spacing: 2px;
-    }
-
-    #description {
-        display: flex;
-        justify-content: center;
-        margin-bottom: 50px;
-        color: #73228B;
-        font-size: 10px;
-    }
-
-    .input-group-register>input {
-        text-decoration: none;
-        background-color: #D3D3D3;
-        transition: all 0.5s ease-in-out;
-        color: white;
-        border: none;
-        border-radius: 20px;
-        padding-left: 90px;
-        width: 150px;
-        height: 35px;
-        margin: 15px;
-    }
-
-    .forget-password>div {
-        display: inline-block;
-        align-items: center;
-        padding: 0px 15px 0px 15px;
-        color: #73228B;
-        font-size: 13px;
-        padding-top: 15px;
-    }
-
-    .register-btn>button {
-        width: 180px;
-        height: 30px;
-        margin: 10px;
-    }
-
 }
 
-/* 1200px */
+@media screen and (min-width: 1200px) {
+    .register-card-right {
+        margin-left: 0;
+        margin-right: 0;
+        border-radius: 0 2rem 2rem 0;
+        min-height: 71rem;
+        min-width: 35rem;
+    }
+
+    .register-card {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .acconut-register > p {
+        font-size: 1.7rem;
+    }
+
+    .user-register > h1 {
+        margin-bottom: 0;
+    }
+}

@@ -52,24 +52,32 @@ export default function Register() {
                     <div className="register-row">
                         {/* Card-Right Başlangıç */}
                         <article className="register-card-right">
-                            <div className="user-register">
-                                <h1>REGISTER</h1>
-                                <p id="description">welcome to the website</p>
+                            <div className="register-card-content">
+                                <div className="user-register">
+                                    <h1>REGISTER</h1>
+                                    <p id="description">welcome to the website</p>
+                                </div>
+                                <form className="input-group-register">
+                                    <AuthInputEmail value={values.emailAddress} onChange={handleInput} />
+                                    <br />
+                                    <AuthInputUsername value={values.username} onChange={handleInput} placeholder="Enter your Username" />
+                                    <br />
+                                    <AuthInputPassword value={values.password} onChange={handleInput} />
+                                    <br />
+                                    <AuthInputName value={values.name} onChange={handleInput} />
+                                    <br />
+                                    <AuthInputSurname value={values.surname} onChange={handleInput} />
+                                    <br />
+                                    <AuthInputPhoneNumber value={maskPhoneNumber(values.phoneNumber)} onChange={handleInput} />
+                                    <br />
+                                    <Link to="/" className="acconut-register">
+                                        <p>Do you already have an account?</p>
+                                    </Link>
+                                </form>
+                                {error && <ErrorMessage message={error} />}
+                                {loading && <ClipLoader color={"#73228B"} />}
+                                <AuthButton text="REGISTER" onClick={handleSubmit} />
                             </div>
-                            <form className="input-group-register">
-                                <AuthInputEmail value={values.emailAddress} onChange={handleInput} />
-                                <AuthInputUsername value={values.username} onChange={handleInput} placeholder="Enter your Username" />
-                                <AuthInputPassword value={values.password} onChange={handleInput} />
-                                <AuthInputName value={values.name} onChange={handleInput} />
-                                <AuthInputSurname value={values.surname} onChange={handleInput} />
-                                <AuthInputPhoneNumber value={maskPhoneNumber(values.phoneNumber)} onChange={handleInput} />
-                                <Link to="/" className="acconut-register">
-                                    Do you already have an account?
-                                </Link>
-                            </form>
-                            {error && <ErrorMessage message={error} />}
-                            {loading && <ClipLoader color={"#73228B"} />}
-                            <AuthButton text="REGISTER" onClick={handleSubmit} />
                         </article>
                         {/* Card-Right Bitiş */}
                     </div>

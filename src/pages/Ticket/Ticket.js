@@ -15,23 +15,23 @@ export default function Ticket() {
     useEffect(() => {
         async function getPlanets() {
             const data = await fetchPlanets()
-            .catch(error => {
-                console.error('API request failed:', error);
-                return [];
-            });
+                .catch(error => {
+                    console.error('API request failed:', error);
+                    return [];
+                });
             setPlanets(data);
         }
         getPlanets();
     }, []);
 
     return (
-        <>
-            <container>
-                <div className='ticket-page-body'>
+        <div className='ticket-page-container'>
+            <div className='ticket-page-body'>
+                <div className='ticket-page-body-position'>
                     <div className='ticket-search'>
                         <Space wrap className='ticket-dropdown-style'>
                             <Select
-                                suffixIcon={<BsGeoAlt style={{ marginRight: '260px', color: "white" }} />}
+                                suffixIcon={<BsGeoAlt />}
                                 defaultValue="Kalkış Noktası"
                                 bordered={false}
                             >
@@ -44,7 +44,7 @@ export default function Ticket() {
                         </Space>
                         <Space wrap className='ticket-dropdown-style'>
                             <Select
-                                suffixIcon={<BsGeoAlt style={{ marginRight: '260px', color: "white" }} />}
+                                suffixIcon={<BsGeoAlt />}
                                 defaultValue="Varış Noktası"
                                 bordered={false}
                             >
@@ -92,11 +92,9 @@ export default function Ticket() {
                         </div>
                     </div>
                 </div>
-            </container>
-            <container className='ticket-page-footer' >
-                <div className='ticket-page-footer'>
-                </div>
-            </container>
-        </>
+            </div>
+            <div className='ticket-page-footer' >
+            </div>
+        </div>
     )
 }

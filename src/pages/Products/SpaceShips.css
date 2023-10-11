@@ -26,26 +26,3 @@
     align-items: center;
 
 }
-
-@media screen and (max-width: 1200px) {
-
-    .space-vehicle-container {
-        width: 1000px;
-        height: 550px;
-        margin-top: 20px;
-    }
-
-    #space-vehicle-title {
-        font-size: 20px;
-    }
-
-}
-
-@media screen and (max-width: 768px) {
-
-    .space-vehicle-container {
-        width: 510px;
-        height: 500px;
-    }
-
-}

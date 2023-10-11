@@ -1,52 +1,63 @@
 .planets-container {
-    height: 623px !important;
-    width: 1410px !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center; 
+    min-height: 60rem;
+    width: 95.5%;
+    margin: 0 auto;
+    border-radius: 0.5rem;
     background-color: #273046;
+    background-position: center;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    overflow-y: scroll !important;
+}
 
-    margin-top: 20px;
-    margin-bottom: 30px;
-    border-radius: 5px;
-
+.planet-list {
     display: flex;
     justify-content: center;
-    align-items: flex-start;
-
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-
-    overflow-y: scroll;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
 
 #planets-title {
     color: white;
     font-size: 25px;
-
     margin: 20px !important;
     border-bottom: solid 1px white !important;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+@media screen and (min-width: 700px) {
+    .planet-list {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    
+    .product-card {
+        width: calc(50% - 1.8rem);
+        margin: 0.9rem;
+    }
 
 }
 
-@media screen and (max-width: 1200px) {
-
-    .space-vehicle-container {
-        width: 1000px;
-        height: 550px;
-        margin-top: 20px;
+@media screen and (min-width: 1200px) {
+    .planet-list {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+        flex-wrap: wrap;
     }
-
-    #space-vehicle-title {
-        font-size: 20px;
+    
+    .product-card {
+        width: calc(50% - 1.8rem);
+        margin: 0.9rem;
     }
-
-}
-
-@media screen and (max-width: 768px) {
-
-    .space-vehicle-container {
-        width: 510px;
-        height: 500px;
-    }
-
 }
