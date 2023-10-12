@@ -10,7 +10,7 @@ export function PageButton(props) {
             <ul>
                 <li>
                     <Link to={props.to}>
-                        <Button type='link' classNames="btn-aktif" id='icon-home-position-sm' className={props.className} icon={props.icon} size="large" onClick={props.onClick}>
+                        <Button type='link' className={props.className} id={props.id} icon={props.icon} size="large" onClick={props.onClick}>
                             <a href={props.href}>{props.text}</a>
                         </Button>
                     </Link>

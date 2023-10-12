@@ -1,28 +1,41 @@
 .space-vehicle-container {
-    height: 658px;
-    max-height: 658px;
-    width: 1080px;
-    background-color: #273046;
-
-    margin-left: -3% !important;
-    margin-top: 30px;
-    border-radius: 5px;
-
     display: flex;
-    justify-content: center;
-    align-items: flex-start;
+}
 
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-
-    overflow-y: scroll;
+.space-vehicle-body {
+    width: 100%;
+    height: 65rem;
+    margin-top: 3rem;
+    background-color: #273046;
+    border-radius: 0.5rem;
 }
 
 #space-vehicle-title {
     color: white;
-    font-size: 25px;
+    font-size: 2.5rem;
+    margin: 2rem;
+    border-bottom: 0.2rem solid #161D30;
+}
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+@media screen and (min-width: 700px) {}
 
+@media screen and (min-width: 1200px) {
+    .space-vehicle-container {
+        display: flex;
+    }
+
+    .space-vehicle-body {
+        width: 100%;
+        height: 65rem;
+        margin-top: 3rem;
+        background-color: #273046;
+        border-radius: 0.5rem;
+    }
+
+    #space-vehicle-title {
+        color: white;
+        font-size: 2.5rem;
+        margin: 2rem;
+        border-bottom: 0.2rem solid #161D30;
+    }
 }

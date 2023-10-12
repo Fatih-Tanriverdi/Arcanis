@@ -11,19 +11,17 @@ export function SearchBarComp() {
 
     return (
         <div className='search-bar'>
-            <div className='search-bar-item'>
-                <div className='search-bar-item-top'>
-                    <h1>Search Filter</h1>
-                </div>
-                <div className='search-bar-item-bottom'>
-                    <Space>
+            <div className='search-bar-item-top'>
+                <h1>Search Filter</h1>
+                <div>
+                    <div className='search-dropdown-container'>
                         <SearchRangePicker />
                         <SearchDropdown onChange={handleChange} />
                         <SearchDropdown onChange={handleChange} />
                         <SearchDropdown onChange={handleChange} />
-                    </Space>
+                    </div>
                 </div>
             </div>
         </div>
-    )
+    );
 }

@@ -8,22 +8,14 @@ const columns = [
         title: 'USER',
         dataIndex: 'user',
         key: 'user',
+        width: 10,
         render: (text) => <a href="none">{text}</a>
-    },
-    {
-        title: 'EMAIL',
-        dataIndex: 'age',
-        key: 'age'
-    },
-    {
-        title: 'PLAN',
-        dataIndex: 'plan',
-        key: 'plan'
     },
     {
         title: 'ROLE',
         key: 'tags',
-        dataIndex: 'tags',
+        colSpan: 1,
+        width: 10,
         render: (_, { tags }) => (
             <>
                 {tags.map((tag) => {
@@ -211,9 +203,6 @@ const data = [
         plan: 'Teams',
         tags: ['teacher'],
     },
-
-
-
 ];
 
 export function TableListComp() {
@@ -223,21 +212,24 @@ export function TableListComp() {
     const [pageSize, setPageSize] = useState(10);
 
     return (
-        <div className='table'>
-            <Table
-                loading={loading}
-                columns={columns}
-                dataSource={data}
-                pagination={{
-                    current: page,
-                    pageSize: pageSize,
-                    total: 20,
-                    onChange: (page, pageSize) => {
-                        setPage(page);
-                        setPageSize(pageSize);
-                    }
-                }}
-            />
+        <div className='table-container'>
+            <div className='table-body'>
+                <Table
+                    className='table-color'
+                    loading={loading}
+                    columns={columns}
+                    dataSource={data}
+                    pagination={{
+                        current: page,
+                        pageSize: pageSize,
+                        total: 20,
+                        onChange: (page, pageSize) => {
+                            setPage(page);
+                            setPageSize(pageSize);
+                        }
+                    }}
+                />
+            </div>
         </div>
     )
 }

@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 import "./MainPage.css";
-import { Container, Row, Col } from 'react-grid-system';
 import { checkToken } from '../../services/AuthService';
 
 export default function MainPage() {
@@ -10,14 +9,12 @@ export default function MainPage() {
     }, []);
 
     return (
-        <>
-            <Container className='main-page-body' >
-                <Row className='main-page-container'>
-                    <Col sm={12} md={8} lg={8} >
-                        {/* Tam genişlikte içerik */}
-                    </Col>
-                </Row>
-            </Container>
-        </>
+        <container className='main-page-container' >
+            <div className='main-page-body'>
+                <div className='main-page-content'>
+                    <h1>Anasayfa</h1>
+                </div>
+            </div>
+        </container>
     )
 }
