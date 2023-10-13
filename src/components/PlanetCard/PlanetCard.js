@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './PlanetCard.css';
 import { Link } from 'react-router-dom';
-import { fetchPlanets } from '../../services/PlanetService';
+import { fetchPlanetsGet } from '../../services/PlanetService';
 import { ClipLoader } from 'react-spinners';
 
 export function PlanetCard({ defaultImage }) {
@@ -10,10 +10,12 @@ export function PlanetCard({ defaultImage }) {
 
     useEffect(() => {
         async function getPlanets() {
-            const data = await fetchPlanets().catch(error => {
-                console.error('API request failed:', error);
-                return [];
-            });
+            const url = "http://lambalog.com/api/planets";
+            const data = await fetchPlanetsGet(url)
+                .catch(error => {
+                    console.error('API request failed:', error);
+                    return [];
+                });
             setPlanets(data);
             setLoading(false);
         }

@@ -1,5 +1,5 @@
-/* UsersDataGet */
-export async function fetchUsersDataGet(url) {
+/* FetchRocketsGet */
+export async function fetchRocketsGet(url) {
     try {
         const localStorageToken = localStorage.getItem('access-token');
         const response = await fetch(url, {
@@ -10,14 +10,15 @@ export async function fetchUsersDataGet(url) {
                 'Authorization': `Bearer ${localStorageToken}`
             }
         });
+
         if (!response.ok) {
             throw new Error('API request failed');
         }
+
         const data = await response.json();
         return data;
     } catch (error) {
         throw error;
     }
 }
-/* UsersDataGet */
-
+/* FetchRocketsGet */

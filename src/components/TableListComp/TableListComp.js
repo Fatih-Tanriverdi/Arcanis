@@ -1,234 +1,132 @@
-import { Table } from 'antd';
 import React, { useState } from 'react';
 import '../TableListComp/TableListComp.css';
-import { Tag, Space } from 'antd';
+import { Space, Input, Button, DatePicker, Modal, Dropdown, InputNumber, Table } from 'antd';
+import { TiTimes } from 'react-icons/ti';
+import { UserOutlined } from '@ant-design/icons';
+import { AiOutlineSave } from 'react-icons/ai';
 
-const columns = [
-    {
-        title: 'USER',
-        dataIndex: 'user',
-        key: 'user',
-        width: 10,
-        render: (text) => <a href="none">{text}</a>
-    },
-    {
-        title: 'ROLE',
-        key: 'tags',
-        colSpan: 1,
-        width: 10,
-        render: (_, { tags }) => (
-            <>
-                {tags.map((tag) => {
-                    let color = tag.length > 5 ? 'geekblue' : 'green';
-                    if (tag === 'loser') {
-                        color = 'volcano';
-                    }
-                    return (
-                        <Tag color={color} key={tag}>
-                            {tag.toUpperCase()}
-                        </Tag>
-                    );
-                })}
-            </>
-        ),
-    },
-    {
-        title: 'STATUS',
-        key: 'tags',
-        dataIndex: 'tags',
-        render: (_, { tags }) => (
-            <>
-                {tags.map((tag) => {
-                    let color = tag.length > 5 ? 'geekblue' : 'green';
-                    if (tag === 'loser') {
-                        color = 'volcano';
-                    }
-                    return (
-                        <Tag color={color} key={tag}>
-                            {tag.toUpperCase()}
-                        </Tag>
-                    );
-                })}
-            </>
-        ),
-    },
-    {
-        title: 'ACTIONS',
-        key: 'action',
-        render: (_, record) => (
-            <Space size="middle">
-                <a href="none">:</a>
-            </Space>
-        ),
-    },
-];
-const data = [
-    {
-        key: '1',
-        user: 'John Brown',
-        age: 'fmehmettanriverdi@gmail.com',
-        plan: 'Enterprise',
-        tags: ['developer'],
-    },
-    {
-        key: '2',
-        user: 'Jim Green',
-        age: 'fmehmettanriverdi@gmail.com',
-        plan: 'Teams',
-        tags: ['editor'],
-    },
-    {
-        key: '3',
-        user: 'Joe Black',
-        age: 'fmehmettanriverdi@gmail.com',
-        plan: 'Company',
-        tags: ['teacher'],
-    },
-    {
-        key: '4',
-        user: 'John Brown',
-        age: 'fmehmettanriverdi@gmail.com',
-        plan: 'Enterprise',
-        tags: ['developer'],
-    },
-    {
-        key: '5',
-        user: 'Jim Green',
-        age: 'fmehmettanriverdi@gmail.com',
-        plan: 'Teams',
-        tags: ['author'],
-    },
-    {
-        key: '6',
-        user: 'Joe Black',
-        age: 'fmehmettanriverdi@gmail.com',
-        plan: 'Company',
-        tags: ['teacher'],
-    },
-    {
-        key: '7',
-        user: 'Joe Black',
-        age: 'fmehmettanriverdi@gmail.com',
-        plan: 'Enterprise',
-        tags: ['maıntraıner'],
-    },
-    {
-        key: '8',
-        user: 'John Brown',
-        age: 'fmehmettanriverdi@gmail.com',
-        plan: 'Teams',
-        tags: ['developer'],
-    },
-    {
-        key: '9',
-        user: 'Jim Green',
-        age: 'fmehmettanriverdi@gmail.com',
-        plan: 'Company',
-        tags: ['developer'],
-    },
-    {
-        key: '10',
-        user: 'Joe Black',
-        age: 'fmehmettanriverdi@gmail.com',
-        plan: 'Enterprise',
-        tags: ['teacher'],
-    },
-    {
-        key: '11',
-        user: 'Emirhan Brown',
-        age: 'fmehmettanriverdi@gmail.com',
-        plan: 'Teams',
-        tags: ['developer'],
-    },
-    {
-        key: '12',
-        user: 'Fatih Green',
-        age: 'fmehmettanriverdi@gmail.com',
-        plan: 'Company',
-        tags: ['developer'],
-    },
-    {
-        key: '13',
-        user: 'Muhammed Black',
-        age: 'fmehmettanriverdi@gmail.com',
-        plan: 'Enterprise',
-        tags: ['teacher'],
-    },
-    {
-        key: '14',
-        user: 'Kübra Brown',
-        age: 'fmehmettanriverdi@gmail.com',
-        plan: 'Teams',
-        tags: ['developer'],
-    },
-    {
-        key: '15',
-        user: 'Jim Green',
-        age: 'fmehmettanriverdi@gmail.com',
-        plan: 'Company',
-        tags: ['author'],
-    },
-    {
-        key: '16',
-        user: 'Joe Black',
-        age: 'fmehmettanriverdi@gmail.com',
-        plan: 'Enterprise',
-        tags: ['teacher'],
-    },
-    {
-        key: '17',
-        user: 'Joe Black',
-        age: 'fmehmettanriverdi@gmail.com',
-        plan: 'Teams',
-        tags: ['teacher'],
-    },
-    {
-        key: '18',
-        user: 'John Brown',
-        age: 'fmehmettanriverdi@gmail.com',
-        plan: 'Company',
-        tags: ['developer'],
-    },
-    {
-        key: '19',
-        user: 'Jim Green',
-        age: 'fmehmettanriverdi@gmail.com',
-        plan: 'Enterprise',
-        tags: ['developer'],
-    },
-    {
-        key: '20',
-        user: 'Joe Black',
-        age: 'fmehmettanriverdi@gmail.com',
-        plan: 'Teams',
-        tags: ['teacher'],
-    },
-];
+export function TableListComp(props) {
 
-export function TableListComp() {
-
-    const [loading] = useState(false);
+    const [loading, setLoading] = useState(false);
     const [page, setPage] = useState(1);
     const [pageSize, setPageSize] = useState(10);
+    const [showModal, setShowModal] = useState(null);
+    const [open, setOpen] = useState(false);
+
+    const showModall = () => {
+        setOpen(true);
+    };
+    const handleOk = () => {
+        setLoading(true);
+        setTimeout(() => {
+            setLoading(false);
+            setOpen(false);
+        }, 3000);
+    };
+    const handleCancel = () => {
+        setOpen(false);
+    };
 
     return (
-        <div className='table-container'>
-            <div className='table-body'>
+        <div className="listBtn">
+            <Button className='add-btn' type="text" onClick={showModall}>Add New User</Button>
+            <div className='input-user-group'>
+                <span>Search: </span>
+                <Input className='search-input' />
+            </div>
+            <div className='table'>
                 <Table
-                    className='table-color'
                     loading={loading}
-                    columns={columns}
-                    dataSource={data}
+                    columns={props.columns}
+                    dataSource={props.dataSource}
                     pagination={{
                         current: page,
                         pageSize: pageSize,
-                        total: 20,
+                        total: 100,
                         onChange: (page, pageSize) => {
                             setPage(page);
                             setPageSize(pageSize);
                         }
                     }}
                 />
+            </div>
+            <div className='modal-style'>
+                <Modal
+                    open={open}
+                    title="Yeni Kullanıcı Ekle"
+                    onOk={handleOk}
+                    onCancel={handleCancel}
+                    footer={[
+                        <div id='modal-footer-button-style'>
+                            <Button style={{ backgroundColor: "#11B76A" }} key="back" onClick={handleCancel}>
+                                <div>
+                                    <TiTimes style={{ color: "white", fontSize: "15px", marginRight: "5px" }} />
+                                    <span style={{ color: "white" }}>Vazgeç</span>
+                                </div>
+                            </Button>,
+                            <Button type='primary' key="submit" loading={loading} onClick={handleOk}>
+                                <div>
+                                    <AiOutlineSave style={{ color: "white", fontSize: "15px", marginRight: "5px" }} />
+                                    <span>Kaydet</span>
+                                </div>
+                            </Button>
+                        </div>
+                    ]}
+                >
+                    <div id='modal-container'>
+                        <Space direction="vertical" id='date-picker-body'>
+                            <div className='modal-list'>
+                                <div className='modal-usarname-style'>
+                                    <h5>Username</h5>
+                                    <Input
+                                        id='modal-username-style-input' style={{ marginLeft: "10px", marginBottom: "20px", marginTop: "10px" }}
+                                        placeholder="Enter your username"
+                                        prefix={<UserOutlined className="site-form-item-icon" />}
+                                    />
+                                </div>
+                                <div className='datepicker-style'>
+                                    <h5>Kayıt Tarihi</h5>
+                                    <DatePicker placeholder='01.01.2023' style={{ marginLeft: "10px", marginBottom: "20px", marginTop: "10px" }} id='date-picker-style' />
+                                </div>
+                                <div className='input-number-style'>
+                                    <InputNumber placeholder='0' style={{ marginLeft: "10px", marginBottom: "20px ", marginTop: "10px" }} />
+                                </div>
+                                <div className='modal-dropdown-container'>
+                                    <h5>Plan</h5>
+                                    <Dropdown
+                                        placement="bottomLeft"
+                                    >
+                                        <Button placeholder='Garanti BBVA' style={{ color: "white", marginLeft: "10px", marginBottom: "20px ", marginTop: "10px" }} id='modal-dropdown-button'>Plan</Button>
+                                    </Dropdown>
+                                </div>
+                                <div className='modal-textbox-container'>
+                                    <h5>E-mail Adres</h5>
+                                    <Input placeholder="admin@gmail.com" style={{ color: "white", marginLeft: "10px", marginBottom: "20px ", marginTop: "10px" }} />
+                                </div>
+                                <div className='modal-role-dropdown-container'>
+                                    <h5>Role</h5>
+                                    <Dropdown
+                                        placement="bottomLeft"
+                                    >
+                                        <Button placeholder='Garanti BBVA' style={{ color: "white", marginLeft: "10px", marginBottom: "20px ", marginTop: "10px" }} id='modal-dropdown-button'>Role</Button>
+                                    </Dropdown>
+                                </div>
+                                <div className='input-text-style'>
+                                    <h5>Açıklama</h5>
+                                    <Input id='modal-comment-style' placeholder=' ' style={{ marginLeft: "10px", marginBottom: "20px ", marginTop: "10px", color: "white" }} showCount maxLength={20} />
+                                </div>
+                                <div className='modal-status-dropdown-container'>
+                                    <h5>Status</h5>
+                                    <Dropdown
+                                        placement="bottomLeft"
+                                    >
+                                        <Button placeholder='Garanti BBVA' style={{ color: "white", marginLeft: "10px", marginBottom: "20px ", marginTop: "10px" }} id='modal-dropdown-button'>Status</Button>
+                                    </Dropdown>
+                                </div>
+                            </div>
+                        </Space>
+                    </div>
+                </Modal>
             </div>
         </div>
     )

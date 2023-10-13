@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import "./Orders.css";
+import "./Expedition.css";
 import { useState } from 'react';
 import { checkToken } from '../../services/AuthService';
 import { SearchBarComp } from '../../components/SearchBarComp/SearchBarComp';
@@ -48,7 +48,7 @@ const columns = [
 ];
 
 export default function UsersList() {
-    const [planets, setPlanets] = useState([]);
+    const [expenditions, setExpenditions] = useState([]);
 
     useEffect(() => {
         checkToken();
@@ -56,23 +56,23 @@ export default function UsersList() {
 
     useEffect(() => {
         async function planetsData() {
-            const url = "http://lambalog.com/api/planets";
+            const url = "http://lambalog.com/api/expenditions";
             const data = await fetchPlanetsGet(url)
                 .catch(error => {
                     console.error('API request failed:', error);
                     return [];
                 })
-            setPlanets(data);
+                setExpenditions(data);
         }
         planetsData();
     }, []);
 
     return (
-        <container className='orders-container'>
-            <article className='orders-body'>
-                <div className='orders-list'>
+        <container className='expedition-container'>
+            <article className='expedition-body'>
+                <div className='expedition-list'>
                     <SearchBarComp />
-                    <TableListComp columns={columns} dataSource={planets}/>
+                    <TableListComp columns={columns} dataSource={expenditions}/>
                 </div>
             </article>
         </container>

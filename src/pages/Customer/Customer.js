@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 import Ticket from "../Ticket/Ticket";
 import { checkToken } from '../../services/AuthService';
 import { IoExitOutline } from "react-icons/io5";
-import { fetchUser } from '../../services/UserService';
+import { fetchUsersDataGet } from '../../services/UserService';
 import PlanetDetails from "../PlanetDetails/PlanetDetails";
 
 export default function AsideHeader() {
@@ -31,7 +31,8 @@ export default function AsideHeader() {
 
     useEffect(() => {
         async function getUsers() {
-            const data = await fetchUser()
+            const url = "http://lambalog.com/api/users/info";
+            const data = await fetchUsersDataGet(url)
                 .catch(error => {
                     console.error('API request failed:', error);
                     return [];

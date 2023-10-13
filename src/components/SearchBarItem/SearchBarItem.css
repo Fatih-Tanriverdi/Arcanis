@@ -2,7 +2,7 @@
     background-color: transparent !important;
     border-color: #858B9B;
     color: white;
-    width: 235px !important; 
+    width: 25.5rem !important; 
 }
 
 #range-picker-userlist::placeholder {
@@ -16,4 +16,11 @@
 .SelectRolePosition,
 .RangePickerPosition  {
     margin: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+
+
+
+

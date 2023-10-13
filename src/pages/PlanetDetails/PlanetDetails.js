@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './PlanetDetails.css';
 import { Link, useParams } from 'react-router-dom';
 import { IoIosArrowBack } from 'react-icons/io';
-import { fetchPlanetDetails } from '../../services/PlanetService';
+import { fetchPlanetsGet } from '../../services/PlanetService';
 import { ClipLoader } from 'react-spinners';
 
 export default function PlanetDetails() {
@@ -12,7 +12,8 @@ export default function PlanetDetails() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const data = await fetchPlanetDetails(id);
+                const url = `http://lambalog.com/api/planets/${id}`
+                const data = await fetchPlanetsGet(url);
                 setPlanetDetails(data);
             } catch (error) {
                 console.error("Hata oluştu: ", error);

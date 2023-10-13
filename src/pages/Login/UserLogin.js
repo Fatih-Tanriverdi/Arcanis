@@ -100,7 +100,7 @@ export default function App() {
                                     </div>
                                     {loading && <ClipLoader color={"#73228B"} />}
                                     <AuthButton text="LOGIN" onClick={handleChange} />
-                                    <Link to="/register" className="user-register-btn"><p>New here? Create an Account</p></Link>
+                                    <Link to="/register" className="user-register-btn"><a>New here? Create an Account</a></Link>
                                 </div>
                             </form>
                             {/** Card-Right Bitiş **/}

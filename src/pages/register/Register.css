@@ -1,4 +1,9 @@
 .register-body-color {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
     background-image: linear-gradient(90deg, #73228B, #490F80) !important;
 }
 
@@ -6,6 +11,7 @@
     background-position: center;
     background-color: #fff;
     min-height: 70rem;
+    min-width: 35rem;
     margin: 4rem;
     border-radius: 1rem;
 
@@ -25,6 +31,11 @@
     color: #73228B;
 }
 
+.acconut-register > a{
+    color: #73228B;
+    font-size: 2rem;
+}
+
 
 @media screen and (min-width: 700px) {
     .register-card-right {
@@ -41,7 +52,7 @@
         align-items: center;
     }
 
-    .acconut-register > p {
+    .acconut-register > a {
         font-size: 1.5rem;
     }
 }
@@ -61,7 +72,7 @@
         align-items: center;
     }
 
-    .acconut-register > p {
+    .acconut-register > a {
         font-size: 1.7rem;
     }
 

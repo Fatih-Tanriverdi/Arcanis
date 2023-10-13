@@ -71,7 +71,7 @@ export default function Register() {
                                     <AuthInputPhoneNumber value={maskPhoneNumber(values.phoneNumber)} onChange={handleInput} />
                                     <br />
                                     <Link to="/" className="acconut-register">
-                                        <p>Do you already have an account?</p>
+                                        <a href="none">Do you already have an account?</a>
                                     </Link>
                                 </form>
                                 {error && <ErrorMessage message={error} />}

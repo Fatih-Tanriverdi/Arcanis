@@ -4,7 +4,7 @@ import { Select, Space, DatePicker } from 'antd';
 import { Link } from 'react-router-dom';
 import { TfiHeadphoneAlt } from "react-icons/tfi";
 import { BsCreditCard2Back, BsCashCoin, BsPeople, BsStopwatchFill, BsCoin, BsGeoAlt } from "react-icons/bs";
-import { fetchPlanets } from '../../services/PlanetService';
+import { fetchPlanetsGet } from '../../services/PlanetService';
 
 export default function Ticket() {
 
@@ -14,7 +14,8 @@ export default function Ticket() {
 
     useEffect(() => {
         async function getPlanets() {
-            const data = await fetchPlanets()
+            const url = "http://lambalog.com/api/planets";
+            const data = await fetchPlanetsGet(url)
                 .catch(error => {
                     console.error('API request failed:', error);
                     return [];

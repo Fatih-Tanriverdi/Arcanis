@@ -13,6 +13,7 @@ import Planets from "./pages/Planets/Planets";
 import About from "./pages/About/About";
 import Iletisim from "./pages/ Communication/Iletisim";
 import PlanetDetails from "./pages/PlanetDetails/PlanetDetails";
+import Expedition from "./pages/Expedition/Expedition";
 
 export default function App() {
 
@@ -32,6 +33,7 @@ export default function App() {
         <Route path="spaceships" element={<SpaceShips />} />
         <Route path="mainpage" element={<MainPage />} />
         <Route path="orders" element={<Orders />} />
+        <Route path="expedition" element={<Expedition />} />
       </Route>
     </Routes>
   );

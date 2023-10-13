@@ -1,0 +1,9 @@
+.user-list-container {
+    display: flex;
+}
+
+.user-list-body {
+    display: flex;
+    flex-direction: column;
+}
+

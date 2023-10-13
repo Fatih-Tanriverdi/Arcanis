@@ -18,8 +18,8 @@
 /* NAVİGATE */
 
 .aside {
+    display: none;
     background-color: #273046;
-    flex: 15%;
     padding: 1.5rem;
     height: 80rem;
     border-radius: 0.5rem;
@@ -57,6 +57,7 @@
     background-color: #273046;
     flex: 75%;
     margin: 3rem;
+    margin-bottom: 90rem;
     padding: 1rem;
     height: 6rem;
     border-radius: 0.5rem;
@@ -64,15 +65,17 @@
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
-.header-position {
+.header-position > div {
     display: flex;
-    justify-content: flex-end;
-    align-items: flex-start;
+    justify-content: space-around;
+    align-items: center;
 }
 
 .admin-img {
-    height: 4rem;
-    width: 4rem;
+    display: flex;
+    align-items: center;
+    height: 3rem;
+    width: 3rem;
     border-radius: 50%;
     margin-right: 1rem;
 
@@ -86,17 +89,23 @@
 }
 
 .admin-info>h1 {
-    font-size: 1.5rem;
+    font-size: 0.6rem;
     display: flex;
     align-items: center;
     color: white;
+
+    margin-top: 1rem;
 }
 
 .admin-info>span {
     display: flex;
     justify-content: flex-end;
-    font-size: 1rem;
+    font-size: 0.6rem;
     color: white;
+}
+
+.admin-buttons {
+    display: flex;
 }
 
 /* HEADER */
@@ -111,160 +120,118 @@
     margin-left: 1rem !important;
 }
 
-.admin-panel-button > span > svg,
-.admin-panel-button-exit > span > svg {
-    font-size: 2rem !important;
+.admin-panel-button>span>svg,
+.admin-panel-button-exit>span>svg {
+    font-size: 1rem !important;
 }
 
-.admin-panel-button > a,
-.admin-panel-button-exit > a {
-    font-size: 1.7rem !important;
+.admin-panel-button>a,
+.admin-panel-button-exit>a {
+    display: none;
 }
 
 .admin-panel-button-exit {
     display: flex;
     justify-content: center;
     align-items: center;
-
-    margin-top: 100%;
-    margin-left: 1rem !important;
 }
 
 /* BUTTON */
 
 @media screen and (min-width: 700px) {
-
-}
-
-@media screen and (min-width: 1200px) {
-    #admin-panel-body {
-        display: flex !important;
-        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    }
-    
-    .admin-panel-all {
-        display: flex;
-        height: 100%;
-        width: 100%;
-    }
-    
-    /** first-color =  #273046  **/
-    /** second-color =  #161D30  **/
-    /** third-color =  #5D5E9C  **/
-    /** fourth-color =  #858B9B  **/
-    
-    /* NAVİGATE */
-    
     .aside {
-        background-color: #273046;
-        flex: 15%;
-        padding: 1.5rem;
-        height: 80rem;
-        border-radius: 0.5rem;
-    
-        box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+        display: block;
+        flex: 2%;
     }
-    
-    .admin-rocket-img {
-        height: 4.5rem;
-        width: 4.5rem;
-        border-radius: 50%;
-        object-fit: cover;
-        box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-    }
-    
-    .renta-rocket {
-        display: flex;
-        align-items: center;
-        justify-content: space-around;
-        border-bottom: 5px;
-        padding: 10px;
-        border-bottom: solid #161D30;
-    }
-    
-    .renta-rocket>h1 {
-        font-size: 2rem;
-        color: #7465F2;
-    }
-    
-    /* NAVİGATE */
-    
-    /* HEADER */
-    
+
     .header {
-        background-color: #273046;
-        flex: 75%;
-        margin: 3rem;
-        padding: 1rem;
-        height: 6rem;
-        border-radius: 0.5rem;
-    
-        box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+        margin-bottom: 0;
+    }
+
+    .renta-rocket>h1 {
+        display: none;
+    }
+
+    .admin-panel-button>a,
+    .admin-panel-button-exit>a {
+        display: none;
+    }
+
+    .admin-buttons {
+        display: none;
+    }
+
+    .admin-panel-button>span>svg,
+    .admin-panel-button-exit>span>svg {
+        font-size: 2rem !important;
+    }
+
+    .admin-info>h1 {
+        font-size: 1.5rem;
+        margin-top: 0;
     }
     
+    .admin-info>span {
+        font-size: 1rem;
+    }
+
+    .admin-panel-button-exit {
+        margin-top: 75%;
+        margin-left: 1rem !important;
+    }
+
     .header-position {
         display: flex;
         justify-content: flex-end;
         align-items: flex-start;
     }
-    
-    .admin-img {
-        height: 4rem;
-        width: 4rem;
-        border-radius: 50%;
-        margin-right: 1rem;
-    
-        box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+@media screen and (min-width: 1200px) {
+    .admin-buttons {
+        display: none;
     }
-    
-    
-    .admin-info {
-        flex-direction: column;
-        margin-right: 1rem;
+
+    .aside {
+        display: block;
+        flex: 15%;
     }
-    
-    .admin-info>h1 {
-        font-size: 1.5rem;
-        display: flex;
-        align-items: center;
-        color: white;
+
+    .header {
+        margin-bottom: 0;
     }
-    
-    .admin-info>span {
+
+    .renta-rocket>h1 {
+        display: block;
+    }
+
+    .header-position {
         display: flex;
         justify-content: flex-end;
+        align-items: flex-start;
+    }
+
+    .admin-info>h1 {
+        font-size: 1.5rem;
+    }
+
+    .admin-info>span {
         font-size: 1rem;
-        color: white;
     }
-    
-    /* HEADER */
-    
-    /* BUTTON */
-    
-    .admin-panel-button {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    
-        margin-left: 1rem !important;
-    }
-    
-    .admin-panel-button > span > svg,
-    .admin-panel-button-exit > span > svg {
+
+    .admin-panel-button>span>svg,
+    .admin-panel-button-exit>span>svg {
         font-size: 2rem !important;
     }
-    
-    .admin-panel-button > a,
-    .admin-panel-button-exit > a {
+
+    .admin-panel-button>a,
+    .admin-panel-button-exit>a {
+        display: block;
         font-size: 1.7rem !important;
     }
-    
+
     .admin-panel-button-exit {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    
-        margin-top: 100%;
+        margin-top: 75%;
         margin-left: 1rem !important;
     }
 }
