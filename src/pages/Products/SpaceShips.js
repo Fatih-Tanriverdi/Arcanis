@@ -22,52 +22,34 @@ const columns = [
         key: 'user',
     },
     {
-        title: 'SURNAME',
-        dataIndex: 'surname',
-        key: 'surname',
+        title: 'MODEL NAME',
+        dataIndex: 'modelName',
+        key: 'modelName',
     },
     {
-        title: 'EMAIL',
-        dataIndex: 'email',
-        key: 'email',
+        title: 'MODEL YEARS',
+        dataIndex: 'modelYear',
+        key: 'modelYear',
     },
     {
-        title: 'PHONE',
-        key: 'phone',
-        dataIndex: 'phone',
+        title: 'SERI NO',
+        key: 'serialNumber',
+        dataIndex: 'serialNumber',
     },
     {
-        title: 'USERNAME',
-        key: 'username',
-        dataIndex: 'username',
+        title: 'SEAT NUMBER',
+        key: 'maxNumberOfPassengers',
+        dataIndex: 'maxNumberOfPassengers',
     },
     {
-        title: 'ACTIVE',
-        dataIndex: 'isActive',
-        key: 'isActive',
-        render: (text) => {
-            if (text === true) {
-                return 'Çevrimiçi';
-            } else if (text === false) {
-                return 'ÇevrimDışı';
-            } else {
-                return 'Unknown';
-            };
-        },
+        title: 'AGE LIMIT',
+        dataIndex: 'ageLimit',
+        key: 'ageLimit',
     },
     {
-        title: 'ROLE',
-        dataIndex: 'userRoleType',
-        key: 'userRoleType',
-        render: (text, record) => {
-            if (text === 1) {
-                return 'admin';
-            } else if (text === 2) {
-                return 'customer';
-            } else {
-                return 'Unknown';
-            }
-        },
+        title: 'DESCRIPTION',
+        dataIndex: 'description',
+        key: 'description',
     },
 ];
 
@@ -96,7 +78,7 @@ export default function SpaceShips() {
             <article className='space-vehicle-body'>
                 <div className='product-list'>
                     <SearchBarComp />
-                    <TableListComp columns={columns} dataSource={spaceShipData} />
+                    <TableListComp columns={columns} dataSource={spaceShipData} text="spaceShips"/>
                 </div>
             </article>
         </container>

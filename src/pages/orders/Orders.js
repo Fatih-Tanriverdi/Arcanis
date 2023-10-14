@@ -72,7 +72,7 @@ export default function UsersList() {
             <article className='orders-body'>
                 <div className='orders-list'>
                     <SearchBarComp />
-                    <TableListComp columns={columns} dataSource={planets}/>
+                    <TableListComp columns={columns} dataSource={planets} text="planets"/>
                 </div>
             </article>
         </container>

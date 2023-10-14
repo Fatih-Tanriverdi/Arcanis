@@ -98,7 +98,7 @@ export default function UsersList() {
                     <SearchBarComp />
                 </div>
                 <div className='list-group-container'>
-                    <TableListComp columns={columns} dataSource={usersData} />
+                    <TableListComp columns={columns} dataSource={usersData} text="users"/>
                 </div>
             </div>
         </body>
