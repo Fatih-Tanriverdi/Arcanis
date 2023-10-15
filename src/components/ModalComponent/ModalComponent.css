@@ -14,10 +14,7 @@
 }
 
 .ant-modal-body {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    height: 664px !important;
+    height: 66.5rem !important;
     width: auto !important;
     overflow-y: scroll;
 }
@@ -29,52 +26,8 @@
     position: sticky !important;
 }
 
-#modal-footer-button-style {
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
-}
-
-#modal-footer-button-style>.ant-btn-default {
-    width: 230px !important;
-    background-color: #D92C1F !important;
-    border: none;
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
-}
-
-#modal-footer-button-style>.ant-btn-default>div {
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
-}
-
 #modal-footer-button-style>button>div>p {
     color: white;
-}
-
-#modal-footer-button-style>.ant-btn-primary>div {
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
-}
-
-#modal-footer-button-style>.ant-btn-primary {
-    width: 230px !important;
-    background-color: #11B76A !important;
-    border: none;
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
-}
-
-.ant-input-affix-wrapper {
-    border-color: #858B9B !important;
-}
-
-.ant-picker {
-    border-color: #858B9B !important;
 }
 
 /* MODAL TEXTAREA STYLE */
@@ -106,82 +59,6 @@
 }
 
 /* MODAL TEXTAREA STYLE */
-/* MODAL DROPDOWN */
-.ant-space {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.ant-space>.ant-space-item>.modal-list>div {
-    float: left !important;
-}
-
-#date-picker-style {
-    width: 180px !important;
-}
-
-.ant-picker {
-    background-color: transparent !important;
-}
-
-/* MODAL DROPDOWN */
-/* MODAL INPUT NUMBER */
-.ant-input-number {
-    width: 220px !important;
-    background-color: transparent !important;
-    border-color: #858B9B !important;
-}
-
-.ant-input-number-input-wrap>input {
-    color: white !important;
-}
-
-/* MODAL INPUT NUMBER */
-/* MODAL DROPDOWN */
-#modal-dropdown-button {
-    width: 220px !important;
-    background-color: transparent !important;
-}
-
-#modal-dropdown-button>span {
-    float: left;
-}
-
-/* MODAL DROPDOWN */
-/* MODAL TEXTBOX */
-.modal-textbox-container>input {
-    width: 220px !important;
-    height: 32px !important;
-    border-color: #858B9B !important;
-}
-
-/* MODAL TEXTBOX */
-/* MODAL EXİT BUTTON */
-.modal-exit-button-style {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-/* MODAL EXİT BUTTON */
-
-.modal-usarname-style>.ant-input-affix-wrapper.css-dev-only-do-not-override-12upa3x {
-    background-color: transparent !important;
-    width: 220px !important;
-    height: 32px !important;
-    border-radius: 5px !important;
-    border-color: #858B9B !important;
-}
-
-.input-text-style>.ant-input-affix-wrapper.css-dev-only-do-not-override-12upa3x {
-    background-color: transparent !important;
-    width: 220px !important;
-    height: 32px !important;
-    border-radius: 5px !important;
-    border-color: #858B9B !important;
-}
-
 /* MODAL */
 
 #modal-comment-style {
@@ -192,6 +69,32 @@
 
 .modal-list {
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.modal-list > .ant-input {
+    margin: 1rem;
+    width: 45%;
+    height: 3rem;
+    background-color: transparent;
+    border-color: #858B9B;
+}
+
+.ant-modal-close-x,
+.ant-select-arrow {
+    color: white !important;
+}
+
+.modal-list > .ant-select {
+    width: 45% !important;
+    height: 3rem !important;
+    margin: 1rem;
+}
+
+.modal-list > .ant-select > .ant-select-selector {
+    display: flex;
     align-items: center;
+    width: 100% !important;
+    height: 3rem !important;
 }

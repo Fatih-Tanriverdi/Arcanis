@@ -3,7 +3,7 @@ import { Routes, Route, Link } from "react-router-dom";
 import { Row, Col } from 'react-grid-system';
 import About from "../../pages/About/About";
 import Planets from '../../pages/Planets/Planets';
-import Iletisim from '../ Communication/Iletisim';
+import Iletisim from '../Communication/Iletisim';
 import { PageButton } from '../../components/PageButton/PageButton';
 import { useEffect, useState } from "react";
 import Ticket from "../Ticket/Ticket";

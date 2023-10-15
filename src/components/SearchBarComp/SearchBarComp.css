@@ -19,3 +19,9 @@
     background-color: #273046;
     border-radius: 0.5rem;
 }
+
+.ant-picker-input > input::placeholder,
+.ant-picker-suffix,
+.ant-picker-range-separator > span {
+    color: white !important;
+}

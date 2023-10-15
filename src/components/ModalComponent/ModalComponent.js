@@ -1,24 +1,81 @@
 import React, { useState } from 'react';
 import '../ModalComponent/ModalComponent.css';
-import { Space, Input, Button, Modal } from 'antd';
+import { Space, Input, Button, Modal, Select } from 'antd';
 import { AiOutlineSave } from 'react-icons/ai';
+import { fetchRocketsPost } from '../../services/RocketService';
+import { fetchPlanetsPost } from '../../services/PlanetService';
+import { fetchExpeditionPost } from '../../services/ExpeditionServer';
 
 export function ModelComponent({ isModalVisible, onCancel, modalContent }) {
 
     const [loading, setLoading] = useState(false);
-    const [values, setValues] = useState({
+
+    function generateGUID() {
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+            var r = Math.random() * 16 | 0,
+                v = c == 'x' ? r : (r & 0x3 | 0x8);
+            return v.toString(16);
+        });
+    }
+
+    const UserRole = {
+        ADMIN: 'Admin',
+        USER: 'User',
+        MODERATOR: 'Moderator'
+    };
+
+    const handleUserRoleChange = (value) => {
+        SetValuesUsers((prev) => ({ ...prev, userRole: value }));
+    };
+
+    const [valuesRockets, setValuesRockets] = useState({
         name: "",
-        modelYear: 0,
+        modelYear: "",
         modelName: "",
         serialNumber: "",
         description: "",
-        maxNumberOfPassengers: 0,
-        ageLimit: 0
+        maxNumberOfPassengers: "",
+        ageLimit: ""
+    });
+
+    const [valuesUsers, SetValuesUsers] = useState({
+        name: "",
+        surname: "",
+        emailAddress: "",
+        phoneNumber: "",
+        username: "",
+        isActive: true,
+        password: "",
+        userRole: UserRole.USER
+
+    });
+
+    const [valuesPlanets, SetValuesPlanets] = useState({
+        name: "",
+        sequence: "",
+        difficultyLevel: "",
+        imageUrl: "",
+        detailsImageUrl: "",
+        description: "",
+        summaryDescription: ""
+    });
+
+    const [valuesExpeditions, SetValuesExpeditions] = useState({
+        name: "",
+        expeditionDate: "",
+        arrivalDate: "",
+        ticketPrice: "",
+        spaceVehicleId: generateGUID(),
+        departurePlanetId: generateGUID(),
+        arrivalPlanetId: generateGUID()
     });
 
     const handleInput = (e) => {
         const { name, value } = e.target;
-        setValues((prev) => ({ ...prev, [name]: value }));
+        setValuesRockets((prev) => ({ ...prev, [name]: value }));
+        SetValuesUsers((prev) => ({ ...prev, [name]: value }));
+        SetValuesPlanets((prev) => ({ ...prev, [name]: value }));
+        SetValuesExpeditions((prev) => ({ ...prev, [name]: value }));
     };
 
     const handleOk = () => {
@@ -26,7 +83,76 @@ export function ModelComponent({ isModalVisible, onCancel, modalContent }) {
         setTimeout(() => {
             setLoading(false);
             onCancel();
-        }, 3000);
+        });
+        if (modalContent === 'spaceShips') {
+            rocketPost();
+        } else if (modalContent === 'users') {
+            usersPost();
+        } else if (modalContent === 'planets') {
+            planetsPost();
+        } else if (modalContent === 'expedition') {
+            expeditionsPost();
+        }
+    };
+
+    const rocketPost = async () => {
+        setLoading(true);
+        const url = "http://lambalog.com/api/space-vehicles";
+        try {
+            const data = await fetchRocketsPost(valuesRockets, url);
+            console.log(data);
+        } catch (error) {
+            console.error("Error:", error);
+        } finally {
+            setLoading(false);
+            onCancel();
+        }
+    };
+
+    const usersPost = async () => {
+        setLoading(true);
+        const url = "http://lambalog.com/api/users";
+        try {
+            const data = await fetchRocketsPost(valuesRockets, url);
+            console.log(data);
+        } catch (error) {
+            console.error("Error:", error);
+        } finally {
+            setLoading(false);
+            onCancel();
+        }
+    };
+
+    const planetsPost = async () => {
+        setLoading(true);
+        const url = "http://lambalog.com/api/planets";
+        try {
+            const data = await fetchPlanetsPost(valuesPlanets, url);
+            console.log(data);
+        } catch (error) {
+            console.error("Error:", error);
+        } finally {
+            setLoading(false);
+            onCancel();
+        }
+    };
+
+    const expeditionsPost = async () => {
+        setLoading(true);
+        const url = "http://lambalog.com/api/expenditions";
+        const formattedExpeditionDate = new Date(valuesExpeditions.expeditionDate).toISOString();
+        valuesExpeditions.expeditionDate = formattedExpeditionDate;
+        const formattedAriivalDate = new Date(valuesExpeditions.arrivalDate).toISOString();
+        valuesExpeditions.arrivalDate = formattedAriivalDate;
+        try {
+            const data = await fetchExpeditionPost(valuesExpeditions, url);
+            console.log(data);
+        } catch (error) {
+            console.error("Hata:", error);
+        } finally {
+            setLoading(false);
+            onCancel();
+        }
     };
 
     const contentMap = {
@@ -34,26 +160,26 @@ export function ModelComponent({ isModalVisible, onCancel, modalContent }) {
             <Space direction="vertical" id='date-picker-body'>
                 <div className='modal-list'>
                     <Input
-                        id='modal-username-style-input' value={values.name} onChange={handleInput} placeholder='Name' name="name" style={{ marginLeft: "10px", marginBottom: "20px", marginTop: "10px" }}
+                        id='modal-username-style-input' value={valuesRockets.name} onChange={handleInput} placeholder='Name' name="name"
                     />
                     <Input
-                        id='modal-username-style-input' value={values.modelName} onChange={handleInput} placeholder='Model Name' name="modelName" style={{ marginLeft: "10px", marginBottom: "20px", marginTop: "10px" }}
+                        id='modal-username-style-input' value={valuesRockets.modelName} onChange={handleInput} placeholder='Model Year' name="modelName"
                     />
                     <Input
-                        id='modal-username-style-input' value={values.modelYear} onChange={handleInput} placeholder='Model Years' name="modelYear" style={{ marginLeft: "10px", marginBottom: "20px", marginTop: "10px" }}
+                        id='modal-username-style-input' value={valuesRockets.modelYear} onChange={handleInput} placeholder='Model Name' name="modelYear"
                     />
                     <Input
-                        id='modal-username-style-input' value={values.serialNumber} onChange={handleInput} placeholder='Seri No' name="serialNumber" style={{ marginLeft: "10px", marginBottom: "20px", marginTop: "10px" }}
+                        id='modal-username-style-input' value={valuesRockets.serialNumber} onChange={handleInput} placeholder='Seri No' name="serialNumber"
                     />
 
                     <Input
-                        id='modal-username-style-input' value={values.description} onChange={handleInput} placeholder='description' name="description" style={{ marginLeft: "10px", marginBottom: "20px", marginTop: "10px" }}
+                        id='modal-username-style-input' value={valuesRockets.description} onChange={handleInput} placeholder='Description' name="description"
                     />
                     <Input
-                        id='modal-username-style-input' value={values.maxNumberOfPassengers} onChange={handleInput} placeholder='maxNumberOfPassengers' name="maxNumberOfPassengers" style={{ marginLeft: "10px", marginBottom: "20px", marginTop: "10px" }}
+                        id='modal-username-style-input' value={valuesRockets.maxNumberOfPassengers} onChange={handleInput} placeholder='Seat Number' name="maxNumberOfPassengers"
                     />
                     <Input
-                        id='modal-username-style-input' value={values.ageLimit} onChange={handleInput} placeholder=' ageLimit' name="ageLimit" style={{ marginLeft: "10px", marginBottom: "20px", marginTop: "10px" }}
+                        id='modal-username-style-input' value={valuesRockets.ageLimit} onChange={handleInput} placeholder='Age Limit' name="ageLimit"
                     />
                 </div>
             </Space>
@@ -62,8 +188,34 @@ export function ModelComponent({ isModalVisible, onCancel, modalContent }) {
             <Space direction="vertical" id='date-picker-body'>
                 <div className='modal-list'>
                     <Input
-                        id='modal-username-style-input' value={values.name} onChange={handleInput} placeholder='users' name="name" style={{ marginLeft: "10px", marginBottom: "20px", marginTop: "10px" }}
+                        id='modal-username-style-input' onChange={handleInput} value={valuesUsers.name} placeholder='Name' name="name"
                     />
+                    <Input
+                        id='modal-username-style-input' onChange={handleInput} value={valuesUsers.surname} placeholder='Surname' name="surname"
+                    />
+                    <Input
+                        id='modal-username-style-input' onChange={handleInput} value={valuesUsers.emailAddress} placeholder='E-mail Address' name="emailAddress"
+                    />
+                    <Input
+                        id='modal-username-style-input' onChange={handleInput} value={valuesUsers.phoneNumber} placeholder='Phone Number' name="phoneNumber"
+                    />
+                    <Input
+                        id='modal-username-style-input' onChange={handleInput} value={valuesUsers.username} placeholder='Username' name="username"
+                    />
+                    <Input
+                        id='modal-username-style-input' onChange={handleInput} value={valuesUsers.password} placeholder='Password' name="password"
+                    />
+                    <Select
+                        defaultValue={valuesUsers.userRole}
+                        onChange={handleUserRoleChange}
+                        placeholder="Role"
+                    >
+                        {Object.values(UserRole).map((role) => (
+                            <Select.Option key={role} value={role}>
+                                {role}
+                            </Select.Option>
+                        ))}
+                    </Select>
                 </div>
             </Space>
         ),
@@ -71,7 +223,25 @@ export function ModelComponent({ isModalVisible, onCancel, modalContent }) {
             <Space direction="vertical" id='date-picker-body'>
                 <div className='modal-list'>
                     <Input
-                        id='modal-username-style-input' value={values.name} onChange={handleInput} placeholder='planets' name="name" style={{ marginLeft: "10px", marginBottom: "20px", marginTop: "10px" }}
+                        id='modal-username-style-input' onChange={handleInput} value={valuesPlanets.name} placeholder='Name' name="name"
+                    />
+                    <Input
+                        id='modal-username-style-input' onChange={handleInput} value={valuesPlanets.sequence} placeholder='Sequence' name="sequence"
+                    />
+                    <Input
+                        id='modal-username-style-input' onChange={handleInput} value={valuesPlanets.difficultyLevel} placeholder='Difficulty Level' name="difficultyLevel"
+                    />
+                    <Input
+                        id='modal-username-style-input' onChange={handleInput} value={valuesPlanets.imageUrl} placeholder='Image Url' name="imageUrl"
+                    />
+                    <Input
+                        id='modal-username-style-input' onChange={handleInput} value={valuesPlanets.detailsImageUrl} placeholder='Details Image Url' name="detailsImageUrl"
+                    />
+                    <Input
+                        id='modal-username-style-input' onChange={handleInput} value={valuesPlanets.description} placeholder='Description' name="description"
+                    />
+                    <Input
+                        id='modal-username-style-input' onChange={handleInput} value={valuesPlanets.summaryDescription} placeholder='Summary Description' name="summaryDescription"
                     />
                 </div>
             </Space>
@@ -80,37 +250,30 @@ export function ModelComponent({ isModalVisible, onCancel, modalContent }) {
             <Space direction="vertical" id='date-picker-body'>
                 <div className='modal-list'>
                     <Input
-                        id='modal-username-style-input' value={values.name} onChange={handleInput} placeholder='expedition' name="name" style={{ marginLeft: "10px", marginBottom: "20px", marginTop: "10px" }}
+                        id='modal-username-style-input' onChange={handleInput} value={valuesExpeditions.name} placeholder='Name' name="name"
+                    />
+                    <Input
+                        id='modal-username-style-input' onChange={handleInput} value={valuesExpeditions.expeditionDate} placeholder='Expedition Date' name="expeditionDate"
+                    />
+                    <Input
+                        id='modal-username-style-input' onChange={handleInput} value={valuesExpeditions.arrivalDate} placeholder='Arrival Date' name="arrivalDate"
+                    />
+                    <Input
+                        id='modal-username-style-input' onChange={handleInput} value={valuesExpeditions.ticketPrice} placeholder='Ticket Price' name="ticketPrice"
+                    />
+                    <Input
+                        id='modal-username-style-input' onChange={handleInput} value={valuesExpeditions.spaceVehicleId} placeholder='Space Vehicle Id' name="spaceVehicleId"
+                    />
+                    <Input
+                        id='modal-username-style-input' onChange={handleInput} value={valuesExpeditions.departurePlanetId} placeholder='Departure Planet Id' name="departurePlanetId"
+                    />
+                    <Input
+                        id='modal-username-style-input' onChange={handleInput} value={valuesExpeditions.arrivalPlanetId} placeholder='Arrival Planet Id' name="arrivalPlanetId"
                     />
                 </div>
             </Space>
         )
     };
-
-    const rocketPost = async () => {
-        setLoading(true);
-        const localStorageToken = localStorage.getItem('access-token');
-        const response = await fetch("http://lambalog.com/api/space-vehicles", {
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-                'Authorization': `Bearer ${localStorageToken}`
-            },
-            body: JSON.stringify(values)
-        });
-        setTimeout(() => {
-            setLoading(false);
-            onCancel();
-        }, 2000);
-        const data = await response.json();
-
-        if (!response.ok) {
-            console.error(data);
-            throw new Error(data.error || 'Kullanıcı adı veya şifre yanlış.');
-        };
-        return data;
-    }
 
     return (
         <div className='modalCompContainer'>
@@ -121,7 +284,7 @@ export function ModelComponent({ isModalVisible, onCancel, modalContent }) {
                     onOk={handleOk}
                     onCancel={onCancel}
                     footer={[
-                        <Button onClick={rocketPost} type='primary' text="Kaydet" key="submit" loading={loading}>
+                        <Button style={{ backgroundColor: "#7465F2"}} onClick={handleOk} type='primary' text="Kaydet" key="submit" loading={loading}>
                             <AiOutlineSave style={{ color: "white" }} />
                             Kaydet
                         </Button>

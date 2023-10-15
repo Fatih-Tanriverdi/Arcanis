@@ -11,7 +11,7 @@ import Customer from "./pages/Customer/Customer";
 import Ticket from "./pages/Ticket/Ticket";
 import Planets from "./pages/Planets/Planets";
 import About from "./pages/About/About";
-import Iletisim from "./pages/ Communication/Iletisim";
+import Iletisim from "./pages/Communication/Iletisim";
 import PlanetDetails from "./pages/PlanetDetails/PlanetDetails";
 import Expedition from "./pages/Expedition/Expedition";
 

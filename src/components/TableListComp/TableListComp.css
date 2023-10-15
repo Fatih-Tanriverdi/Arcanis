@@ -114,10 +114,9 @@ td {
     color: white;
 }
 
-.ant-input {
+.input-user-group > .ant-input {
     height: 3rem;
     width: 20rem;
-    float: right;
     background-color: transparent;
     border-color: #858B9B;
 }

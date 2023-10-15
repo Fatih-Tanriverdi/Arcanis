@@ -21,3 +21,58 @@ export async function fetchUsersDataGet(url) {
 }
 /* UsersDataGet */
 
+/* FetchUserstPost */
+
+export async function fetchUsersPost(valuesUsers, url) {
+    try {
+        const localStorageToken = localStorage.getItem('access-token');
+        const response = await fetch(url, {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': `Bearer ${localStorageToken}`
+            },
+            body: JSON.stringify(valuesUsers)
+        });
+
+        if (!response.ok) {
+            throw new Error('API request failed');
+        }
+
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        throw error;
+    }
+}
+
+/* FetchUserstPost */
+
+
+/* DeleteUsers */
+
+export async function deleteUsers (id) {
+    try {
+        const localStorageToken = localStorage.getItem('access-token');
+        const response = await fetch(`http://lambalog.com/api/space-vehicles/${id}`, {
+            method: "DELETE",
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': `Bearer ${localStorageToken}`
+            },
+        });
+
+        if (!response.ok) {
+            throw new Error('API request failed');
+        }
+
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        throw error;
+    }
+}
+
+/* DeleteUsers */

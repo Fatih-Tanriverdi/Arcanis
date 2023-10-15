@@ -1,8 +1,3 @@
-.icon-style {
-    display: flex;
-    align-items: center;
-}
-
 .navigate>ul>li {
     flex-direction: column;
     list-style: none;
