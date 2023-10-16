@@ -1,42 +1,47 @@
 import React, { useReducer, useState } from "react";
 import "./ResetPassword.css";
 import { AiFillBackward, AiOutlineInfoCircle, AiOutlineMail } from "react-icons/ai";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import LoginImage from '../../components/LoginImage/LoginImage';
 import AuthButton from "../../components/ButtonLogin/AuthButton";
-import { Input, Tooltip, Modal, Button } from "antd";
+import { Input, Tooltip } from "antd";
 import { ClipLoader } from 'react-spinners';
 import { resetPassword } from '../../services/AuthService'
-import styles from "../ResetPassword/ModalComponent.module.css";
-import { planetReducer, initialState } from "../../reducer/store";
 
 export default function App() {
-    const [state, dispatch] = useReducer(planetReducer, initialState);
-    const { loading, error } = state;
     const [emailAddress, setEmailAddress] = useState("");
-    const [modalVisible, setModalVisible] = useState(false);
-    const [modalContent, setModalContent] = useState("");
-    const errorMessage = "Email address cannot be empty!";
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
+    const [successMessage, setSuccessMessage] = useState("");
+    const navigate = useNavigate();
+
+    const hideErrorMessage = () => {
+        setError(null);
+    };
 
     const handleResetPassword = async () => {
         if (!emailAddress) {
-            dispatch({ type: "SET_ERROR", payload: errorMessage });
+            setError("Email Boş Olamaz.");
+            setTimeout(hideErrorMessage, 3000);
             return;
         }
-        dispatch({ type: "SET_LOADING", loading: true });
         try {
-            const data = await resetPassword(emailAddress);
-            console.log(data);
-            setModalVisible(true);
-            setModalContent("Şifre sıfırlama talimatları gönderildi.");
+            setLoading(true);
+            const message = await resetPassword(emailAddress);
+            setLoading(false);
+            setSuccessMessage("Mail adresinize şifre sıfırlama mesajı gönderildi. Lütfen e-mail adresinizi kontrol edin.");
+            setTimeout(() => {
+                setSuccessMessage("");
+                navigate("/");
+            }, 3000);
         } catch (error) {
-            dispatch({ type: "SET_ERROR", payload: error.message });
-            dispatch({ type: "SET_LOADING", loading: false });
+            setError(error.message);
+            setLoading(false);
         }
     };
 
     const ErrorMessage = ({ message }) => {
-        return <div id="error-message-register"><p>{message}</p></div>;
+        return <div id="error-message-reset"><p>{message}</p></div>;
     };
 
     return (
@@ -51,35 +56,20 @@ export default function App() {
                         {/** Card-Right Başlangıç **/}
                         <article className="card-right-recover">
                             <div className="recover-content">
-                                <Link to="/">
-                                    <AiFillBackward
-                                        style={{
-                                            color: "#73228B",
-                                        }}
-                                    />
-                                </Link>
+                                <div className="reset-icon-style">
+                                    <Link to="/">
+                                        <AiFillBackward
+                                            style={{
+                                                color: "#73228B",
+                                            }}
+                                        />
+                                    </Link>
+                                </div>
                                 <div className="user-recover">
                                     <h1>RESET PASSWORD</h1>
                                     <span id="description">Have you forgotten your password ?
                                         <p>Dont't worry, enter the email address you used to create your profile and we'll sen you instructions for generating a new one.</p>
                                     </span>
-                                </div>
-                                <div>
-                                    <Modal
-                                        className={styles.modalContainer}
-                                        visible={modalVisible}
-                                        onCancel={() => setModalVisible(false)}
-                                        title="Bildirim"
-                                        footer={[
-                                            <Link to="/">
-                                                <Button style={{ background: "#73228B", borderColor: "white" }}>
-                                                    Tamam
-                                                </Button>
-                                            </Link>
-                                        ]}
-                                    >
-                                        {modalContent}
-                                    </Modal>
                                 </div>
                                 <div className="input-group-recover">
                                     <Input
@@ -98,6 +88,7 @@ export default function App() {
                                     />
                                 </div>
                                 {loading && <ClipLoader color={"#73228B"} />}
+                                {successMessage && <div className="success-message">{successMessage}</div>}
                                 {error && <ErrorMessage message={error} />}
                                 <AuthButton text="SEND" onClick={handleResetPassword} />
                             </div>
@@ -109,4 +100,4 @@ export default function App() {
             </section>
         </section>
     );
-} 
+}

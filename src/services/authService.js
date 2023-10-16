@@ -11,9 +11,13 @@ export const login = async (username, password, emailAddress) => {
     const data = await response.json();
 
     if (!response.ok) {
-        console.error(data);
-        throw new Error(data.error || 'Kullanıcı adı veya şifre yanlış.');
+        if (data.Messages) {
+            return data.Messages.join(", ");
+        } else {
+            return "Bir hata oluştu.";
+        }
     }
+
     const isAdmin = data.isAdmin;
     return { token: data.token, isAdmin };
 };
@@ -34,12 +38,16 @@ export const registerUser = async (values) => {
             phoneNumber: phoneNumberWithoutMask
         })
     });
+    const data = await response.json();
 
     if (!response.ok) {
-        const errorData = await response.json();
-        const errorMessage = errorData.message || "Kullanıcı kaydı yapılamadı.";
-        return errorMessage;
+        if (data.Messages) {
+            return data.Messages.join(", ");
+        } else {
+            return "Bir hata oluştu.";
+        }
     }
+
     return null;
 };
 /* RegisterUser */

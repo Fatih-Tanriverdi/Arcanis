@@ -11,6 +11,7 @@ export default function Register() {
     const navigate = useNavigate();
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
+    const [successMessage, setSuccessMessage] = useState(null);
     const [values, setValues] = useState({
         name: "",
         surname: "",
@@ -19,6 +20,10 @@ export default function Register() {
         username: "",
         password: ""
     });
+
+    const hideErrorMessage = () => {
+        setError(null);
+    };
 
     const handleInput = (e) => {
         const { name, value } = e.target;
@@ -30,10 +35,40 @@ export default function Register() {
     };
 
     const handleSubmit = async (e) => {
-        setLoading(true);
         e.preventDefault();
-        const errorMessage = await registerUser(values);
-        errorMessage ? setError(errorMessage) : navigate("/");
+        setLoading(true);
+        let errorMessage = "";
+
+        if (!values.emailAddress) {
+            errorMessage = "E-posta adresi boş olamaz.";
+        } else if (!values.username) {
+            errorMessage = "Kullanıcı adı boş olamaz.";
+        } else if (!values.password) {
+            errorMessage = "Şifre boş olamaz.";
+        } else if (!values.name) {
+            errorMessage = "İsim boş olamaz.";
+        } else if (!values.surname) {
+            errorMessage = "Soyisim boş olamaz.";
+        } else if (!values.phoneNumber) {
+            errorMessage = "Telefon numarası boş olamaz.";
+        }
+
+        if (errorMessage) {
+            setError(errorMessage);
+            setTimeout(hideErrorMessage, 3000);
+        } else {
+            const registrationError = await registerUser(values);
+            if (registrationError) {
+                setError(registrationError);
+                setTimeout(hideErrorMessage, 3000);
+            } else {
+                setSuccessMessage("Kullanıcı kaydınız yapıldı.");
+                setTimeout(() => {
+                    setSuccessMessage("");
+                    navigate("/");
+                }, 3000);
+            }
+        }
         setLoading(false);
     };
 
@@ -74,7 +109,10 @@ export default function Register() {
                                         <a href="none">Do you already have an account?</a>
                                     </Link>
                                 </form>
-                                {error && <ErrorMessage message={error} />}
+                                <div className="error-message-container">
+                                    {error && <ErrorMessage message={error} />}
+                                    {successMessage && <div className="success-message">{successMessage}</div>}
+                                </div>
                                 {loading && <ClipLoader color={"#73228B"} />}
                                 <AuthButton text="REGISTER" onClick={handleSubmit} />
                             </div>

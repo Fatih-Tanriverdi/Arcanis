@@ -3,7 +3,7 @@ import "./AdminPanel.css";
 import { Routes, Route } from "react-router-dom";
 import { AiOutlineHome, AiOutlineRocket, AiOutlineUser } from "react-icons/ai";
 import { BiExit, BiPlanet } from "react-icons/bi";
-import { GiPathDistance} from "react-icons/gi";
+import { GiPathDistance } from "react-icons/gi";
 import UsersList from '../../pages/Users/UsersList';
 import MainPage from "../../pages/Main/MainPage";
 import SpaceShips from '../../pages/Products/SpaceShips';
@@ -52,12 +52,14 @@ export default function AsideHeader() {
                             <h1>Renta Rocket</h1>
                         </div>
                     </div>
-                    <PageButton to={"mainpage"} className="admin-panel-button" id={`icon-style ${activeButton === "Anasayfa" ? 'active' : ''}`} icon={<AiOutlineHome />} onClick={() => handleButtonClick("Anasayfa")} text="Anasayfa" />
-                    <PageButton to="userlist" className="admin-panel-button" id={`icon-style ${activeButton === "Kullanıcılar" ? 'active' : ''}`} icon={<AiOutlineUser />} onClick={() => handleButtonClick("Kullanıcılar")} text="Kullanıcılar" />
-                    <PageButton to="spaceships" className="admin-panel-button" id={`icon-style ${activeButton === "Uzay Araçları" ? 'active' : ''}`} icon={<AiOutlineRocket />} onClick={() => handleButtonClick("Uzay Araçları")} text="Uzay Araçları" />
-                    <PageButton to="orders" className="admin-panel-button" icon={<BiPlanet />} onClick={() => handleButtonClick("Gezegenler")} text="Gezegenler" id={`icon-style ${activeButton === "Gezegenler" ? 'active' : ''}`} />
-                    <PageButton to="expedition" className="admin-panel-button" icon={<GiPathDistance />} onClick={() => handleButtonClick("Seferler")} text="Seferler" id={`icon-style ${activeButton === "Seferler" ? 'active' : ''}`} />
-                    <PageButton to="/" className="admin-panel-button-exit" icon={<BiExit />} onClick={handleLogout} text="Çıkış" id='icon-style adminpanel-exit-btn-position' />
+                    <div className='admin-btn-position'>
+                        <PageButton to={"mainpage"} className={`admin-panel-button ${activeButton === "Anasayfa" ? 'active' : ''}`} icon={<AiOutlineHome />} onClick={() => handleButtonClick("Anasayfa")} text="Anasayfa" />
+                        <PageButton to="userlist" className={`admin-panel-button ${activeButton === "Kullanıcılar" ? 'active' : ''}`} icon={<AiOutlineUser />} onClick={() => handleButtonClick("Kullanıcılar")} text="Kullanıcılar" />
+                        <PageButton to="spaceships" className={`admin-panel-button ${activeButton === "Uzay Araçları" ? 'active' : ''}`} icon={<AiOutlineRocket />} onClick={() => handleButtonClick("Uzay Araçları")} text="Uzay Araçları" />
+                        <PageButton to="orders" icon={<BiPlanet />} onClick={() => handleButtonClick("Gezegenler")} text="Gezegenler" className={`admin-panel-button ${activeButton === "Gezegenler" ? 'active' : ''}`} />
+                        <PageButton to="expedition" icon={<GiPathDistance />} onClick={() => handleButtonClick("Seferler")} text="Seferler" className={`admin-panel-button ${activeButton === "Seferler" ? 'active' : ''}`} />
+                        <PageButton to="/" className="admin-panel-button-exit" icon={<BiExit />} onClick={handleLogout} text="Çıkış" id='icon-style adminpanel-exit-btn-position' />
+                    </div>
                 </div>
                 <article className='header'>
                     <div className='header-position'>

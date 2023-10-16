@@ -22,35 +22,43 @@ export default function App() {
         console.log(`checked = ${e.target.checked}`);
     };
 
+    const hideErrorMessage = () => {
+        setError(null);
+    };
+
     const loginAndNavigate = async (username, password, emailAddress) => {
         setLoading(true);
         const { token, isAdmin } = await login(username, password, emailAddress);
-        if (token && isAdmin) {
-            navigate('/admin');
+
+        if (token) {
             localStorage.setItem('access-token', token);
-        } else if (token && !isAdmin) {
-            navigate('/customer');
-            localStorage.setItem('access-token', token);
+            if (isAdmin) {
+                navigate('/admin');
+            } else {
+                navigate('/customer');
+            }
         } else {
             setError('Kullanıcı adı, şifre veya e-posta yanlış.');
-            navigate('/');
+            setTimeout(hideErrorMessage, 3000);
         }
         setLoading(false);
     };
 
-    const handleChange = async (e) => {
+    const handleLogin = async (e) => {
         e.preventDefault();
-        const inputValue = document.getElementById('user-name-input').value.trim();
-        const password = document.getElementById('password-input').value.trim();
+        const usernameInput = document.getElementById('user-name-input').value.trim();
+        const passwordInput = document.getElementById('password-input').value.trim();
 
-        const isEmail = emailRegex.test(inputValue);
-        const username = isEmail ? '' : inputValue;
-        const emailAddress = isEmail ? inputValue : '';
+        const isEmail = emailRegex.test(usernameInput);
+        const username = isEmail ? '' : usernameInput;
+        const emailAddress = isEmail ? usernameInput : '';
 
-        const errorMessage =
-            inputValue === '' && password === '' ? 'Kullanıcı adı, şifre veya e-posta boş olamaz.' :
-                inputValue === '' ? 'Kullanıcı adı boş olamaz.' : password === '' ? 'Şifre boş olamaz.' : '';
-        errorMessage ? setError(errorMessage) : loginAndNavigate(username, password, emailAddress);
+        if (!usernameInput || !passwordInput) {
+            setError('Kullanıcı adı ve şifre alanları doldurulmalıdır.');
+            setTimeout(hideErrorMessage, 3000);
+        } else {
+            loginAndNavigate(username, passwordInput, emailAddress);
+        }
     };
 
     const ErrorMessage = ({ message }) => {
@@ -99,7 +107,7 @@ export default function App() {
                                         {error && <ErrorMessage message={error} />}
                                     </div>
                                     {loading && <ClipLoader color={"#73228B"} />}
-                                    <AuthButton text="LOGIN" onClick={handleChange} />
+                                    <AuthButton text="LOGIN" onClick={handleLogin} />
                                     <Link to="/register" className="user-register-btn"><a>New here? Create an Account</a></Link>
                                 </div>
                             </form>

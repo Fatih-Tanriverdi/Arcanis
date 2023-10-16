@@ -21,7 +21,7 @@
     display: none;
     background-color: #273046;
     padding: 1.5rem;
-    height: 80rem;
+    height: 78.5rem;
     border-radius: 0.5rem;
 
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
@@ -45,7 +45,7 @@
 }
 
 .renta-rocket>h1 {
-    font-size: 2rem;
+    font-size: 1.8rem;
     color: #7465F2;
 }
 
@@ -55,7 +55,7 @@
 
 .header {
     background-color: #273046;
-    flex: 75%;
+    flex: 80%;
     margin: 3rem;
     margin-bottom: 90rem;
     padding: 1rem;
@@ -65,7 +65,7 @@
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
-.header-position > div {
+.header-position>div {
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -136,7 +136,24 @@
     align-items: center;
 }
 
+.admin-panel-button-exit:hover {
+    background-color: #7465F2;
+    border-radius: 1rem;
+    transition: 0.3s all ease-in;
+}
+
 /* BUTTON */
+
+.admin-panel-button.active {
+    background-color: #7465F2 !important;
+}
+
+.admin-btn-position {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+}
 
 @media screen and (min-width: 700px) {
     .aside {
@@ -170,13 +187,13 @@
         font-size: 1.5rem;
         margin-top: 0;
     }
-    
+
     .admin-info>span {
         font-size: 1rem;
     }
 
     .admin-panel-button-exit {
-        margin-top: 75%;
+        margin-top: 100%;
         margin-left: 1rem !important;
     }
 
@@ -231,7 +248,7 @@
     }
 
     .admin-panel-button-exit {
-        margin-top: 75%;
+        margin-top: 100%;
         margin-left: 1rem !important;
     }
 }
