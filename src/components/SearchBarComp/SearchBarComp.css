@@ -20,6 +20,10 @@
     border-radius: 0.5rem;
 }
 
+.search-bar-item-top > h1 {
+    font-size: 2.5rem;
+}
+
 .ant-picker-input > input::placeholder,
 .ant-picker-suffix,
 .ant-picker-range-separator > span {

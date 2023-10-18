@@ -8,47 +8,54 @@ import { fetchPlanetsGet } from '../../services/PlanetService';
 import { Link } from 'react-router-dom';
 import { AiOutlineEdit } from 'react-icons/ai';
 
-const columns = [
-    {
-        title: 'EDIT',
-        dataIndex: 'deleted',
-        key: 'deleted',
-        render: () => (
-            <Link><AiOutlineEdit /></Link>
-        ),
-    },
-    {
-        title: 'NAME',
-        dataIndex: 'name',
-        key: 'user',
-    },
-    {
-        title: 'SIRA',
-        dataIndex: 'sequence',
-        key: 'sequence',
-    },
-    {
-        title: 'LEVEL',
-        dataIndex: 'difficultyLevel',
-        key: 'difficultyLevel',
-    },
-    {
-        title: 'SUMMARY DESCRIPTION',
-        key: 'summaryDescription',
-        dataIndex: 'summaryDescription',
-    },
-    {
-        title: 'DESCRIPTION',
-        key: 'description',
-        dataIndex: 'description',
-        render: (text) => (
-            <div className="table-cell">{text}</div>
-        ),
-    },
-];
 
 export default function UsersList() {
     const [expenditions, setExpenditions] = useState([]);
+    const columns = [
+        {
+            title: 'EDIT',
+            dataIndex: 'deleted',
+            key: 'deleted',
+            render: () => (
+                <Link><AiOutlineEdit /></Link>
+            ),
+        },
+        {
+            title: 'NAME',
+            dataIndex: 'name',
+            key: 'name',
+        },
+        {
+            title: 'Expedition Date',
+            dataIndex: 'expeditionDate',
+            key: 'expeditionDate',
+        },
+        {
+            title: 'Arrival Date',
+            dataIndex: 'arrivalDate',
+            key: 'arrivalDate',
+        },
+        {
+            title: 'Ticket Price',
+            key: 'ticketPrice',
+            dataIndex: 'ticketPrice',
+        },
+        {
+            title: 'Space Vehicle Id',
+            key: 'spaceVehicleId',
+            dataIndex: 'spaceVehicleId',
+        },
+        {
+            title: 'Departure Planet Id',
+            key: 'departurePlanetId',
+            dataIndex: 'departurePlanetId',
+        },
+        {
+            title: 'Arrival Planet Id',
+            key: 'arrivalPlanetId',
+            dataIndex: 'arrivalPlanetId',
+        },
+    ];
 
     useEffect(() => {
         checkToken();

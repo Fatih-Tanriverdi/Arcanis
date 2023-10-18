@@ -4,7 +4,7 @@ import { Space, Input, Button, Modal, Select } from 'antd';
 import { AiOutlineSave } from 'react-icons/ai';
 import { fetchRocketsPost } from '../../services/RocketService';
 import { fetchPlanetsPost } from '../../services/PlanetService';
-import { fetchExpeditionPost } from '../../services/ExpeditionServer';
+import { fetchExpeditionPost } from '../../services/ExpeditionService';
 
 export function ModelComponent({ isModalVisible, onCancel, modalContent }) {
 
@@ -86,11 +86,14 @@ export function ModelComponent({ isModalVisible, onCancel, modalContent }) {
         });
         if (modalContent === 'spaceShips') {
             rocketPost();
-        } else if (modalContent === 'users') {
+        }
+        if (modalContent === 'users') {
             usersPost();
-        } else if (modalContent === 'planets') {
+        }
+        if (modalContent === 'planets') {
             planetsPost();
-        } else if (modalContent === 'expedition') {
+        }
+        if (modalContent === 'expedition') {
             expeditionsPost();
         }
     };
@@ -163,15 +166,14 @@ export function ModelComponent({ isModalVisible, onCancel, modalContent }) {
                         id='modal-username-style-input' value={valuesRockets.name} onChange={handleInput} placeholder='Name' name="name"
                     />
                     <Input
-                        id='modal-username-style-input' value={valuesRockets.modelName} onChange={handleInput} placeholder='Model Year' name="modelName"
+                        id='modal-username-style-input' value={valuesRockets.modelName} onChange={handleInput} placeholder='Model Name' name="modelName"
                     />
                     <Input
-                        id='modal-username-style-input' value={valuesRockets.modelYear} onChange={handleInput} placeholder='Model Name' name="modelYear"
+                        id='modal-username-style-input' value={valuesRockets.modelYear} onChange={handleInput} placeholder='Model Year' name="modelYear"
                     />
                     <Input
                         id='modal-username-style-input' value={valuesRockets.serialNumber} onChange={handleInput} placeholder='Seri No' name="serialNumber"
                     />
-
                     <Input
                         id='modal-username-style-input' value={valuesRockets.description} onChange={handleInput} placeholder='Description' name="description"
                     />
@@ -284,7 +286,7 @@ export function ModelComponent({ isModalVisible, onCancel, modalContent }) {
                     onOk={handleOk}
                     onCancel={onCancel}
                     footer={[
-                        <Button style={{ backgroundColor: "#7465F2"}} onClick={handleOk} type='primary' text="Kaydet" key="submit" loading={loading}>
+                        <Button style={{ backgroundColor: "#7465F2" }} onClick={handleOk} type='primary' text="Kaydet" key="submit" loading={loading}>
                             <AiOutlineSave style={{ color: "white" }} />
                             Kaydet
                         </Button>

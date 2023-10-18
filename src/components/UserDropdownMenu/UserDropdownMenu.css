@@ -1,0 +1,14 @@
+.user-dropdown-menu > svg{
+    color: white;
+    cursor: pointer;
+}
+
+.user-dropdown-menu > svg:hover {
+    color: #7465F2;
+}
+
+.editButtonsGroup {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}

@@ -7,8 +7,8 @@
     margin-top: 1.5rem;
     border-radius: 0.5rem;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-    overflow-y: scroll;
-    overflow-x: scroll;
+    overflow-y: auto;
+    overflow-x: auto;
 }
 
 .ant-table-cell {
@@ -114,7 +114,7 @@ td {
     color: white;
 }
 
-.input-user-group > .ant-input {
+.input-user-group>.ant-input {
     height: 3rem;
     width: 20rem;
     background-color: transparent;
@@ -145,3 +145,28 @@ td {
 }
 
 /* ADD BUTTON */
+
+.table-list-head {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background-color: #273046;
+    height: 5rem;
+}
+
+.ant-table-thead {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 5rem;
+    z-index: 1;
+    background-color: #273046;
+}
+
+.ant-pagination {
+    position: -webkit-sticky;
+    position: sticky;
+    bottom: 0;
+    background-color: #273046;
+    padding: 1rem;
+}

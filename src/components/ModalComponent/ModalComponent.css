@@ -48,14 +48,7 @@
 
 .ant-input::placeholder {
     color: white !important;
-}
-
-.ant-input-number::placeholder {
-    color: white !important;
-}
-
-.ant-picker-input::placeholder {
-    color: white !important;
+    position: absolute;
 }
 
 /* MODAL TEXTAREA STYLE */
@@ -75,7 +68,7 @@
 
 .modal-list > .ant-input {
     margin: 1rem;
-    width: 45%;
+    width: 90%;
     height: 3rem;
     background-color: transparent;
     border-color: #858B9B;
@@ -87,13 +80,14 @@
 }
 
 .modal-list > .ant-select {
-    width: 45% !important;
+    width: 90%;
     height: 3rem !important;
     margin: 1rem;
 }
 
 .modal-list > .ant-select > .ant-select-selector {
     display: flex;
+    justify-content: center;
     align-items: center;
     width: 100% !important;
     height: 3rem !important;

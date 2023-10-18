@@ -1,23 +1,28 @@
 import React, { useEffect, useState } from 'react'
 import "../Products/SpaceShips.css";
 import { checkToken } from '../../services/AuthService';
-import { Link } from 'react-router-dom';
-import { AiOutlineEdit, AiOutlineSave } from 'react-icons/ai';
-import { deleteUsers, fetchUsersDataGet } from '../../services/UserService';
 import { TableListComp } from "../../components/TableListComp/TableListComp"
 import { SearchBarComp } from "../../components/SearchBarComp/SearchBarComp"
+import UserDropdownMenu from '../../components/UserDropdownMenu/UserDropdownMenu';
+import { deleteRocket, fetchRocketsGet, putRocket } from '../../services/RocketService';
+import EditModal from '../../components/EditModal/EditUserModal';
 
 
 export default function SpaceShips() {
+    const [selectedRocket, setSelectedRocket] = useState(null);
     const [spaceShipData, setSpaceShipData] = useState([]);
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     const columns = [
         {
             title: 'EDIT',
-            dataIndex: 'deleted',
-            key: 'deleted',
+            dataIndex: 'id',
+            key: 'id',
             render: (id, record) => (
-                <Link onClick={() => handleDeleteUser(record.id)}><AiOutlineEdit /></Link>
+                <UserDropdownMenu
+                    onEditClick={() => handleEditRocket(id)}
+                    onDeleteClick={() => handleDeleteRocket(id)}
+                />
             ),
         },
         {
@@ -62,27 +67,27 @@ export default function SpaceShips() {
     }, []);
 
     useEffect(() => {
-        async function spaceShipData() {
+        async function fetchSpaceShipData() {
             const url = "http://lambalog.com/api/space-vehicles";
-            const data = await fetchUsersDataGet(url)
+            const data = await fetchRocketsGet(url)
                 .catch(error => {
                     console.error('API request failed:', error);
                     return [];
-                })
+                });
             setSpaceShipData(data);
         }
-        spaceShipData();
+        fetchSpaceShipData();
     }, []);
 
-    const handleDeleteUser = (id) => {
-        const confirmDelete = window.confirm('Are you sure you want to delete this user?');
+    const handleDeleteRocket = (id) => {
+        const confirmDelete = window.confirm('Kullanıcıyı silmek istediğine emin misin?');
         if (!confirmDelete) {
             return;
         }
-        deleteUsers(id)
+        deleteRocket(id)
             .then(() => {
-                setSpaceShipData((prevUsersData) =>
-                    prevUsersData.filter((user) => user.id !== id)
+                setSpaceShipData((prevSpaceShipData) =>
+                    prevSpaceShipData.filter((rocket) => rocket.id !== id)
                 );
             })
             .catch(error => {
@@ -90,12 +95,44 @@ export default function SpaceShips() {
             });
     };
 
+    const updateRocket = (id, updatedData) => {
+        putRocket(id, updatedData)
+            .then((responseData) => {
+                console.log('Rocket güncellendi:', responseData);
+                setIsModalOpen(false);
+                setSpaceShipData(responseData);
+            })
+            .catch(error => {
+                console.error('Güncelleme isteği başarısız oldu:', error);
+            });
+    };
+
+    const handleEditRocket = (id) => {
+        const rocketEdit = spaceShipData.find(rocket => rocket.id === id);
+        setSelectedRocket(rocketEdit);
+        setIsModalOpen(true);
+    };
+    
+
+    const handleModalClose = () => {
+        setSelectedRocket(null);
+        setIsModalOpen(false);
+    };
+
+
     return (
         <container className='space-vehicle-container'>
             <article className='space-vehicle-body'>
                 <div className='product-list'>
-                    <SearchBarComp />
-                    <TableListComp columns={columns} dataSource={spaceShipData} text="spaceShips" />
+                    <div>
+                        <SearchBarComp />
+                    </div>
+                    <div>
+                        <TableListComp columns={columns} dataSource={spaceShipData} text="spaceShips" />
+                        {isModalOpen && (
+                            <EditModal rocket={selectedRocket} onSave={updateRocket} onCancel={handleModalClose} visible={isModalOpen} pageType={"spaceShips"}/>
+                        )}
+                    </div>
                 </div>
             </article>
         </container>

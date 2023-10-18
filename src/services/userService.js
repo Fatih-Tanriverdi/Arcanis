@@ -52,10 +52,10 @@ export async function fetchUsersPost(valuesUsers, url) {
 
 /* DeleteUsers */
 
-export async function deleteUsers (id) {
+export async function deleteUsers(id) {
     try {
         const localStorageToken = localStorage.getItem('access-token');
-        const response = await fetch(`http://lambalog.com/api/space-vehicles/${id}`, {
+        const response = await fetch(`http://lambalog.com/api/users/${id}`, {
             method: "DELETE",
             headers: {
                 'Content-Type': 'application/json',
@@ -76,3 +76,31 @@ export async function deleteUsers (id) {
 }
 
 /* DeleteUsers */
+
+/* putUsers */
+
+export async function putUsers(id, userData) {
+    try {
+        const localStorageToken = localStorage.getItem('access-token');
+        const response = await fetch(`http://lambalog.com/api/users/${id}`, {
+            method: "PUT",
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': `Bearer ${localStorageToken}`
+            },
+            body: JSON.stringify(userData),
+        });
+
+        if (!response.ok) {
+            throw new Error('API request failed');
+        }
+
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        throw error;
+    }
+}
+
+/* PutUsers */

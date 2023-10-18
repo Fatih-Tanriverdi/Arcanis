@@ -23,10 +23,12 @@ export function TableListComp(props) {
     return (
         <div className='listCompContainer'>
             <div className="listBtn">
-                <Button className='add-btn' type="text" onClick={() => showModall(props.text)}>Add New User</Button>
-                <div className='input-user-group'>
-                    <span>Search: </span>
-                    <Input className='search-input' />
+                <div className='table-list-head'>
+                    <Button className='add-btn' type="text" onClick={() => showModall(props.text)}>Add New User</Button>
+                    <div className='input-user-group'>
+                        <span>Search: </span>
+                        <Input className='search-input' />
+                    </div>
                 </div>
                 <div className='table'>
                     <Table
@@ -44,7 +46,7 @@ export function TableListComp(props) {
                         }}
                     />
                 </div>
-                <ModelComponent isModalVisible={isModalVisible} onCancel={handleCancel}  modalContent={modelContent}/>
+                <ModelComponent isModalVisible={isModalVisible} onCancel={handleCancel} modalContent={modelContent} />
             </div>
         </div>
     )
