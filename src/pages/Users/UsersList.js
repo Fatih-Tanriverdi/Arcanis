@@ -138,10 +138,10 @@ export default function UsersList() {
         <div className='user-list-container'>
             <div className='user-list-body'>
                 <div className="search-bar-user-container">
-                    <SearchBarComp />
+                    <SearchBarComp pageSearchType={"users"}/>
                 </div>
                 <div className='list-group-container'>
-                    <TableListComp columns={columns} dataSource={usersData} text="users" />
+                    <TableListComp columns={columns} dataSource={usersData} text="users"/>
                     {isModalOpen && (
                         <EditUserModal user={selectedUser} onSave={updateUser} onCancel={handleModalClose} visible={isModalOpen} pageType={"users"}/>
                     )}

@@ -86,8 +86,8 @@ export default function UsersList() {
         <container className='orders-container'>
             <article className='orders-body'>
                 <div className='orders-list'>
-                    <SearchBarComp />
-                    <TableListComp columns={columns} dataSource={planets} text="planets"/>
+                    <SearchBarComp pageSearchType={"planets"}/>
+                    <TableListComp columns={columns} dataSource={planets} text="planets" />
                     {isModalOpen && (
                         <EditModal planet={selectedPlanet} onCancel={handleModalClose} visible={isModalOpen} pageType={"planets"}/>
                     )}

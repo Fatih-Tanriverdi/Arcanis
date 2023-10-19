@@ -29,3 +29,28 @@
 .ant-picker-range-separator > span {
     color: white !important;
 }
+
+.search-filter-container {
+    display: flex;
+}
+
+.ant-select:not(.ant-select-costumize-input) .ant-select-selector {
+    background-color: transparent !important;
+    border-color: #858B9B;
+    color: white;
+    width: 26rem !important;
+}
+
+#range-picker-userlist::placeholder {
+    color: white;
+}
+
+.SelectRolePosition {
+    margin: 1rem;
+}
+
+.ant-picker {
+    background-color: transparent !important;
+    border-color:  #858B9B!important;
+    margin: 1rem;
+}

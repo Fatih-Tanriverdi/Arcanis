@@ -125,10 +125,10 @@ export default function SpaceShips() {
             <article className='space-vehicle-body'>
                 <div className='product-list'>
                     <div>
-                        <SearchBarComp />
+                        <SearchBarComp pageSearchType={"spaceShips"}/>
                     </div>
                     <div>
-                        <TableListComp columns={columns} dataSource={spaceShipData} text="spaceShips" />
+                        <TableListComp columns={columns} dataSource={spaceShipData} text="spaceShips"/>
                         {isModalOpen && (
                             <EditModal rocket={selectedRocket} onSave={updateRocket} onCancel={handleModalClose} visible={isModalOpen} pageType={"spaceShips"}/>
                         )}

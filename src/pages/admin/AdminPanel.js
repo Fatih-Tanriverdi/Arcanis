@@ -19,6 +19,7 @@ export default function AsideHeader() {
 
     const handleButtonClick = (buttonText) => {
         setActiveButton(buttonText);
+        localStorage.setItem("activeButton", buttonText);
     };
 
     const handleLogout = () => {
@@ -41,6 +42,14 @@ export default function AsideHeader() {
         }
         getUser();
     }, []);
+
+    useEffect(() => {
+        const savedActiveButton = localStorage.getItem("activeButton");
+        if (savedActiveButton) {
+            setActiveButton(savedActiveButton);
+        }
+    }, []);
+    
 
     return (
         <container id='admin-panel-body'>

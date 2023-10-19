@@ -78,8 +78,8 @@ export default function UsersList() {
         <container className='expedition-container'>
             <article className='expedition-body'>
                 <div className='expedition-list'>
-                    <SearchBarComp />
-                    <TableListComp columns={columns} dataSource={expenditions} text="expedition"/>
+                    <SearchBarComp pageSearchType={"expedition"}/>
+                    <TableListComp columns={columns} dataSource={expenditions} text="expedition" pageType={"expedition"}/>
                 </div>
             </article>
         </container>

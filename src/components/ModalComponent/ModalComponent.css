@@ -48,7 +48,6 @@
 
 .ant-input::placeholder {
     color: white !important;
-    position: absolute;
 }
 
 /* MODAL TEXTAREA STYLE */
