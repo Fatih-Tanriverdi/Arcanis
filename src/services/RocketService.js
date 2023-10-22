@@ -80,10 +80,10 @@ export async function deleteRocket(id) {
 
 /* putRocket */
 
-export async function putRocket(id, spaceShipData) {
+export async function putRocket(spaceShipData) {
     try {
         const localStorageToken = localStorage.getItem('access-token');
-        const response = await fetch(`http://lambalog.com/api/space-vehicles/${id}`, {
+        const response = await fetch(`http://lambalog.com/api/space-vehicles`, {
             method: "PUT",
             headers: {
                 'Content-Type': 'application/json',

@@ -1,28 +1,25 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../ModalComponent/ModalComponent.css';
 import { Space, Input, Button, Modal, Select } from 'antd';
 import { AiOutlineSave } from 'react-icons/ai';
-import { fetchRocketsPost } from '../../services/RocketService';
-import { fetchPlanetsPost } from '../../services/PlanetService';
+import { fetchRocketsGet, fetchRocketsPost } from '../../services/RocketService';
+import { fetchPlanetsGet, fetchPlanetsPost } from '../../services/PlanetService';
 import { fetchExpeditionPost } from '../../services/ExpeditionService';
+import { fetchUsersPost } from '../../services/UserService';
+
+const UserRole = {
+    ADMIN: 1,
+    USER: 0,
+};
 
 export function ModelComponent({ isModalVisible, onCancel, modalContent }) {
 
     const [loading, setLoading] = useState(false);
-
-    function generateGUID() {
-        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-            var r = Math.random() * 16 | 0,
-                v = c == 'x' ? r : (r & 0x3 | 0x8);
-            return v.toString(16);
-        });
-    }
-
-    const UserRole = {
-        ADMIN: 'Admin',
-        USER: 'User',
-        MODERATOR: 'Moderator'
-    };
+    const [spaceVehicleData, setSpaceVehicleData] = useState([]);
+    const [planetData, setPlanetData] = useState([]);
+    const [selectedSpaceVehicle, setSelectedSpaceVehicle] = useState("");
+    const [selectedDeparturePlanet, setSelectedDeparturePlanet] = useState("");
+    const [selectedArrivalPlanet, setSelectedArrivalPlanet] = useState("");
 
     const handleUserRoleChange = (value) => {
         SetValuesUsers((prev) => ({ ...prev, userRole: value }));
@@ -47,7 +44,6 @@ export function ModelComponent({ isModalVisible, onCancel, modalContent }) {
         isActive: true,
         password: "",
         userRole: UserRole.USER
-
     });
 
     const [valuesPlanets, SetValuesPlanets] = useState({
@@ -65,17 +61,42 @@ export function ModelComponent({ isModalVisible, onCancel, modalContent }) {
         expeditionDate: "",
         arrivalDate: "",
         ticketPrice: "",
-        spaceVehicleId: generateGUID(),
-        departurePlanetId: generateGUID(),
-        arrivalPlanetId: generateGUID()
+        spaceVehicleId: "",
+        departurePlanetId: "",
+        arrivalPlanetId: ""
     });
+
+    const handleSelectSpaceVehicle = (value) => {
+        setSelectedSpaceVehicle(value);
+    };
+
+    const handleSelectDeparturePlanet = (value) => {
+        setSelectedDeparturePlanet(value);
+    };
+
+    const handleSelectArrivalPlanet = (value) => {
+        setSelectedArrivalPlanet(value);
+    };
 
     const handleInput = (e) => {
         const { name, value } = e.target;
-        setValuesRockets((prev) => ({ ...prev, [name]: value }));
-        SetValuesUsers((prev) => ({ ...prev, [name]: value }));
-        SetValuesPlanets((prev) => ({ ...prev, [name]: value }));
-        SetValuesExpeditions((prev) => ({ ...prev, [name]: value }));
+        if (name) {
+            setValuesRockets((prev) => ({ ...prev, [name]: value }));
+            SetValuesUsers((prev) => ({ ...prev, [name]: value }));
+            SetValuesPlanets((prev) => ({ ...prev, [name]: value }));
+            SetValuesExpeditions((prev) => ({ ...prev, [name]: value }));
+        } else {
+            // Handle select inputs differently
+            if (modalContent === 'expedition') {
+                if (e.target.name === 'spaceVehicleId') {
+                    SetValuesExpeditions((prev) => ({ ...prev, spaceVehicleId: e }));
+                } else if (e.target.name === 'departurePlanetId') {
+                    SetValuesExpeditions((prev) => ({ ...prev, departurePlanetId: e }));
+                } else if (e.target.name === 'arrivalPlanetId') {
+                    SetValuesExpeditions((prev) => ({ ...prev, arrivalPlanetId: e }));
+                }
+            }
+        }
     };
 
     const handleOk = () => {
@@ -98,6 +119,8 @@ export function ModelComponent({ isModalVisible, onCancel, modalContent }) {
         }
     };
 
+/* ROCKET */
+
     const rocketPost = async () => {
         setLoading(true);
         const url = "http://lambalog.com/api/space-vehicles";
@@ -112,11 +135,26 @@ export function ModelComponent({ isModalVisible, onCancel, modalContent }) {
         }
     };
 
+    useEffect(() => {
+        async function fetchRocketData() {
+            try {
+                const url = "http://lambalog.com/api/lookups/space-vehicles";
+                const data = await fetchRocketsGet(url);
+                setSpaceVehicleData(data);
+            } catch (error) {
+                console.error('API talebi başarısız oldu: ', error);
+            }
+        }
+        fetchRocketData();
+    }, []);
+
+/* ROCKET */
+
     const usersPost = async () => {
         setLoading(true);
         const url = "http://lambalog.com/api/users";
         try {
-            const data = await fetchRocketsPost(valuesRockets, url);
+            const data = await fetchUsersPost(valuesUsers, url);
             console.log(data);
         } catch (error) {
             console.error("Error:", error);
@@ -126,6 +164,7 @@ export function ModelComponent({ isModalVisible, onCancel, modalContent }) {
         }
     };
 
+/* PLANET */
     const planetsPost = async () => {
         setLoading(true);
         const url = "http://lambalog.com/api/planets";
@@ -140,13 +179,33 @@ export function ModelComponent({ isModalVisible, onCancel, modalContent }) {
         }
     };
 
+    useEffect(() => {
+        async function fetchPlanetData() {
+            try {
+                const url = "http://lambalog.com/api/lookups/planets";
+                const data = await fetchPlanetsGet(url);
+                setPlanetData(data);
+            } catch (error) {
+                console.error('API talebi başarısız oldu: ', error);
+            }
+        }
+        fetchPlanetData();
+    }, []);
+/* PLANET */
+
     const expeditionsPost = async () => {
         setLoading(true);
         const url = "http://lambalog.com/api/expenditions";
         const formattedExpeditionDate = new Date(valuesExpeditions.expeditionDate).toISOString();
+        const formattedArrivalDate = new Date(valuesExpeditions.arrivalDate).toISOString();
+
+        valuesExpeditions.spaceVehicleId = selectedSpaceVehicle;
+        valuesExpeditions.departurePlanetId = selectedDeparturePlanet;
+        valuesExpeditions.arrivalPlanetId = selectedArrivalPlanet;
+
         valuesExpeditions.expeditionDate = formattedExpeditionDate;
-        const formattedAriivalDate = new Date(valuesExpeditions.arrivalDate).toISOString();
-        valuesExpeditions.arrivalDate = formattedAriivalDate;
+        valuesExpeditions.arrivalDate = formattedArrivalDate;
+
         try {
             const data = await fetchExpeditionPost(valuesExpeditions, url);
             console.log(data);
@@ -263,15 +322,45 @@ export function ModelComponent({ isModalVisible, onCancel, modalContent }) {
                     <Input
                         id='modal-username-style-input' onChange={handleInput} value={valuesExpeditions.ticketPrice} placeholder='Ticket Price' name="ticketPrice"
                     />
-                    <Input
-                        id='modal-username-style-input' onChange={handleInput} value={valuesExpeditions.spaceVehicleId} placeholder='Space Vehicle Id' name="spaceVehicleId"
-                    />
-                    <Input
-                        id='modal-username-style-input' onChange={handleInput} value={valuesExpeditions.departurePlanetId} placeholder='Departure Planet Id' name="departurePlanetId"
-                    />
-                    <Input
-                        id='modal-username-style-input' onChange={handleInput} value={valuesExpeditions.arrivalPlanetId} placeholder='Arrival Planet Id' name="arrivalPlanetId"
-                    />
+                    <Select
+                        id='modal-username-style-input'
+                        onChange={handleSelectSpaceVehicle}
+                        value={selectedSpaceVehicle}
+                        placeholder='Space Vehicle Id'
+                        name="spaceVehicleId"
+                    >
+                        {spaceVehicleData.map(vehicle => (
+                            <Select.Option key={vehicle.id} value={vehicle.id}>
+                                {vehicle.displayName}
+                            </Select.Option>
+                        ))}
+                    </Select>
+                    <Select
+                        id='modal-username-style-input'
+                        onChange={handleSelectDeparturePlanet}
+                        value={selectedDeparturePlanet}
+                        placeholder='Departure Planet Id'
+                        name="departurePlanetId"
+                    >
+                        {planetData.map(planet => (
+                            <Select.Option key={planet.id} value={planet.id}>
+                                {planet.displayName}
+                            </Select.Option>
+                        ))}
+                    </Select>
+                    <Select
+                        placeholder={"Arrival Planet"}
+                        id='modal-username-style-input'
+                        onChange={handleSelectArrivalPlanet}
+                        value={selectedArrivalPlanet}
+                        name="arrivalPlanetId"
+                    >
+                        {planetData.map(planet => (
+                            <Select.Option key={planet.id} value={planet.id}>
+                                {planet.displayName}
+                            </Select.Option>
+                        ))}
+                    </Select>
                 </div>
             </Space>
         )

@@ -79,10 +79,10 @@ export async function deleteUsers(id) {
 
 /* putUsers */
 
-export async function putUsers(id, userData) {
+export async function putUsers(userData) {
     try {
         const localStorageToken = localStorage.getItem('access-token');
-        const response = await fetch(`http://lambalog.com/api/users/${id}`, {
+        const response = await fetch(`http://lambalog.com/api/users`, {
             method: "PUT",
             headers: {
                 'Content-Type': 'application/json',

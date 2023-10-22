@@ -2,11 +2,9 @@ import React, { useEffect, useState } from 'react'
 import "../Products/SpaceShips.css";
 import { checkToken } from '../../services/AuthService';
 import { TableListComp } from "../../components/TableListComp/TableListComp"
-import { SearchBarComp } from "../../components/SearchBarComp/SearchBarComp"
 import UserDropdownMenu from '../../components/UserDropdownMenu/UserDropdownMenu';
-import { deleteRocket, fetchRocketsGet, putRocket } from '../../services/RocketService';
+import { deleteRocket, fetchRocketsGet } from '../../services/RocketService';
 import EditModal from '../../components/EditModal/EditUserModal';
-
 
 export default function SpaceShips() {
     const [selectedRocket, setSelectedRocket] = useState(null);
@@ -95,42 +93,25 @@ export default function SpaceShips() {
             });
     };
 
-    const updateRocket = (id, updatedData) => {
-        putRocket(id, updatedData)
-            .then((responseData) => {
-                console.log('Rocket güncellendi:', responseData);
-                setIsModalOpen(false);
-                setSpaceShipData(responseData);
-            })
-            .catch(error => {
-                console.error('Güncelleme isteği başarısız oldu:', error);
-            });
-    };
-
     const handleEditRocket = (id) => {
         const rocketEdit = spaceShipData.find(rocket => rocket.id === id);
         setSelectedRocket(rocketEdit);
         setIsModalOpen(true);
     };
-    
 
     const handleModalClose = () => {
         setSelectedRocket(null);
         setIsModalOpen(false);
     };
 
-
     return (
         <container className='space-vehicle-container'>
             <article className='space-vehicle-body'>
                 <div className='product-list'>
                     <div>
-                        <SearchBarComp pageSearchType={"spaceShips"}/>
-                    </div>
-                    <div>
-                        <TableListComp columns={columns} dataSource={spaceShipData} text="spaceShips"/>
+                        <TableListComp props={{ columns: columns, dataSource: spaceShipData }}  text="spaceShips" pageSearchType={"spaceShips"}/>
                         {isModalOpen && (
-                            <EditModal rocket={selectedRocket} onSave={updateRocket} onCancel={handleModalClose} visible={isModalOpen} pageType={"spaceShips"}/>
+                            <EditModal rocket={selectedRocket} onCancel={handleModalClose} visible={isModalOpen} pageType={"spaceShips"} />
                         )}
                     </div>
                 </div>

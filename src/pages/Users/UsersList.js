@@ -1,9 +1,8 @@
 import "../Users/UsersList.css";
 import { useEffect, useState } from 'react';
-import { SearchBarComp } from "../../components/SearchBarComp/SearchBarComp";
 import { checkToken } from "../../services/AuthService";
 import { TableListComp } from "../../components/TableListComp/TableListComp";
-import { deleteUsers, fetchUsersDataGet, putUsers } from "../../services/UserService";
+import { deleteUsers, fetchUsersDataGet } from "../../services/UserService";
 import UserDropdownMenu from "../../components/UserDropdownMenu/UserDropdownMenu";
 import EditUserModal from "../../components/EditModal/EditUserModal";
 
@@ -122,28 +121,13 @@ export default function UsersList() {
         setIsModalOpen(false);
     };
 
-    const updateUser = (id, updatedData) => {
-        putUsers(id, updatedData)
-            .then((responseData) => {
-                console.log('Kullanıcı güncellendi:', responseData);
-                setIsModalOpen(false);
-                setUsersData(responseData);
-            })
-            .catch(error => {
-                console.error('Güncelleme isteği başarısız oldu:', error);
-            });
-    };
-
     return (
         <div className='user-list-container'>
             <div className='user-list-body'>
-                <div className="search-bar-user-container">
-                    <SearchBarComp pageSearchType={"users"}/>
-                </div>
                 <div className='list-group-container'>
-                    <TableListComp columns={columns} dataSource={usersData} text="users"/>
+                    <TableListComp props={{ columns: columns, dataSource: usersData }}  text="users" pageSearchType={"users"}/>
                     {isModalOpen && (
-                        <EditUserModal user={selectedUser} onSave={updateUser} onCancel={handleModalClose} visible={isModalOpen} pageType={"users"}/>
+                        <EditUserModal user={selectedUser} onCancel={handleModalClose} visible={isModalOpen} pageType={"users"}/>
                     )}
                 </div>
             </div>
