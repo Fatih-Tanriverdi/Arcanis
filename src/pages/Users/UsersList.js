@@ -125,7 +125,7 @@ export default function UsersList() {
         <div className='user-list-container'>
             <div className='user-list-body'>
                 <div className='list-group-container'>
-                    <TableListComp props={{ columns: columns, dataSource: usersData }}  text="users" pageSearchType={"users"}/>
+                    <TableListComp props={{ columns: columns, dataSource: usersData }}  text="users" pageSearchType={"users"} addButtonLabel={"Kullanıcı Ekle"} addTile={"Yeni Kullanıcı Ekle"}/>
                     {isModalOpen && (
                         <EditUserModal user={selectedUser} onCancel={handleModalClose} visible={isModalOpen} pageType={"users"}/>
                     )}

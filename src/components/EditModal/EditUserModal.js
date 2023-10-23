@@ -6,11 +6,11 @@ import { fetchRocketsGet, putRocket } from '../../services/RocketService';
 import { fetchPlanetsGet, putPlanet } from '../../services/PlanetService';
 import { putExpedition } from '../../services/ExpeditionService';
 
-export default function EditUserModal({ user, rocket, planet, expedition, onSave, onCancel, visible, pageType }) {
+export default function EditUserModal({ user, rocket, planet, expendition, onSave, onCancel, visible, pageType }) {
     const [editedData, setEditedData] = useState(user);
     const [editRocket, setEditRocket] = useState(rocket);
     const [editPlanet, setEditPlanet] = useState(planet);
-    const [editExpedition, setEditExpedition] = useState(expedition);
+    const [editExpedition, setEditExpedition] = useState(expendition);
 
     const [spaceVehicleData, setSpaceVehicleData] = useState([]);
     const [planetData, setPlanetData] = useState([]);
@@ -58,8 +58,8 @@ export default function EditUserModal({ user, rocket, planet, expedition, onSave
             }
 
             if (pageType === 'expedition') {
-                await putExpedition(editPlanet);
-                onSave(expedition.id, editExpedition);
+                await putExpedition(editExpedition);
+                onSave(expendition.id, editExpedition);
             }
 
             onCancel();

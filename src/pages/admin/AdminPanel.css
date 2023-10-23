@@ -108,6 +108,26 @@
     display: flex;
 }
 
+.customer-btn > a > svg {
+    color: #7465F2 !important;
+    font-size: 3rem;
+    margin-top: 0.5rem;
+}
+
+.bilgi {
+    display: none;
+    background-color: transparent;
+    padding: 0.5rem;
+    border: 0.2rem solid #7465F2;
+    border-radius: 1rem;
+    margin-left: 1rem;
+    font-size: 1rem;
+}
+
+.bilgi-button:hover + .bilgi {
+    display: block;
+}
+
 /* HEADER */
 
 /* BUTTON */
@@ -116,8 +136,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-
-    margin-left: 1rem !important;
 }
 
 .admin-panel-button>span>svg,
@@ -150,9 +168,26 @@
 
 .admin-btn-position {
     display: flex;
-    justify-content: center;
-    align-items: flex-start;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: auto;
+}
+
+.admin-btn-exit-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: auto;
+}
+
+.admin-btn-container {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+
+    height: 90%;
 }
 
 @media screen and (min-width: 700px) {
@@ -192,15 +227,14 @@
         font-size: 1rem;
     }
 
-    .admin-panel-button-exit {
-        margin-top: 100%;
-        margin-left: 1rem !important;
+    .admin-panel-button {
+        margin-top: 2.5rem;
     }
 
     .header-position {
         display: flex;
-        justify-content: flex-end;
-        align-items: flex-start;
+        justify-content: space-between;
+        align-items: center;
     }
 }
 
@@ -228,6 +262,12 @@
         align-items: flex-start;
     }
 
+    .header-position {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
     .admin-info>h1 {
         font-size: 1.5rem;
     }
@@ -247,8 +287,7 @@
         font-size: 1.7rem !important;
     }
 
-    .admin-panel-button-exit {
-        margin-top: 100%;
-        margin-left: 1rem !important;
+    .admin-panel-button {
+        margin-top: 2.5rem;
     }
 }

@@ -12,14 +12,14 @@ const UserRole = {
     USER: 0,
 };
 
-export function ModelComponent({ isModalVisible, onCancel, modalContent }) {
+export function ModelComponent({ isModalVisible, onCancel, modalContent, addTitle }) {
 
     const [loading, setLoading] = useState(false);
     const [spaceVehicleData, setSpaceVehicleData] = useState([]);
     const [planetData, setPlanetData] = useState([]);
-    const [selectedSpaceVehicle, setSelectedSpaceVehicle] = useState("");
-    const [selectedDeparturePlanet, setSelectedDeparturePlanet] = useState("");
-    const [selectedArrivalPlanet, setSelectedArrivalPlanet] = useState("");
+    const [selectedSpaceVehicle, setSelectedSpaceVehicle] = useState("Space Vehicle");
+    const [selectedDeparturePlanet, setSelectedDeparturePlanet] = useState("Departure Planet");
+    const [selectedArrivalPlanet, setSelectedArrivalPlanet] = useState("Arrival Planet");
 
     const handleUserRoleChange = (value) => {
         SetValuesUsers((prev) => ({ ...prev, userRole: value }));
@@ -371,7 +371,7 @@ export function ModelComponent({ isModalVisible, onCancel, modalContent }) {
             <div className='modal-style'>
                 <Modal
                     visible={isModalVisible}
-                    title="Yeni Kullanıcı Ekle"
+                    title={addTitle}
                     onOk={handleOk}
                     onCancel={onCancel}
                     footer={[

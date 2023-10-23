@@ -172,6 +172,9 @@ td {
 }
 
 
+/* SEARXH BAR */
+
+
 .search-dropdown-container {
     display: flex;
     flex-wrap: wrap;
@@ -207,13 +210,15 @@ td {
 
 .search-filter-container {
     display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .ant-select:not(.ant-select-costumize-input) .ant-select-selector {
     background-color: transparent !important;
     border-color: #858B9B;
     color: white;
-    width: 26rem !important;
+    width: 25rem !important;
 }
 
 #range-picker-userlist::placeholder {
@@ -250,4 +255,17 @@ td {
 .filter-btn:hover {
     background-color: #161D30 !important;
     color: white !important;
+}
+
+.ant-picker {
+    width: 25rem !important;
+    margin: 0;
+}
+
+.search-expedition-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    flex-wrap: wrap;
 }

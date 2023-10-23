@@ -1,14 +1,33 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../TableListComp/TableListComp.css';
-import { Input, Button, Table, Select } from 'antd';
+import { Input, Button, Table, Select, DatePicker } from 'antd';
 import { ModelComponent } from '../ModalComponent/ModalComponent';
+import { fetchPlanetsGet } from '../../services/PlanetService';
+import { fetchRocketsGet } from '../../services/RocketService';
 
-export function TableListComp({ pageSearchType, props }) {
+export function TableListComp({ pageSearchType, props, addButtonLabel, addTitle }) {
     const [page, setPage] = useState(1);
     const [modelContent, setModelContent] = useState("");
     const [pageSize, setPageSize] = useState(10);
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [searchText, setSearchText] = useState("");
+    const [selectedSpaceVehicle, setSelectedSpaceVehicle] = useState("Space Vehicle");
+    const [selectedDeparturePlanet, setSelectedDeparturePlanet] = useState("Departure Planet");
+    const [selectedArrivalPlanet, setSelectedArrivalPlanet] = useState("Arrival Planet");
+    const [spaceVehicleData, setSpaceVehicleData] = useState([]);
+    const [planetData, setPlanetData] = useState([]);
+
+    const handleSelectSpaceVehicle = (value) => {
+        setSelectedSpaceVehicle(value);
+    };
+
+    const handleSelectDeparturePlanet = (value) => {
+        setSelectedDeparturePlanet(value);
+    };
+
+    const handleSelectArrivalPlanet = (value) => {
+        setSelectedArrivalPlanet(value);
+    };
 
     const showModall = (content) => {
         setIsModalVisible(true);
@@ -63,6 +82,46 @@ export function TableListComp({ pageSearchType, props }) {
         })
     };
 
+    const priceOptions = [];
+    for (let price = 100000; price <= 500000; price += 10000) {
+        priceOptions.push({
+            value: price.toLocaleString(),
+            label: `$${price.toLocaleString()}`
+        });
+    }
+
+    const onChange = (date, dateString) => {
+        console.log(date, dateString);
+    };
+
+    /* LOOKUPS */
+    useEffect(() => {
+        async function fetchPlanetData() {
+            try {
+                const url = "http://lambalog.com/api/lookups/planets";
+                const data = await fetchPlanetsGet(url);
+                setPlanetData(data);
+            } catch (error) {
+                console.error('API talebi başarısız oldu: ', error);
+            }
+        }
+        fetchPlanetData();
+    }, []);
+
+    useEffect(() => {
+        async function fetchRocketData() {
+            try {
+                const url = "http://lambalog.com/api/lookups/space-vehicles";
+                const data = await fetchRocketsGet(url);
+                setSpaceVehicleData(data);
+            } catch (error) {
+                console.error('API talebi başarısız oldu: ', error);
+            }
+        }
+        fetchRocketData();
+    }, []);
+    /* LOOKUPS */
+
     const getSearchContent = () => {
         switch (pageSearchType) {
             case 'spaceShips':
@@ -97,30 +156,107 @@ export function TableListComp({ pageSearchType, props }) {
             case 'users':
                 return (
                     <div className='search-filter-container'>
-                        <Select
-                            value={selectedFilters.userRoleType}
-                            onChange={(value) => setSelectedFilters({ ...selectedFilters, userRoleType: value })}
-                            placeholder="User Role"
-                            options={roleOptions}
-                        />
-                        <Select
-                            value={selectedFilters.isActive}
-                            onChange={(value) => setSelectedFilters({ ...selectedFilters, isActive: value })}
-                            placeholder="User Status"
-                            options={activeOptions}
-                        />
+                        <div className='SelectRolePosition'>
+                            <Select
+                                value={selectedFilters.userRoleType}
+                                onChange={(value) => setSelectedFilters({ ...selectedFilters, userRoleType: value })}
+                                placeholder="User Role"
+                                options={roleOptions}
+                            />
+                        </div>
+                        <div className='SelectRolePosition'>
+                            <Select
+                                value={selectedFilters.isActive}
+                                onChange={(value) => setSelectedFilters({ ...selectedFilters, isActive: value })}
+                                placeholder="User Status"
+                                options={activeOptions}
+                            />
+                        </div>
                     </div>
                 );
             case 'planets':
                 return (
                     <div className='search-filter-container'>
-
+                        <div className='SelectRolePosition'>
+                            <Select
+                                value={selectedFilters.sequence}
+                                onChange={(value) => setSelectedFilters({ ...selectedFilters, sequence: value })}
+                                placeholder="Sıra No"
+                                options={seatNumberOptions}
+                            />
+                        </div>
+                        <div className='SelectRolePosition'>
+                            <Select
+                                value={selectedFilters.difficultyLevel}
+                                onChange={(value) => setSelectedFilters({ ...selectedFilters, difficultyLevel: value })}
+                                placeholder="Difficulty Level"
+                                options={ageLimitOptions}
+                            />
+                        </div>
                     </div>
                 );
             case 'expedition':
                 return (
-                    <div className='search-filter-container'>
-
+                    <div className='search-expedition-container'>
+                        <div className='SelectRolePosition'>
+                            <DatePicker onChange={onChange} placeholder='Expedition Date' />
+                        </div>
+                        <div className='SelectRolePosition'>
+                            <DatePicker onChange={onChange} placeholder='Arrival Date' />
+                        </div>
+                        <div className='SelectRolePosition'>
+                            <Select
+                                value={selectedFilters.ticketPrice}
+                                onChange={(value) => setSelectedFilters({ ...selectedFilters, ticketPrice: value })}
+                                placeholder="Ticket Price"
+                                options={priceOptions}
+                            />
+                        </div>
+                        <div className='SelectRolePosition'>
+                            <Select
+                                id='modal-username-style-input'
+                                onChange={handleSelectSpaceVehicle}
+                                value={selectedSpaceVehicle}
+                                placeholder='Space Vehicle Id'
+                                name="spaceVehicleId"
+                            >
+                                {spaceVehicleData.map(vehicle => (
+                                    <Select.Option key={vehicle.id} value={vehicle.id}>
+                                        {vehicle.displayName}
+                                    </Select.Option>
+                                ))}
+                            </Select>
+                        </div>
+                        <div className='SelectRolePosition'>
+                            <Select
+                                id='modal-username-style-input'
+                                onChange={handleSelectDeparturePlanet}
+                                value={selectedDeparturePlanet}
+                                placeholder='Departure Planet Id'
+                                name="departurePlanetId"
+                            >
+                                {planetData.map(planet => (
+                                    <Select.Option key={planet.id} value={planet.id}>
+                                        {planet.displayName}
+                                    </Select.Option>
+                                ))}
+                            </Select>
+                        </div>
+                        <div className='SelectRolePosition'>
+                            <Select
+                                placeholder={"Arrival Planet"}
+                                id='modal-username-style-input'
+                                onChange={handleSelectArrivalPlanet}
+                                value={selectedArrivalPlanet}
+                                name="arrivalPlanetId"
+                            >
+                                {planetData.map(planet => (
+                                    <Select.Option key={planet.id} value={planet.id}>
+                                        {planet.displayName}
+                                    </Select.Option>
+                                ))}
+                            </Select>
+                        </div>
                     </div>
                 );
             default:
@@ -164,7 +300,7 @@ export function TableListComp({ pageSearchType, props }) {
             </div>
             <div className="listBtn">
                 <div className='table-list-head'>
-                    <Button className='add-btn' type="text" onClick={() => showModall(pageSearchType)}>Add New User</Button>
+                    <Button className='add-btn' type="text" onClick={() => showModall(pageSearchType)}>{addButtonLabel}</Button>
                     <div className='input-user-group'>
                         <span>Search: </span>
                         <Input
@@ -189,7 +325,7 @@ export function TableListComp({ pageSearchType, props }) {
                         }}
                     />
                 </div>
-                <ModelComponent isModalVisible={isModalVisible} onCancel={handleCancel} modalContent={modelContent} />
+                <ModelComponent isModalVisible={isModalVisible} onCancel={handleCancel} modalContent={modelContent} addTitle={pageSearchType === 'spaceShips' ? 'Uzay Aracı Ekle' : pageSearchType === 'users' ? 'Kullanıcı Ekle' : pageSearchType === 'planets' ? 'Gezegen Ekle' : pageSearchType === 'expedition' ? 'Sefer Ekle' : ''} />
             </div>
         </div>
     )

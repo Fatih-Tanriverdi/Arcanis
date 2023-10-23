@@ -1,3 +1,28 @@
+/* FetchPlanetsGet */
+export async function fetchExpenditionsGet(url) {
+    try {
+        const localStorageToken = localStorage.getItem('access-token');
+        const response = await fetch(url, {
+            method: "GET",
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': `Bearer ${localStorageToken}`
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error('API request failed');
+        }
+
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        throw error;
+    }
+}
+/* FetchPlanetsGet */
+
 /* FetchExpeditionPost */
 
 export async function fetchExpeditionPost(valuesExpeditions, url) {
@@ -53,7 +78,7 @@ export async function deleteExpedition(id) {
 
 /* DeleteExpeditions */
 
-/* putUsers */
+/* putExpedition */
 
 export async function putExpedition(expenditions) {
     try {
@@ -79,5 +104,5 @@ export async function putExpedition(expenditions) {
     }
 }
 
-/* PutUsers */
+/* putExpedition */
 

@@ -3,8 +3,7 @@ import "./Expedition.css";
 import { useState } from 'react';
 import { checkToken } from '../../services/AuthService';
 import { TableListComp } from '../../components/TableListComp/TableListComp';
-import { fetchPlanetsGet } from '../../services/PlanetService';
-import { deleteExpedition } from '../../services/ExpeditionService';
+import { deleteExpedition, fetchExpenditionsGet } from '../../services/ExpeditionService';
 import UserDropdownMenu from '../../components/UserDropdownMenu/UserDropdownMenu';
 import EditUserModal from '../../components/EditModal/EditUserModal';
 
@@ -31,32 +30,32 @@ export default function UsersList() {
             key: 'name',
         },
         {
-            title: 'Expedition Date',
+            title: 'EXPEDITION DATE',
             dataIndex: 'expeditionDate',
             key: 'expeditionDate',
         },
         {
-            title: 'Arrival Date',
+            title: 'ARRIVAL DATE',
             dataIndex: 'arrivalDate',
             key: 'arrivalDate',
         },
         {
-            title: 'Ticket Price',
+            title: 'TICKET PRICE',
             key: 'ticketPrice',
             dataIndex: 'ticketPrice',
         },
         {
-            title: 'Space Vehicle Id',
+            title: 'SPACE VEHICLE ID',
             key: 'spaceVehicleId',
             dataIndex: 'spaceVehicleId',
         },
         {
-            title: 'Departure Planet Id',
+            title: 'DEPARTURE PLANET ID',
             key: 'departurePlanetId',
             dataIndex: 'departurePlanetId',
         },
         {
-            title: 'Arrival Planet Id',
+            title: 'ARRIVAL PLANET ID',
             key: 'arrivalPlanetId',
             dataIndex: 'arrivalPlanetId',
         },
@@ -67,16 +66,16 @@ export default function UsersList() {
     }, []);
 
     useEffect(() => {
-        async function planetsData() {
+        async function expeditionsData() {
             const url = "http://lambalog.com/api/expenditions";
-            const data = await fetchPlanetsGet(url)
+            const data = await fetchExpenditionsGet(url)
                 .catch(error => {
                     console.error('API request failed:', error);
                     return [];
                 })
             setExpenditions(data);
         }
-        planetsData();
+        expeditionsData();
     }, []);
 
     const handleDeleteExpedition = (id) => {
@@ -86,8 +85,8 @@ export default function UsersList() {
         }
         deleteExpedition(id)
             .then(() => {
-                setExpenditions((prevExpeditionData) =>
-                    prevExpeditionData.filter((expedition) => expedition.id !== id)
+                setExpenditions((prevExpenditionsData) =>
+                    prevExpenditionsData.filter((expendition) => expendition.id !== id)
                 );
             })
             .catch(error => {
@@ -96,8 +95,8 @@ export default function UsersList() {
     };
 
     const handleEditExpedition = (id) => {
-        const expeditionEdit = expenditions.find(expedition => expedition.id === id);
-        setSelectedExpeditions(expeditionEdit);
+        const expendEdit = expenditions.find( expend => expend.id === id);
+        setSelectedExpeditions(expendEdit);
         setIsModalOpen(true);
     };
 
@@ -106,15 +105,17 @@ export default function UsersList() {
         setIsModalOpen(false);
     };
 
-    console.log(selectedExpeditions);
+    const expendition = selectedExpeditions;
+    console.log(expendition.name);
+    console.log(expenditions)
 
     return (
         <container className='expedition-container'>
             <article className='expedition-body'>
                 <div className='expedition-list'>
-                    <TableListComp props={{ columns: columns, dataSource: expenditions }} text="expedition" pageSearchType={"expedition"} />
+                    <TableListComp props={{ columns: columns, dataSource: expenditions }} text="expedition" pageSearchType={"expedition"} addButtonLabel={"Sefer Ekle"}/>
                     {isModalOpen && (
-                        <EditUserModal expedition={selectedExpeditions} onCancel={handleModalClose} visible={isModalOpen} pageType={"expedition"} />
+                        <EditUserModal expendition={selectedExpeditions} onCancel={handleModalClose} visible={isModalOpen} pageType={"expedition"} />
                     )}
                 </div>
             </article>

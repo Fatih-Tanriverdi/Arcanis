@@ -102,7 +102,7 @@ export default function UsersList() {
         <container className='orders-container'>
             <article className='orders-body'>
                 <div className='orders-list'>
-                    <TableListComp props={{ columns: columns, dataSource: planets }} text="planets" pageSearchType={"planets"} />
+                    <TableListComp props={{ columns: columns, dataSource: planets }} text="planets" pageSearchType={"planets"} addButtonLabel={"Gezegen Ekle"} />
                     {isModalOpen && (
                         <EditModal planet={selectedPlanet} onCancel={handleModalClose} visible={isModalOpen} pageType={"planets"} />
                     )}

@@ -1,36 +1,3 @@
 .navigate>ul>li {
-    flex-direction: column;
     list-style: none;
-    border-radius: 1.5rem 0px 0px 1.5rem;
-}
-
-.navigate>ul>li a {
-    text-decoration: none;
-    font-size: 0.5rem;
-    padding: 0 !important;
-}
-
-#admin-panel-button.active {
-    background-color: #7465F2 !important;
-}
-
-
-/* .navigate>ul>li:hover {
-    background-color: #7465F2;
-    border-radius: 15px 0px 0px 15px;
-    padding-left: 0.5rem;
-} */
-
-@media screen and (min-width: 700px) {
-    .navigate>ul>li a {
-        font-size: 1.2rem;
-        margin: 0.5rem;
-    }
-}
-
-@media screen and (min-width: 1200px) {
-    .navigate>ul>li a {
-        font-size: 1.6rem;
-        margin: 0.5rem;
-    }
 }

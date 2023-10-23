@@ -109,7 +109,7 @@ export default function SpaceShips() {
             <article className='space-vehicle-body'>
                 <div className='product-list'>
                     <div>
-                        <TableListComp props={{ columns: columns, dataSource: spaceShipData }}  text="spaceShips" pageSearchType={"spaceShips"}/>
+                        <TableListComp props={{ columns: columns, dataSource: spaceShipData }}  text="spaceShips" pageSearchType={"spaceShips"} addButtonLabel={"Rocket Ekle"}/>
                         {isModalOpen && (
                             <EditModal rocket={selectedRocket} onCancel={handleModalClose} visible={isModalOpen} pageType={"spaceShips"} />
                         )}
