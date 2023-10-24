@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import "./Orders.css";
+import "./PlanetsAdmin.css";
 import { useState } from 'react';
 import { checkToken } from '../../services/AuthService';
 import { TableListComp } from '../../components/TableListComp/TableListComp';
@@ -104,7 +104,7 @@ export default function UsersList() {
                 <div className='orders-list'>
                     <TableListComp props={{ columns: columns, dataSource: planets }} text="planets" pageSearchType={"planets"} addButtonLabel={"Gezegen Ekle"} />
                     {isModalOpen && (
-                        <EditModal planet={selectedPlanet} onCancel={handleModalClose} visible={isModalOpen} pageType={"planets"} />
+                        <EditModal planet={selectedPlanet} onCancel={handleModalClose} visible={isModalOpen} pageType={"planets"} addEditTitle={"Gezegen Güncelleme"}/>
                     )}
                 </div>
             </article>

@@ -29,6 +29,10 @@
     color: white !important;
 }
 
+.ant-input-affix-wrapper-focus {
+    background-color: #73228B !important;
+}
+
 @media screen and (min-width: 700px) {
     .ant-input-affix-wrapper.css-dev-only-do-not-override-12upa3x {
         width: 24rem !important;

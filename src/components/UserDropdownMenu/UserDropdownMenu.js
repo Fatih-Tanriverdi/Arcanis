@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Dropdown, Menu } from 'antd';
 import "../UserDropdownMenu/UserDropdownMenu.css";
-import { AiOutlineEdit } from 'react-icons/ai';
+import { RiArrowRightSLine } from 'react-icons/ri';
 
 export default function UserDropdownMenu({ onEditClick, onDeleteClick }) {
     const [isOpen, setIsOpen] = useState(false);
@@ -34,7 +34,7 @@ export default function UserDropdownMenu({ onEditClick, onDeleteClick }) {
     return (
         <div className="user-dropdown-menu">
             <Dropdown overlay={menu} trigger={['click']} visible={isOpen} onVisibleChange={toggleMenu}>
-                <AiOutlineEdit onClick={toggleMenu}/>
+                <RiArrowRightSLine onClick={toggleMenu}/>
             </Dropdown>
         </div>
     );

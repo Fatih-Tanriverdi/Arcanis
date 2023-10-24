@@ -65,6 +65,10 @@ td {
     color: white !important;
 }
 
+.table-edit-btn {
+    display: flex;
+}
+
 /* LIST GROUP */
 
 /* PAGINATION */
@@ -95,6 +99,11 @@ td {
 
 .ant-pagination-options {
     margin-right: 1rem;
+}
+
+.ant-pagination-item-ellipsis,
+.anticon-double-right {
+    color: white !important;
 }
 
 /* PAGINATION */
@@ -198,13 +207,13 @@ td {
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
-.search-bar-item-top > h1 {
+.search-bar-item-top>h1 {
     font-size: 2.5rem;
 }
 
-.ant-picker-input > input::placeholder,
+.ant-picker-input>input::placeholder,
 .ant-picker-suffix,
-.ant-picker-range-separator > span {
+.ant-picker-range-separator>span {
     color: white !important;
 }
 
@@ -231,7 +240,7 @@ td {
 
 .ant-picker {
     background-color: transparent !important;
-    border-color:  #858B9B!important;
+    border-color: #858B9B !important;
     margin: 1rem;
 }
 
@@ -268,4 +277,12 @@ td {
     align-items: center;
 
     flex-wrap: wrap;
+}
+
+.ant-select-selector:hover {
+    border-color: #7465F2 !important;
+}
+
+.ant-select-focused .ant-select-selector {
+    border-color: #7465F2 !important;
 }

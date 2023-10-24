@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import "../Products/SpaceShips.css";
+import "../SpaceShips/SpaceShips.css";
 import { checkToken } from '../../services/AuthService';
 import { TableListComp } from "../../components/TableListComp/TableListComp"
 import UserDropdownMenu from '../../components/UserDropdownMenu/UserDropdownMenu';
@@ -109,9 +109,9 @@ export default function SpaceShips() {
             <article className='space-vehicle-body'>
                 <div className='product-list'>
                     <div>
-                        <TableListComp props={{ columns: columns, dataSource: spaceShipData }}  text="spaceShips" pageSearchType={"spaceShips"} addButtonLabel={"Rocket Ekle"}/>
+                        <TableListComp props={{ columns: columns, dataSource: spaceShipData }}  text="spaceShips" pageSearchType={"spaceShips"} addButtonLabel={"Uzay Aracı Ekle"}/>
                         {isModalOpen && (
-                            <EditModal rocket={selectedRocket} onCancel={handleModalClose} visible={isModalOpen} pageType={"spaceShips"} />
+                            <EditModal rocket={selectedRocket} onCancel={handleModalClose} visible={isModalOpen} pageType={"spaceShips"} addEditTitle={"Uzay Aracı Güncelleme"}/>
                         )}
                     </div>
                 </div>

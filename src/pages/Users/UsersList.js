@@ -15,6 +15,7 @@ export default function UsersList() {
             title: 'EDIT',
             key: 'id',
             dataIndex: 'id',
+            width: 50,
             render: (id, record) => (
                 <UserDropdownMenu
                     onEditClick={() => handleEditUser(id)}
@@ -26,6 +27,7 @@ export default function UsersList() {
             title: 'NAME',
             dataIndex: 'name',
             key: 'name',
+            width: 50,
         },
         {
             title: 'SURNAME',
@@ -36,6 +38,7 @@ export default function UsersList() {
             title: 'EMAIL',
             dataIndex: 'email',
             key: 'email',
+            width: 50,
         },
         {
             title: 'PHONE',
@@ -127,7 +130,7 @@ export default function UsersList() {
                 <div className='list-group-container'>
                     <TableListComp props={{ columns: columns, dataSource: usersData }}  text="users" pageSearchType={"users"} addButtonLabel={"Kullanıcı Ekle"} addTile={"Yeni Kullanıcı Ekle"}/>
                     {isModalOpen && (
-                        <EditUserModal user={selectedUser} onCancel={handleModalClose} visible={isModalOpen} pageType={"users"}/>
+                        <EditUserModal user={selectedUser} onCancel={handleModalClose} visible={isModalOpen} pageType={"users"} addEditTitle={"Kullanıcı Güncelleme"}/>
                     )}
                 </div>
             </div>

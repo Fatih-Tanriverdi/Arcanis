@@ -5,8 +5,8 @@ import { Routes, Route } from "react-router-dom";
 import AdminPanel from "./pages/Admin/AdminPanel";
 import UsersList from "./pages/Users/UsersList";
 import MainPage from "./pages/Main/MainPage";
-import Orders from "./pages/Orders/Orders";
-import SpaceShips from "./pages/Products/SpaceShips";
+import PlanetsAdmin from "./pages/PlanetsAdmin/PlanetsAdmin"
+import SpaceShips from "./pages/SpaceShips/SpaceShips";
 import Customer from "./pages/Customer/Customer";
 import Ticket from "./pages/Ticket/Ticket";
 import Planets from "./pages/Planets/Planets";
@@ -32,7 +32,7 @@ export default function App() {
         <Route path="userlist" element={<UsersList />} />
         <Route path="spaceships" element={<SpaceShips />} />
         <Route path="mainpage" element={<MainPage />} />
-        <Route path="orders" element={<Orders />} />
+        <Route path="planestadmin" element={<PlanetsAdmin />} />
         <Route path="expedition" element={<Expedition />} />
       </Route>
     </Routes>

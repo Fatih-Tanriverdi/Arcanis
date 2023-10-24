@@ -7,11 +7,6 @@ import { fetchPlanetsGet, fetchPlanetsPost } from '../../services/PlanetService'
 import { fetchExpeditionPost } from '../../services/ExpeditionService';
 import { fetchUsersPost } from '../../services/UserService';
 
-const UserRole = {
-    ADMIN: 1,
-    USER: 0,
-};
-
 export function ModelComponent({ isModalVisible, onCancel, modalContent, addTitle }) {
 
     const [loading, setLoading] = useState(false);
@@ -23,6 +18,11 @@ export function ModelComponent({ isModalVisible, onCancel, modalContent, addTitl
 
     const handleUserRoleChange = (value) => {
         SetValuesUsers((prev) => ({ ...prev, userRole: value }));
+    };
+
+    const UserRole = {
+        ADMIN: 1,
+        CUSTOMER: 2,
     };
 
     const [valuesRockets, setValuesRockets] = useState({
@@ -43,7 +43,7 @@ export function ModelComponent({ isModalVisible, onCancel, modalContent, addTitl
         username: "",
         isActive: true,
         password: "",
-        userRole: UserRole.USER
+        userRole: "Role"
     });
 
     const [valuesPlanets, SetValuesPlanets] = useState({
@@ -86,7 +86,6 @@ export function ModelComponent({ isModalVisible, onCancel, modalContent, addTitl
             SetValuesPlanets((prev) => ({ ...prev, [name]: value }));
             SetValuesExpeditions((prev) => ({ ...prev, [name]: value }));
         } else {
-            // Handle select inputs differently
             if (modalContent === 'expedition') {
                 if (e.target.name === 'spaceVehicleId') {
                     SetValuesExpeditions((prev) => ({ ...prev, spaceVehicleId: e }));
@@ -119,7 +118,7 @@ export function ModelComponent({ isModalVisible, onCancel, modalContent, addTitl
         }
     };
 
-/* ROCKET */
+    /* ROCKET */
 
     const rocketPost = async () => {
         setLoading(true);
@@ -148,7 +147,7 @@ export function ModelComponent({ isModalVisible, onCancel, modalContent, addTitl
         fetchRocketData();
     }, []);
 
-/* ROCKET */
+    /* ROCKET */
 
     const usersPost = async () => {
         setLoading(true);
@@ -164,7 +163,7 @@ export function ModelComponent({ isModalVisible, onCancel, modalContent, addTitl
         }
     };
 
-/* PLANET */
+    /* PLANET */
     const planetsPost = async () => {
         setLoading(true);
         const url = "http://lambalog.com/api/planets";
@@ -191,7 +190,7 @@ export function ModelComponent({ isModalVisible, onCancel, modalContent, addTitl
         }
         fetchPlanetData();
     }, []);
-/* PLANET */
+    /* PLANET */
 
     const expeditionsPost = async () => {
         setLoading(true);
@@ -271,9 +270,9 @@ export function ModelComponent({ isModalVisible, onCancel, modalContent, addTitl
                         onChange={handleUserRoleChange}
                         placeholder="Role"
                     >
-                        {Object.values(UserRole).map((role) => (
+                        {Object.values(UserRole).map(role => (
                             <Select.Option key={role} value={role}>
-                                {role}
+                                {role === UserRole.ADMIN ? "Admin" : role === UserRole.CUSTOMER ? "Customer" : ""}
                             </Select.Option>
                         ))}
                     </Select>

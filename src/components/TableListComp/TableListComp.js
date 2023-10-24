@@ -5,7 +5,7 @@ import { ModelComponent } from '../ModalComponent/ModalComponent';
 import { fetchPlanetsGet } from '../../services/PlanetService';
 import { fetchRocketsGet } from '../../services/RocketService';
 
-export function TableListComp({ pageSearchType, props, addButtonLabel, addTitle }) {
+export function TableListComp({ pageSearchType, props, addButtonLabel }) {
     const [page, setPage] = useState(1);
     const [modelContent, setModelContent] = useState("");
     const [pageSize, setPageSize] = useState(10);

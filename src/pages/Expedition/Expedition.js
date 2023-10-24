@@ -15,8 +15,8 @@ export default function UsersList() {
     const columns = [
         {
             title: 'EDIT',
-            dataIndex: 'deleted',
-            key: 'deleted',
+            dataIndex: 'id',
+            key: 'id',
             render: (id, record) => (
                 <UserDropdownMenu
                     onEditClick={() => handleEditExpedition(id)}
@@ -95,7 +95,7 @@ export default function UsersList() {
     };
 
     const handleEditExpedition = (id) => {
-        const expendEdit = expenditions.find( expend => expend.id === id);
+        const expendEdit = expenditions.find(expend => expend.id === id);
         setSelectedExpeditions(expendEdit);
         setIsModalOpen(true);
     };
@@ -106,16 +106,15 @@ export default function UsersList() {
     };
 
     const expendition = selectedExpeditions;
-    console.log(expendition.name);
-    console.log(expenditions)
+    console.log(expendition);
 
     return (
         <container className='expedition-container'>
             <article className='expedition-body'>
                 <div className='expedition-list'>
-                    <TableListComp props={{ columns: columns, dataSource: expenditions }} text="expedition" pageSearchType={"expedition"} addButtonLabel={"Sefer Ekle"}/>
+                    <TableListComp props={{ columns: columns, dataSource: expenditions }} text="expedition" pageSearchType={"expedition"} addButtonLabel={"Sefer Ekle"} />
                     {isModalOpen && (
-                        <EditUserModal expendition={selectedExpeditions} onCancel={handleModalClose} visible={isModalOpen} pageType={"expedition"} />
+                        <EditUserModal expendition={selectedExpeditions} onCancel={handleModalClose} visible={isModalOpen} pageType={"expedition"} addEditTitle={"Sefer Güncelleme"} />
                     )}
                 </div>
             </article>

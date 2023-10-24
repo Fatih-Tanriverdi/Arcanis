@@ -6,7 +6,7 @@ import { fetchRocketsGet, putRocket } from '../../services/RocketService';
 import { fetchPlanetsGet, putPlanet } from '../../services/PlanetService';
 import { putExpedition } from '../../services/ExpeditionService';
 
-export default function EditUserModal({ user, rocket, planet, expendition, onSave, onCancel, visible, pageType }) {
+export default function EditUserModal({ user, rocket, planet, expendition, onSave, onCancel, visible, pageType, addEditTitle }) {
     const [editedData, setEditedData] = useState(user);
     const [editRocket, setEditRocket] = useState(rocket);
     const [editPlanet, setEditPlanet] = useState(planet);
@@ -21,8 +21,16 @@ export default function EditUserModal({ user, rocket, planet, expendition, onSav
 
     const UserRole = {
         ADMIN: 1,
-        USER: 0,
+        CUSTOMER: 2,
     };
+
+    const priceOptions = [];
+    for (let price = 100000; price <= 500000; price += 10000) {
+        priceOptions.push({
+            value: price.toLocaleString(),
+            label: `$${price.toLocaleString()}`
+        });
+    }
 
     const handleUserRoleChange = (value) => {
         setEditedData((prev) => ({ ...prev, userRole: value }));
@@ -203,7 +211,7 @@ export default function EditUserModal({ user, rocket, planet, expendition, onSav
                             >
                                 {Object.values(UserRole).map((role) => (
                                     <Select.Option key={role} value={role}>
-                                        {role}
+                                        {role === UserRole.ADMIN ? "Admin" : role === UserRole.CUSTOMER ? "Customer" : " "}
                                     </Select.Option>
                                 ))}
                             </Select>
@@ -244,16 +252,31 @@ export default function EditUserModal({ user, rocket, planet, expendition, onSav
                         <Space direction="vertical" id='date-picker-body'>
                             <div className='modal-list'>
                                 <Input
-                                    id='modal-username-style-input' onChange={(e) => setEditExpedition({ ...editExpedition, name: e.target.value })} value={editExpedition.name} placeholder='Name' name="name"
+                                    id='modal-username-style-input'
+                                    onChange={(e) => setEditExpedition({ ...editExpedition, name: e.target.value })}
+                                    value={editExpedition.name}
+                                    placeholder='Name'
+                                    name="name"
                                 />
                                 <Input
-                                    id='modal-username-style-input' onChange={(e) => setEditExpedition({ ...editExpedition, expeditionDate: e.target.value })} value={editExpedition.expeditionDate} placeholder='Expedition Date' name="expeditionDate"
+                                    id='modal-username-style-input'
+                                    onChange={(e) => setEditExpedition({ ...editExpedition, expeditionDate: e.target.value })}
+                                    value={editExpedition.expeditionDate}
+                                    placeholder='Expedition Date'
+                                    name="expeditionDate"
                                 />
                                 <Input
-                                    id='modal-username-style-input' onChange={(e) => setEditExpedition({ ...editExpedition, arrivalDate: e.target.value })} value={editExpedition.arrivalDate} placeholder='Arrival Date' name="arrivalDate"
+                                    id='modal-username-style-input'
+                                    onChange={(e) => setEditExpedition({ ...editExpedition, arrivalDate: e.target.value })}
+                                    value={editExpedition.arrivalDate}
+                                    placeholder='Arrival Date'
+                                    name="arrivalDate"
                                 />
-                                <Input
-                                    id='modal-username-style-input' onChange={(e) => setEditExpedition({ ...editExpedition, ticketPrice: e.target.value })} value={editExpedition.ticketPrice} placeholder='Ticket Price' name="ticketPrice"
+                                <Select
+                                    value={editExpedition.ticketPrice}
+                                    onChange={(value) => setEditExpedition({ ...editExpedition, ticketPrice: value })}
+                                    placeholder="Ticket Price"
+                                    options={priceOptions}
                                 />
                                 <Select
                                     id='modal-username-style-input'
@@ -306,7 +329,7 @@ export default function EditUserModal({ user, rocket, planet, expendition, onSav
     return (
         <div className='editUserModelContainer'>
             <Modal
-                title={"Edit"}
+                title={addEditTitle}
                 visible={visible}
                 onOk={handleSave}
                 onCancel={onCancel}
