@@ -8,3 +8,20 @@
     flex: 100%;
 }
 
+
+/* BUTTON */
+.editButton > svg{
+    color: white;
+    cursor: pointer;
+}
+
+.editButton > svg:hover {
+    color: #7465F2;
+}
+
+.editButton {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+

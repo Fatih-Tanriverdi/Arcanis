@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import "./AdminPanel.css";
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route, Link, useNavigate } from "react-router-dom";
 import { AiOutlineHome, AiOutlineRocket, AiOutlineUser } from "react-icons/ai";
 import { BiExit, BiPlanet } from "react-icons/bi";
 import { BsFillArrowRightSquareFill } from "react-icons/bs";
@@ -17,6 +17,7 @@ import { fetchUsersDataGet } from '../../services/UserService';
 export default function AsideHeader() {
     const [activeButton, setActiveButton] = useState("");
     const [userInfo, setUserInfo] = useState({});
+    const navigate = useNavigate();
 
     const handleButtonClick = (buttonText) => {
         setActiveButton(buttonText);
@@ -58,6 +59,7 @@ export default function AsideHeader() {
             setActiveButton("Anasayfa");
             localStorage.setItem("activeButton", "Anasayfa");
             localStorage.setItem("isFirstLogin", "true");
+            navigate("mainpage");
         } else {
             const savedActiveButton = localStorage.getItem("activeButton");
             if (savedActiveButton) {

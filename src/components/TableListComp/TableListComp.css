@@ -69,6 +69,11 @@ td {
     display: flex;
 }
 
+.table-row:hover,
+.ant-table-thead:hover {
+    cursor: pointer;
+}
+
 /* LIST GROUP */
 
 /* PAGINATION */

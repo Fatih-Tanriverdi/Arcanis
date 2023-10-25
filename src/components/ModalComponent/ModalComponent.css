@@ -30,6 +30,17 @@
     color: white;
 }
 
+.addModalErrorContainer {
+    display: flex;
+    justify-content: center !important;
+    align-items: center;
+    margin: 3rem;
+    padding: 3rem;
+    border-radius: 0.5rem;
+    border: 0.1rem solid #7465F2;
+    background-color: transparent;
+}
+
 /* MODAL TEXTAREA STYLE */
 .ant-input-affix-wrapper {
     width: 220px !important;
@@ -71,6 +82,19 @@
     height: 3rem;
     background-color: transparent;
     border-color: #858B9B;
+}
+
+.modal-list > .ant-input-password {
+    margin: 1rem !important;
+    width: 90% !important;
+    height: 3rem !important;
+    border-radius: 0.5rem !important;
+    background-color: transparent !important;
+    border-color: #858B9B !important;
+}
+
+.modal-list > .ant-input-password > input {
+    background-color: transparent !important;
 }
 
 .ant-modal-close-x,

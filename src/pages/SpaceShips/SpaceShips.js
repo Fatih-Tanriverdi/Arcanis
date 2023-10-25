@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react'
 import "../SpaceShips/SpaceShips.css";
 import { checkToken } from '../../services/AuthService';
 import { TableListComp } from "../../components/TableListComp/TableListComp"
-import UserDropdownMenu from '../../components/UserDropdownMenu/UserDropdownMenu';
 import { deleteRocket, fetchRocketsGet } from '../../services/RocketService';
 import EditModal from '../../components/EditModal/EditUserModal';
+import { RiArrowRightSLine } from 'react-icons/ri';
 
 export default function SpaceShips() {
     const [selectedRocket, setSelectedRocket] = useState(null);
@@ -17,10 +17,7 @@ export default function SpaceShips() {
             dataIndex: 'id',
             key: 'id',
             render: (id, record) => (
-                <UserDropdownMenu
-                    onEditClick={() => handleEditRocket(id)}
-                    onDeleteClick={() => handleDeleteRocket(id)}
-                />
+                <button className="editButton" onClick={() => handleEditRocket(id)}><RiArrowRightSLine /></button>
             ),
         },
         {
@@ -111,7 +108,7 @@ export default function SpaceShips() {
                     <div>
                         <TableListComp props={{ columns: columns, dataSource: spaceShipData }}  text="spaceShips" pageSearchType={"spaceShips"} addButtonLabel={"Uzay Aracı Ekle"}/>
                         {isModalOpen && (
-                            <EditModal rocket={selectedRocket} onCancel={handleModalClose} visible={isModalOpen} pageType={"spaceShips"} addEditTitle={"Uzay Aracı Güncelleme"}/>
+                            <EditModal rocket={selectedRocket} onCancel={handleModalClose} visible={isModalOpen} pageType={"spaceShips"} addEditTitle={"Uzay Aracı Güncelleme"} rocketDelete={handleDeleteRocket}/>
                         )}
                     </div>
                 </div>

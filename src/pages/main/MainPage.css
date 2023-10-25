@@ -1,5 +1,6 @@
 .main-page-container {
     display: flex;
+    flex-direction: row;
 }
 
 .main-page-body {
@@ -8,14 +9,36 @@
     margin-top: 3rem;
     background-color: #273046;
     border-radius: 0.5rem;
+
+    overflow-y: scroll;
+}
+
+.main-page-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 .main-page-content>h1 {
     color: white;
+    width: 100%;
     font-size: 2.5rem;
     margin: 2rem;
     border-bottom: 0.2rem solid #161D30;
 }
+
+.radialChartContainer,
+.xyplotContainer {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    border-radius: 0.5rem;
+    margin: 1rem;
+    background-color: #161D30 !important;
+    width: 95%;
+}
+
 
 @media screen and (min-width: 700px) {}
 

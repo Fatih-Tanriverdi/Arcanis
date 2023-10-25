@@ -8,13 +8,13 @@ import { fetchExpeditionPost } from '../../services/ExpeditionService';
 import { fetchUsersPost } from '../../services/UserService';
 
 export function ModelComponent({ isModalVisible, onCancel, modalContent, addTitle }) {
-
-    const [loading, setLoading] = useState(false);
+    const [errorMessage, setErrorMessage] = useState(null);
     const [spaceVehicleData, setSpaceVehicleData] = useState([]);
     const [planetData, setPlanetData] = useState([]);
-    const [selectedSpaceVehicle, setSelectedSpaceVehicle] = useState("Space Vehicle");
-    const [selectedDeparturePlanet, setSelectedDeparturePlanet] = useState("Departure Planet");
-    const [selectedArrivalPlanet, setSelectedArrivalPlanet] = useState("Arrival Planet");
+
+    const [selectedSpaceVehicle, setSelectedSpaceVehicle] = useState("");
+    const [selectedDeparturePlanet, setSelectedDeparturePlanet] = useState("");
+    const [selectedArrivalPlanet, setSelectedArrivalPlanet] = useState("");
 
     const handleUserRoleChange = (value) => {
         SetValuesUsers((prev) => ({ ...prev, userRole: value }));
@@ -43,7 +43,7 @@ export function ModelComponent({ isModalVisible, onCancel, modalContent, addTitl
         username: "",
         isActive: true,
         password: "",
-        userRole: "Role"
+        userRole: ""
     });
 
     const [valuesPlanets, SetValuesPlanets] = useState({
@@ -98,12 +98,7 @@ export function ModelComponent({ isModalVisible, onCancel, modalContent, addTitl
         }
     };
 
-    const handleOk = () => {
-        setLoading(true);
-        setTimeout(() => {
-            setLoading(false);
-            onCancel();
-        });
+    const handleOk = async () => {
         if (modalContent === 'spaceShips') {
             rocketPost();
         }
@@ -116,21 +111,40 @@ export function ModelComponent({ isModalVisible, onCancel, modalContent, addTitl
         if (modalContent === 'expedition') {
             expeditionsPost();
         }
+        setTimeout(() => {
+            setErrorMessage(null);
+        }, 3000);
     };
 
     /* ROCKET */
-
     const rocketPost = async () => {
-        setLoading(true);
-        const url = "http://lambalog.com/api/space-vehicles";
-        try {
-            const data = await fetchRocketsPost(valuesRockets, url);
-            console.log(data);
-        } catch (error) {
-            console.error("Error:", error);
-        } finally {
-            setLoading(false);
-            onCancel();
+        const requiredFields = [
+            "name",
+            "modelName",
+            "modelYear",
+            "serialNumber",
+            "description",
+            "maxNumberOfPassengers",
+            "ageLimit"
+        ];
+        const errors = {};
+        requiredFields.forEach(field => {
+            if (!valuesRockets[field]) {
+                errors[field] = `Lütfen ${field} alanını doldurun.`;
+            }
+        });
+        if (Object.keys(errors).length > 0) {
+            for (const field in errors) {
+                setErrorMessage(errors[field]);
+            }
+        } else {
+            const url = "http://lambalog.com/api/space-vehicles";
+            try {
+                const data = await fetchRocketsPost(valuesRockets, url);
+                console.log(data);
+            } catch (error) {
+                console.error("Hata:", error);
+            }
         }
     };
 
@@ -146,35 +160,95 @@ export function ModelComponent({ isModalVisible, onCancel, modalContent, addTitl
         }
         fetchRocketData();
     }, []);
-
     /* ROCKET */
 
+    /* USERS */
     const usersPost = async () => {
-        setLoading(true);
+        let hasError = false;
+
+        if (!valuesUsers.name) {
+            setErrorMessage("Lütfen isim alanını doldurun.");
+            hasError = true;
+        }
+
+        if (!valuesUsers.surname) {
+            setErrorMessage("Lütfen soyisim alanını doldurun.");
+            hasError = true;
+        }
+
+        if (!valuesUsers.emailAddress) {
+            setErrorMessage("Lütfen e-posta adresi alanını doldurun.");
+            hasError = true;
+        }
+
+        if (!valuesUsers.phoneNumber) {
+            setErrorMessage("Lütfen telefon numarası alanını doldurun.");
+            hasError = true;
+        }
+
+        if (valuesUsers.phoneNumber.length < 11) {
+            setErrorMessage("Telefon numarası 11 karakterden az olamaz.");
+            hasError = true;
+        }
+
+        if (!valuesUsers.username) {
+            setErrorMessage("Lütfen kullanıcı adı alanını doldurun.");
+            hasError = true;
+        }
+
+        if (!valuesUsers.password) {
+            setErrorMessage("Lütfen şifre alanını doldurun.");
+            hasError = true;
+        }
+
+        if (!valuesUsers.userRole) {
+            setErrorMessage("Lütfen role alanını doldurun.");
+            hasError = true;
+        }
+
+        if (hasError) {
+            return;
+        }
+
         const url = "http://lambalog.com/api/users";
         try {
             const data = await fetchUsersPost(valuesUsers, url);
             console.log(data);
         } catch (error) {
-            console.error("Error:", error);
-        } finally {
-            setLoading(false);
-            onCancel();
+            console.error("Hata:", error);
         }
     };
+    /* USERS */
 
     /* PLANET */
     const planetsPost = async () => {
-        setLoading(true);
-        const url = "http://lambalog.com/api/planets";
-        try {
-            const data = await fetchPlanetsPost(valuesPlanets, url);
-            console.log(data);
-        } catch (error) {
-            console.error("Error:", error);
-        } finally {
-            setLoading(false);
-            onCancel();
+        const requiredFields = [
+            "name",
+            "sequence",
+            "difficultyLevel",
+            "imageUrl",
+            "detailsImageUrl",
+            "description",
+            "summaryDescription"
+        ];
+        const errors = {};
+        requiredFields.forEach(field => {
+            if (!valuesPlanets[field]) {
+                errors[field] = `Lütfen ${field} alanını doldurun.`;
+            }
+        });
+        if (Object.keys(errors).length > 0) {
+            for (const field in errors) {
+                setErrorMessage(errors[field]);
+            }
+        } else {
+            const url = "http://lambalog.com/api/planets";
+            try {
+                const data = await fetchPlanetsPost(valuesPlanets, url);
+                console.log(data);
+            } catch (error) {
+                console.error("Error:", error);
+            }
         }
     };
 
@@ -192,8 +266,8 @@ export function ModelComponent({ isModalVisible, onCancel, modalContent, addTitl
     }, []);
     /* PLANET */
 
+    /* EXPEDITION */
     const expeditionsPost = async () => {
-        setLoading(true);
         const url = "http://lambalog.com/api/expenditions";
         const formattedExpeditionDate = new Date(valuesExpeditions.expeditionDate).toISOString();
         const formattedArrivalDate = new Date(valuesExpeditions.arrivalDate).toISOString();
@@ -210,11 +284,9 @@ export function ModelComponent({ isModalVisible, onCancel, modalContent, addTitl
             console.log(data);
         } catch (error) {
             console.error("Hata:", error);
-        } finally {
-            setLoading(false);
-            onCancel();
         }
     };
+    /* EXPEDITION */
 
     const contentMap = {
         spaceShips: (
@@ -262,7 +334,7 @@ export function ModelComponent({ isModalVisible, onCancel, modalContent, addTitl
                     <Input
                         id='modal-username-style-input' onChange={handleInput} value={valuesUsers.username} placeholder='Username' name="username"
                     />
-                    <Input
+                    <Input.Password
                         id='modal-username-style-input' onChange={handleInput} value={valuesUsers.password} placeholder='Password' name="password"
                     />
                     <Select
@@ -374,7 +446,7 @@ export function ModelComponent({ isModalVisible, onCancel, modalContent, addTitl
                     onOk={handleOk}
                     onCancel={onCancel}
                     footer={[
-                        <Button style={{ backgroundColor: "#7465F2" }} onClick={handleOk} type='primary' text="Kaydet" key="submit" loading={loading}>
+                        <Button style={{ backgroundColor: "#7465F2" }} onClick={handleOk} type='primary' text="Kaydet" key="submit">
                             <AiOutlineSave style={{ color: "white" }} />
                             Kaydet
                         </Button>
@@ -382,6 +454,11 @@ export function ModelComponent({ isModalVisible, onCancel, modalContent, addTitl
                 >
                     <div id='modal-container'>
                         {contentMap[modalContent]}
+                        {errorMessage && (
+                            <div className='addModalErrorContainer'>
+                                {errorMessage}
+                            </div>
+                        )}
                     </div>
                 </Modal>
             </div >

@@ -4,8 +4,8 @@ import { useState } from 'react';
 import { checkToken } from '../../services/AuthService';
 import { TableListComp } from '../../components/TableListComp/TableListComp';
 import { deletePlanet, fetchPlanetsGet } from '../../services/PlanetService';
-import UserDropdownMenu from '../../components/UserDropdownMenu/UserDropdownMenu';
 import EditModal from '../../components/EditModal/EditUserModal';
+import { RiArrowRightSLine } from 'react-icons/ri';
 
 
 export default function UsersList() {
@@ -18,10 +18,7 @@ export default function UsersList() {
             key: 'id',
             dataIndex: 'id',
             render: (id, record) => (
-                <UserDropdownMenu
-                    onEditClick={() => handleEditPlanet(id)}
-                    onDeleteClick={() => handleDeletePlanet(id)}
-                />
+                <button className="editButton" onClick={() => handleEditPlanet(id)}><RiArrowRightSLine /></button>
             ),
         },
         {
@@ -104,7 +101,7 @@ export default function UsersList() {
                 <div className='orders-list'>
                     <TableListComp props={{ columns: columns, dataSource: planets }} text="planets" pageSearchType={"planets"} addButtonLabel={"Gezegen Ekle"} />
                     {isModalOpen && (
-                        <EditModal planet={selectedPlanet} onCancel={handleModalClose} visible={isModalOpen} pageType={"planets"} addEditTitle={"Gezegen Güncelleme"}/>
+                        <EditModal planet={selectedPlanet} onCancel={handleModalClose} visible={isModalOpen} pageType={"planets"} addEditTitle={"Gezegen Güncelleme"} planetDelete={handleDeletePlanet}/>
                     )}
                 </div>
             </article>

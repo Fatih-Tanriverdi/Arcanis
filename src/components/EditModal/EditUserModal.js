@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import { Modal, Input, Space, Select } from 'antd';
+import { Modal, Input, Space, Select, Button } from 'antd';
 import "./EditUserModal.css";
 import { putUsers } from '../../services/UserService';
 import { fetchRocketsGet, putRocket } from '../../services/RocketService';
 import { fetchPlanetsGet, putPlanet } from '../../services/PlanetService';
 import { putExpedition } from '../../services/ExpeditionService';
 
-export default function EditUserModal({ user, rocket, planet, expendition, onSave, onCancel, visible, pageType, addEditTitle }) {
+export default function EditUserModal({ user, rocket, planet, expendition, onSave, onCancel, visible, pageType, addEditTitle, userDelete, rocketDelete, planetDelete, expeditionDelete }) {
     const [editedData, setEditedData] = useState(user);
     const [editRocket, setEditRocket] = useState(rocket);
     const [editPlanet, setEditPlanet] = useState(planet);
     const [editExpedition, setEditExpedition] = useState(expendition);
 
+    const [errorText, setErrorText] = useState("");
     const [spaceVehicleData, setSpaceVehicleData] = useState([]);
     const [planetData, setPlanetData] = useState([]);
 
@@ -48,32 +49,82 @@ export default function EditUserModal({ user, rocket, planet, expendition, onSav
         setSelectedArrivalPlanet(value);
     };
 
+    useEffect(() => {
+        if (errorText) {
+            const timer = setTimeout(() => {
+                setErrorText("");
+            }, 3000);
+            return () => clearTimeout(timer);
+        }
+    }, [errorText]);
+
     const handleSave = async () => {
         try {
             if (pageType === 'users') {
+                const requiredFields = ['name', 'surname', 'EmailAddress', 'PhoneNumber', 'username', 'password'];
+                for (const field of requiredFields) {
+                    if (!editedData[field]) {
+                        setErrorText(`Lütfen ${field} alanını doldurun.`);
+                        return;
+                    }
+                }
                 await putUsers(editedData);
                 onSave(user.id, editedData);
             }
-
             if (pageType === 'spaceShips') {
+                const requiredFields = ['name', 'modelName', 'modelYear', 'serialNumber', 'description', 'maxNumberOfPassengers', 'ageLimit'];
+                for (const field of requiredFields) {
+                    if (!editRocket[field]) {
+                        setErrorText(`Lütfen ${field} alanını doldurun.`);
+                        return;
+                    }
+                }
                 await putRocket(editRocket);
                 onSave(rocket.id, editRocket)
             }
-
             if (pageType === 'planets') {
+                const requiredFields = ['name', 'sequence', 'difficultyLevel', 'imageUrl', 'detailsImageUrl', 'description', 'summaryDescription'];
+                for (const field of requiredFields) {
+                    if (!editPlanet[field]) {
+                        setErrorText(`Lütfen ${field} alanını doldurun.`);
+                        return;
+                    }
+                }
                 await putPlanet(editPlanet);
                 onSave(planet.id, editPlanet);
             }
-
             if (pageType === 'expedition') {
+                const requiredFields = ['name', 'expeditionDate', 'arrivalDate', 'ticketPrice', 'selectedSpaceVehicle', 'selectedDeparturePlanet', 'selectedArrivalPlanet'];
+                for (const field of requiredFields) {
+                    if (!editExpedition[field]) {
+                        setErrorText(`Lütfen ${field} alanını doldurun.`);
+                        return;
+                    }
+                }
                 await putExpedition(editExpedition);
                 onSave(expendition.id, editExpedition);
             }
-
             onCancel();
         } catch (error) {
             console.error("Güncelleme işlemi başarısız oldu.", error);
+            setErrorText("Güncelleme işlemi başarısız oldu.");
         }
+    };
+
+    const handleDeleteUser = () => {
+        userDelete(user.id);
+    };
+
+    const handleDeleteRocket = () => {
+        rocketDelete(rocket.id);
+    };
+
+    const handleDeletePlanet = () => {
+        planetDelete(planet.id);
+    };
+
+    const handleDeleteExpedition = () => {
+        expeditionDelete(expendition.id);
     };
 
     useEffect(() => {
@@ -226,22 +277,22 @@ export default function EditUserModal({ user, rocket, planet, expendition, onSav
                                 id='modal-username-style-input' onChange={(e) => setEditPlanet({ ...editPlanet, name: e.target.value })} value={editPlanet.name} placeholder='Name' name="name"
                             />
                             <Input
-                                id='modal-username-style-input' onChange={(e) => setEditPlanet({ ...editPlanet, name: e.target.value })} value={editPlanet.sequence} placeholder='Sequence' name="sequence"
+                                id='modal-username-style-input' onChange={(e) => setEditPlanet({ ...editPlanet, sequence: e.target.value })} value={editPlanet.sequence} placeholder='Sequence' name="sequence"
                             />
                             <Input
-                                id='modal-username-style-input' onChange={(e) => setEditPlanet({ ...editPlanet, name: e.target.value })} value={editPlanet.difficultyLevel} placeholder='Difficulty Level' name="difficultyLevel"
+                                id='modal-username-style-input' onChange={(e) => setEditPlanet({ ...editPlanet, difficultyLevel: e.target.value })} value={editPlanet.difficultyLevel} placeholder='Difficulty Level' name="difficultyLevel"
                             />
                             <Input
-                                id='modal-username-style-input' onChange={(e) => setEditPlanet({ ...editPlanet, name: e.target.value })} value={editPlanet.imageUrl} placeholder='Image Url' name="imageUrl"
+                                id='modal-username-style-input' onChange={(e) => setEditPlanet({ ...editPlanet, imageUrl: e.target.value })} value={editPlanet.imageUrl} placeholder='Image Url' name="imageUrl"
                             />
                             <Input
-                                id='modal-username-style-input' onChange={(e) => setEditPlanet({ ...editPlanet, name: e.target.value })} value={editPlanet.detailsImageUrl} placeholder='Details Image Url' name="detailsImageUrl"
+                                id='modal-username-style-input' onChange={(e) => setEditPlanet({ ...editPlanet, detailsImageUrl: e.target.value })} value={editPlanet.detailsImageUrl} placeholder='Details Image Url' name="detailsImageUrl"
                             />
                             <Input
-                                id='modal-username-style-input' onChange={(e) => setEditPlanet({ ...editPlanet, name: e.target.value })} value={editPlanet.description} placeholder='Description' name="description"
+                                id='modal-username-style-input' onChange={(e) => setEditPlanet({ ...editPlanet, description: e.target.value })} value={editPlanet.description} placeholder='Description' name="description"
                             />
                             <Input
-                                id='modal-username-style-input' onChange={(e) => setEditPlanet({ ...editPlanet, name: e.target.value })} value={editPlanet.summaryDescription} placeholder='Summary Description' name="summaryDescription"
+                                id='modal-username-style-input' onChange={(e) => setEditPlanet({ ...editPlanet, summaryDescription: e.target.value })} value={editPlanet.summaryDescription} placeholder='Summary Description' name="summaryDescription"
                             />
                         </div>
                     </Space>
@@ -333,8 +384,29 @@ export default function EditUserModal({ user, rocket, planet, expendition, onSav
                 visible={visible}
                 onOk={handleSave}
                 onCancel={onCancel}
+                footer={[
+                    <div className='editButtonContainer'>
+                        <Button className='editDeleteButton' key="delete" type="danger" onClick={
+                            pageType === 'users' ? handleDeleteUser :
+                                pageType === 'spaceShips' ? handleDeleteRocket :
+                                    pageType === 'planets' ? handleDeletePlanet :
+                                        pageType === 'expedition' ? handleDeleteExpedition : null
+                        }>
+                            Delete
+                        </Button>
+                        <div>
+                            <Button className='editSaveButton' key="save" type="primary" onClick={handleSave}>
+                                Save
+                            </Button>
+                            <Button className='editCancelButton' key="cancel" onClick={onCancel}>
+                                Cancel
+                            </Button>
+                        </div>
+                    </div>
+                ]}
             >
                 {getPageContent()}
+                {errorText && <div className='addModalErrorContainer'>{errorText}</div>}
             </Modal>
         </div>
     );

@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { checkToken } from "../../services/AuthService";
 import { TableListComp } from "../../components/TableListComp/TableListComp";
 import { deleteUsers, fetchUsersDataGet } from "../../services/UserService";
-import UserDropdownMenu from "../../components/UserDropdownMenu/UserDropdownMenu";
+import { RiArrowRightSLine } from 'react-icons/ri';
 import EditUserModal from "../../components/EditModal/EditUserModal";
 
 export default function UsersList() {
@@ -17,10 +17,7 @@ export default function UsersList() {
             dataIndex: 'id',
             width: 50,
             render: (id, record) => (
-                <UserDropdownMenu
-                    onEditClick={() => handleEditUser(id)}
-                    onDeleteClick={() => handleDeleteUser(id)}
-                />
+                <button className="editButton" onClick={() => handleEditUser(id)}><RiArrowRightSLine /></button>
             ),
         },
         {
@@ -130,7 +127,7 @@ export default function UsersList() {
                 <div className='list-group-container'>
                     <TableListComp props={{ columns: columns, dataSource: usersData }}  text="users" pageSearchType={"users"} addButtonLabel={"Kullanıcı Ekle"} addTile={"Yeni Kullanıcı Ekle"}/>
                     {isModalOpen && (
-                        <EditUserModal user={selectedUser} onCancel={handleModalClose} visible={isModalOpen} pageType={"users"} addEditTitle={"Kullanıcı Güncelleme"}/>
+                        <EditUserModal user={selectedUser} onCancel={handleModalClose} visible={isModalOpen} pageType={"users"} addEditTitle={"Kullanıcı Güncelleme"} userDelete={handleDeleteUser}/>
                     )}
                 </div>
             </div>

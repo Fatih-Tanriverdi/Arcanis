@@ -4,8 +4,8 @@ import { useState } from 'react';
 import { checkToken } from '../../services/AuthService';
 import { TableListComp } from '../../components/TableListComp/TableListComp';
 import { deleteExpedition, fetchExpenditionsGet } from '../../services/ExpeditionService';
-import UserDropdownMenu from '../../components/UserDropdownMenu/UserDropdownMenu';
 import EditUserModal from '../../components/EditModal/EditUserModal';
+import { RiArrowRightSLine } from 'react-icons/ri';
 
 
 export default function UsersList() {
@@ -18,10 +18,7 @@ export default function UsersList() {
             dataIndex: 'id',
             key: 'id',
             render: (id, record) => (
-                <UserDropdownMenu
-                    onEditClick={() => handleEditExpedition(id)}
-                    onDeleteClick={() => handleDeleteExpedition(id)}
-                />
+                <button className="editButton" onClick={() => handleEditExpedition(id)}><RiArrowRightSLine /></button>
             ),
         },
         {
@@ -114,7 +111,7 @@ export default function UsersList() {
                 <div className='expedition-list'>
                     <TableListComp props={{ columns: columns, dataSource: expenditions }} text="expedition" pageSearchType={"expedition"} addButtonLabel={"Sefer Ekle"} />
                     {isModalOpen && (
-                        <EditUserModal expendition={selectedExpeditions} onCancel={handleModalClose} visible={isModalOpen} pageType={"expedition"} addEditTitle={"Sefer Güncelleme"} />
+                        <EditUserModal expendition={selectedExpeditions} onCancel={handleModalClose} visible={isModalOpen} pageType={"expedition"} addEditTitle={"Sefer Güncelleme"} expeditionDelete={handleDeleteExpedition}/>
                     )}
                 </div>
             </article>

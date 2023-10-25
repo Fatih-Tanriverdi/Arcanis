@@ -49,13 +49,13 @@ export function TableListComp({ pageSearchType, props, addButtonLabel }) {
     };
 
     const roleOptions = [
-        { value: 'admin', label: 'Admin' },
-        { value: 'customer', label: 'Customer' },
+        { value: 1, label: 'Admin' },
+        { value: 2, label: 'Customer' },
     ];
 
     const activeOptions = [
-        { value: 'active', label: 'Active' },
-        { value: 'passive', label: 'Passive' },
+        { value: true, label: 'Active' },
+        { value: false, label: 'Passive' },
     ];
 
     const modelYearOptions = [];
@@ -314,6 +314,7 @@ export function TableListComp({ pageSearchType, props, addButtonLabel }) {
                     <Table
                         columns={props.columns}
                         dataSource={searchText ? filteredData : props.dataSource}
+                        rowClassName="table-row"
                         pagination={{
                             current: page,
                             pageSize: pageSize,
