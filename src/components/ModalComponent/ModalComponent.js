@@ -12,9 +12,9 @@ export function ModelComponent({ isModalVisible, onCancel, modalContent, addTitl
     const [spaceVehicleData, setSpaceVehicleData] = useState([]);
     const [planetData, setPlanetData] = useState([]);
 
-    const [selectedSpaceVehicle, setSelectedSpaceVehicle] = useState("");
-    const [selectedDeparturePlanet, setSelectedDeparturePlanet] = useState("");
-    const [selectedArrivalPlanet, setSelectedArrivalPlanet] = useState("");
+    const [selectedSpaceVehicle, setSelectedSpaceVehicle] = useState("Space Vehicle");
+    const [selectedDeparturePlanet, setSelectedDeparturePlanet] = useState("Departure Planet");
+    const [selectedArrivalPlanet, setSelectedArrivalPlanet] = useState("Arrival Planet");
 
     const handleUserRoleChange = (value) => {
         SetValuesUsers((prev) => ({ ...prev, userRole: value }));

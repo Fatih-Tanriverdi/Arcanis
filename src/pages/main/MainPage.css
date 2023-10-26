@@ -1,6 +1,44 @@
+/* Colors */
+.bg-1 {
+    background-color: #313759;
+}
+
+.bg-2 {
+    background-color: #244359;
+}
+
+.bg-3 {
+    background-color: #3F3347;
+}
+
+.bg-4 {
+    background-color: #28414A;
+}
+/* svgColors */
+
+.svgColor-1 {
+    color: #7366F0;
+}
+
+.svgColor-2 {
+    color: #00CEE7;
+}
+
+.svgColor-3 {
+    color: #EA5354;
+}
+
+.svgColor-4 {
+    color: #29C76F;
+}
+
+/* svgColors */
+
+/* Colors */
+
 .main-page-container {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
 }
 
 .main-page-body {
@@ -11,36 +49,162 @@
     border-radius: 0.5rem;
 
     overflow-y: scroll;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
-.main-page-content {
+.mainPageBoxContainer {
     display: flex;
-    justify-content: center;
-    align-items: center;
     flex-direction: column;
 }
 
-.main-page-content>h1 {
-    color: white;
+.mainPageBox1,
+.mainPageBox2,
+.mainPageBox3{
     width: 100%;
-    font-size: 2.5rem;
-    margin: 2rem;
-    border-bottom: 0.2rem solid #161D30;
+    height: 35rem;
+    margin-top: 1rem;
+    background-color: #273046;
+    border-radius: 0.5rem;
+    box-sizing: border-box;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
-.radialChartContainer,
-.xyplotContainer {
+.mainPageBox2 {
+    margin-top: 1rem;
+}
+
+.mainPageTitle,
+.mainPageBoxTitle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin: 1rem 2rem 1rem 2rem;
+}
+
+.mainPageBoxUsersInfo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin: 1rem 2rem 1rem 2rem;
+}
+
+.mainPageBoxUsersInfoSpinner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.mainPageBoxUsersInfoSpinner > p {
+    font-size: 1rem;
+    margin-right: 1rem;
+}
+
+.ant-progress {
+    color: white !important;
+}
+
+.mainPageBodyContent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(25rem, 1fr)); 
+    gap: 20px; 
+}
+
+.mainPageBodyContentBox {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    border-radius: 0.5rem;
+    margin-left: 5rem;
+}
+
+.mainPageBodyContentSvg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 6rem;
+    height: 6rem;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.mainPageBodyContentSvg > svg {
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+.mainPageBodyContentTitle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    cursor: pointer;
+
+    font-size: 1.2rem;
     margin: 1rem;
-    background-color: #161D30 !important;
-    width: 95%;
+}
+
+.mainPageBodyContentTitle > h1 {
+    margin-top: 1rem;
+}
+
+.mainPageBodyContentTitle > p {
+    padding-top: 0;
+}
+
+.mainPageExpeditionsFooter {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    border-top: 0.1rem solid #51596A;
+}
+
+.mainPageExpeditionsCompleted {
+    border-right: 0.1rem solid #51596A;
+    width: 50%;
+}
+
+.mainPageExpeditionsProgress {
+    width: 50%;
+}
+
+.mainPageExpeditionsBody {
+    margin-top: 6rem;
+    margin-bottom: 6rem;
+}
+
+.mainPageExpeditionsCompleted> p,
+.mainPageExpeditionsProgress> p {
+    padding-bottom: 0;
+    font-size: 1rem;
+}
+
+.mainPageExpeditionsCompleted> h1,
+.mainPageExpeditionsProgress> h1 {
+    margin-bottom: 1.3rem;
+    font-size: 2rem;
+}
+
+.ant-progress-text {
+    color: white !important;
 }
 
 
-@media screen and (min-width: 700px) {}
+@media screen and (min-width: 700px) {
+    .mainPageBoxContainer {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row;
+    }
+
+    .mainPageBox2 {
+        margin: 1rem;
+    }
+}
 
 @media screen and (min-width: 1200px) {
     .main-page-container {
@@ -49,16 +213,19 @@
 
     .main-page-body {
         width: 100%;
-        height: 65rem;
+        height: 30rem;
         margin-top: 3rem;
         background-color: #273046;
         border-radius: 0.5rem;
     }
 
-    .main-page-content>h1 {
-        color: white;
-        font-size: 2.5rem;
-        margin: 2rem;
-        border-bottom: 0.2rem solid #161D30;
+    .mainPageBoxContainer {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row;
+    }
+    
+    .mainPageBox2 {
+        margin: 1rem;
     }
 }

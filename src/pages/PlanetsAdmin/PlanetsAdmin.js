@@ -6,6 +6,8 @@ import { TableListComp } from '../../components/TableListComp/TableListComp';
 import { deletePlanet, fetchPlanetsGet } from '../../services/PlanetService';
 import EditModal from '../../components/EditModal/EditUserModal';
 import { RiArrowRightSLine } from 'react-icons/ri';
+import { Popover } from 'antd';
+
 
 
 export default function UsersList() {
@@ -46,7 +48,11 @@ export default function UsersList() {
             key: 'description',
             dataIndex: 'description',
             render: (text) => (
-                <div className="table-cell">{text}</div>
+                <div className="table-cell">
+                    <Popover content={text}>
+                        {text}
+                    </Popover>
+                </div>
             ),
         },
     ];
@@ -101,7 +107,7 @@ export default function UsersList() {
                 <div className='orders-list'>
                     <TableListComp props={{ columns: columns, dataSource: planets }} text="planets" pageSearchType={"planets"} addButtonLabel={"Gezegen Ekle"} />
                     {isModalOpen && (
-                        <EditModal planet={selectedPlanet} onCancel={handleModalClose} visible={isModalOpen} pageType={"planets"} addEditTitle={"Gezegen Güncelleme"} planetDelete={handleDeletePlanet}/>
+                        <EditModal planet={selectedPlanet} onCancel={handleModalClose} visible={isModalOpen} pageType={"planets"} addEditTitle={"Gezegen Güncelleme"} planetDelete={handleDeletePlanet} />
                     )}
                 </div>
             </article>

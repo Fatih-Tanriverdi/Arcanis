@@ -16,9 +16,9 @@ export default function EditUserModal({ user, rocket, planet, expendition, onSav
     const [spaceVehicleData, setSpaceVehicleData] = useState([]);
     const [planetData, setPlanetData] = useState([]);
 
-    const [selectedSpaceVehicle, setSelectedSpaceVehicle] = useState("");
-    const [selectedDeparturePlanet, setSelectedDeparturePlanet] = useState("");
-    const [selectedArrivalPlanet, setSelectedArrivalPlanet] = useState("");
+    const [selectedSpaceVehicle, setSelectedSpaceVehicle] = useState("Space Vehicle");
+    const [selectedDeparturePlanet, setSelectedDeparturePlanet] = useState("Departure Planet");
+    const [selectedArrivalPlanet, setSelectedArrivalPlanet] = useState("Arrival Planet");
 
     const UserRole = {
         ADMIN: 1,
@@ -256,7 +256,7 @@ export default function EditUserModal({ user, rocket, planet, expendition, onSav
                                 onChange={(e) => setEditedData({ ...editedData, password: e.target.value })}
                             />
                             <Select
-                                defaultValue={editedData.userRole}
+                                value={editedData.userRole || undefined}
                                 onChange={handleUserRoleChange}
                                 placeholder="Role"
                             >

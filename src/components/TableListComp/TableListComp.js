@@ -287,8 +287,6 @@ export function TableListComp({ pageSearchType, props, addButtonLabel }) {
         setFilteredData(filteredDataBase);
     };
 
-    console.log(selectedFilters);
-
     return (
         <div className='listCompContainer'>
             <div className='search-bar-item-top'>
