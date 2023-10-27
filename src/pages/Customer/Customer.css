@@ -1,13 +1,17 @@
+.borderRL {
+    border-right: 0.1rem solid white !important;
+    border-left: 0.1rem solid white !important;
+}
+
+
 /** first-color =  #273046  **/
 /** second-color =  #161D30  **/
 /** third-color =  #5D5E9C  **/
 /** fourth-color =  #858B9B  **/
 
 #customer-panel-body {
-    display: block;
-    margin: 0 !important;
-    padding: 0 !important;
-    width: 100%;
+    display: flex;
+    flex-direction: column;
     background-color: #161D30;
     background-size: cover;
     background-attachment: fixed;
@@ -26,166 +30,44 @@
     z-index: -1;
 }
 
-.customer-container-header {
-    margin: 0 !important;
-}
-
 /* HEADER */
 
-.header-customer {
+.headerCustomer {
     background-position: center;
-    min-height: 5rem !important;
     background-color: #273046;
-    margin: 1rem;
-    border-radius: 0.5rem;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
-.header-position-customer,
-.customer-exit {
+.headerCustomerInfo {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
+    padding: 3rem;
 }
 
-.customer-exit {
-    margin-top: 0.8%;
+.headerTitleStyle {
+    color: #7465F2;
+    font-size: 3rem;
+    margin-right: 30%;
+    cursor: pointer;
 }
 
-.customer-img {
-    height: 2rem;
-    width: 2rem;
-    border-radius: 50%;
-    background-color: #fff;
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-
-    margin-left: 0.5rem;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.customer-info>h1 {
-    font-size: 0.8rem;
+.headerButtonStyle {
+    background-color: transparent;
     color: white;
+    padding: 1rem;
+    border: none;
+    font-size: 1.5rem;
 }
 
 /* HEADER */
 
-/* BUTTON */
-
-.css-dev-only-do-not-override-12upa3x {
-    color: white !important;
-}
-
-.customer-btn {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-left: 0.5rem;
-}
-
-.customer-btn-hover.active {
-    border-bottom-color: #7465F2;
-    border-bottom-width: 2px !important;
-    border-radius: 0 !important;
-    color: #7465F2 !important;
-}
-
-/* BUTTON */
-
-.customer-ext-btn {
-    cursor: pointer;
-    font-size: 1.5rem !important;
-    color: white !important;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.customer-ext-btn>svg {
-    margin: 1rem 1rem 1rem 1rem;
-}
-
-.customer-ext-btn:hover {
-    color: #7465F2 !important;
-    transition: 0.2s all ease-in;
-}
-
-.customer-page-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100% !important;
-    width: 100% !important;
-    margin-top: 2rem;
-    margin-bottom: 3rem;
-    border-radius: 0.5rem;
-}
 
 
 @media screen and (min-width: 700px) {
-    .header-customer {
-        margin: 2rem;
-    }
-    
-    .customer-img {
-        height: 2.5rem;
-        width: 2.5rem;
-        margin-left: 0.8rem;
-    }
 
-    .customer-info>h1 {
-        font-size: 1rem;
-    }
-
-    .customer-exit {
-        margin-top: 0;
-    }
-
-    .customer-btn-hover.active {
-        border-bottom-width: 3px !important;
-    }
-
-    .customer-ext-btn {
-        font-size: 2.5rem !important;
-    }
-
-    .customer-container-header {
-        margin: 0 !important;
-    }
 }
 
 @media screen and (min-width: 1200px) {
-    .header-customer {
-        margin: 3rem;
-    }
-    
-    .customer-img {
-        height: 3.5rem;
-        width: 3.5rem;
-        margin-left: 1rem;
-    }
 
-    .customer-info>h1 {
-        font-size: 1.5rem;
-    }
-
-    .customer-exit {
-        margin-top: 0;
-    }
-
-    .customer-btn-hover.active {
-        border-bottom-width: 3px !important;
-    }
-
-    .customer-ext-btn {
-        font-size: 3rem !important;
-    }
-
-    .customer-container-header {
-        margin: 0 !important;
-    }
 }

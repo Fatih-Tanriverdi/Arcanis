@@ -176,6 +176,28 @@
 
 /* BUTTON */
 
+.css-dev-only-do-not-override-12upa3x {
+    color: white !important;
+}
+
+.customer-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 0.5rem;
+}
+
+.customer-btn-hover.active {
+    border-bottom-color: #7465F2;
+    border-bottom-width: 2px !important;
+    border-radius: 0 !important;
+    color: #7465F2 !important;
+}
+
+/* BUTTON */
+
+/* BUTTON */
+
 .admin-panel-button.active {
     background-color: #7465F2 !important;
 }

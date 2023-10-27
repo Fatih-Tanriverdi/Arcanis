@@ -17,31 +17,14 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 32rem;
+    min-height: 40rem;
     height: 100%;
-    width: 95.5%;
+    width: 100%;
     margin: 0 auto;
-    margin-bottom: 1rem;
-    border-radius: 0.5rem;
     background-color: #273046;
     background-position: center;
     background-size: cover;
     background-image: url("../../../public/images/gezegenler.png");
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-}
-
-.ticket-page-footer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 32rem;
-    height: 100%;
-    width: 95.5%;
-    margin: 0 auto;
-    border-radius: 0.5rem;
-    background-color: #273046;
-    background-position: center;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
@@ -77,8 +60,8 @@
     color: #ffffff;
     background-color: #7465F2;
     cursor: pointer;
-    margin: 2rem ;
-    
+    margin: 2rem;
+
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
@@ -91,16 +74,16 @@
     border-bottom: 0.1rem solid #7465F2;
     margin-top: 2rem !important;
     width: 25rem;
-    margin: 0;
-    padding: 0;
+}
+
+.ticket-search .ant-picker-range {
+    margin: 2rem;
+    width: 27rem !important;
 }
 
 .ticket-search .ant-picker-input {
     border-bottom: 0.1rem solid #7465F2;
-    width: 10rem !important;
     margin-top: 1rem !important;
-    margin: 0;
-    padding: 0;
 }
 
 .ticket-search .ant-picker-suffix>span {
@@ -108,6 +91,7 @@
 }
 
 .ant-picker-input>input {
+    width: 50% !important;
     color: white !important;
 }
 
@@ -140,6 +124,7 @@
     justify-content: center;
     flex-direction: column;
     align-items: center;
+    cursor: pointer;
 
     background-color: rgba(27, 30, 46, 0.8);
     border-radius: 0.5rem !important;
@@ -147,7 +132,7 @@
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
-.desc-box > svg {
+.desc-box>svg {
     color: white;
     font-size: 2rem !important;
 }
@@ -159,27 +144,211 @@
 
 /* DESCRİPTİON */
 
+/* BODY CONTENT */
+.ticketPageBodyContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 32rem;
+    height: 100%;
+    width: 80%;
+    margin: 0 auto;
+    border-radius: 0.5rem;
+    background-color: #273046;
+    background-position: center;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.ticketPageBodyContentInfoBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+
+    height: 30rem;
+    width: 90%;
+    cursor: pointer;
+    background-color: rgba(27, 30, 46, 0.9);
+    border-radius: 0.5rem;
+    margin: 2rem;
+}
+
+.ticketPageInfoIcon {
+    font-size: 8rem;
+}
+
+.ticketPageInfoDescription {
+    font-size: 1.2rem;
+    margin: 1rem;
+}
+
+.ticketPageBodyTitle,
+.ticketPageBodyQuestionsTitle {
+    margin: 3rem;
+}
+
+/* BODY CONTENT */
+
+/* BODY QUESTİONS */
+
+.ticketPageBodyQuestions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 40rem;
+    height: 100%;
+    width: 80%;
+    margin: 0 auto;
+    border-radius: 0.5rem;
+    background-color: #273046;
+    background-position: center;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.ticketPageBodyQuestionsBox {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 95%;
+    height: auto;
+    cursor: pointer;
+    background-color: rgba(27, 30, 46, 0.9);
+    border-radius: 0.5rem;
+    margin: 1rem;
+    padding: 2rem;
+}
+
+.ticketPageBodyQuestionsBoxSvg {
+    display: flex;
+    align-items: center;
+    color: white;
+    font-size: 2.5rem;
+}
+
+.ticketPageBodyQuestionsBoxAdditional {
+    display: none;
+
+}
+
+.ticketPageBodyQuestionsBoxAdditionalVisible {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* BODY QUESTİONS */
+
+/* FOOTER PROMO */
+
+.ticketPagePromoContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 10rem;
+    height: 100%;
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 10rem;
+    margin-bottom: 0;
+    background-position: center;
+    border-top: 0.1rem solid #7465F2;
+}
+
+.ticketPagePromoContent {
+    width: 100%;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ticketPagePromoContent i {
+    margin-right: 1rem;
+    margin-top: 0.5rem;
+}
+
+.ticketPagePromoContent h3 {
+    font-size: 1.2rem;
+    color: white;
+}
+
+/* FOOTER PROMO */
+
+/* FOOTER CONTAİNER */
+
+.ticketPageFooterContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    min-height: 30rem;
+    height: 100%;
+    width: 100%;
+    margin: 0 auto;
+    background-color: #273046;
+    background-position: center;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.ticketPageFooterInfoBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    cursor: pointer;
+    border-radius: 0.5rem;
+    margin: 2rem;
+}
+
+.ticketPageFooterInfoBox a {
+    color: white;
+    width: auto;
+    box-sizing: content-box;
+}
+
+.ticketPageFooterInfoBox ul {
+    margin-top: 1rem;
+    list-style: none;
+    padding: 0;
+}
+
+.ticketPageFooterInfoBox ul li {
+    text-align: left;
+    margin-left: 2rem;
+}
+
+.ticketPageListHeader {
+    margin-bottom: 2rem;
+    border-bottom: 0.1rem solid white;
+}
+
+/* FOOTER CONTAİNER */
+
 @media screen and (min-width: 700px) {
     .ticket-page-body-position {
         flex-direction: row;
     }
 
     .ticket-search {
-        min-height: 27.5rem !important;
+        min-height: 35rem !important;
         height: 100%;
         min-width: 35rem !important;
         width: 100%;
     }
 
     .desc-box {
-        height: 10rem !important;
-        width: 10rem !important;
+        height: 12rem !important;
+        width: 12rem !important;
     }
 
-    .desc-box > svg {
+    .desc-box>svg {
         font-size: 4rem !important;
     }
-    
+
     .desc-box>p {
         font-size: 0.9rem !important;
     }
@@ -188,6 +357,32 @@
         height: 4rem;
         width: 28rem;
         font-size: 1.2rem;
+    }
+
+    .ticketPageBodyContent {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .ticketPageBodyContentInfoBox {
+        width: calc(50% - 2rem);
+        margin: 1rem;
+    }
+
+    .ticketPageFooterContainer {
+        flex-direction: row;
+    }
+
+    .ticketPageFooterInfoBox {
+        width: 25%;
+    }
+
+    .ticket-search .ant-select {
+        width: 30rem;
+    }
+
+    .ticket-search .ant-picker-range {
+        width: 32rem !important;
     }
 }
 
@@ -197,28 +392,52 @@
     }
 
     .ticket-search {
-        min-height: 27.5rem !important;
+        min-height: 35rem !important;
         height: 100%;
-        min-width: 35rem !important;
+        min-width: 50rem !important;
         width: 100%;
     }
 
     .desc-box {
-        height: 10rem !important;
-        width: 10rem !important;
+        height: 12rem !important;
+        width: 12rem !important;
     }
 
-    .desc-box > svg {
+    .desc-box>svg {
         font-size: 4rem !important;
     }
-    
+
     .desc-box>p {
         font-size: 0.9rem !important;
     }
 
     .ticket-btn-group>button {
-        height: 4rem;
-        width: 28rem;
+        height: 6rem;
+        width: 40rem;
         font-size: 1.2rem;
+    }
+
+    .ticketPageBodyContent {
+        flex-direction: row;
+    }
+
+    .ticketPageBodyContentInfoBox {
+        width: 23%;
+    }
+
+    .ticketPageFooterContainer {
+        flex-direction: row;
+    }
+
+    .ticketPageFooterInfoBox {
+        width: 25%;
+    }
+
+    .ticket-search .ant-select {
+        width: 40rem;
+    }
+
+    .ticket-search .ant-picker-range {
+        width: 42rem !important;
     }
 }
