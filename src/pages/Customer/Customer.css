@@ -58,10 +58,14 @@
     padding: 1rem;
     border: none;
     font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.headerButtonContainer > a:hover {
+    color: #7465F2;
 }
 
 /* HEADER */
-
 
 
 @media screen and (min-width: 700px) {

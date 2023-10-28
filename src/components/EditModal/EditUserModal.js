@@ -380,6 +380,7 @@ export default function EditUserModal({ user, rocket, planet, expendition, onSav
     return (
         <div className='editUserModelContainer'>
             <Modal
+                className='modalComponent'
                 title={addEditTitle}
                 visible={visible}
                 onOk={handleSave}

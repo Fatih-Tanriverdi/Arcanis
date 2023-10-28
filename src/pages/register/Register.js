@@ -7,7 +7,7 @@ import { registerUser } from '../../services/AuthService';
 import { ClipLoader } from 'react-spinners';
 import { AuthInputEmail, AuthInputUsername, AuthInputPassword, AuthInputName, AuthInputSurname, AuthInputPhoneNumber } from '../../components/AuthInput/AuthInput';
 
-export default function Register() {
+export default function Register({ setPageAuthType }) {
     const navigate = useNavigate();
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
@@ -72,56 +72,42 @@ export default function Register() {
         setLoading(false);
     };
 
+    const handleRegisterClick = () => {
+        setPageAuthType('authLogin');
+    };
+
     const ErrorMessage = ({ message }) => {
         return <div id="error-message-register"><p>{message}</p></div>;
     };
 
     return (
-        <section className="register-body-color">
-            <section className="register-container">
-                {/* Article Bağlangıç */}
-                <article className="register-card">
-                    {/* Card-Left Başlangıç */}
-                    <LoginImage />
-                    {/* Card-Left Bitiş */}
-                    <div className="register-row">
-                        {/* Card-Right Başlangıç */}
-                        <article className="register-card-right">
-                            <div className="register-card-content">
-                                <div className="user-register">
-                                    <h1>REGISTER</h1>
-                                    <p id="description">welcome to the website</p>
-                                </div>
-                                <form className="input-group-register">
-                                    <AuthInputEmail value={values.emailAddress} onChange={handleInput} />
-                                    <br />
-                                    <AuthInputUsername value={values.username} onChange={handleInput} placeholder="Enter your Username" />
-                                    <br />
-                                    <AuthInputPassword value={values.password} onChange={handleInput} />
-                                    <br />
-                                    <AuthInputName value={values.name} onChange={handleInput} />
-                                    <br />
-                                    <AuthInputSurname value={values.surname} onChange={handleInput} />
-                                    <br />
-                                    <AuthInputPhoneNumber value={maskPhoneNumber(values.phoneNumber)} onChange={handleInput} />
-                                    <br />
-                                    <Link to="/" className="acconut-register">
-                                        <a href="none">Do you already have an account?</a>
-                                    </Link>
-                                </form>
-                                <div className="error-message-container">
-                                    {error && <ErrorMessage message={error} />}
-                                    {successMessage && <div className="success-message">{successMessage}</div>}
-                                </div>
-                                {loading && <ClipLoader color={"#73228B"} />}
-                                <AuthButton text="REGISTER" onClick={handleSubmit} />
-                            </div>
-                        </article>
-                        {/* Card-Right Bitiş */}
-                    </div>
-                </article>
-                {/* Article Bitiş */}
-            </section>
-        </section>
+        <div className='authRegisterContainer'>
+            <div className="user-register">
+                <h1>Üye Ol</h1>
+            </div>
+            <form className="input-group-register">
+                <AuthInputEmail value={values.emailAddress} onChange={handleInput} />
+                <br />
+                <AuthInputUsername value={values.username} onChange={handleInput} placeholder="Enter your Username" />
+                <br />
+                <AuthInputPassword value={values.password} onChange={handleInput} />
+                <br />
+                <AuthInputName value={values.name} onChange={handleInput} />
+                <br />
+                <AuthInputSurname value={values.surname} onChange={handleInput} />
+                <br />
+                <AuthInputPhoneNumber value={maskPhoneNumber(values.phoneNumber)} onChange={handleInput} />
+                <br />
+                <AuthButton text="Üye Ol" onClick={handleSubmit} />
+            </form>
+            <div className="error-message-container">
+                {error && <ErrorMessage message={error} />}
+                {successMessage && <div className="success-message">{successMessage}</div>}
+            </div>
+            {loading && <ClipLoader color={"#7465F1"} />}
+            <Link onClick={handleRegisterClick} className="acconut-register">
+                <a>Zaten bir hesabın var mı?</a>
+            </Link>
+        </div>
     );
 }

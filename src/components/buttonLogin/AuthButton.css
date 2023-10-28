@@ -3,22 +3,20 @@
 }
 
 .auth-btn>button {
-    background-image: linear-gradient(90deg, #73228B, #490F80);
+    background-color: #7465F1 !important;
     transition: all 0.3s ease-in-out;
-    border-radius: 2rem;
+    border-radius: 0.5rem;
     font-size: 2rem;
     cursor: pointer;
     border: none;
-    width: 20rem;
+    width: 40rem !important;
     height: 4rem;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
+    margin: 1rem;
     color: white;
 }
 
 .auth-btn>button:hover {
-    box-shadow: 0.2rem 1rem 3rem #73228B;
-    border: 0.1rem solid #490F80 ;
+    background-color: #161D30 !important;
 }
 
 @media screen and (min-width: 700px) {
@@ -28,7 +26,7 @@
 
     .auth-btn>button {
         font-size: 1.5rem;
-        width: 15rem;
+        width: 50rem !important;
         height: 4rem;
         margin-top: 1rem;
         margin-bottom: 1rem;
@@ -42,7 +40,7 @@
 
     .auth-btn>button {
         font-size: 2.5rem;
-        width: 20rem;
+        width: 50rem !important;
         height: 4rem;
         margin-bottom: 1rem;
     }

@@ -1,26 +1,26 @@
 /* MODAL */
-.ant-modal-header {
+.modalComponent .ant-modal-header {
     background-color: #273046 !important;
     color: white;
     border-bottom: 1px solid white !important;
 }
 
-.ant-modal-header>.ant-modal-title {
+.modalComponent .ant-modal-header>.ant-modal-title {
     color: white;
 }
 
-.ant-modal-content {
+.modalComponent .ant-modal-content {
     background-color: #273046 !important;
 }
 
-.ant-modal-body {
+.modalComponent .ant-modal-body {
     height: 66.5rem !important;
     width: auto !important;
     overflow-y: scroll;
 }
 
-.ant-modal {
-    float: right;
+.modalComponent {
+    float: right !important;
     margin: 0px !important;
     padding: 0px !important;
     position: sticky !important;
@@ -97,8 +97,8 @@
     background-color: transparent !important;
 }
 
-.ant-modal-close-x,
-.ant-select-arrow {
+.modalComponent .ant-modal-close-x,
+.modalComponent .ant-select-arrow {
     color: white !important;
 }
 

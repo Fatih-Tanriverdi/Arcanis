@@ -8,7 +8,7 @@ import { Input, Tooltip } from "antd";
 import { ClipLoader } from 'react-spinners';
 import { resetPassword } from '../../services/AuthService'
 
-export default function App() {
+export default function App({ setPageAuthType }) {
     const [emailAddress, setEmailAddress] = useState("");
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
@@ -32,7 +32,7 @@ export default function App() {
             setSuccessMessage("Mail adresinize şifre sıfırlama mesajı gönderildi. Lütfen e-mail adresinizi kontrol edin.");
             setTimeout(() => {
                 setSuccessMessage("");
-                navigate("/");
+                setPageAuthType('authLogin');
             }, 3000);
         } catch (error) {
             setError(error.message);
@@ -45,59 +45,33 @@ export default function App() {
     };
 
     return (
-        <section className="recover-body-color">
-            <section className="recover-container">
-                {/** Article Bağlangıç **/}
-                <article className="recover-card">
-                    {/** Card-Left Başlangıç **/}
-                    <LoginImage />
-                    {/** Card-Left Bitiş **/}
-                    <div className="recover-row">
-                        {/** Card-Right Başlangıç **/}
-                        <article className="card-right-recover">
-                            <div className="recover-content">
-                                <div className="reset-icon-style">
-                                    <Link to="/">
-                                        <AiFillBackward
-                                            style={{
-                                                color: "#73228B",
-                                            }}
-                                        />
-                                    </Link>
-                                </div>
-                                <div className="user-recover">
-                                    <h1>RESET PASSWORD</h1>
-                                    <span id="description">Have you forgotten your password ?
-                                        <p>Dont't worry, enter the email address you used to create your profile and we'll sen you instructions for generating a new one.</p>
-                                    </span>
-                                </div>
-                                <div className="input-group-recover">
-                                    <Input
-                                        className="ınputRegister"
-                                        name="emailAddress"
-                                        value={emailAddress}
-                                        onChange={(e) => setEmailAddress(e.target.value)}
-                                        type="email"
-                                        placeholder="Enter your E-mail"
-                                        prefix={<AiOutlineMail className="site-form-item-icon" />}
-                                        suffix={
-                                            <Tooltip title="Extra information">
-                                                <AiOutlineInfoCircle style={{ color: 'white' }} />
-                                            </Tooltip>
-                                        }
-                                    />
-                                </div>
-                                {loading && <ClipLoader color={"#73228B"} />}
-                                {successMessage && <div className="success-message">{successMessage}</div>}
-                                {error && <ErrorMessage message={error} />}
-                                <AuthButton text="SEND" onClick={handleResetPassword} />
-                            </div>
-                        </article>
-                        {/** Card-Right Bitiş **/}
-                    </div>
-                </article>
-                {/** Article Bitiş **/}
-            </section>
-        </section>
+        <div className="authResetPasswordContainer">
+            <div className="user-recover">
+                <h1>Şifre Sıfırlama</h1>
+                <span id="description">Şifrenizi unuttunuzmu ?
+                    <p>Endişelenmeyin, profilinizi oluşturmak için kullandığınız e-posta adresini girin, size yeni bir profil oluşturma talimatlarını göndereceğiz.</p>
+                </span>
+            </div>
+            <div className="input-group-recover">
+                <Input
+                    className="ınputResetPassword"
+                    name="emailAddress"
+                    value={emailAddress}
+                    onChange={(e) => setEmailAddress(e.target.value)}
+                    type="email"
+                    placeholder="Enter your E-mail"
+                    prefix={<AiOutlineMail className="site-form-item-icon" />}
+                    suffix={
+                        <Tooltip title="Extra information">
+                            <AiOutlineInfoCircle style={{ color: 'white' }} />
+                        </Tooltip>
+                    }
+                />
+            </div>
+            {loading && <ClipLoader color={"#7465F1"} />}
+            {successMessage && <div className="success-message">{successMessage}</div>}
+            {error && <ErrorMessage message={error} />}
+            <AuthButton text="SEND" onClick={handleResetPassword} />
+        </div>
     );
 }

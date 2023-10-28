@@ -441,6 +441,7 @@ export function ModelComponent({ isModalVisible, onCancel, modalContent, addTitl
         <div className='modalCompContainer'>
             <div className='modal-style'>
                 <Modal
+                    className='modalComponent'
                     visible={isModalVisible}
                     title={addTitle}
                     onOk={handleOk}

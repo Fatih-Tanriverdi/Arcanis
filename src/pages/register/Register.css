@@ -1,53 +1,17 @@
-.register-body-color {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    width: 100%;
-    background-image: linear-gradient(90deg, #73228B, #490F80) !important;
-    background-size: cover;
-    background-attachment: fixed;
-}
-
-.register-body-color::after {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: linear-gradient(90deg, #73228B, #490F80) !important;
-    background-size: cover;
-    z-index: -1;
-}
-
-.register-card-right{
-    background-position: center;
-    background-color: #fff;
-    min-height: 70rem;
-    min-width: 35rem;
-    margin: 4rem;
-    border-radius: 1rem;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.authRegisterContainer {
+    overflow-y: scroll !important;
 }
 
 .user-register > h1 {
-    font-size: 3rem;
-    color: #73228B;
-}
-
-.user-register > p {
-    margin-top: 1rem;
+    margin: 1rem;
     font-size: 2rem;
-    color: #73228B;
+    color: white;
 }
 
 .acconut-register > a{
-    color: #73228B;
-    font-size: 2rem;
+    color: white;
+    font-size: 1.2rem;
+    border: none;
 }
 
 .error-message-container {
@@ -58,48 +22,33 @@
 }
 
 #error-message-register {
-    width: 25rem;
-    background-color: #73228B;
-    padding: 1rem;
-    border-radius: 1rem;
+    width: 50rem;
+    background-color: #7465F1;
+    border-radius: 0.5rem;
     font-size: 1.2rem;
 }
 
 
 @media screen and (min-width: 700px) {
-    .register-card-right {
-        margin-left: 0;
-        margin-right: 0;
-        border-radius: 0 2rem 2rem 0;
-        min-height: 65rem;
-        min-width: 30rem;
-    }
-
-    .register-card {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
 
     .acconut-register > a {
         font-size: 1.5rem;
     }
+
+    .user-register > h1 {
+        margin: 1rem;
+        font-size: 3rem;
+        color: white;
+    }
+
+    .acconut-register > a{
+        color: white;
+        font-size: 2rem;
+        border: none;
+    }
 }
 
 @media screen and (min-width: 1200px) {
-    .register-card-right {
-        margin-left: 0;
-        margin-right: 0;
-        border-radius: 0 2rem 2rem 0;
-        min-height: 71rem;
-        min-width: 35rem;
-    }
-
-    .register-card {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
 
     .acconut-register > a {
         font-size: 1.7rem;
@@ -107,5 +56,17 @@
 
     .user-register > h1 {
         margin-bottom: 0;
+    }
+
+    .user-register > h1 {
+        margin: 1rem;
+        font-size: 3rem;
+        color: white;
+    }
+
+    .acconut-register > a{
+        color: white;
+        font-size: 2rem;
+        border: none;
     }
 }

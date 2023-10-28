@@ -13,7 +13,7 @@ export function AuthInputEmail(props) {
             onChange={props.onChange}
             type="email"
             placeholder="Enter your E-mail"
-            prefix={<AiOutlineMail className="site-form-item-icon" style={{marginLeft: "13px"}}/>}
+            prefix={<AiOutlineMail className="site-form-item-icon"/>}
             suffix={
                 <Tooltip title="Extra information">
                     <AiOutlineInfoCircle style={{ color: 'white' }} />
@@ -46,7 +46,7 @@ export function AuthInputPassword(props) {
             onChange={props.onChange}
             type="password"
             placeholder="Enter your Password"
-            prefix={<RiLockPasswordLine style={{ marginLeft: "13px" }} />}
+            prefix={<RiLockPasswordLine />}
         />
     )
 };

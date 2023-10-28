@@ -1,0 +1,41 @@
+/* AUTH MODAL */
+
+.customerLoginModal {
+    width: 55rem !important;
+    height: 60% !important;
+}
+
+.customerLoginModal .ant-modal-title {
+    background-color: #273046 !important;
+    color: #fff;
+}
+
+.customerLoginModal .ant-modal-content {
+    background-color: #273046 !important;
+    height: 130% !important;
+}
+
+.customerLoginModal .ant-modal-footer {
+    background-color: #273046 !important;
+    color: #fff;
+}
+
+/* AUTH MODAL */
+
+
+
+@media screen and (min-width: 700px) {
+
+    .user-register-btn>p {
+        font-size: 1.5rem;
+    }
+
+}
+
+@media screen and (min-width: 1200px) {
+
+    .user-register-btn>p {
+        font-size: 1.7rem;
+    }
+
+}

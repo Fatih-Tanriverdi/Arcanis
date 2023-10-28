@@ -1,47 +1,36 @@
-.ant-input-affix-wrapper.ant-input-password > input {
-    color: white !important;
+.authRegisterContainer .ınputRegister,
+.authRegisterContainer .ınputRegisterPassword {
+    background-color: transparent !important;
+    width: 40rem !important;
+    height: 3rem !important;
+    margin: 0.7rem;
+    border-radius: 0;
+    border-bottom: 0.1rem solid white !important;
+    border: none;
 }
 
-.ant-input-affix-wrapper.css-dev-only-do-not-override-12upa3x {
-    background-position: center !important;
-    background-color: #D3D3D3 !important;
-    border-color: #73228B !important;
-    width: 28rem !important;
-    height: 4rem !important;
-    color: white !important;
-    border-radius: 2rem !important;
-    margin-bottom: 1rem;
+.ınputRegister .ant-input,
+.ınputRegisterPassword .ant-input {
+    background-color: transparent !important;
 }
 
-.ant-input-affix-wrapper.css-dev-only-do-not-override-12upa3x > input::placeholder {
-    color: white !important;
-}
-
-.input-group-register >input::placeholder {
-    color: white;
-}
-
-.ant-input-affix-wrapper.css-dev-only-do-not-override-12upa3x > input {
-    background-color: #D3D3D3 !important;
-}
-
-.ant-input-suffix > span {
-    color: white !important;
-}
-
-.ant-input-affix-wrapper-focus {
-    background-color: #73228B !important;
-}
 
 @media screen and (min-width: 700px) {
-    .ant-input-affix-wrapper.css-dev-only-do-not-override-12upa3x {
-        width: 24rem !important;
+
+    .authRegisterContainer .ınputRegister,
+    .authRegisterContainer .ınputRegisterPassword {
+        width: 50rem !important;
+        height: 3.5rem !important;
+        margin: 1rem;
     }
 }
 
 @media screen and (min-width: 1200px) {
-    .ant-input-affix-wrapper.css-dev-only-do-not-override-12upa3x {
-        width: 28rem !important;
-        margin-bottom: 2rem;
+
+    .authRegisterContainer .ınputRegister,
+    .authRegisterContainer .ınputRegisterPassword {
+        width: 50rem !important;
+        height: 3.5rem !important;
+        margin: 1rem;
     }
 }

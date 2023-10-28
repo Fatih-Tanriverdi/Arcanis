@@ -19,9 +19,7 @@ export default function App() {
 
   return (
     <Routes>
-      <Route path="/" element={<UserLogin />} />
-      <Route path="/register" element={<Register />} />
-      <Route path="/recoverpassword" element={<RecoverPassword />} />
+      <Route path="/" element={<Customer />}/>
       <Route path="customer/*" element={<Customer />} />
       <Route path="about" element={<About />} />
       <Route path="ticket" element={<Ticket />} />

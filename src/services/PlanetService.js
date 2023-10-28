@@ -105,3 +105,28 @@ export async function deletePlanet(id) {
 }
 
 /* DeletePlanet */
+
+/* LookupsPlanet */
+
+export async function fetchLookupsPlanetsGet(url) {
+    try {
+        const response = await fetch(url, {
+            method: "GET",
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error('API request failed');
+        }
+
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        throw error;
+    }
+}
+
+/* LookupsPlanet */

@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from 'react';
 import "./Ticket.css";
 import { Select, Space, DatePicker } from 'antd';
 import { Link } from 'react-router-dom';
@@ -6,26 +5,11 @@ import { TfiHeadphoneAlt } from "react-icons/tfi";
 import { FaWallet } from "react-icons/fa";
 import { BsFillRocketTakeoffFill, BsFillArrowDownCircleFill } from "react-icons/bs";
 import { BsCreditCard2Back, BsCashCoin, BsPeople, BsStopwatchFill, BsCoin, BsGeoAlt, BsFillClockFill, BsFillLockFill } from "react-icons/bs";
-import { fetchPlanetsGet } from '../../services/PlanetService';
 
 export default function Ticket() {
 
     const { Option } = Select;
     const { RangePicker } = DatePicker;
-    const [planets, setPlanets] = useState([]);
-
-    useEffect(() => {
-        async function getPlanets() {
-            const url = "http://lambalog.com/api/planets";
-            const data = await fetchPlanetsGet(url)
-                .catch(error => {
-                    console.error('API request failed:', error);
-                    return [];
-                });
-            setPlanets(data);
-        }
-        getPlanets();
-    }, []);
 
     function toggleAdditionalInfo(event) {
         const additionalInfo = event.currentTarget.nextElementSibling;
@@ -39,15 +23,11 @@ export default function Ticket() {
                     <div className='ticket-search'>
                         <Space wrap className='ticket-dropdown-style'>
                             <Select
+                                className='ticketDepartureSelect'
                                 suffixIcon={<BsGeoAlt />}
                                 defaultValue="Kalkış Noktası"
                                 bordered={false}
                             >
-                                {planets.map(planet => (
-                                    <Option key={planet.id} value={planet.id}>
-                                        {planet.name}
-                                    </Option>
-                                ))}
                             </Select>
                         </Space>
                         <Space wrap className='ticket-dropdown-style'>
@@ -56,11 +36,6 @@ export default function Ticket() {
                                 defaultValue="Varış Noktası"
                                 bordered={false}
                             >
-                                {planets.map(planet => (
-                                    <Option key={planet.id} value={planet.id}>
-                                        {planet.name}
-                                    </Option>
-                                ))}
                             </Select>
                         </Space>
                         <Space>
