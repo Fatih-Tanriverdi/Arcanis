@@ -1,7 +1,7 @@
 import "../Login/UserLogin.css";
 import AuthButton from "../../components/ButtonLogin/AuthButton";
 import "../../components/AuthInput/AuthInput.css";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { Button, Checkbox, Input } from 'antd';
 import { login } from '../../services/AuthService.js';
@@ -34,7 +34,7 @@ export default function App({setPageAuthType}) {
             if (isAdmin) {
                 navigate('/admin');
             } else {
-                
+                navigate('customer');
             }
         } else {
             setError('Kullanıcı adı, şifre veya e-posta yanlış.');

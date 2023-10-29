@@ -434,7 +434,64 @@ export function ModelComponent({ isModalVisible, onCancel, modalContent, addTitl
                     </Select>
                 </div>
             </Space>
-        )
+        ),
+        ticketAdmin: (
+            <Space direction="vertical" id='date-picker-body'>
+                <div className='modal-list'>
+                    <Input
+                        id='modal-username-style-input' onChange={handleInput} value={valuesExpeditions.name} placeholder='Name' name="name"
+                    />
+                    <Input
+                        id='modal-username-style-input' onChange={handleInput} value={valuesExpeditions.expeditionDate} placeholder='Expedition Date' name="expeditionDate"
+                    />
+                    <Input
+                        id='modal-username-style-input' onChange={handleInput} value={valuesExpeditions.arrivalDate} placeholder='Arrival Date' name="arrivalDate"
+                    />
+                    <Input
+                        id='modal-username-style-input' onChange={handleInput} value={valuesExpeditions.ticketPrice} placeholder='Ticket Price' name="ticketPrice"
+                    />
+                    <Select
+                        id='modal-username-style-input'
+                        onChange={handleSelectSpaceVehicle}
+                        value={selectedSpaceVehicle}
+                        placeholder='Space Vehicle Id'
+                        name="spaceVehicleId"
+                    >
+                        {spaceVehicleData.map(vehicle => (
+                            <Select.Option key={vehicle.id} value={vehicle.id}>
+                                {vehicle.displayName}
+                            </Select.Option>
+                        ))}
+                    </Select>
+                    <Select
+                        id='modal-username-style-input'
+                        onChange={handleSelectDeparturePlanet}
+                        value={selectedDeparturePlanet}
+                        placeholder='Departure Planet Id'
+                        name="departurePlanetId"
+                    >
+                        {planetData.map(planet => (
+                            <Select.Option key={planet.id} value={planet.id}>
+                                {planet.displayName}
+                            </Select.Option>
+                        ))}
+                    </Select>
+                    <Select
+                        placeholder={"Arrival Planet"}
+                        id='modal-username-style-input'
+                        onChange={handleSelectArrivalPlanet}
+                        value={selectedArrivalPlanet}
+                        name="arrivalPlanetId"
+                    >
+                        {planetData.map(planet => (
+                            <Select.Option key={planet.id} value={planet.id}>
+                                {planet.displayName}
+                            </Select.Option>
+                        ))}
+                    </Select>
+                </div>
+            </Space>
+        ),
     };
 
     return (

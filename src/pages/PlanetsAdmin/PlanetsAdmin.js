@@ -9,7 +9,6 @@ import { RiArrowRightSLine } from 'react-icons/ri';
 import { Popover } from 'antd';
 
 
-
 export default function UsersList() {
     const [selectedPlanet, setSelectedPlanet] = useState(null);
     const [planets, setPlanets] = useState([]);
@@ -17,25 +16,25 @@ export default function UsersList() {
     const columns = [
         {
             title: 'EDIT',
-            key: 'id',
-            dataIndex: 'id',
+            key: 'Id',
+            dataIndex: 'Id',
             render: (id, record) => (
                 <button className="editButton" onClick={() => handleEditPlanet(id)}><RiArrowRightSLine /></button>
             ),
         },
         {
             title: 'NAME',
-            dataIndex: 'name',
+            dataIndex: 'Name',
             key: 'user',
         },
         {
             title: 'SIRA',
-            dataIndex: 'sequence',
+            dataIndex: 'Sequence',
             key: 'sequence',
         },
         {
             title: 'LEVEL',
-            dataIndex: 'difficultyLevel',
+            dataIndex: 'DifficultyLevel',
             key: 'difficultyLevel',
         },
         {
@@ -45,8 +44,8 @@ export default function UsersList() {
         },
         {
             title: 'DESCRIPTION',
-            key: 'description',
-            dataIndex: 'description',
+            key: 'Description',
+            dataIndex: 'Description',
             render: (text) => (
                 <div className="table-cell">
                     <Popover content={text}>
@@ -69,7 +68,7 @@ export default function UsersList() {
                     console.error('API request failed:', error);
                     return [];
                 })
-            setPlanets(data);
+            setPlanets(data.value);
         }
         planetsData();
     }, []);
@@ -82,7 +81,7 @@ export default function UsersList() {
         deletePlanet(id)
             .then(() => {
                 setPlanets((prevPlanetsData) =>
-                    prevPlanetsData.filter((planet) => planet.id !== id)
+                    prevPlanetsData.filter((planet) => planet.Id !== id)
                 );
             })
             .catch(error => {
@@ -91,7 +90,7 @@ export default function UsersList() {
     };
 
     const handleEditPlanet = (id) => {
-        const planetEdit = planets.find(planet => planet.id === id);
+        const planetEdit = planets.find(planet => planet.Id === id);
         setSelectedPlanet(planetEdit);
         setIsModalOpen(true);
     };

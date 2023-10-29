@@ -13,8 +13,8 @@ export default function UsersList() {
     const columns = [
         {
             title: 'EDIT',
-            key: 'id',
-            dataIndex: 'id',
+            key: 'Id',
+            dataIndex: 'Id',
             width: 50,
             render: (id, record) => (
                 <button className="editButton" onClick={() => handleEditUser(id)}><RiArrowRightSLine /></button>
@@ -22,25 +22,25 @@ export default function UsersList() {
         },
         {
             title: 'NAME',
-            dataIndex: 'name',
-            key: 'name',
+            dataIndex: 'Name',
+            key: 'Name',
             width: 50,
         },
         {
             title: 'SURNAME',
-            dataIndex: 'surname',
-            key: 'surname',
+            dataIndex: 'Surname',
+            key: 'Surname',
         },
         {
             title: 'EMAIL',
-            dataIndex: 'email',
-            key: 'email',
+            dataIndex: 'Email',
+            key: 'Email',
             width: 50,
         },
         {
             title: 'PHONE',
-            dataIndex: 'phone',
-            key: 'phone',
+            dataIndex: 'Phone',
+            key: 'Phone',
         },
         {
             title: 'USERNAME',
@@ -83,13 +83,13 @@ export default function UsersList() {
 
     useEffect(() => {
         async function fetchUsersListData() {
-            try {
-                const url = "http://lambalog.com/api/users";
-                const data = await fetchUsersDataGet(url);
-                setUsersData(data);
-            } catch (error) {
-                console.error('API request failed:', error);
-            }
+            const url = "http://lambalog.com/api/users";
+            const data = await fetchUsersDataGet(url)
+                .catch(error => {
+                    console.error('API request failed:', error);
+                    return [];
+                })
+            setUsersData(data.value);
         }
         fetchUsersListData();
     }, []);
@@ -125,9 +125,9 @@ export default function UsersList() {
         <div className='user-list-container'>
             <div className='user-list-body'>
                 <div className='list-group-container'>
-                    <TableListComp props={{ columns: columns, dataSource: usersData }}  text="users" pageSearchType={"users"} addButtonLabel={"Kullanıcı Ekle"} addTile={"Yeni Kullanıcı Ekle"}/>
+                    <TableListComp props={{ columns: columns, dataSource: usersData }} text="users" pageSearchType={"users"} addButtonLabel={"Kullanıcı Ekle"} />
                     {isModalOpen && (
-                        <EditUserModal user={selectedUser} onCancel={handleModalClose} visible={isModalOpen} pageType={"users"} addEditTitle={"Kullanıcı Güncelleme"} userDelete={handleDeleteUser}/>
+                        <EditUserModal user={selectedUser} onCancel={handleModalClose} visible={isModalOpen} pageType={"users"} addEditTitle={"Kullanıcı Güncelleme"} userDelete={handleDeleteUser} />
                     )}
                 </div>
             </div>

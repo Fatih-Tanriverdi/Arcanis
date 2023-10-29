@@ -3,7 +3,7 @@ import "./AdminPanel.css";
 import { Routes, Route, Link, useNavigate } from "react-router-dom";
 import { AiOutlineHome, AiOutlineRocket, AiOutlineUser } from "react-icons/ai";
 import { BiExit, BiPlanet } from "react-icons/bi";
-import { BsFillArrowRightSquareFill } from "react-icons/bs";
+import { BsFillArrowRightSquareFill, BsTicketPerforated } from "react-icons/bs";
 import { GiPathDistance } from "react-icons/gi";
 import UsersList from '../../pages/Users/UsersList';
 import MainPage from "../../pages/Main/MainPage";
@@ -13,6 +13,7 @@ import Expedition from "../../pages/Expedition/Expedition";
 import { PageButton } from '../../components/PageButton/PageButton';
 import { checkToken } from '../../services/AuthService';
 import { fetchUsersDataGet } from '../../services/UserService';
+import TicketAdmin from '../TicketAdmin/TicketAdmin';
 
 export default function AsideHeader() {
     const [activeButton, setActiveButton] = useState("");
@@ -66,7 +67,7 @@ export default function AsideHeader() {
                 setActiveButton(savedActiveButton);
             }
         }
-    }, []);    
+    }, []);
 
     return (
         <container id='admin-panel-body'>
@@ -85,6 +86,7 @@ export default function AsideHeader() {
                             <PageButton to="spaceships" className={`admin-panel-button ${activeButton === "Uzay Araçları" ? 'active' : ''}`} icon={<AiOutlineRocket />} onClick={() => handleButtonClick("Uzay Araçları")} text="Uzay Araçları" />
                             <PageButton to="planetsadmin" icon={<BiPlanet />} onClick={() => handleButtonClick("Gezegenler")} text="Gezegenler" className={`admin-panel-button ${activeButton === "Gezegenler" ? 'active' : ''}`} />
                             <PageButton to="expedition" icon={<GiPathDistance />} onClick={() => handleButtonClick("Seferler")} text="Seferler" className={`admin-panel-button ${activeButton === "Seferler" ? 'active' : ''}`} />
+                            <PageButton to="ticketadmin" icon={<BsTicketPerforated />} onClick={() => handleButtonClick("Ticket")} text="Ticket" className={`admin-panel-button ${activeButton === "Ticket" ? 'active' : ''}`} />
                         </div>
                         <div className='admin-btn-exit-container'>
                             <PageButton to="/" className="admin-panel-button-exit" icon={<BiExit />} onClick={handleLogout} text="Çıkış" id='icon-style adminpanel-exit-btn-position' />
@@ -123,6 +125,7 @@ export default function AsideHeader() {
                             <Route exact path="spaceships" element={<SpaceShips />} />
                             <Route exact path="planetsadmin" element={<PlanetsAdmin />} />
                             <Route path="expedition" element={<Expedition />} />
+                            <Route path="ticketadmin" element={<TicketAdmin />} />
                         </Routes>
                     </div>
                 </article>

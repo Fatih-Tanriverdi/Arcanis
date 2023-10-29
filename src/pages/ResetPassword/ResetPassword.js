@@ -1,8 +1,6 @@
-import React, { useReducer, useState } from "react";
+import React, {useState } from "react";
 import "./ResetPassword.css";
-import { AiFillBackward, AiOutlineInfoCircle, AiOutlineMail } from "react-icons/ai";
-import { Link, useNavigate } from "react-router-dom";
-import LoginImage from '../../components/LoginImage/LoginImage';
+import { AiOutlineInfoCircle, AiOutlineMail } from "react-icons/ai";
 import AuthButton from "../../components/ButtonLogin/AuthButton";
 import { Input, Tooltip } from "antd";
 import { ClipLoader } from 'react-spinners';
@@ -13,7 +11,6 @@ export default function App({ setPageAuthType }) {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [successMessage, setSuccessMessage] = useState("");
-    const navigate = useNavigate();
 
     const hideErrorMessage = () => {
         setError(null);

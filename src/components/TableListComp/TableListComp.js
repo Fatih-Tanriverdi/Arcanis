@@ -259,6 +259,25 @@ export function TableListComp({ pageSearchType, props, addButtonLabel }) {
                         </div>
                     </div>
                 );
+            case 'ticketAdmin':
+                return (
+                    <div className='search-ticketadmin-container'>
+                        <div className='SelectRolePosition'>
+                            <DatePicker onChange={onChange} placeholder='Created Date' />
+                        </div>
+                        <div className='SelectRolePosition'>
+                            <DatePicker onChange={onChange} placeholder='Order Date' />
+                        </div>
+                        <div className='SelectRolePosition'>
+                            <Select
+                                value={selectedFilters.difficultyLevel}
+                                onChange={(value) => setSelectedFilters({ ...selectedFilters, difficultyLevel: value })}
+                                placeholder="Seat Level"
+                                options={ageLimitOptions}
+                            />
+                        </div>
+                    </div>
+                );
             default:
                 return null;
         }
@@ -324,7 +343,7 @@ export function TableListComp({ pageSearchType, props, addButtonLabel }) {
                         }}
                     />
                 </div>
-                <ModelComponent isModalVisible={isModalVisible} onCancel={handleCancel} modalContent={modelContent} addTitle={pageSearchType === 'spaceShips' ? 'Uzay Aracı Ekle' : pageSearchType === 'users' ? 'Kullanıcı Ekle' : pageSearchType === 'planets' ? 'Gezegen Ekle' : pageSearchType === 'expedition' ? 'Sefer Ekle' : ''} />
+                <ModelComponent isModalVisible={isModalVisible} onCancel={handleCancel} modalContent={modelContent} addTitle={pageSearchType === 'spaceShips' ? 'Uzay Aracı Ekle' : pageSearchType === 'users' ? 'Kullanıcı Ekle' : pageSearchType === 'planets' ? 'Gezegen Ekle' : pageSearchType === 'expedition' ? 'Sefer Ekle' : pageSearchType === 'ticketAdmin' ? 'Yeni Bilet Ekle' : ''} />
             </div>
         </div>
     )

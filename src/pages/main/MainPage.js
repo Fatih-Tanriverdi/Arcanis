@@ -1,29 +1,108 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import "./MainPage.css";
 import { checkToken } from '../../services/AuthService';
 import { TfiStatsUp } from 'react-icons/tfi';
 import { FiDollarSign } from 'react-icons/fi';
 import { LiaUserSolid } from 'react-icons/lia';
 import { BiCube } from 'react-icons/bi';
-import { BsThreeDotsVertical } from 'react-icons/bs';
+import { BiRefresh } from 'react-icons/bi';
 import { AiOutlineQuestionCircle } from 'react-icons/ai';
-import { Progress, Space } from 'antd';
+import { Popover, Progress, Space } from 'antd';
+import { fetchUsersDataGet } from "../../services/UserService";
+import { fetchPlanetsGet } from '../../services/PlanetService';
+import { fetchExpenditionsGet } from '../../services/ExpeditionService';
 
 export default function MainPage() {
+
+    const [usersMostTicketsData, setUsersMostTicketsData] = useState([]);
+    const [planetsMostPopulerData, setPlanetsMostPopulerData] = useState([]);
+    const [expeditionsTotalCompleted, setExpeditionsTotalCompleted] = useState([]);
 
     useEffect(() => {
         checkToken();
     }, []);
 
-    const progressColor1 = '#7366F0';
-    const progressColor2 = '#00CEE7';
-    const progressColor3 = '#EA5354';
-    const progressColor4 = '#29C76F';
+    const progresColor = [
+        { color: '#7366F0' },
+        { color: '#00CEE7' },
+        { color: '#EA5354' },
+        { color: '#29C76F' },
+    ];
+
     const conicColors = {
         '0%': '#87d068',
         '50%': '#ffe58f',
         '100%': '#ffccc7',
     };
+    /* Ticket */
+    useEffect(() => {
+        async function fetchUsersMostTicketsData() {
+            const url = "http://lambalog.com/api/statistics/users-who-purchased-most-tickets";
+            const data = await fetchUsersDataGet(url)
+                .catch(error => {
+                    console.error('API request failed:', error);
+                    return [];
+                })
+            setUsersMostTicketsData(data);
+        }
+        fetchUsersMostTicketsData();
+    }, []);
+
+    const handleRefreshUsersMostTickets = async () => {
+        const url = "http://lambalog.com/api/statistics/users-who-purchased-most-tickets";
+        const data = await fetchUsersDataGet(url).catch((error) => {
+            console.error('API request failed:', error);
+            return [];
+        });
+        setUsersMostTicketsData(data);
+    };
+    /* Ticket */
+    /* Expedetion */
+    useEffect(() => {
+        async function fetcTotalExpeditionsData() {
+            const url = "http://lambalog.com/api/statistics/completed-expeditions";
+            const data = await fetchExpenditionsGet(url)
+                .catch(error => {
+                    console.error('API request failed:', error);
+                    return [];
+                })
+            setExpeditionsTotalCompleted(data);
+        }
+        fetcTotalExpeditionsData();
+    }, []);
+
+    const handleRefreshExpeditions = async () => {
+        const url = "http://lambalog.com/api/statistics/completed-expeditions";
+        const data = await fetchExpenditionsGet(url).catch((error) => {
+            console.error('API request failed:', error);
+            return [];
+        });
+        setExpeditionsTotalCompleted(data);
+    };
+    /* Expedetion */
+    /* Planet */
+    useEffect(() => {
+        async function fetchUsersMostPlanetsData() {
+            const url = "http://lambalog.com/api/statistics/most-traveled-planet";
+            const data = await fetchPlanetsGet(url)
+                .catch(error => {
+                    console.error('API request failed:', error);
+                    return [];
+                })
+            setPlanetsMostPopulerData(data);
+        }
+        fetchUsersMostPlanetsData();
+    }, []);
+
+    const handleRefreshPlanetsMostPopular = async () => {
+        const url = "http://lambalog.com/api/statistics/most-traveled-planet";
+        const data = await fetchPlanetsGet(url).catch((error) => {
+            console.error('API request failed:', error);
+            return [];
+        });
+        setPlanetsMostPopulerData(data);
+    };
+    /* Planet */
 
     return (
         <container className='main-page-container' >
@@ -111,130 +190,81 @@ export default function MainPage() {
                 <div className='mainPageBox1'>
                     <div className='mainPageBoxTitle'>
                         <h5>Top 5 Most Traveled Users</h5>
-                        <div><BsThreeDotsVertical /></div>
+                        <div className='mainPageBoxInfoContainer'>
+                            <Popover content="Bu liste en çok seyahat eden 5 kullanıcımızın listesidir.">
+                                <div><AiOutlineQuestionCircle /></div>
+                            </Popover>
+                            <a onClick={handleRefreshUsersMostTickets}><BiRefresh className='mainPageSvg' /></a>
+                        </div>
                     </div>
                     <div className='mainPageBoxUsersInfoContainer'>
-                        <div className='mainPageBoxUsersInfo'>
-                            <h5>Emin Karaarslan</h5>
-                            <div className='mainPageBoxUsersInfoSpinner'>
-                                <p>150 - 54.4%</p>
-                                <Space size={30}>
-                                    <Progress type="circle" percent={50} size={20} strokeColor={progressColor1} />
-                                </Space>
+                        {usersMostTicketsData.map(ticketData => (
+                            <div className='mainPageBoxUsersInfo' key={ticketData.id}>
+                                <h5>{ticketData.name}</h5>
+                                <div className='mainPageBoxUsersInfoSpinner'>
+                                    <p>{ticketData.value} - {ticketData.rate.toFixed(1)}%</p>
+                                    <Space size={30}>
+                                        <Progress type="circle" percent={ticketData.rate} size={20} strokeColor={progresColor} />
+                                    </Space>
+                                </div>
                             </div>
-                        </div>
-                        <div className='mainPageBoxUsersInfo'>
-                            <h5>Emin Karaarslan</h5>
-                            <div className='mainPageBoxUsersInfoSpinner'>
-                                <p>150 - 54.4%</p>
-                                <Space size={30}>
-                                    <Progress type="circle" percent={50} size={20} strokeColor={progressColor2} />
-                                </Space>
-                            </div>
-                        </div>
-                        <div className='mainPageBoxUsersInfo'>
-                            <h5>Emin Karaarslan</h5>
-                            <div className='mainPageBoxUsersInfoSpinner'>
-                                <p>150 - 54.4%</p>
-                                <Space size={30}>
-                                    <Progress type="circle" percent={50} size={20} strokeColor={progressColor3} />
-                                </Space>
-                            </div>
-                        </div>
-                        <div className='mainPageBoxUsersInfo'>
-                            <h5>Emin Karaarslan</h5>
-                            <div className='mainPageBoxUsersInfoSpinner'>
-                                <p>150 - 54.4%</p>
-                                <Space size={30}>
-                                    <Progress type="circle" percent={50} size={20} strokeColor={progressColor4} />
-                                </Space>
-                            </div>
-                        </div>
-                        <div className='mainPageBoxUsersInfo'>
-                            <h5>Emin Karaarslan</h5>
-                            <div className='mainPageBoxUsersInfoSpinner'>
-                                <p>150 - 54.4%</p>
-                                <Space size={30}>
-                                    <Progress type="circle" percent={50} size={20} />
-                                </Space>
-                            </div>
-                        </div>
+                        ))}
                     </div>
                 </div>
                 <div className='mainPageBox2'>
                     <div className='mainPageBoxTitle'>
                         <h5>Completed Expeditions</h5>
-                        <div><AiOutlineQuestionCircle /></div>
+                        <div className='mainPageBoxInfoContainer'>
+                            <Popover content="Bu liste, firmamızın şu ana kadar yaptığı ve tamamladığı bütün seyahatlerin listesidir.">
+                                <div><AiOutlineQuestionCircle /></div>
+                            </Popover>
+                            <a onClick={handleRefreshExpeditions}><BiRefresh className='mainPageSvg' /></a>
+                        </div>
                     </div>
                     <div className='mainPageBoxUsersInfoContainer'>
                         <div className='mainPageExpeditionsBody'>
                             <Space wrap>
-                                <Progress type="dashboard" percent={93} strokeColor={conicColors}/>
+                                {expeditionsTotalCompleted && expeditionsTotalCompleted.rate !== undefined ? (
+                                    <Progress type="dashboard" percent={expeditionsTotalCompleted.rate.toFixed(2)} strokeColor={conicColors} />
+                                ) : (
+                                    <Progress type="dashboard" percent={0} strokeColor={conicColors} />
+                                )}
                             </Space>
                         </div>
                     </div>
                     <div className='mainPageExpeditionsFooter'>
                         <div className='mainPageExpeditionsCompleted'>
                             <p>Completed</p>
-                            <h1>786,617</h1>
+                            <h1>{expeditionsTotalCompleted.completedExpeditionCount}</h1>
                         </div>
                         <div className='mainPageExpeditionsProgress'>
                             <p>In Propgress</p>
-                            <h1>13,561</h1>
+                            <h1>{expeditionsTotalCompleted.activeExpeditionCount}</h1>
                         </div>
                     </div>
                 </div>
                 <div className='mainPageBox3'>
                     <div className='mainPageBoxTitle'>
                         <h5>Top 5 Visited Planets</h5>
-                        <div><BsThreeDotsVertical /></div>
+                        <div className='mainPageBoxInfoContainer'>
+                            <Popover content="Bu liste en çok seyahat edilen 5 Gezegenin listesidir.">
+                                <div><AiOutlineQuestionCircle /></div>
+                            </Popover>
+                            <a onClick={handleRefreshPlanetsMostPopular}><BiRefresh className='mainPageSvg' /></a>
+                        </div>
                     </div>
                     <div className='mainPageBoxUsersInfoContainer'>
-                        <div className='mainPageBoxUsersInfo'>
-                            <h5>Mars</h5>
-                            <div className='mainPageBoxUsersInfoSpinner'>
-                                <p>150 - 54.4%</p>
-                                <Space size={30}>
-                                    <Progress type="circle" percent={50} size={20} strokeColor={progressColor1} />
-                                </Space>
+                        {planetsMostPopulerData.map(planetData => (
+                            <div className='mainPageBoxUsersInfo' key={planetData.id}>
+                                <h5>{planetData.name}</h5>
+                                <div className='mainPageBoxUsersInfoSpinner'>
+                                    <p>{planetData.value} - {planetData.rate.toFixed(1)}%</p>
+                                    <Space size={30}>
+                                        <Progress type="circle" percent={planetData.rate} size={20} strokeColor={progresColor} />
+                                    </Space>
+                                </div>
                             </div>
-                        </div>
-                        <div className='mainPageBoxUsersInfo'>
-                            <h5>Jüpiter</h5>
-                            <div className='mainPageBoxUsersInfoSpinner'>
-                                <p>150 - 54.4%</p>
-                                <Space size={30}>
-                                    <Progress type="circle" percent={50} size={20} strokeColor={progressColor2} />
-                                </Space>
-                            </div>
-                        </div>
-                        <div className='mainPageBoxUsersInfo'>
-                            <h5>Venüs</h5>
-                            <div className='mainPageBoxUsersInfoSpinner'>
-                                <p>150 - 54.4%</p>
-                                <Space size={30}>
-                                    <Progress type="circle" percent={50} size={20} strokeColor={progressColor3} />
-                                </Space>
-                            </div>
-                        </div>
-                        <div className='mainPageBoxUsersInfo'>
-                            <h5>Ay</h5>
-                            <div className='mainPageBoxUsersInfoSpinner'>
-                                <p>150 - 54.4%</p>
-                                <Space size={30}>
-                                    <Progress type="circle" percent={50} size={20} strokeColor={progressColor4} />
-                                </Space>
-                            </div>
-                        </div>
-                        <div className='mainPageBoxUsersInfo'>
-                            <h5>Mars</h5>
-                            <div className='mainPageBoxUsersInfoSpinner'>
-                                <p>150 - 54.4%</p>
-                                <Space size={30}>
-                                    <Progress type="circle" percent={50} size={20} />
-                                </Space>
-                            </div>
-                        </div>
+                        ))}
                     </div>
                 </div>
             </div>

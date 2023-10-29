@@ -61,7 +61,8 @@ td {
     background-color: #273046 !important;
 }
 
-.ant-empty-description {
+.ant-empty-description,
+.ant-select-arrow {
     color: white !important;
 }
 
@@ -282,6 +283,12 @@ td {
     align-items: center;
 
     flex-wrap: wrap;
+}
+
+.search-ticketadmin-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .ant-select-selector:hover {

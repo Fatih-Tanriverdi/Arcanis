@@ -193,6 +193,23 @@
     color: white !important;
 }
 
+.mainPageBoxInfoContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mainPageSvg {
+    color: white !important;
+    cursor: pointer;
+    margin-left: 0.5rem;
+    font-size: 1.8rem;
+}
+
+.mainPageSvg:hover {
+    opacity: 0.5;
+}
+
 
 @media screen and (min-width: 700px) {
     .mainPageBoxContainer {

@@ -14,13 +14,14 @@ import About from "./pages/About/About";
 import Iletisim from "./pages/Communication/Iletisim";
 import PlanetDetails from "./pages/PlanetDetails/PlanetDetails";
 import Expedition from "./pages/Expedition/Expedition";
+import TicketAdmin from "./pages/TicketAdmin/TicketAdmin";
 
 export default function App() {
 
   return (
     <Routes>
       <Route path="/" element={<Customer />}/>
-      <Route path="customer/*" element={<Customer />} />
+      <Route path="/*" element={<Customer />} />
       <Route path="about" element={<About />} />
       <Route path="ticket" element={<Ticket />} />
       <Route path="iletisim" element={<Iletisim />} />
@@ -32,6 +33,7 @@ export default function App() {
         <Route path="mainpage" element={<MainPage />} />
         <Route path="planestadmin" element={<PlanetsAdmin />} />
         <Route path="expedition" element={<Expedition />} />
+        <Route path="ticketadmin" element={<TicketAdmin />} />
       </Route>
     </Routes>
   );

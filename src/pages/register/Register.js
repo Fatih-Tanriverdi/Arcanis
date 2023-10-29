@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import "./Register.css";
 import { Link, useNavigate } from "react-router-dom";
-import LoginImage from '../../components/LoginImage/LoginImage';
 import AuthButton from "../../components/ButtonLogin/AuthButton";
 import { registerUser } from '../../services/AuthService';
 import { ClipLoader } from 'react-spinners';

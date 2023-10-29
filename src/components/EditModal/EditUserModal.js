@@ -6,11 +6,12 @@ import { fetchRocketsGet, putRocket } from '../../services/RocketService';
 import { fetchPlanetsGet, putPlanet } from '../../services/PlanetService';
 import { putExpedition } from '../../services/ExpeditionService';
 
-export default function EditUserModal({ user, rocket, planet, expendition, onSave, onCancel, visible, pageType, addEditTitle, userDelete, rocketDelete, planetDelete, expeditionDelete }) {
+export default function EditUserModal({ user, rocket, planet, ticket, expendition, onSave, onCancel, visible, pageType, addEditTitle, userDelete, rocketDelete, planetDelete, expeditionDelete, handleDeleteTicket }) {
     const [editedData, setEditedData] = useState(user);
     const [editRocket, setEditRocket] = useState(rocket);
     const [editPlanet, setEditPlanet] = useState(planet);
     const [editExpedition, setEditExpedition] = useState(expendition);
+    const [editTicket, setEditTicket] = useState(ticket);
 
     const [errorText, setErrorText] = useState("");
     const [spaceVehicleData, setSpaceVehicleData] = useState([]);
@@ -31,7 +32,15 @@ export default function EditUserModal({ user, rocket, planet, expendition, onSav
             value: price.toLocaleString(),
             label: `$${price.toLocaleString()}`
         });
-    }
+    };
+
+    const ageLimitOptions = [];
+    for (let age = 1; age <= 100; age++) {
+        ageLimitOptions.push({
+            value: age.toString(),
+            label: age.toString()
+        })
+    };
 
     const handleUserRoleChange = (value) => {
         setEditedData((prev) => ({ ...prev, userRole: value }));
@@ -104,6 +113,17 @@ export default function EditUserModal({ user, rocket, planet, expendition, onSav
                 await putExpedition(editExpedition);
                 onSave(expendition.id, editExpedition);
             }
+            if (pageType === 'ticketAdmin') {
+                const requiredFields = ['CreatedDate', 'ExpeditionId', 'SeatNumber'];
+                for (const field of requiredFields) {
+                    if (!editTicket[field]) {
+                        setErrorText(`Lütfen ${field} alanını doldurun.`);
+                        return;
+                    }
+                }
+                await putExpedition(editTicket);
+                onSave(ticket.id, editTicket);
+            }
             onCancel();
         } catch (error) {
             console.error("Güncelleme işlemi başarısız oldu.", error);
@@ -125,6 +145,10 @@ export default function EditUserModal({ user, rocket, planet, expendition, onSav
 
     const handleDeleteExpedition = () => {
         expeditionDelete(expendition.id);
+    };
+
+    const handleDeleteTickets = () => {
+        handleDeleteTicket(ticket.id);
     };
 
     useEffect(() => {
@@ -161,50 +185,50 @@ export default function EditUserModal({ user, rocket, planet, expendition, onSav
                         <div className='modal-list'>
                             <Input
                                 id='modal-username-style-input'
-                                value={editRocket.name}
-                                onChange={(e) => setEditRocket({ ...editRocket, name: e.target.value })}
+                                value={editRocket.Name}
+                                onChange={(e) => setEditRocket({ ...editRocket, Name: e.target.value })}
                                 placeholder='Name'
-                                name="name"
+                                name="Name"
                             />
                             <Input
                                 id='modal-username-style-input'
-                                value={editRocket.modelName}
-                                onChange={(e) => setEditRocket({ ...editRocket, modelName: e.target.value })}
+                                value={editRocket.ModelName}
+                                onChange={(e) => setEditRocket({ ...editRocket, ModelName: e.target.value })}
                                 placeholder='Model Year'
-                                name="modelName"
+                                name="ModelName"
                             />
                             <Input
                                 id='modal-username-style-input'
-                                value={editRocket.modelYear}
-                                onChange={(e) => setEditRocket({ ...editRocket, modelYear: e.target.value })}
+                                value={editRocket.ModelYear}
+                                onChange={(e) => setEditRocket({ ...editRocket, ModelYear: e.target.value })}
                                 placeholder='Model Name'
-                                name="modelYear"
+                                name="ModelYear"
                             />
                             <Input
                                 id='modal-username-style-input'
-                                value={editRocket.serialNumber}
-                                onChange={(e) => setEditRocket({ ...editRocket, serialNumber: e.target.value })}
+                                value={editRocket.SerialNumber}
+                                onChange={(e) => setEditRocket({ ...editRocket, SerialNumber: e.target.value })}
                                 placeholder='Seri No'
-                                name="serialNumber"
+                                name="SerialNumber"
                             />
                             <Input
                                 id='modal-username-style-input'
-                                value={editRocket.description}
-                                onChange={(e) => setEditRocket({ ...editRocket, description: e.target.value })} placeholder='Description'
-                                name="description"
+                                value={editRocket.Description}
+                                onChange={(e) => setEditRocket({ ...editRocket, Description: e.target.value })} placeholder='Description'
+                                name="Description"
                             />
                             <Input
                                 id='modal-username-style-input'
-                                value={editRocket.maxNumberOfPassengers}
-                                onChange={(e) => setEditRocket({ ...editRocket, maxNumberOfPassengers: e.target.value })} placeholder='Seat Number'
-                                name="maxNumberOfPassengers"
+                                value={editRocket.MaxNumberOfPassengers}
+                                onChange={(e) => setEditRocket({ ...editRocket, MaxNumberOfPassengers: e.target.value })} placeholder='Seat Number'
+                                name="MaxNumberOfPassengers"
                             />
                             <Input
                                 id='modal-username-style-input'
-                                value={editRocket.ageLimit}
-                                onChange={(e) => setEditRocket({ ...editRocket, ageLimit: e.target.value })}
+                                value={editRocket.AgeLimit}
+                                onChange={(e) => setEditRocket({ ...editRocket, AgeLimit: e.target.value })}
                                 placeholder='Age Limit'
-                                name="ageLimit"
+                                name="AgeLimit"
                             />
                         </div>
                     </Space>
@@ -274,22 +298,22 @@ export default function EditUserModal({ user, rocket, planet, expendition, onSav
                     <Space direction="vertical" id='date-picker-body'>
                         <div className='modal-list'>
                             <Input
-                                id='modal-username-style-input' onChange={(e) => setEditPlanet({ ...editPlanet, name: e.target.value })} value={editPlanet.name} placeholder='Name' name="name"
+                                id='modal-username-style-input' onChange={(e) => setEditPlanet({ ...editPlanet, Name: e.target.value })} value={editPlanet.Name} placeholder='Name' name="Name"
                             />
                             <Input
-                                id='modal-username-style-input' onChange={(e) => setEditPlanet({ ...editPlanet, sequence: e.target.value })} value={editPlanet.sequence} placeholder='Sequence' name="sequence"
+                                id='modal-username-style-input' onChange={(e) => setEditPlanet({ ...editPlanet, Sequence: e.target.value })} value={editPlanet.Sequence} placeholder='Sequence' name="Sequence"
                             />
                             <Input
-                                id='modal-username-style-input' onChange={(e) => setEditPlanet({ ...editPlanet, difficultyLevel: e.target.value })} value={editPlanet.difficultyLevel} placeholder='Difficulty Level' name="difficultyLevel"
+                                id='modal-username-style-input' onChange={(e) => setEditPlanet({ ...editPlanet, DifficultyLevel: e.target.value })} value={editPlanet.DifficultyLevel} placeholder='Difficulty Level' name="DifficultyLevel"
                             />
                             <Input
-                                id='modal-username-style-input' onChange={(e) => setEditPlanet({ ...editPlanet, imageUrl: e.target.value })} value={editPlanet.imageUrl} placeholder='Image Url' name="imageUrl"
+                                id='modal-username-style-input' onChange={(e) => setEditPlanet({ ...editPlanet, ImageUrl: e.target.value })} value={editPlanet.ImageUrl} placeholder='Image Url' name="ImageUrl"
                             />
                             <Input
-                                id='modal-username-style-input' onChange={(e) => setEditPlanet({ ...editPlanet, detailsImageUrl: e.target.value })} value={editPlanet.detailsImageUrl} placeholder='Details Image Url' name="detailsImageUrl"
+                                id='modal-username-style-input' onChange={(e) => setEditPlanet({ ...editPlanet, DetailsImageUrl: e.target.value })} value={editPlanet.DetailsImageUrl} placeholder='Details Image Url' name="DetailsImageUrl"
                             />
                             <Input
-                                id='modal-username-style-input' onChange={(e) => setEditPlanet({ ...editPlanet, description: e.target.value })} value={editPlanet.description} placeholder='Description' name="description"
+                                id='modal-username-style-input' onChange={(e) => setEditPlanet({ ...editPlanet, Description: e.target.value })} value={editPlanet.Description} placeholder='Description' name="Description"
                             />
                             <Input
                                 id='modal-username-style-input' onChange={(e) => setEditPlanet({ ...editPlanet, summaryDescription: e.target.value })} value={editPlanet.summaryDescription} placeholder='Summary Description' name="summaryDescription"
@@ -372,6 +396,36 @@ export default function EditUserModal({ user, rocket, planet, expendition, onSav
                         </Space>
                     </Space>
                 );
+            case 'ticketAdmin':
+                return (
+                    <Space direction="vertical" id='date-picker-body'>
+                        <Space direction="vertical" id='date-picker-body'>
+                            <div className='modal-list'>
+                                <Input
+                                    id='modal-username-style-input'
+                                    onChange={(e) => setEditTicket({ ...editTicket, CreatedDate: e.target.value })}
+                                    value={editTicket.CreatedDate}
+                                    placeholder='CreatedDate'
+                                    name="CreatedDate"
+                                />
+                                <Input
+                                    id='modal-username-style-input'
+                                    onChange={(e) => setEditTicket({ ...editTicket, ExpeditionId: e.target.value })}
+                                    value={editTicket.ExpeditionId}
+                                    placeholder='ExpeditionId'
+                                    name="ExpeditionId"
+                                />
+                                <Select
+                                    value={editTicket.SeatNumber}
+                                    onChange={(value) => setEditTicket({ ...editTicket, SeatNumber: value })}
+                                    placeholder="SeatNumber"
+                                    name="SeatNumber"
+                                    options={ageLimitOptions}
+                                />
+                            </div>
+                        </Space>
+                    </Space>
+                );
             default:
                 return null;
         }
@@ -391,7 +445,8 @@ export default function EditUserModal({ user, rocket, planet, expendition, onSav
                             pageType === 'users' ? handleDeleteUser :
                                 pageType === 'spaceShips' ? handleDeleteRocket :
                                     pageType === 'planets' ? handleDeletePlanet :
-                                        pageType === 'expedition' ? handleDeleteExpedition : null
+                                        pageType === 'expedition' ? handleDeleteExpedition : 
+                                            pageType === 'ticketAdmin' ? handleDeleteTickets : null
                         }>
                             Delete
                         </Button>

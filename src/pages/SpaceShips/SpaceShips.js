@@ -5,6 +5,7 @@ import { TableListComp } from "../../components/TableListComp/TableListComp"
 import { deleteRocket, fetchRocketsGet } from '../../services/RocketService';
 import EditModal from '../../components/EditModal/EditUserModal';
 import { RiArrowRightSLine } from 'react-icons/ri';
+import { Popover } from 'antd';
 
 export default function SpaceShips() {
     const [selectedRocket, setSelectedRocket] = useState(null);
@@ -22,38 +23,45 @@ export default function SpaceShips() {
         },
         {
             title: 'NAME',
-            dataIndex: 'name',
+            dataIndex: 'Name',
             key: 'user',
         },
         {
             title: 'MODEL NAME',
-            dataIndex: 'modelName',
+            dataIndex: 'ModelName',
             key: 'modelName',
         },
         {
             title: 'MODEL YEARS',
-            dataIndex: 'modelYear',
+            dataIndex: 'ModelYear',
             key: 'modelYear',
         },
         {
             title: 'SERI NO',
-            key: 'serialNumber',
-            dataIndex: 'serialNumber',
+            key: 'SerialNumber',
+            dataIndex: 'SerialNumber',
         },
         {
             title: 'SEAT NUMBER',
-            key: 'maxNumberOfPassengers',
-            dataIndex: 'maxNumberOfPassengers',
+            key: 'MaxNumberOfPassengers',
+            dataIndex: 'MaxNumberOfPassengers',
         },
         {
             title: 'AGE LIMIT',
-            dataIndex: 'ageLimit',
+            dataIndex: 'AgeLimit',
             key: 'ageLimit',
         },
         {
             title: 'DESCRIPTION',
-            dataIndex: 'description',
+            dataIndex: 'Description',
             key: 'description',
+            render: (text) => (
+                <div className="table-cell">
+                    <Popover content={text}>
+                        {text}
+                    </Popover>
+                </div>
+            ),
         },
     ];
 
@@ -69,7 +77,7 @@ export default function SpaceShips() {
                     console.error('API request failed:', error);
                     return [];
                 });
-            setSpaceShipData(data);
+            setSpaceShipData(data.value);
         }
         fetchSpaceShipData();
     }, []);
@@ -116,4 +124,3 @@ export default function SpaceShips() {
         </container>
     )
 }
-
