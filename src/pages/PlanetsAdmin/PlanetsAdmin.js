@@ -6,24 +6,29 @@ import { TableListComp } from '../../components/TableListComp/TableListComp';
 import { deletePlanet, fetchPlanetsGet } from '../../services/PlanetService';
 import EditModal from '../../components/EditModal/EditUserModal';
 import { RiArrowRightSLine } from 'react-icons/ri';
+import APImanager from '../../apiManager';
 import { Popover } from 'antd';
+import buildQuery from 'odata-query';
 
 
 export default function UsersList() {
     const [selectedPlanet, setSelectedPlanet] = useState(null);
     const [planets, setPlanets] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [pageOdata, setPageOdata] = useState(1);
+    const [pageSizeOdata, setPageSizeOdata] = useState(10);
+    const baseUrl = APImanager.getBaseURL();
     const columns = [
         {
-            title: 'EDIT',
-            key: 'Id',
-            dataIndex: 'Id',
+            title: '',
+            key: 'id',
+            dataIndex: 'id',
             render: (id, record) => (
                 <button className="editButton" onClick={() => handleEditPlanet(id)}><RiArrowRightSLine /></button>
             ),
         },
         {
-            title: 'NAME',
+            title: 'GEZEGEN ADI',
             dataIndex: 'Name',
             key: 'user',
         },
@@ -33,17 +38,17 @@ export default function UsersList() {
             key: 'sequence',
         },
         {
-            title: 'LEVEL',
+            title: 'SEVİYE',
             dataIndex: 'DifficultyLevel',
             key: 'difficultyLevel',
         },
         {
-            title: 'SUMMARY DESCRIPTION',
+            title: 'DETAYLI AÇIKLAMA',
             key: 'summaryDescription',
             dataIndex: 'summaryDescription',
         },
         {
-            title: 'DESCRIPTION',
+            title: 'AÇIKLAMA',
             key: 'Description',
             dataIndex: 'Description',
             render: (text) => (
@@ -61,8 +66,12 @@ export default function UsersList() {
     }, []);
 
     useEffect(() => {
+        const queryWithPaging = buildQuery({
+            "top": pageSizeOdata,
+            "skip": (pageOdata - 1) * pageSizeOdata,
+        });
         async function planetsData() {
-            const url = "http://lambalog.com/api/planets";
+            const url = `${baseUrl}/planets${queryWithPaging}`;
             const data = await fetchPlanetsGet(url)
                 .catch(error => {
                     console.error('API request failed:', error);
@@ -71,7 +80,7 @@ export default function UsersList() {
             setPlanets(data.value);
         }
         planetsData();
-    }, []);
+    }, [pageOdata, pageSizeOdata]);
 
     const handleDeletePlanet = (id) => {
         const confirmDelete = window.confirm('Kullanıcıyı silmek istediğine emin misin?');
@@ -90,7 +99,7 @@ export default function UsersList() {
     };
 
     const handleEditPlanet = (id) => {
-        const planetEdit = planets.find(planet => planet.Id === id);
+        const planetEdit = planets.find(planet => planet.id === id);
         setSelectedPlanet(planetEdit);
         setIsModalOpen(true);
     };
@@ -104,7 +113,7 @@ export default function UsersList() {
         <container className='orders-container'>
             <article className='orders-body'>
                 <div className='orders-list'>
-                    <TableListComp props={{ columns: columns, dataSource: planets }} text="planets" pageSearchType={"planets"} addButtonLabel={"Gezegen Ekle"} />
+                    <TableListComp props={{ columns: columns, dataSource: planets }} text="planets" pageSearchType={"planets"} addButtonLabel={"Gezegen Ekle"} addFilterName={"Gezegen Filtreleme"} setPageOdata={setPageOdata} setPageSizeOdata={setPageSizeOdata} pageOdata={pageOdata} pageSizeOdata={pageSizeOdata} />
                     {isModalOpen && (
                         <EditModal planet={selectedPlanet} onCancel={handleModalClose} visible={isModalOpen} pageType={"planets"} addEditTitle={"Gezegen Güncelleme"} planetDelete={handleDeletePlanet} />
                     )}

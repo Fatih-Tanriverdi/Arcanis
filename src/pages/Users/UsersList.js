@@ -5,50 +5,51 @@ import { TableListComp } from "../../components/TableListComp/TableListComp";
 import { deleteUsers, fetchUsersDataGet } from "../../services/UserService";
 import { RiArrowRightSLine } from 'react-icons/ri';
 import EditUserModal from "../../components/EditModal/EditUserModal";
+import APImanager from '../../apiManager';
+import buildQuery from 'odata-query';
 
 export default function UsersList() {
     const [selectedUser, setSelectedUser] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [usersData, setUsersData] = useState([]);
+    const [pageOdata, setPageOdata] = useState(1);
+    const [pageSizeOdata, setPageSizeOdata] = useState(10);
+    const baseUrl = APImanager.getBaseURL();
     const columns = [
         {
-            title: 'EDIT',
-            key: 'Id',
-            dataIndex: 'Id',
-            width: 50,
+            key: 'id',
+            dataIndex: 'id',
             render: (id, record) => (
                 <button className="editButton" onClick={() => handleEditUser(id)}><RiArrowRightSLine /></button>
             ),
         },
         {
-            title: 'NAME',
+            title: 'İSİM',
             dataIndex: 'Name',
             key: 'Name',
-            width: 50,
         },
         {
-            title: 'SURNAME',
+            title: 'SOYİSİM',
             dataIndex: 'Surname',
             key: 'Surname',
         },
         {
-            title: 'EMAIL',
+            title: 'E-POSTA',
             dataIndex: 'Email',
             key: 'Email',
-            width: 50,
         },
         {
-            title: 'PHONE',
+            title: 'TELEFON',
             dataIndex: 'Phone',
             key: 'Phone',
         },
         {
-            title: 'USERNAME',
+            title: 'KULLANICI ADI',
             dataIndex: 'username',
             key: 'username',
         },
         {
-            title: 'ACTIVE',
+            title: 'AKTİF',
             dataIndex: 'isActive',
             key: 'isActive',
             render: (text) => {
@@ -62,7 +63,7 @@ export default function UsersList() {
             },
         },
         {
-            title: 'ROLE',
+            title: 'ROL',
             dataIndex: 'userRoleType',
             key: 'userRoleType',
             render: (text) => {
@@ -82,8 +83,12 @@ export default function UsersList() {
     }, []);
 
     useEffect(() => {
+        const queryWithPaging = buildQuery({
+            "top": pageSizeOdata,
+            "skip": (pageOdata - 1) * pageSizeOdata,
+        });
         async function fetchUsersListData() {
-            const url = "http://lambalog.com/api/users";
+            const url = `${baseUrl}/users${queryWithPaging}`;
             const data = await fetchUsersDataGet(url)
                 .catch(error => {
                     console.error('API request failed:', error);
@@ -125,7 +130,7 @@ export default function UsersList() {
         <div className='user-list-container'>
             <div className='user-list-body'>
                 <div className='list-group-container'>
-                    <TableListComp props={{ columns: columns, dataSource: usersData }} text="users" pageSearchType={"users"} addButtonLabel={"Kullanıcı Ekle"} />
+                    <TableListComp props={{ columns: columns, dataSource: usersData }} text="users" pageSearchType={"users"} addButtonLabel={"Kullanıcı Ekle"} addFilterName={"Kullanıcı Filtreleme"} setPageOdata={setPageOdata} setPageSizeOdata={setPageSizeOdata} pageOdata={pageOdata} pageSizeOdata={pageSizeOdata} />
                     {isModalOpen && (
                         <EditUserModal user={selectedUser} onCancel={handleModalClose} visible={isModalOpen} pageType={"users"} addEditTitle={"Kullanıcı Güncelleme"} userDelete={handleDeleteUser} />
                     )}

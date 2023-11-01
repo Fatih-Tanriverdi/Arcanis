@@ -6,15 +6,17 @@ import { fetchRocketsGet, fetchRocketsPost } from '../../services/RocketService'
 import { fetchPlanetsGet, fetchPlanetsPost } from '../../services/PlanetService';
 import { fetchExpeditionPost } from '../../services/ExpeditionService';
 import { fetchUsersPost } from '../../services/UserService';
+import APImanager from '../../apiManager';
 
 export function ModelComponent({ isModalVisible, onCancel, modalContent, addTitle }) {
     const [errorMessage, setErrorMessage] = useState(null);
     const [spaceVehicleData, setSpaceVehicleData] = useState([]);
     const [planetData, setPlanetData] = useState([]);
+    const baseUrl = APImanager.getBaseURL();
 
-    const [selectedSpaceVehicle, setSelectedSpaceVehicle] = useState("Space Vehicle");
-    const [selectedDeparturePlanet, setSelectedDeparturePlanet] = useState("Departure Planet");
-    const [selectedArrivalPlanet, setSelectedArrivalPlanet] = useState("Arrival Planet");
+    const [selectedSpaceVehicle, setSelectedSpaceVehicle] = useState("Uzay Araçları");
+    const [selectedDeparturePlanet, setSelectedDeparturePlanet] = useState("Kalkış Gezegeni");
+    const [selectedArrivalPlanet, setSelectedArrivalPlanet] = useState("Varış Gezegeni");
 
     const handleUserRoleChange = (value) => {
         SetValuesUsers((prev) => ({ ...prev, userRole: value }));
@@ -138,7 +140,7 @@ export function ModelComponent({ isModalVisible, onCancel, modalContent, addTitl
                 setErrorMessage(errors[field]);
             }
         } else {
-            const url = "http://lambalog.com/api/space-vehicles";
+            const url = `${baseUrl}/space-vehicles`;
             try {
                 const data = await fetchRocketsPost(valuesRockets, url);
                 console.log(data);
@@ -151,7 +153,7 @@ export function ModelComponent({ isModalVisible, onCancel, modalContent, addTitl
     useEffect(() => {
         async function fetchRocketData() {
             try {
-                const url = "http://lambalog.com/api/lookups/space-vehicles";
+                const url = `${baseUrl}/lookups/space-vehicles`;
                 const data = await fetchRocketsGet(url);
                 setSpaceVehicleData(data);
             } catch (error) {
@@ -210,7 +212,7 @@ export function ModelComponent({ isModalVisible, onCancel, modalContent, addTitl
             return;
         }
 
-        const url = "http://lambalog.com/api/users";
+        const url = `${baseUrl}/users`;
         try {
             const data = await fetchUsersPost(valuesUsers, url);
             console.log(data);
@@ -242,7 +244,7 @@ export function ModelComponent({ isModalVisible, onCancel, modalContent, addTitl
                 setErrorMessage(errors[field]);
             }
         } else {
-            const url = "http://lambalog.com/api/planets";
+            const url = `${baseUrl}/planets`;
             try {
                 const data = await fetchPlanetsPost(valuesPlanets, url);
                 console.log(data);
@@ -255,7 +257,7 @@ export function ModelComponent({ isModalVisible, onCancel, modalContent, addTitl
     useEffect(() => {
         async function fetchPlanetData() {
             try {
-                const url = "http://lambalog.com/api/lookups/planets";
+                const url = `${baseUrl}/lookups/planets`;
                 const data = await fetchPlanetsGet(url);
                 setPlanetData(data);
             } catch (error) {
@@ -268,7 +270,7 @@ export function ModelComponent({ isModalVisible, onCancel, modalContent, addTitl
 
     /* EXPEDITION */
     const expeditionsPost = async () => {
-        const url = "http://lambalog.com/api/expenditions";
+        const url = `${baseUrl}/expenditions`;
         const formattedExpeditionDate = new Date(valuesExpeditions.expeditionDate).toISOString();
         const formattedArrivalDate = new Date(valuesExpeditions.arrivalDate).toISOString();
 
@@ -293,25 +295,25 @@ export function ModelComponent({ isModalVisible, onCancel, modalContent, addTitl
             <Space direction="vertical" id='date-picker-body'>
                 <div className='modal-list'>
                     <Input
-                        id='modal-username-style-input' value={valuesRockets.name} onChange={handleInput} placeholder='Name' name="name"
+                        id='modal-username-style-input' value={valuesRockets.name} onChange={handleInput} placeholder='Araç Adı' name="name"
                     />
                     <Input
-                        id='modal-username-style-input' value={valuesRockets.modelName} onChange={handleInput} placeholder='Model Name' name="modelName"
+                        id='modal-username-style-input' value={valuesRockets.modelName} onChange={handleInput} placeholder='Model Adı' name="modelName"
                     />
                     <Input
-                        id='modal-username-style-input' value={valuesRockets.modelYear} onChange={handleInput} placeholder='Model Year' name="modelYear"
+                        id='modal-username-style-input' value={valuesRockets.modelYear} onChange={handleInput} placeholder='Model Yılı' name="modelYear"
                     />
                     <Input
-                        id='modal-username-style-input' value={valuesRockets.serialNumber} onChange={handleInput} placeholder='Seri No' name="serialNumber"
+                        id='modal-username-style-input' value={valuesRockets.serialNumber} onChange={handleInput} placeholder='Seri Numarası' name="serialNumber"
                     />
                     <Input
-                        id='modal-username-style-input' value={valuesRockets.description} onChange={handleInput} placeholder='Description' name="description"
+                        id='modal-username-style-input' value={valuesRockets.description} onChange={handleInput} placeholder='Açıklama' name="description"
                     />
                     <Input
-                        id='modal-username-style-input' value={valuesRockets.maxNumberOfPassengers} onChange={handleInput} placeholder='Seat Number' name="maxNumberOfPassengers"
+                        id='modal-username-style-input' value={valuesRockets.maxNumberOfPassengers} onChange={handleInput} placeholder='Koltuk Numarası' name="maxNumberOfPassengers"
                     />
                     <Input
-                        id='modal-username-style-input' value={valuesRockets.ageLimit} onChange={handleInput} placeholder='Age Limit' name="ageLimit"
+                        id='modal-username-style-input' value={valuesRockets.ageLimit} onChange={handleInput} placeholder='Yaş Sınırı' name="ageLimit"
                     />
                 </div>
             </Space>
@@ -320,27 +322,27 @@ export function ModelComponent({ isModalVisible, onCancel, modalContent, addTitl
             <Space direction="vertical" id='date-picker-body'>
                 <div className='modal-list'>
                     <Input
-                        id='modal-username-style-input' onChange={handleInput} value={valuesUsers.name} placeholder='Name' name="name"
+                        id='modal-username-style-input' onChange={handleInput} value={valuesUsers.name} placeholder='İsim' name="name"
                     />
                     <Input
-                        id='modal-username-style-input' onChange={handleInput} value={valuesUsers.surname} placeholder='Surname' name="surname"
+                        id='modal-username-style-input' onChange={handleInput} value={valuesUsers.surname} placeholder='Soyisim' name="surname"
                     />
                     <Input
-                        id='modal-username-style-input' onChange={handleInput} value={valuesUsers.emailAddress} placeholder='E-mail Address' name="emailAddress"
+                        id='modal-username-style-input' onChange={handleInput} value={valuesUsers.emailAddress} placeholder='E-Posta Address' name="emailAddress"
                     />
                     <Input
-                        id='modal-username-style-input' onChange={handleInput} value={valuesUsers.phoneNumber} placeholder='Phone Number' name="phoneNumber"
+                        id='modal-username-style-input' onChange={handleInput} value={valuesUsers.phoneNumber} placeholder='Telefon Numarası' name="phoneNumber"
                     />
                     <Input
-                        id='modal-username-style-input' onChange={handleInput} value={valuesUsers.username} placeholder='Username' name="username"
+                        id='modal-username-style-input' onChange={handleInput} value={valuesUsers.username} placeholder='Kullanıcı Adı' name="username"
                     />
                     <Input.Password
-                        id='modal-username-style-input' onChange={handleInput} value={valuesUsers.password} placeholder='Password' name="password"
+                        id='modal-username-style-input' onChange={handleInput} value={valuesUsers.password} placeholder='Şifre' name="password"
                     />
                     <Select
                         defaultValue={valuesUsers.userRole}
                         onChange={handleUserRoleChange}
-                        placeholder="Role"
+                        placeholder="Rol"
                     >
                         {Object.values(UserRole).map(role => (
                             <Select.Option key={role} value={role}>
@@ -355,25 +357,25 @@ export function ModelComponent({ isModalVisible, onCancel, modalContent, addTitl
             <Space direction="vertical" id='date-picker-body'>
                 <div className='modal-list'>
                     <Input
-                        id='modal-username-style-input' onChange={handleInput} value={valuesPlanets.name} placeholder='Name' name="name"
+                        id='modal-username-style-input' onChange={handleInput} value={valuesPlanets.name} placeholder='Gezegen Adı' name="name"
                     />
                     <Input
-                        id='modal-username-style-input' onChange={handleInput} value={valuesPlanets.sequence} placeholder='Sequence' name="sequence"
+                        id='modal-username-style-input' onChange={handleInput} value={valuesPlanets.sequence} placeholder='Sıra' name="sequence"
                     />
                     <Input
-                        id='modal-username-style-input' onChange={handleInput} value={valuesPlanets.difficultyLevel} placeholder='Difficulty Level' name="difficultyLevel"
+                        id='modal-username-style-input' onChange={handleInput} value={valuesPlanets.difficultyLevel} placeholder='Zorluk Seviyesi' name="difficultyLevel"
                     />
                     <Input
-                        id='modal-username-style-input' onChange={handleInput} value={valuesPlanets.imageUrl} placeholder='Image Url' name="imageUrl"
+                        id='modal-username-style-input' onChange={handleInput} value={valuesPlanets.imageUrl} placeholder='Resim URL' name="imageUrl"
                     />
                     <Input
-                        id='modal-username-style-input' onChange={handleInput} value={valuesPlanets.detailsImageUrl} placeholder='Details Image Url' name="detailsImageUrl"
+                        id='modal-username-style-input' onChange={handleInput} value={valuesPlanets.detailsImageUrl} placeholder='Detaylı Resim Url' name="detailsImageUrl"
                     />
                     <Input
-                        id='modal-username-style-input' onChange={handleInput} value={valuesPlanets.description} placeholder='Description' name="description"
+                        id='modal-username-style-input' onChange={handleInput} value={valuesPlanets.description} placeholder='Açıklama' name="description"
                     />
                     <Input
-                        id='modal-username-style-input' onChange={handleInput} value={valuesPlanets.summaryDescription} placeholder='Summary Description' name="summaryDescription"
+                        id='modal-username-style-input' onChange={handleInput} value={valuesPlanets.summaryDescription} placeholder='Detaylı Açıklama' name="summaryDescription"
                     />
                 </div>
             </Space>
@@ -382,22 +384,22 @@ export function ModelComponent({ isModalVisible, onCancel, modalContent, addTitl
             <Space direction="vertical" id='date-picker-body'>
                 <div className='modal-list'>
                     <Input
-                        id='modal-username-style-input' onChange={handleInput} value={valuesExpeditions.name} placeholder='Name' name="name"
+                        id='modal-username-style-input' onChange={handleInput} value={valuesExpeditions.name} placeholder='Sefer Adı' name="name"
                     />
                     <Input
-                        id='modal-username-style-input' onChange={handleInput} value={valuesExpeditions.expeditionDate} placeholder='Expedition Date' name="expeditionDate"
+                        id='modal-username-style-input' onChange={handleInput} value={valuesExpeditions.expeditionDate} placeholder='Kalkış Tarihi' name="expeditionDate"
                     />
                     <Input
-                        id='modal-username-style-input' onChange={handleInput} value={valuesExpeditions.arrivalDate} placeholder='Arrival Date' name="arrivalDate"
+                        id='modal-username-style-input' onChange={handleInput} value={valuesExpeditions.arrivalDate} placeholder='Varış Tarihi' name="arrivalDate"
                     />
                     <Input
-                        id='modal-username-style-input' onChange={handleInput} value={valuesExpeditions.ticketPrice} placeholder='Ticket Price' name="ticketPrice"
+                        id='modal-username-style-input' onChange={handleInput} value={valuesExpeditions.ticketPrice} placeholder='Bilet Fiyatı' name="ticketPrice"
                     />
                     <Select
                         id='modal-username-style-input'
                         onChange={handleSelectSpaceVehicle}
                         value={selectedSpaceVehicle}
-                        placeholder='Space Vehicle Id'
+                        placeholder='Uzay Aracı'
                         name="spaceVehicleId"
                     >
                         {spaceVehicleData.map(vehicle => (
@@ -410,7 +412,7 @@ export function ModelComponent({ isModalVisible, onCancel, modalContent, addTitl
                         id='modal-username-style-input'
                         onChange={handleSelectDeparturePlanet}
                         value={selectedDeparturePlanet}
-                        placeholder='Departure Planet Id'
+                        placeholder='Kalkış Gezegeni'
                         name="departurePlanetId"
                     >
                         {planetData.map(planet => (
@@ -420,7 +422,7 @@ export function ModelComponent({ isModalVisible, onCancel, modalContent, addTitl
                         ))}
                     </Select>
                     <Select
-                        placeholder={"Arrival Planet"}
+                        placeholder="Varış Gezegeni"
                         id='modal-username-style-input'
                         onChange={handleSelectArrivalPlanet}
                         value={selectedArrivalPlanet}
@@ -434,64 +436,7 @@ export function ModelComponent({ isModalVisible, onCancel, modalContent, addTitl
                     </Select>
                 </div>
             </Space>
-        ),
-        ticketAdmin: (
-            <Space direction="vertical" id='date-picker-body'>
-                <div className='modal-list'>
-                    <Input
-                        id='modal-username-style-input' onChange={handleInput} value={valuesExpeditions.name} placeholder='Name' name="name"
-                    />
-                    <Input
-                        id='modal-username-style-input' onChange={handleInput} value={valuesExpeditions.expeditionDate} placeholder='Expedition Date' name="expeditionDate"
-                    />
-                    <Input
-                        id='modal-username-style-input' onChange={handleInput} value={valuesExpeditions.arrivalDate} placeholder='Arrival Date' name="arrivalDate"
-                    />
-                    <Input
-                        id='modal-username-style-input' onChange={handleInput} value={valuesExpeditions.ticketPrice} placeholder='Ticket Price' name="ticketPrice"
-                    />
-                    <Select
-                        id='modal-username-style-input'
-                        onChange={handleSelectSpaceVehicle}
-                        value={selectedSpaceVehicle}
-                        placeholder='Space Vehicle Id'
-                        name="spaceVehicleId"
-                    >
-                        {spaceVehicleData.map(vehicle => (
-                            <Select.Option key={vehicle.id} value={vehicle.id}>
-                                {vehicle.displayName}
-                            </Select.Option>
-                        ))}
-                    </Select>
-                    <Select
-                        id='modal-username-style-input'
-                        onChange={handleSelectDeparturePlanet}
-                        value={selectedDeparturePlanet}
-                        placeholder='Departure Planet Id'
-                        name="departurePlanetId"
-                    >
-                        {planetData.map(planet => (
-                            <Select.Option key={planet.id} value={planet.id}>
-                                {planet.displayName}
-                            </Select.Option>
-                        ))}
-                    </Select>
-                    <Select
-                        placeholder={"Arrival Planet"}
-                        id='modal-username-style-input'
-                        onChange={handleSelectArrivalPlanet}
-                        value={selectedArrivalPlanet}
-                        name="arrivalPlanetId"
-                    >
-                        {planetData.map(planet => (
-                            <Select.Option key={planet.id} value={planet.id}>
-                                {planet.displayName}
-                            </Select.Option>
-                        ))}
-                    </Select>
-                </div>
-            </Space>
-        ),
+        )
     };
 
     return (

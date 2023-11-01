@@ -5,21 +5,24 @@ import { putUsers } from '../../services/UserService';
 import { fetchRocketsGet, putRocket } from '../../services/RocketService';
 import { fetchPlanetsGet, putPlanet } from '../../services/PlanetService';
 import { putExpedition } from '../../services/ExpeditionService';
+import { putTicket } from '../../services/TicketService';
+import APImanager from '../../apiManager';
 
-export default function EditUserModal({ user, rocket, planet, ticket, expendition, onSave, onCancel, visible, pageType, addEditTitle, userDelete, rocketDelete, planetDelete, expeditionDelete, handleDeleteTicket }) {
+export default function EditUserModal({ user, rocket, planet, ticket, expendition, onSave, onCancel, visible, pageType, addEditTitle, userDelete, rocketDelete, planetDelete, expeditionDelete, ticketDelete }) {
     const [editedData, setEditedData] = useState(user);
     const [editRocket, setEditRocket] = useState(rocket);
     const [editPlanet, setEditPlanet] = useState(planet);
     const [editExpedition, setEditExpedition] = useState(expendition);
     const [editTicket, setEditTicket] = useState(ticket);
+    const baseUrl = APImanager.getBaseURL();
 
     const [errorText, setErrorText] = useState("");
     const [spaceVehicleData, setSpaceVehicleData] = useState([]);
     const [planetData, setPlanetData] = useState([]);
 
-    const [selectedSpaceVehicle, setSelectedSpaceVehicle] = useState("Space Vehicle");
-    const [selectedDeparturePlanet, setSelectedDeparturePlanet] = useState("Departure Planet");
-    const [selectedArrivalPlanet, setSelectedArrivalPlanet] = useState("Arrival Planet");
+    const [spaceVehicleId, setSelectedSpaceVehicle] = useState("Space Vehicle");
+    const [departurePlanetId, setSelectedDeparturePlanet] = useState("Departure Planet");
+    const [arrivalPlanetId, setSelectedArrivalPlanet] = useState("Arrival Planet");
 
     const UserRole = {
         ADMIN: 1,
@@ -81,7 +84,7 @@ export default function EditUserModal({ user, rocket, planet, ticket, expenditio
                 onSave(user.id, editedData);
             }
             if (pageType === 'spaceShips') {
-                const requiredFields = ['name', 'modelName', 'modelYear', 'serialNumber', 'description', 'maxNumberOfPassengers', 'ageLimit'];
+                const requiredFields = ['Name', 'ModelName', 'ModelYear', 'SerialNumber', 'Description', 'MaxNumberOfPassengers', 'AgeLimit'];
                 for (const field of requiredFields) {
                     if (!editRocket[field]) {
                         setErrorText(`Lütfen ${field} alanını doldurun.`);
@@ -92,7 +95,7 @@ export default function EditUserModal({ user, rocket, planet, ticket, expenditio
                 onSave(rocket.id, editRocket)
             }
             if (pageType === 'planets') {
-                const requiredFields = ['name', 'sequence', 'difficultyLevel', 'imageUrl', 'detailsImageUrl', 'description', 'summaryDescription'];
+                const requiredFields = ['Name', 'Sequence', 'DifficultyLevel', 'ImageUrl', 'DetailsImageUrl', 'Description', 'summaryDescription'];
                 for (const field of requiredFields) {
                     if (!editPlanet[field]) {
                         setErrorText(`Lütfen ${field} alanını doldurun.`);
@@ -103,7 +106,7 @@ export default function EditUserModal({ user, rocket, planet, ticket, expenditio
                 onSave(planet.id, editPlanet);
             }
             if (pageType === 'expedition') {
-                const requiredFields = ['name', 'expeditionDate', 'arrivalDate', 'ticketPrice', 'selectedSpaceVehicle', 'selectedDeparturePlanet', 'selectedArrivalPlanet'];
+                const requiredFields = ['name', 'expeditionDate', 'arrivalDate', 'ticketPrice', 'spaceVehicleId','departurePlanetId', 'arrivalPlanetId'];
                 for (const field of requiredFields) {
                     if (!editExpedition[field]) {
                         setErrorText(`Lütfen ${field} alanını doldurun.`);
@@ -121,7 +124,7 @@ export default function EditUserModal({ user, rocket, planet, ticket, expenditio
                         return;
                     }
                 }
-                await putExpedition(editTicket);
+                await putTicket(editTicket);
                 onSave(ticket.id, editTicket);
             }
             onCancel();
@@ -136,11 +139,11 @@ export default function EditUserModal({ user, rocket, planet, ticket, expenditio
     };
 
     const handleDeleteRocket = () => {
-        rocketDelete(rocket.id);
+        rocketDelete(rocket.Id);
     };
 
     const handleDeletePlanet = () => {
-        planetDelete(planet.id);
+        planetDelete(planet.Id);
     };
 
     const handleDeleteExpedition = () => {
@@ -148,13 +151,13 @@ export default function EditUserModal({ user, rocket, planet, ticket, expenditio
     };
 
     const handleDeleteTickets = () => {
-        handleDeleteTicket(ticket.id);
+        ticketDelete(ticket.Id);
     };
 
     useEffect(() => {
         async function fetchPlanetData() {
             try {
-                const url = "http://lambalog.com/api/lookups/planets";
+                const url = `${baseUrl}/lookups/planets`;
                 const data = await fetchPlanetsGet(url);
                 setPlanetData(data);
             } catch (error) {
@@ -167,7 +170,7 @@ export default function EditUserModal({ user, rocket, planet, ticket, expenditio
     useEffect(() => {
         async function fetchRocketData() {
             try {
-                const url = "http://lambalog.com/api/lookups/space-vehicles";
+                const url = `${baseUrl}/lookups/space-vehicles`;
                 const data = await fetchRocketsGet(url);
                 setSpaceVehicleData(data);
             } catch (error) {
@@ -187,47 +190,49 @@ export default function EditUserModal({ user, rocket, planet, ticket, expenditio
                                 id='modal-username-style-input'
                                 value={editRocket.Name}
                                 onChange={(e) => setEditRocket({ ...editRocket, Name: e.target.value })}
-                                placeholder='Name'
+                                placeholder='Araç Adı'
                                 name="Name"
                             />
                             <Input
                                 id='modal-username-style-input'
                                 value={editRocket.ModelName}
                                 onChange={(e) => setEditRocket({ ...editRocket, ModelName: e.target.value })}
-                                placeholder='Model Year'
+                                placeholder='Model Yılı'
                                 name="ModelName"
                             />
                             <Input
                                 id='modal-username-style-input'
                                 value={editRocket.ModelYear}
                                 onChange={(e) => setEditRocket({ ...editRocket, ModelYear: e.target.value })}
-                                placeholder='Model Name'
+                                placeholder='Model Adı'
                                 name="ModelYear"
                             />
                             <Input
                                 id='modal-username-style-input'
                                 value={editRocket.SerialNumber}
                                 onChange={(e) => setEditRocket({ ...editRocket, SerialNumber: e.target.value })}
-                                placeholder='Seri No'
+                                placeholder='Seri Numarası'
                                 name="SerialNumber"
                             />
                             <Input
                                 id='modal-username-style-input'
                                 value={editRocket.Description}
-                                onChange={(e) => setEditRocket({ ...editRocket, Description: e.target.value })} placeholder='Description'
+                                onChange={(e) => setEditRocket({ ...editRocket, Description: e.target.value })} 
+                                placeholder='Açıklama'
                                 name="Description"
                             />
                             <Input
                                 id='modal-username-style-input'
                                 value={editRocket.MaxNumberOfPassengers}
-                                onChange={(e) => setEditRocket({ ...editRocket, MaxNumberOfPassengers: e.target.value })} placeholder='Seat Number'
+                                onChange={(e) => setEditRocket({ ...editRocket, MaxNumberOfPassengers: e.target.value })} 
+                                placeholder='Koltuk Numarası'
                                 name="MaxNumberOfPassengers"
                             />
                             <Input
                                 id='modal-username-style-input'
                                 value={editRocket.AgeLimit}
                                 onChange={(e) => setEditRocket({ ...editRocket, AgeLimit: e.target.value })}
-                                placeholder='Age Limit'
+                                placeholder='Yaş Sınırı'
                                 name="AgeLimit"
                             />
                         </div>
@@ -239,42 +244,42 @@ export default function EditUserModal({ user, rocket, planet, ticket, expenditio
                         <div className='modal-list'>
                             <Input
                                 id='modal-username-style-input'
-                                placeholder='Name'
+                                placeholder='İsim'
                                 name="name"
                                 value={editedData.name}
                                 onChange={(e) => setEditedData({ ...editedData, name: e.target.value })}
                             />
                             <Input
                                 id='modal-username-style-input'
-                                placeholder='Surname'
+                                placeholder='Soyisim'
                                 name="surname"
                                 value={editedData.surname}
                                 onChange={(e) => setEditedData({ ...editedData, surname: e.target.value })}
                             />
                             <Input
                                 id='modal-username-style-input'
-                                placeholder='E-mail Address'
+                                placeholder='E-Posta Adresi'
                                 name="emailAddress"
                                 value={editedData.EmailAddress}
                                 onChange={(e) => setEditedData({ ...editedData, EmailAddress: e.target.value })}
                             />
                             <Input
                                 id='modal-username-style-input'
-                                placeholder='Phone Number'
+                                placeholder='Telefon Numarası'
                                 name="phoneNumber"
                                 value={editedData.PhoneNumber}
                                 onChange={(e) => setEditedData({ ...editedData, PhoneNumber: e.target.value })}
                             />
                             <Input
                                 id='modal-username-style-input'
-                                placeholder='Username'
+                                placeholder='Kullanıcı Adı'
                                 name="username"
                                 value={editedData.username}
                                 onChange={(e) => setEditedData({ ...editedData, username: e.target.value })}
                             />
                             <Input
                                 id='modal-username-style-input'
-                                placeholder='Password'
+                                placeholder='Şifre'
                                 name="password"
                                 value={editedData.password}
                                 onChange={(e) => setEditedData({ ...editedData, password: e.target.value })}
@@ -282,7 +287,7 @@ export default function EditUserModal({ user, rocket, planet, ticket, expenditio
                             <Select
                                 value={editedData.userRole || undefined}
                                 onChange={handleUserRoleChange}
-                                placeholder="Role"
+                                placeholder="Rol"
                             >
                                 {Object.values(UserRole).map((role) => (
                                     <Select.Option key={role} value={role}>
@@ -298,25 +303,25 @@ export default function EditUserModal({ user, rocket, planet, ticket, expenditio
                     <Space direction="vertical" id='date-picker-body'>
                         <div className='modal-list'>
                             <Input
-                                id='modal-username-style-input' onChange={(e) => setEditPlanet({ ...editPlanet, Name: e.target.value })} value={editPlanet.Name} placeholder='Name' name="Name"
+                                id='modal-username-style-input' onChange={(e) => setEditPlanet({ ...editPlanet, Name: e.target.value })} value={editPlanet.Name} placeholder='Gezegen Adı' name="Name"
                             />
                             <Input
-                                id='modal-username-style-input' onChange={(e) => setEditPlanet({ ...editPlanet, Sequence: e.target.value })} value={editPlanet.Sequence} placeholder='Sequence' name="Sequence"
+                                id='modal-username-style-input' onChange={(e) => setEditPlanet({ ...editPlanet, Sequence: e.target.value })} value={editPlanet.Sequence} placeholder='Sıra' name="Sequence"
                             />
                             <Input
-                                id='modal-username-style-input' onChange={(e) => setEditPlanet({ ...editPlanet, DifficultyLevel: e.target.value })} value={editPlanet.DifficultyLevel} placeholder='Difficulty Level' name="DifficultyLevel"
+                                id='modal-username-style-input' onChange={(e) => setEditPlanet({ ...editPlanet, DifficultyLevel: e.target.value })} value={editPlanet.DifficultyLevel} placeholder='Zorluk Seviyesi' name="DifficultyLevel"
                             />
                             <Input
-                                id='modal-username-style-input' onChange={(e) => setEditPlanet({ ...editPlanet, ImageUrl: e.target.value })} value={editPlanet.ImageUrl} placeholder='Image Url' name="ImageUrl"
+                                id='modal-username-style-input' onChange={(e) => setEditPlanet({ ...editPlanet, ImageUrl: e.target.value })} value={editPlanet.ImageUrl} placeholder='Resim Url' name="ImageUrl"
                             />
                             <Input
-                                id='modal-username-style-input' onChange={(e) => setEditPlanet({ ...editPlanet, DetailsImageUrl: e.target.value })} value={editPlanet.DetailsImageUrl} placeholder='Details Image Url' name="DetailsImageUrl"
+                                id='modal-username-style-input' onChange={(e) => setEditPlanet({ ...editPlanet, DetailsImageUrl: e.target.value })} value={editPlanet.DetailsImageUrl} placeholder='Detaylı Resim Url' name="DetailsImageUrl"
                             />
                             <Input
-                                id='modal-username-style-input' onChange={(e) => setEditPlanet({ ...editPlanet, Description: e.target.value })} value={editPlanet.Description} placeholder='Description' name="Description"
+                                id='modal-username-style-input' onChange={(e) => setEditPlanet({ ...editPlanet, Description: e.target.value })} value={editPlanet.Description} placeholder='Açıklama' name="Description"
                             />
                             <Input
-                                id='modal-username-style-input' onChange={(e) => setEditPlanet({ ...editPlanet, summaryDescription: e.target.value })} value={editPlanet.summaryDescription} placeholder='Summary Description' name="summaryDescription"
+                                id='modal-username-style-input' onChange={(e) => setEditPlanet({ ...editPlanet, summaryDescription: e.target.value })} value={editPlanet.summaryDescription} placeholder='Detaylı Açıklama' name="summaryDescription"
                             />
                         </div>
                     </Space>
@@ -330,34 +335,34 @@ export default function EditUserModal({ user, rocket, planet, ticket, expenditio
                                     id='modal-username-style-input'
                                     onChange={(e) => setEditExpedition({ ...editExpedition, name: e.target.value })}
                                     value={editExpedition.name}
-                                    placeholder='Name'
+                                    placeholder='Sefer Adı'
                                     name="name"
                                 />
                                 <Input
                                     id='modal-username-style-input'
                                     onChange={(e) => setEditExpedition({ ...editExpedition, expeditionDate: e.target.value })}
                                     value={editExpedition.expeditionDate}
-                                    placeholder='Expedition Date'
+                                    placeholder='Sefer Tarihi'
                                     name="expeditionDate"
                                 />
                                 <Input
                                     id='modal-username-style-input'
                                     onChange={(e) => setEditExpedition({ ...editExpedition, arrivalDate: e.target.value })}
                                     value={editExpedition.arrivalDate}
-                                    placeholder='Arrival Date'
+                                    placeholder='Varış Tarihi'
                                     name="arrivalDate"
                                 />
                                 <Select
                                     value={editExpedition.ticketPrice}
                                     onChange={(value) => setEditExpedition({ ...editExpedition, ticketPrice: value })}
-                                    placeholder="Ticket Price"
+                                    placeholder="Bilet Fiyatı"
                                     options={priceOptions}
                                 />
                                 <Select
                                     id='modal-username-style-input'
                                     onChange={handleSelectSpaceVehicle}
-                                    value={selectedSpaceVehicle}
-                                    placeholder='Space Vehicle Id'
+                                    value={spaceVehicleId}
+                                    placeholder='Uzay Aracı'
                                     name="spaceVehicleId"
                                 >
                                     {spaceVehicleData.map(vehicle => (
@@ -369,8 +374,8 @@ export default function EditUserModal({ user, rocket, planet, ticket, expenditio
                                 <Select
                                     id='modal-username-style-input'
                                     onChange={handleSelectDeparturePlanet}
-                                    value={selectedDeparturePlanet}
-                                    placeholder='Departure Planet Id'
+                                    value={departurePlanetId}
+                                    placeholder='Kalkış Gezegeni'
                                     name="departurePlanetId"
                                 >
                                     {planetData.map(planet => (
@@ -380,10 +385,10 @@ export default function EditUserModal({ user, rocket, planet, ticket, expenditio
                                     ))}
                                 </Select>
                                 <Select
-                                    placeholder={"Arrival Planet"}
+                                    placeholder="Varış Gezegeni"
                                     id='modal-username-style-input'
                                     onChange={handleSelectArrivalPlanet}
-                                    value={selectedArrivalPlanet}
+                                    value={arrivalPlanetId}
                                     name="arrivalPlanetId"
                                 >
                                     {planetData.map(planet => (
@@ -405,20 +410,20 @@ export default function EditUserModal({ user, rocket, planet, ticket, expenditio
                                     id='modal-username-style-input'
                                     onChange={(e) => setEditTicket({ ...editTicket, CreatedDate: e.target.value })}
                                     value={editTicket.CreatedDate}
-                                    placeholder='CreatedDate'
+                                    placeholder='Oluşturma Tarihi'
                                     name="CreatedDate"
                                 />
                                 <Input
                                     id='modal-username-style-input'
                                     onChange={(e) => setEditTicket({ ...editTicket, ExpeditionId: e.target.value })}
                                     value={editTicket.ExpeditionId}
-                                    placeholder='ExpeditionId'
+                                    placeholder='Sefer Id'
                                     name="ExpeditionId"
                                 />
                                 <Select
                                     value={editTicket.SeatNumber}
                                     onChange={(value) => setEditTicket({ ...editTicket, SeatNumber: value })}
-                                    placeholder="SeatNumber"
+                                    placeholder="Koltuk Numarası"
                                     name="SeatNumber"
                                     options={ageLimitOptions}
                                 />

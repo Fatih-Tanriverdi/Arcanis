@@ -3,14 +3,16 @@ import './PlanetCard.css';
 import { Link } from 'react-router-dom';
 import { fetchPlanetsGet } from '../../services/PlanetService';
 import { ClipLoader } from 'react-spinners';
+import APImanager from '../../apiManager';
 
 export function PlanetCard({ defaultImage }) {
     const [planets, setPlanets] = useState([]);
     const [loading, setLoading] = useState(true);
+    const baseUrl = APImanager.getBaseURL();
 
     useEffect(() => {
         async function getPlanets() {
-            const url = "http://lambalog.com/api/planets";
+            const url = `${baseUrl}/planets`;
             const data = await fetchPlanetsGet(url)
                 .catch(error => {
                     console.error('API request failed:', error);

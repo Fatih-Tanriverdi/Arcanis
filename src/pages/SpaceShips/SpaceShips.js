@@ -6,15 +6,20 @@ import { deleteRocket, fetchRocketsGet } from '../../services/RocketService';
 import EditModal from '../../components/EditModal/EditUserModal';
 import { RiArrowRightSLine } from 'react-icons/ri';
 import { Popover } from 'antd';
+import APImanager from '../../apiManager';
+import buildQuery from 'odata-query';
 
 export default function SpaceShips() {
     const [selectedRocket, setSelectedRocket] = useState(null);
     const [spaceShipData, setSpaceShipData] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [pageOdata, setPageOdata] = useState(1);
+    const [pageSizeOdata, setPageSizeOdata] = useState(10);
+    const baseUrl = APImanager.getBaseURL();
 
     const columns = [
         {
-            title: 'EDIT',
+            title: '',
             dataIndex: 'id',
             key: 'id',
             render: (id, record) => (
@@ -22,37 +27,37 @@ export default function SpaceShips() {
             ),
         },
         {
-            title: 'NAME',
+            title: 'ARAÇ ADI',
             dataIndex: 'Name',
             key: 'user',
         },
         {
-            title: 'MODEL NAME',
+            title: 'MODEL ADI',
             dataIndex: 'ModelName',
             key: 'modelName',
         },
         {
-            title: 'MODEL YEARS',
+            title: 'MODEL YILI',
             dataIndex: 'ModelYear',
             key: 'modelYear',
         },
         {
-            title: 'SERI NO',
+            title: 'SERI NUMARASI',
             key: 'SerialNumber',
             dataIndex: 'SerialNumber',
         },
         {
-            title: 'SEAT NUMBER',
+            title: 'KOLTUK NUMARASI',
             key: 'MaxNumberOfPassengers',
             dataIndex: 'MaxNumberOfPassengers',
         },
         {
-            title: 'AGE LIMIT',
+            title: 'YAŞ SINIRI',
             dataIndex: 'AgeLimit',
             key: 'ageLimit',
         },
         {
-            title: 'DESCRIPTION',
+            title: 'AÇIKLAMA',
             dataIndex: 'Description',
             key: 'description',
             render: (text) => (
@@ -70,8 +75,12 @@ export default function SpaceShips() {
     }, []);
 
     useEffect(() => {
+        const queryWithPaging = buildQuery({
+            "top": pageSizeOdata,
+            "skip": (pageOdata - 1) * pageSizeOdata,
+        });
         async function fetchSpaceShipData() {
-            const url = "http://lambalog.com/api/space-vehicles";
+            const url = `${baseUrl}/space-vehicles${queryWithPaging}`;
             const data = await fetchRocketsGet(url)
                 .catch(error => {
                     console.error('API request failed:', error);
@@ -80,7 +89,7 @@ export default function SpaceShips() {
             setSpaceShipData(data.value);
         }
         fetchSpaceShipData();
-    }, []);
+    }, [pageOdata, pageSizeOdata]);
 
     const handleDeleteRocket = (id) => {
         const confirmDelete = window.confirm('Kullanıcıyı silmek istediğine emin misin?');
@@ -114,9 +123,9 @@ export default function SpaceShips() {
             <article className='space-vehicle-body'>
                 <div className='product-list'>
                     <div>
-                        <TableListComp props={{ columns: columns, dataSource: spaceShipData }}  text="spaceShips" pageSearchType={"spaceShips"} addButtonLabel={"Uzay Aracı Ekle"}/>
+                        <TableListComp props={{ columns: columns, dataSource: spaceShipData }} text="spaceShips" pageSearchType={"spaceShips"} addButtonLabel={"Uzay Aracı Ekle"} addFilterName={"Uzay Aracı Filtreleme"} setPageOdata={setPageOdata} setPageSizeOdata={setPageSizeOdata} pageOdata={pageOdata} pageSizeOdata={pageSizeOdata} />
                         {isModalOpen && (
-                            <EditModal rocket={selectedRocket} onCancel={handleModalClose} visible={isModalOpen} pageType={"spaceShips"} addEditTitle={"Uzay Aracı Güncelleme"} rocketDelete={handleDeleteRocket}/>
+                            <EditModal rocket={selectedRocket} onCancel={handleModalClose} visible={isModalOpen} pageType={"spaceShips"} addEditTitle={"Uzay Aracı Güncelleme"} rocketDelete={handleDeleteRocket} />
                         )}
                     </div>
                 </div>

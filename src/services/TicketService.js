@@ -1,7 +1,7 @@
 import APImanager from '../apiManager';
 
 /* UsersDataGet */
-export async function fetchUsersDataGet(url) {
+export async function fetchTicketsGet(url) {
     try {
         const localStorageToken = localStorage.getItem('access-token');
         const response = await fetch(url, {
@@ -23,42 +23,13 @@ export async function fetchUsersDataGet(url) {
 }
 /* UsersDataGet */
 
-/* FetchUserstPost */
+/* DeleteRocket */
 
-export async function fetchUsersPost(valuesUsers, url) {
-    try {
-        const localStorageToken = localStorage.getItem('access-token');
-        const response = await fetch(url, {
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-                'Authorization': `Bearer ${localStorageToken}`
-            },
-            body: JSON.stringify(valuesUsers)
-        });
-
-        if (!response.ok) {
-            throw new Error('API request failed');
-        }
-
-        const data = await response.json();
-        return data;
-    } catch (error) {
-        throw error;
-    }
-}
-
-/* FetchUserstPost */
-
-
-/* DeleteUsers */
-
-export async function deleteUsers(id) {
+export async function deleteTicket(id) {
     const baseUrl = APImanager.getBaseURL();
     try {
         const localStorageToken = localStorage.getItem('access-token');
-        const response = await fetch(`${baseUrl}/users/${id}`, {
+        const response = await fetch(`${baseUrl}/ticket-sales/${id}`, {
             method: "DELETE",
             headers: {
                 'Content-Type': 'application/json',
@@ -78,22 +49,22 @@ export async function deleteUsers(id) {
     }
 }
 
-/* DeleteUsers */
+/* DeleteRocket */
 
-/* putUsers */
+/* putExpedition */
 
-export async function putUsers(userData) {
+export async function putTicket(ticketSalesData) {
     const baseUrl = APImanager.getBaseURL();
     try {
         const localStorageToken = localStorage.getItem('access-token');
-        const response = await fetch(`${baseUrl}/users`, {
+        const response = await fetch(`${baseUrl}/ticket-sales`, {
             method: "PUT",
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
                 'Authorization': `Bearer ${localStorageToken}`
             },
-            body: JSON.stringify(userData),
+            body: JSON.stringify(ticketSalesData),
         });
 
         if (!response.ok) {
@@ -107,4 +78,4 @@ export async function putUsers(userData) {
     }
 }
 
-/* PutUsers */
+/* putExpedition */

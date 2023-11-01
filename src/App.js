@@ -1,6 +1,3 @@
-import UserLogin from "./pages/Login/UserLogin";
-import Register from "./pages/Register/Register";
-import RecoverPassword from "./pages/ResetPassword/ResetPassword";
 import { Routes, Route } from "react-router-dom";
 import AdminPanel from "./pages/Admin/AdminPanel";
 import UsersList from "./pages/Users/UsersList";

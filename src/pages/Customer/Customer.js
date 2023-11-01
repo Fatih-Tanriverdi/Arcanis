@@ -1,50 +1,64 @@
 import "./Customer.css";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Link } from "react-router-dom";
 import About from "../../pages/About/About";
 import Planets from '../../pages/Planets/Planets';
 import Iletisim from '../Communication/Iletisim';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Ticket from "../Ticket/Ticket";
 import PlanetDetails from "../PlanetDetails/PlanetDetails";
 import AuthModal from "../../components/AuthModal/AuthModal";
 
 export default function AsideHeader() {
-
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [accessToken, setAccessToken] = useState(localStorage.getItem('access-token'));
 
     const handleButtonModalClick = (buttonText) => {
         if (buttonText === "Üye Girişi") {
             setIsModalOpen(true);
+        } else if (buttonText === "Çıkış Yap") {
+            localStorage.removeItem('access-token');
+            setAccessToken(null);
         }
     };
-    
+
+    useEffect(() => {
+        setAccessToken(localStorage.getItem('access-token'));
+    }, []);
+
     return (
-        <container id='customer-panel-body'>
+        <div id='customer-panel-body'>
             <article className='headerCustomer'>
                 <div className='headerCustomerInfo'>
                     <h1 className="headerTitleStyle">Arcanis</h1>
                     <div className="headerButtonContainer">
-                        <a className="headerButtonStyle" onClick={() => handleButtonModalClick("Üye Girişi")}>Üye Girişi</a>
-                        <a className="headerButtonStyle borderRL">Hakkımızda</a>
-                        <a className="headerButtonStyle">İletişim</a>
+                        {accessToken ?
+                            <>
+                                <a className="headerButtonStyle" onClick={() => handleButtonModalClick("Çıkış Yap")}>Çıkış Yap</a>
+                                <Link to="/biletlerim" className="headerButtonStyle borderRL">Biletlerim</Link>
+                            </>
+                            :
+                            <a className="headerButtonStyle" onClick={() => handleButtonModalClick("Üye Girişi")}>Üye Girişi</a>
+                        }
+                        <Link to="/hakkimizda" className="headerButtonStyle borderRL">Hakkımızda</Link>
+                        <Link to="/iletisim" className="headerButtonStyle">İletişim</Link>
                     </div>
                 </div>
             </article>
             <article>
-                <container className='customer-page-body' >
+                <div className='customer-page-body' >
                     <div className='customer-page-container'>
                         <Routes>
-                            <Route path="/*" element={<Ticket />} />
-                            <Route path="about" element={<About />} />
-                            <Route path="ticket" element={<Ticket />} />
-                            <Route path="iletisim" element={<Iletisim />} />
-                            <Route path="planets" element={<Planets />} />
+                            <Route path="/" element={<Ticket />} />
+                            <Route path="/hakkimizda" element={<About />} />
+                            <Route path="/biletlerim" element={<Ticket />} />
+                            <Route path="/iletisim" element={<Iletisim />} />
+                            <Route path="/planets" element={<Planets />} />
                             <Route path="/planet/:id" element={<PlanetDetails />} />
                         </Routes>
                     </div>
-                </container>
+                </div>
             </article>
-            {isModalOpen && <AuthModal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} pageAuthType={"authLogin"} />}
-        </container>
+            {isModalOpen && <AuthModal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} setAccessToken={setAccessToken} pageAuthType={"authLogin"} />}
+        </div>
     )
 }

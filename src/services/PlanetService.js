@@ -1,3 +1,5 @@
+import APImanager from '../apiManager';
+
 /* FetchPlanetsGet */
 export async function fetchPlanetsGet(url) {
     try {
@@ -54,9 +56,10 @@ export async function fetchPlanetsPost(valuesPlanets, url) {
 /* putPlanet */
 
 export async function putPlanet(planets) {
+    const baseUrl = APImanager.getBaseURL();
     try {
         const localStorageToken = localStorage.getItem('access-token');
-        const response = await fetch(`http://lambalog.com/api/planets`, {
+        const response = await fetch(`${baseUrl}/planets`, {
             method: "PUT",
             headers: {
                 'Content-Type': 'application/json',
@@ -82,9 +85,10 @@ export async function putPlanet(planets) {
 /* DeletePlanet */
 
 export async function deletePlanet(id) {
+    const baseUrl = APImanager.getBaseURL();
     try {
         const localStorageToken = localStorage.getItem('access-token');
-        const response = await fetch(`http://lambalog.com/api/planets/${id}`, {
+        const response = await fetch(`${baseUrl}/planets/${id}`, {
             method: "DELETE",
             headers: {
                 'Content-Type': 'application/json',

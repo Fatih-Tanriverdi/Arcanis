@@ -4,7 +4,7 @@ import { AiOutlineInfoCircle, AiOutlineMail } from "react-icons/ai";
 import AuthButton from "../../components/ButtonLogin/AuthButton";
 import { Input, Tooltip } from "antd";
 import { ClipLoader } from 'react-spinners';
-import { resetPassword } from '../../services/AuthService'
+import { resetPassword } from '../../services/AuthService';
 
 export default function App({ setPageAuthType }) {
     const [emailAddress, setEmailAddress] = useState("");
@@ -56,7 +56,7 @@ export default function App({ setPageAuthType }) {
                     value={emailAddress}
                     onChange={(e) => setEmailAddress(e.target.value)}
                     type="email"
-                    placeholder="Enter your E-mail"
+                    placeholder="E-posta"
                     prefix={<AiOutlineMail className="site-form-item-icon" />}
                     suffix={
                         <Tooltip title="Extra information">
@@ -68,7 +68,7 @@ export default function App({ setPageAuthType }) {
             {loading && <ClipLoader color={"#7465F1"} />}
             {successMessage && <div className="success-message">{successMessage}</div>}
             {error && <ErrorMessage message={error} />}
-            <AuthButton text="SEND" onClick={handleResetPassword} />
+            <AuthButton text="GÖNDER" onClick={handleResetPassword} />
         </div>
     );
 }

@@ -4,15 +4,17 @@ import { Link, useParams } from 'react-router-dom';
 import { IoIosArrowBack } from 'react-icons/io';
 import { fetchPlanetsGet } from '../../services/PlanetService';
 import { ClipLoader } from 'react-spinners';
+import APImanager from '../../apiManager';
 
 export default function PlanetDetails() {
     const [planetDetails, setPlanetDetails] = useState(null);
+    const baseUrl = APImanager.getBaseURL();
     const { id } = useParams();
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const url = `http://lambalog.com/api/planets/${id}`
+                const url = `${baseUrl}/planets/${id}`
                 const data = await fetchPlanetsGet(url);
                 setPlanetDetails(data);
             } catch (error) {

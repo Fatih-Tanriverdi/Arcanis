@@ -1,3 +1,5 @@
+import APImanager from '../apiManager';
+
 /* FetchRocketsGet */
 export async function fetchRocketsGet(url) {
     try {
@@ -35,7 +37,7 @@ export async function fetchRocketsPost(valuesRockets, url) {
                 'Accept': 'application/json',
                 'Authorization': `Bearer ${localStorageToken}`
             },
-            body: JSON.stringify(valuesRockets)
+            body: JSON.stringify(valuesRockets),
         });
 
         if (!response.ok) {
@@ -54,9 +56,10 @@ export async function fetchRocketsPost(valuesRockets, url) {
 /* DeleteRocket */
 
 export async function deleteRocket(id) {
+    const baseUrl = APImanager.getBaseURL();
     try {
         const localStorageToken = localStorage.getItem('access-token');
-        const response = await fetch(`http://lambalog.com/api/space-vehicles/${id}`, {
+        const response = await fetch(`${baseUrl}/space-vehicles/${id}`, {
             method: "DELETE",
             headers: {
                 'Content-Type': 'application/json',
@@ -81,9 +84,10 @@ export async function deleteRocket(id) {
 /* putRocket */
 
 export async function putRocket(spaceShipData) {
+    const baseUrl = APImanager.getBaseURL();
     try {
         const localStorageToken = localStorage.getItem('access-token');
-        const response = await fetch(`http://lambalog.com/api/space-vehicles`, {
+        const response = await fetch(`${baseUrl}/space-vehicles`, {
             method: "PUT",
             headers: {
                 'Content-Type': 'application/json',

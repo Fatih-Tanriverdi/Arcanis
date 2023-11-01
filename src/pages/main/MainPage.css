@@ -216,10 +216,7 @@
         display: flex;
         justify-content: space-between;
         flex-direction: row;
-    }
-
-    .mainPageBox2 {
-        margin: 1rem;
+        flex-direction: column;
     }
 }
 

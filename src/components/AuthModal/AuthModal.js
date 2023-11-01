@@ -5,7 +5,7 @@ import UserLogin from '../../pages/Login/UserLogin';
 import Register from '../../pages/Register/Register';
 import ResetPassword from '../../pages/ResetPassword/ResetPassword';
 
-export default function AuthModal({ isModalOpen, setIsModalOpen }) {
+export default function AuthModal({ isModalOpen, setIsModalOpen, setAccessToken }) {
 
     const [pageAuthType, setPageAuthType] = useState('authLogin');
 
@@ -13,7 +13,7 @@ export default function AuthModal({ isModalOpen, setIsModalOpen }) {
         switch (pageAuthType) {
             case 'authLogin':
                 return (
-                    <UserLogin setPageAuthType={setPageAuthType} />
+                    <UserLogin setPageAuthType={setPageAuthType} setIsModalOpen={setIsModalOpen} setAccessToken={setAccessToken}/>
                 );
             case 'authRegister':
                 return (

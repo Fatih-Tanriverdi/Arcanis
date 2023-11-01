@@ -87,7 +87,7 @@ export default function Register({ setPageAuthType }) {
             <form className="input-group-register">
                 <AuthInputEmail value={values.emailAddress} onChange={handleInput} />
                 <br />
-                <AuthInputUsername value={values.username} onChange={handleInput} placeholder="Enter your Username" />
+                <AuthInputUsername value={values.username} onChange={handleInput} placeholder="Kullanıcı adı" />
                 <br />
                 <AuthInputPassword value={values.password} onChange={handleInput} />
                 <br />

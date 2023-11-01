@@ -1,6 +1,9 @@
+import APImanager from '../apiManager';
+
 /* UserLogin */
-export const login = async (username, password, emailAddress) => {
-    const response = await fetch("http://lambalog.com/api/auth/login", {
+export const login = async ( username, password, emailAddress ) => {
+    const baseUrl = APImanager.getBaseURL();
+    const response = await fetch(`${baseUrl}/auth/login`, {
         method: "POST",
         headers: {
             'Content-Type': 'application/json',
@@ -25,9 +28,10 @@ export const login = async (username, password, emailAddress) => {
 
 /* RegisterUser */
 export const registerUser = async (values) => {
+    const baseUrl = APImanager.getBaseURL();
     const phoneNumberWithoutMask = values.phoneNumber.replace(/[^0-9]/g, '');
 
-    const response = await fetch("http://lambalog.com/api/users/register", {
+    const response = await fetch(`${baseUrl}/users/register`, {
         method: "POST",
         headers: {
             'Content-Type': 'application/json',
@@ -54,6 +58,7 @@ export const registerUser = async (values) => {
 
 /* CheckToken */
 export const checkToken = async () => {
+    const baseUrl = APImanager.getBaseURL();
     const localStorageToken = localStorage.getItem('access-token');
 
     if (localStorageToken === null || localStorageToken === '') {
@@ -61,7 +66,7 @@ export const checkToken = async () => {
         return false;
     }
 
-    const response = await fetch("http://lambalog.com/api/token/check", {
+    const response = await fetch(`${baseUrl}/token/check`, {
         method: "GET",
         headers: {
             'Content-Type': 'application/json',
@@ -78,9 +83,9 @@ export const checkToken = async () => {
 
 /* ResetPassword */
 export const resetPassword = async (emailAddress) => {
+    const baseUrl = APImanager.getBaseURL();
     const response = await fetch(
-        `http://lambalog.com/api/users/forgot-password?mailAddress=${emailAddress}`,
-        {
+        `${baseUrl}/users/forgot-password?mailAddress=${emailAddress}`,{
             method: "GET",
             headers: {
                 "Content-Type": "application/json",

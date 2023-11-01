@@ -11,12 +11,15 @@ import { Popover, Progress, Space } from 'antd';
 import { fetchUsersDataGet } from "../../services/UserService";
 import { fetchPlanetsGet } from '../../services/PlanetService';
 import { fetchExpenditionsGet } from '../../services/ExpeditionService';
+import APImanager from '../../apiManager';
 
 export default function MainPage() {
 
     const [usersMostTicketsData, setUsersMostTicketsData] = useState([]);
     const [planetsMostPopulerData, setPlanetsMostPopulerData] = useState([]);
     const [expeditionsTotalCompleted, setExpeditionsTotalCompleted] = useState([]);
+    const [totalAmountsCompleted, setTotalAmountsCompleted] = useState([]);
+    const baseUrl = APImanager.getBaseURL();
 
     useEffect(() => {
         checkToken();
@@ -34,10 +37,26 @@ export default function MainPage() {
         '50%': '#ffe58f',
         '100%': '#ffccc7',
     };
+
+    /* Total */
+    useEffect(() => {
+        async function fetchTotalMostTicketsData() {
+            const url = `${baseUrl}/statistics/total-amounts`;
+            const data = await fetchUsersDataGet(url)
+                .catch(error => {
+                    console.error('API request failed:', error);
+                    return [];
+                })
+            setTotalAmountsCompleted(data);
+        }
+        fetchTotalMostTicketsData();
+    }, []);
+    /* Total */
+
     /* Ticket */
     useEffect(() => {
         async function fetchUsersMostTicketsData() {
-            const url = "http://lambalog.com/api/statistics/users-who-purchased-most-tickets";
+            const url = `${baseUrl}/statistics/users-who-purchased-most-tickets`;
             const data = await fetchUsersDataGet(url)
                 .catch(error => {
                     console.error('API request failed:', error);
@@ -49,7 +68,7 @@ export default function MainPage() {
     }, []);
 
     const handleRefreshUsersMostTickets = async () => {
-        const url = "http://lambalog.com/api/statistics/users-who-purchased-most-tickets";
+        const url = `${baseUrl}/statistics/users-who-purchased-most-tickets`;
         const data = await fetchUsersDataGet(url).catch((error) => {
             console.error('API request failed:', error);
             return [];
@@ -60,7 +79,7 @@ export default function MainPage() {
     /* Expedetion */
     useEffect(() => {
         async function fetcTotalExpeditionsData() {
-            const url = "http://lambalog.com/api/statistics/completed-expeditions";
+            const url = `${baseUrl}/statistics/completed-expeditions`;
             const data = await fetchExpenditionsGet(url)
                 .catch(error => {
                     console.error('API request failed:', error);
@@ -72,7 +91,7 @@ export default function MainPage() {
     }, []);
 
     const handleRefreshExpeditions = async () => {
-        const url = "http://lambalog.com/api/statistics/completed-expeditions";
+        const url = `${baseUrl}/statistics/completed-expeditions`;
         const data = await fetchExpenditionsGet(url).catch((error) => {
             console.error('API request failed:', error);
             return [];
@@ -83,7 +102,7 @@ export default function MainPage() {
     /* Planet */
     useEffect(() => {
         async function fetchUsersMostPlanetsData() {
-            const url = "http://lambalog.com/api/statistics/most-traveled-planet";
+            const url = `${baseUrl}/statistics/most-traveled-planet`;
             const data = await fetchPlanetsGet(url)
                 .catch(error => {
                     console.error('API request failed:', error);
@@ -95,7 +114,7 @@ export default function MainPage() {
     }, []);
 
     const handleRefreshPlanetsMostPopular = async () => {
-        const url = "http://lambalog.com/api/statistics/most-traveled-planet";
+        const url = `${baseUrl}/statistics/most-traveled-planet`;
         const data = await fetchPlanetsGet(url).catch((error) => {
             console.error('API request failed:', error);
             return [];
@@ -109,7 +128,7 @@ export default function MainPage() {
             <div className='main-page-body'>
                 <div className='mainPageTitle'>
                     <h3>Anasayfa</h3>
-                    <p>Updated 1 month ago</p>
+                    <p>1 ay önce güncellendi</p>
                 </div>
                 <div className='mainPageBodyContent'>
                     <div className='mainPageBodyContentBox'>
@@ -117,8 +136,8 @@ export default function MainPage() {
                             <TfiStatsUp />
                         </div>
                         <div className='mainPageBodyContentTitle'>
-                            <h1>230</h1>
-                            <p>Total Space Vehicles</p>
+                            <h1>{totalAmountsCompleted.numberOfSpaceVehicles}</h1>
+                            <p>Toplam Uzay Araçları</p>
                         </div>
                     </div>
                     <div className='mainPageBodyContentBox'>
@@ -126,8 +145,8 @@ export default function MainPage() {
                             <LiaUserSolid />
                         </div>
                         <div className='mainPageBodyContentTitle'>
-                            <h1>8.549k</h1>
-                            <p>Total Users</p>
+                            <h1>{totalAmountsCompleted.numberOfUsers}</h1>
+                            <p>Toplam Kullanıcılar</p>
                         </div>
                     </div>
                     <div className='mainPageBodyContentBox'>
@@ -135,8 +154,8 @@ export default function MainPage() {
                             <BiCube />
                         </div>
                         <div className='mainPageBodyContentTitle'>
-                            <h1>1.423k</h1>
-                            <p>Total Tickets</p>
+                            <h1>{totalAmountsCompleted.numberOfTickets}</h1>
+                            <p>Toplam Biletler</p>
                         </div>
                     </div>
                     <div className='mainPageBodyContentBox'>
@@ -144,8 +163,8 @@ export default function MainPage() {
                             <FiDollarSign />
                         </div>
                         <div className='mainPageBodyContentTitle'>
-                            <h1>$9745</h1>
-                            <p>Total Revenue</p>
+                            <h1>{totalAmountsCompleted.totalRevenueAmount}</h1>
+                            <p>Toplam Gelir</p>
                         </div>
                     </div>
                     <div className='mainPageBodyContentBox'>
@@ -153,8 +172,8 @@ export default function MainPage() {
                             <TfiStatsUp />
                         </div>
                         <div className='mainPageBodyContentTitle'>
-                            <h1>230k</h1>
-                            <p>Total Planets</p>
+                            <h1>{totalAmountsCompleted.numberOfPlanets}</h1>
+                            <p>Toplam Gezegenler</p>
                         </div>
                     </div>
                     <div className='mainPageBodyContentBox'>
@@ -162,8 +181,8 @@ export default function MainPage() {
                             <TfiStatsUp />
                         </div>
                         <div className='mainPageBodyContentTitle'>
-                            <h1>230k</h1>
-                            <p>Total Expeditions</p>
+                            <h1>{totalAmountsCompleted.numberOfExpenditions}</h1>
+                            <p>Toplam Seferler</p>
                         </div>
                     </div>
                     <div className='mainPageBodyContentBox'>
@@ -171,8 +190,8 @@ export default function MainPage() {
                             <FiDollarSign />
                         </div>
                         <div className='mainPageBodyContentTitle'>
-                            <h1>$9745</h1>
-                            <p>Total Monthly Revenue</p>
+                            <h1>{totalAmountsCompleted.montlyTotalRevenueAmount}</h1>
+                            <p>Toplam Aylık Gelir</p>
                         </div>
                     </div>
                     <div className='mainPageBodyContentBox'>
@@ -180,8 +199,8 @@ export default function MainPage() {
                             <FiDollarSign />
                         </div>
                         <div className='mainPageBodyContentTitle'>
-                            <h1>$9745</h1>
-                            <p>Total Daily Revenue</p>
+                            <h1>{totalAmountsCompleted.dailyTotalRevenueAmount}</h1>
+                            <p>Toplam Günlük Gelir</p>
                         </div>
                     </div>
                 </div>
@@ -189,7 +208,7 @@ export default function MainPage() {
             <div className='mainPageBoxContainer'>
                 <div className='mainPageBox1'>
                     <div className='mainPageBoxTitle'>
-                        <h5>Top 5 Most Traveled Users</h5>
+                        <h5>En Çok Seyahat Eden 5 Kullanıcı</h5>
                         <div className='mainPageBoxInfoContainer'>
                             <Popover content="Bu liste en çok seyahat eden 5 kullanıcımızın listesidir.">
                                 <div><AiOutlineQuestionCircle /></div>
@@ -213,7 +232,7 @@ export default function MainPage() {
                 </div>
                 <div className='mainPageBox2'>
                     <div className='mainPageBoxTitle'>
-                        <h5>Completed Expeditions</h5>
+                        <h5>Tamamlanan Seferler</h5>
                         <div className='mainPageBoxInfoContainer'>
                             <Popover content="Bu liste, firmamızın şu ana kadar yaptığı ve tamamladığı bütün seyahatlerin listesidir.">
                                 <div><AiOutlineQuestionCircle /></div>
@@ -234,18 +253,18 @@ export default function MainPage() {
                     </div>
                     <div className='mainPageExpeditionsFooter'>
                         <div className='mainPageExpeditionsCompleted'>
-                            <p>Completed</p>
+                            <p>Tamamlanan</p>
                             <h1>{expeditionsTotalCompleted.completedExpeditionCount}</h1>
                         </div>
                         <div className='mainPageExpeditionsProgress'>
-                            <p>In Propgress</p>
+                            <p>Devam eden</p>
                             <h1>{expeditionsTotalCompleted.activeExpeditionCount}</h1>
                         </div>
                     </div>
                 </div>
                 <div className='mainPageBox3'>
                     <div className='mainPageBoxTitle'>
-                        <h5>Top 5 Visited Planets</h5>
+                        <h5>En Çok Ziyaret Edilen 5 Gezegen</h5>
                         <div className='mainPageBoxInfoContainer'>
                             <Popover content="Bu liste en çok seyahat edilen 5 Gezegenin listesidir.">
                                 <div><AiOutlineQuestionCircle /></div>

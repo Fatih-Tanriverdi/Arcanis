@@ -8,7 +8,8 @@ import EditUserModal from '../../components/EditModal/EditUserModal';
 import { RiArrowRightSLine } from 'react-icons/ri';
 import { fetchPlanetsGet } from '../../services/PlanetService';
 import { fetchRocketsGet } from '../../services/RocketService';
-
+import APImanager from '../../apiManager';
+import buildQuery from 'odata-query';
 
 export default function UsersList() {
     const [spaceVehicleData, setSpaceVehicleData] = useState([]);
@@ -16,9 +17,12 @@ export default function UsersList() {
     const [expenditions, setExpenditions] = useState([]);
     const [selectedExpeditions, setSelectedExpeditions] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [pageOdata, setPageOdata] = useState(1);
+    const [pageSizeOdata, setPageSizeOdata] = useState(10);
+    const baseUrl = APImanager.getBaseURL();
     const columns = [
         {
-            title: 'EDIT',
+            title: '',
             dataIndex: 'id',
             key: 'id',
             render: (id, record) => (
@@ -26,41 +30,41 @@ export default function UsersList() {
             ),
         },
         {
-            title: 'NAME',
+            title: 'SEFER ADI',
             dataIndex: 'name',
             key: 'name',
         },
         {
-            title: 'EXPEDITION DATE',
+            title: 'KALKIŞ TARİHİ',
             dataIndex: 'expeditionDate',
             key: 'expeditionDate',
             render: (expeditionDate, record) => formatDate(expeditionDate)
         },
         {
-            title: 'ARRIVAL DATE',
+            title: 'VARIŞ TARİHİ',
             dataIndex: 'arrivalDate',
             key: 'arrivalDate',
             render: (arrivalDate, record) => formatDate(arrivalDate)
         },
         {
-            title: 'TICKET PRICE',
+            title: 'BİLET FİYATI',
             key: 'ticketPrice',
             dataIndex: 'ticketPrice',
         },
         {
-            title: 'SPACE VEHICLE',
+            title: 'UZAY ARACI',
             key: 'spaceVehicleId',
             dataIndex: 'spaceVehicleId',
             render: (spaceVehicleData) => mapSpaceVehicleIdToName(spaceVehicleData)
         },
         {
-            title: 'DEPARTURE PLANET',
+            title: 'KALKIŞ GEZEGENİ',
             key: 'departurePlanetId',
             dataIndex: 'departurePlanetId',
             render: (departurePlanetId) => mapPlanetIdToName(departurePlanetId)
         },
         {
-            title: 'ARRIVAL PLANET',
+            title: 'VARIŞ GEZEGENİ',
             key: 'arrivalPlanetId',
             dataIndex: 'arrivalPlanetId',
             render: (arrivalPlanetId) => mapPlanetIdToName(arrivalPlanetId)
@@ -92,7 +96,7 @@ export default function UsersList() {
     useEffect(() => {
         async function fetchRocketData() {
             try {
-                const url = "http://lambalog.com/api/lookups/space-vehicles";
+                const url = `${baseUrl}/lookups/space-vehicles`;
                 const data = await fetchRocketsGet(url);
                 setSpaceVehicleData(data);
             } catch (error) {
@@ -105,7 +109,7 @@ export default function UsersList() {
     useEffect(() => {
         async function fetchPlanetData() {
             try {
-                const url = "http://lambalog.com/api/lookups/planets";
+                const url = `${baseUrl}/lookups/planets`;
                 const data = await fetchPlanetsGet(url);
                 setPlanetData(data);
             } catch (error) {
@@ -117,8 +121,12 @@ export default function UsersList() {
     /* LOOKUPS */
 
     useEffect(() => {
+        const queryWithPaging = buildQuery({
+            "top": pageSizeOdata,
+            "skip": (pageOdata - 1) * pageSizeOdata,
+        });
         async function expeditionsData() {
-            const url = "http://lambalog.com/api/expenditions";
+            const url = `${baseUrl}/expenditions${queryWithPaging}`;
             const data = await fetchExpenditionsGet(url)
                 .catch(error => {
                     console.error('API request failed:', error);
@@ -127,7 +135,7 @@ export default function UsersList() {
             setExpenditions(data);
         }
         expeditionsData();
-    }, []);
+    }, [pageOdata, pageSizeOdata]);
 
     const handleDeleteExpedition = (id) => {
         const confirmDelete = window.confirm('Expeditioni silmek istediğinize emin misiniz?');
@@ -160,7 +168,7 @@ export default function UsersList() {
         <container className='expedition-container'>
             <article className='expedition-body'>
                 <div className='expedition-list'>
-                    <TableListComp props={{ columns: columns, dataSource: expenditions }} text="expedition" pageSearchType={"expedition"} addButtonLabel={"Sefer Ekle"} />
+                    <TableListComp props={{ columns: columns, dataSource: expenditions }} text="expedition" pageSearchType={"expedition"} addButtonLabel={"Sefer Ekle"} addFilterName={"Sefer Filtreleme"} setPageOdata={setPageOdata} setPageSizeOdata={setPageSizeOdata} pageOdata={pageOdata} pageSizeOdata={pageSizeOdata} />
                     {isModalOpen && (
                         <EditUserModal expendition={selectedExpeditions} onCancel={handleModalClose} visible={isModalOpen} pageType={"expedition"} addEditTitle={"Sefer Güncelleme"} expeditionDelete={handleDeleteExpedition} />
                     )}

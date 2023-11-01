@@ -9,7 +9,7 @@ import { AiOutlineUser } from "react-icons/ai";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { ClipLoader } from 'react-spinners';
 
-export default function App({setPageAuthType}) {
+export default function App({ setPageAuthType, setIsModalOpen, setAccessToken }) {
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
@@ -25,16 +25,17 @@ export default function App({setPageAuthType}) {
         setError(null);
     };
 
-    const loginAndNavigate = async (username, password, emailAddress) => {
+    const loginAndNavigate = async (username, password, emailAddress ) => {
         setLoading(true);
-        const { token, isAdmin } = await login(username, password, emailAddress);
+        const { token, isAdmin } = await login(username, password, emailAddress );
 
         if (token) {
             localStorage.setItem('access-token', token);
             if (isAdmin) {
                 navigate('/admin');
             } else {
-                navigate('customer');
+                navigate('/');
+                setAccessToken(localStorage.getItem('access-token'));
             }
         } else {
             setError('Kullanıcı adı, şifre veya e-posta yanlış.');
@@ -57,6 +58,8 @@ export default function App({setPageAuthType}) {
             setTimeout(hideErrorMessage, 3000);
         } else {
             loginAndNavigate(username, passwordInput, emailAddress);
+            setAccessToken(localStorage.getItem('access-token'));
+            setIsModalOpen(false);
         }
     };
 
@@ -83,7 +86,7 @@ export default function App({setPageAuthType}) {
                     className="loginPageUsernameInput"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
-                    placeholder="Username / E-mail Adress"
+                    placeholder="Kullanıcı adı veya E-posta"
                     prefix={<AiOutlineUser />}
                 />
                 <br />
@@ -93,7 +96,7 @@ export default function App({setPageAuthType}) {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     prefix={<RiLockPasswordLine />}
-                    placeholder="Password"
+                    placeholder="Şifre"
                 />
             </div>
             <div className="forget-password">
