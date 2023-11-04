@@ -1,4 +1,4 @@
-.product-card {
+.planetCardContainer {
     min-height: 10rem;
     height: 100%;
     max-width: 35rem;
@@ -14,7 +14,7 @@
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
-.comment-rocket {
+.planetComment {
     display: flex;
     color: white;
     flex-direction: column;
@@ -23,12 +23,12 @@
     margin: 1rem;
 }
 
-.comment-rocket>h2 {
+.planetComment > h2 {
     display: flex;
     font-size: 1rem;
 }
 
-.product-description {
+.planetDescription {
     margin: 2rem 2rem  2rem 1rem;
     width: 100%;
     max-width: 10rem;
@@ -39,7 +39,7 @@
     font-size: 1rem;
 }
 
-.rocket-img > img {
+.planetImg > img {
     max-height: 10rem;
     height: 100%;
     max-width: 15rem;
@@ -52,7 +52,7 @@
     border-left: 1px solid #7465F2;
 }
 
-.product-btn-group > button {
+.planetDetailsBtn > button {
     float: left;
     display: inline-block;
     height: 2rem;
@@ -73,19 +73,19 @@
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
-.product-btn-group > button:hover {
+.planetDetailsBtn > button:hover {
     background-color: #161D30;
     transition: 0.1s all ease-in;
 }
 
-.planetcard-spinner {
+.planetCardSpinner {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 @media screen and (min-width: 700px) {
-    .product-card {
+    .planetCardContainer {
         min-height: 20rem;
         height: 100%;
         min-width: 65rem;
@@ -93,29 +93,29 @@
         margin: 1.5rem;
     }
     
-    .comment-rocket {
+    .planetComment {
         margin: 1rem;
     }
     
-    .comment-rocket>h2 {
+    .planetComment > h2 {
         font-size: 2.5rem;
     }
     
-    .product-description {
+    .planetDescription {
         margin: 2rem 2rem  0 0;
         width: 100%;
         max-width: 35rem;
         max-height: 3.6rem;
     }
     
-    .rocket-img > img {
+    .planetImg > img {
         max-height: 20rem;
         height: 100%;
         max-width: 25rem;
         width: 100%;
     }
     
-    .product-btn-group > button {
+    .planetDetailsBtn > button {
         height: 4rem;
         width: 17.5rem;
         border-radius: 6rem;
@@ -127,32 +127,32 @@
 }
 
 @media screen and (min-width: 1200px) {
-    .product-card {
+    .planetCardContainer {
         min-height: 20rem;
         height: 100%;
         min-width: 60rem;
         width: 100%;
     }
     
-    .comment-rocket>h2 {
+    .planetComment > h2 {
         font-size: 2.5rem;
     }
     
-    .product-description {
+    .planetDescription {
         margin: 2rem 2rem  0 0;
         width: 100%;
         max-width: 35rem;
         max-height: 3.6rem;
     }
     
-    .rocket-img > img {
+    .planetImg > img {
         max-height: 20rem;
         height: 100%;
         max-width: 65rem;
         width: 100%;
     }
     
-    .product-btn-group > button {
+    .planetDetailsBtn > button {
         height: 4rem;
         width: 17.5rem;
         border-radius: 6rem;

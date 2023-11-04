@@ -1,9 +1,15 @@
 import { Select } from 'antd';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import APImanager from '../../apiManager';
+import buildQuery from 'odata-query';
+import { fetchRocketsGet } from '../../services/RocketService';
+import "./SearchBarSpaceShips.css";
 
 export default function SearchBarSpaceShips() {
 
-    const [selectedFilters, setSelectedFilters] = useState({});
+    const [selectedFilters, setSelectedFilters] = useState([]);
+    const [searchBarSpaceShips, setSearchBarSpaceShips] = useState([]);
+    const baseUrl = APImanager.getBaseURL();
 
     const modelYearOptions = [];
     for (let year = 1950; year <= 2100; year++) {
@@ -29,8 +35,34 @@ export default function SearchBarSpaceShips() {
         })
     };
 
+    useEffect(() => {
+        const modelYear = parseInt(selectedFilters.modelYear);
+        const MaxNumberOfPassengers = parseInt(selectedFilters.MaxNumberOfPassengers);
+        const ageLimit = parseInt(selectedFilters.ageLimit);
+
+        const queryWithPaging = buildQuery({
+            "filter": {
+                modelYear,
+                MaxNumberOfPassengers,
+                ageLimit,
+            },
+        });
+        async function searchBarSpaceShips() {
+            const url = `${baseUrl}/space-vehicles${queryWithPaging}`;
+            const data = await fetchRocketsGet(url)
+                .catch(error => {
+                    console.error('API request failed:', error);
+                    return [];
+                })
+            setSearchBarSpaceShips(data.value);
+        }
+        searchBarSpaceShips();
+    }, [selectedFilters]);
+
+    console.log(searchBarSpaceShips);
+
     return (
-        < div className='seacrh-bar-filter-container' >
+        < div className='searchBarSpaceShipsContainer'>
             <div className='SelectRolePosition'>
                 <Select
                     value={selectedFilters.modelYear}
@@ -41,8 +73,8 @@ export default function SearchBarSpaceShips() {
             </div>
             <div className='SelectRolePosition'>
                 <Select
-                    value={selectedFilters.seatNumber}
-                    onChange={(value) => setSelectedFilters({ ...selectedFilters, seatNumber: value })}
+                    value={selectedFilters.MaxNumberOfPassengers}
+                    onChange={(value) => setSelectedFilters({ ...selectedFilters, MaxNumberOfPassengers: value })}
                     placeholder="Koltuk Numarası"
                     options={seatNumberOptions}
                 />

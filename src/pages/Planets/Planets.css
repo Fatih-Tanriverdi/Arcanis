@@ -1,4 +1,4 @@
-.planets-container {
+.planetsAdminBody {
     display: flex;
     flex-direction: column;
     align-items: center; 
@@ -12,14 +12,14 @@
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
-.planet-list {
+.planetList {
     display: flex;
     align-items: center;
     flex-direction: row;
     flex-wrap: wrap;
 }
 
-#planets-title {
+#planetsTitle {
     color: white;
     font-size: 25px;
     margin: 20px !important;
@@ -30,32 +30,21 @@
 }
 
 @media screen and (min-width: 700px) {
-    .planet-list {
+    .planetList {
         display: flex;
         justify-content: center;
         align-items: center;
         flex-direction: row;
         flex-wrap: wrap;
     }
-    
-    .product-card {
-        width: calc(50% - 1.8rem);
-        margin: 0.9rem;
-    }
-
 }
 
 @media screen and (min-width: 1200px) {
-    .planet-list {
+    .planetList {
         display: flex;
         justify-content: center;
         align-items: flex-start;
         flex-direction: row;
         flex-wrap: wrap;
-    }
-    
-    .product-card {
-        width: calc(40% - 1.8rem);
-        margin: 0.9rem;
     }
 }

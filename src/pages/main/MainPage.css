@@ -36,12 +36,12 @@
 
 /* Colors */
 
-.main-page-container {
+.mainPageContainer {
     display: flex;
     flex-direction: column;
 }
 
-.main-page-body {
+.mainPageBody {
     width: 100%;
     height: 65rem;
     margin-top: 3rem;
@@ -221,11 +221,11 @@
 }
 
 @media screen and (min-width: 1200px) {
-    .main-page-container {
+    .mainPageContainer {
         display: flex;
     }
 
-    .main-page-body {
+    .mainPageBody {
         width: 100%;
         height: 30rem;
         margin-top: 3rem;

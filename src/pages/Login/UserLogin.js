@@ -46,8 +46,8 @@ export default function App({ setPageAuthType, setIsModalOpen, setAccessToken })
 
     const handleLogin = async (e) => {
         e.preventDefault();
-        const usernameInput = document.getElementById('user-name-input').value.trim();
-        const passwordInput = document.getElementById('password-input').value.trim();
+        const usernameInput = document.getElementById('userNameInput').value.trim();
+        const passwordInput = document.getElementById('passwordInput').value.trim();
 
         const isEmail = emailRegex.test(usernameInput);
         const username = isEmail ? '' : usernameInput;
@@ -59,7 +59,7 @@ export default function App({ setPageAuthType, setIsModalOpen, setAccessToken })
         } else {
             loginAndNavigate(username, passwordInput, emailAddress);
             setAccessToken(localStorage.getItem('access-token'));
-            setIsModalOpen(false);
+            setIsModalOpen(true);
         }
     };
 
@@ -72,7 +72,7 @@ export default function App({ setPageAuthType, setIsModalOpen, setAccessToken })
     };
 
     const ErrorMessage = ({ message }) => {
-        return <div id="error-message"><p>{message}</p></div>;
+        return <div id="errorMessageLogin"><p>{message}</p></div>;
     };
 
     return (
@@ -80,9 +80,9 @@ export default function App({ setPageAuthType, setIsModalOpen, setAccessToken })
             <div className='authLoginTitle'>
                 <h1>Üye Girişi</h1>
             </div>
-            <div className="input-group-user">
+            <div className="inputGroupUser">
                 <Input
-                    id="user-name-input"
+                    id="userNameInput"
                     className="loginPageUsernameInput"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
@@ -91,7 +91,7 @@ export default function App({ setPageAuthType, setIsModalOpen, setAccessToken })
                 />
                 <br />
                 <Input.Password
-                    id="password-input"
+                    id="passwordInput"
                     className='loginPagePasswordInput'
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
@@ -99,9 +99,9 @@ export default function App({ setPageAuthType, setIsModalOpen, setAccessToken })
                     placeholder="Şifre"
                 />
             </div>
-            <div className="forget-password">
-                <Checkbox className="checkbox-color" onChange={checkBox} style={{ color: "#73228B" }}><p className="forget-password-custom">Beni Hatırla</p></Checkbox>
-                <a onClick={handleResetClick} className="forget-password-custom">Şifrenizi mi Unuttunuz?</a>
+            <div className="forgetPassword">
+                <Checkbox className="checkboxColor" onChange={checkBox} style={{ color: "#73228B" }}><p className="forgetPasswordColor">Beni Hatırla</p></Checkbox>
+                <a onClick={handleResetClick} className="forgetPasswordColor">Şifrenizi mi Unuttunuz?</a>
             </div>
             <div>
                 {error && <ErrorMessage message={error} />}

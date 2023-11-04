@@ -43,13 +43,13 @@ export default function App({ setPageAuthType }) {
 
     return (
         <div className="authResetPasswordContainer">
-            <div className="user-recover">
+            <div className="userRecover">
                 <h1>Şifre Sıfırlama</h1>
                 <span id="description">Şifrenizi unuttunuzmu ?
                     <p>Endişelenmeyin, profilinizi oluşturmak için kullandığınız e-posta adresini girin, size yeni bir profil oluşturma talimatlarını göndereceğiz.</p>
                 </span>
             </div>
-            <div className="input-group-recover">
+            <div className="inputGroupRecover">
                 <Input
                     className="ınputResetPassword"
                     name="emailAddress"
@@ -66,7 +66,7 @@ export default function App({ setPageAuthType }) {
                 />
             </div>
             {loading && <ClipLoader color={"#7465F1"} />}
-            {successMessage && <div className="success-message">{successMessage}</div>}
+            {successMessage && <div className="successMessage">{successMessage}</div>}
             {error && <ErrorMessage message={error} />}
             <AuthButton text="GÖNDER" onClick={handleResetPassword} />
         </div>

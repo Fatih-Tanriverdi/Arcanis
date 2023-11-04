@@ -127,14 +127,12 @@ export default function UsersList() {
     };
 
     return (
-        <div className='user-list-container'>
-            <div className='user-list-body'>
-                <div className='list-group-container'>
-                    <TableListComp props={{ columns: columns, dataSource: usersData }} text="users" pageSearchType={"users"} addButtonLabel={"Kullanıcı Ekle"} addFilterName={"Kullanıcı Filtreleme"} setPageOdata={setPageOdata} setPageSizeOdata={setPageSizeOdata} pageOdata={pageOdata} pageSizeOdata={pageSizeOdata} />
-                    {isModalOpen && (
-                        <EditUserModal user={selectedUser} onCancel={handleModalClose} visible={isModalOpen} pageType={"users"} addEditTitle={"Kullanıcı Güncelleme"} userDelete={handleDeleteUser} />
-                    )}
-                </div>
+        <div className='userListContainer'>
+            <div className='userListBody'>
+                <TableListComp props={{ columns: columns, dataSource: usersData }} text="users" pageSearchType={"users"} addButtonLabel={"Kullanıcı Ekle"} addFilterName={"Kullanıcı Filtreleme"} setPageOdata={setPageOdata} setPageSizeOdata={setPageSizeOdata} pageOdata={pageOdata} pageSizeOdata={pageSizeOdata} />
+                {isModalOpen && (
+                    <EditUserModal user={selectedUser} onCancel={handleModalClose} visible={isModalOpen} pageType={"users"} addEditTitle={"Kullanıcı Güncelleme"} userDelete={handleDeleteUser} />
+                )}
             </div>
         </div>
     );

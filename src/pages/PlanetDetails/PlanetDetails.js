@@ -25,20 +25,20 @@ export default function PlanetDetails() {
     }, [id]);
 
     return (
-        <body className='product-body-color'>
-            <div className='product-details-body'>
-                <div className='product-details-container'>
+        <body className='planetBodyColor'>
+            <div className='planetDetailsContainer'>
+                <div className='planetDetailsBody'>
                     {planetDetails ? (
-                        <div className='planet-details'>
+                        <div className='planetDetails'>
                             <Link to="/customer/planets">
-                                <IoIosArrowBack className='planet-details-icon' />
+                                <IoIosArrowBack className='planetDetailsIcon' />
                             </Link>
-                            <img alt='none' className='planet-img' src="/images/istockphoto-1053794310-612x612.jpg" />
+                            <img alt='none' className='planetImg' src="/images/istockphoto-1053794310-612x612.jpg" />
                             <h1>{planetDetails.name}</h1>
                             <p>{planetDetails.description}</p>
                         </div>
                     ) : (
-                        <div className='planet-spinner'><ClipLoader color={"#fff"} /></div>
+                        <div className='planetSpinner'><ClipLoader color={"#fff"} /></div>
                     )}
                 </div>
             </div>

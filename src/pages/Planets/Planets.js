@@ -10,10 +10,10 @@ export default function SpaceShips() {
     }, []);
 
     return (
-        <container className='space-ship-col'>
-            <article className='planets-container'>
-                <h1 id='planets-title'>Planets</h1>
-                <div className='planet-list'>
+        <container className='planetsAdminContainer'>
+            <article className='planetsAdminBody'>
+                <h1 id='planetsTitle'>Planets</h1>
+                <div className='planetList'>
                     <PlanetCard />
                 </div>
             </article>

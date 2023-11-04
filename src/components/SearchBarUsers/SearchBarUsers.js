@@ -1,5 +1,6 @@
 import { Select } from 'antd';
 import React, { useState } from 'react';
+import "./SearchBarUsers.css";
 
 export default function SearchBarUsers() {
 
@@ -16,7 +17,7 @@ export default function SearchBarUsers() {
     ];
 
     return (
-        <div className='seacrh-bar-filter-container'>
+        <div className='searchBarUsersContainer'>
             <div className='SelectRolePosition'>
                 <Select
                     value={selectedFilters.userRoleType}

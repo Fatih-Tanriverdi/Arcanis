@@ -10,7 +10,6 @@ import APImanager from '../../apiManager';
 import { Popover } from 'antd';
 import buildQuery from 'odata-query';
 
-
 export default function UsersList() {
     const [selectedPlanet, setSelectedPlanet] = useState(null);
     const [planets, setPlanets] = useState([]);
@@ -110,14 +109,12 @@ export default function UsersList() {
     };
 
     return (
-        <container className='orders-container'>
-            <article className='orders-body'>
-                <div className='orders-list'>
-                    <TableListComp props={{ columns: columns, dataSource: planets }} text="planets" pageSearchType={"planets"} addButtonLabel={"Gezegen Ekle"} addFilterName={"Gezegen Filtreleme"} setPageOdata={setPageOdata} setPageSizeOdata={setPageSizeOdata} pageOdata={pageOdata} pageSizeOdata={pageSizeOdata} />
-                    {isModalOpen && (
-                        <EditModal planet={selectedPlanet} onCancel={handleModalClose} visible={isModalOpen} pageType={"planets"} addEditTitle={"Gezegen Güncelleme"} planetDelete={handleDeletePlanet} />
-                    )}
-                </div>
+        <container className='planetsContainer'>
+            <article className='planetsBody'>
+                <TableListComp props={{ columns: columns, dataSource: planets }} text="planets" pageSearchType={"planets"} addButtonLabel={"Gezegen Ekle"} addFilterName={"Gezegen Filtreleme"} setPageOdata={setPageOdata} setPageSizeOdata={setPageSizeOdata} pageOdata={pageOdata} pageSizeOdata={pageSizeOdata} />
+                {isModalOpen && (
+                    <EditModal planet={selectedPlanet} onCancel={handleModalClose} visible={isModalOpen} pageType={"planets"} addEditTitle={"Gezegen Güncelleme"} planetDelete={handleDeletePlanet} />
+                )}
             </article>
         </container>
     )

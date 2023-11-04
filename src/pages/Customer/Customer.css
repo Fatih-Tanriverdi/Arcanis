@@ -9,7 +9,7 @@
 /** third-color =  #5D5E9C  **/
 /** fourth-color =  #858B9B  **/
 
-#customer-panel-body {
+#customerPageContainer {
     display: flex;
     flex-direction: column;
     background-color: #161D30;
@@ -18,7 +18,7 @@
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
-#customer-panel-body::after {
+#customerPageContainer::after {
     content: "";
     position: fixed;
     top: 0;

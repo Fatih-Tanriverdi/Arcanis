@@ -1,5 +1,6 @@
-import { DatePicker, Select } from 'antd'
-import React, { useState } from 'react'
+import { DatePicker, Select } from 'antd';
+import React, { useState } from 'react';
+import "./SearchBarTicketAdmin.css";
 
 export default function SearchBarTicketAdmin() {
 
@@ -18,7 +19,7 @@ export default function SearchBarTicketAdmin() {
     };
 
     return (
-        <div className='seacrh-bar-filter-container'>
+        <div className='searchBarTicketsContainer'>
             <div className='SelectRolePosition'>
                 <DatePicker onChange={onChange} placeholder='Oluşturma Tarihi' />
             </div>

@@ -1,11 +1,10 @@
-
-.product-body-color {
+.planetBodyColor {
     background-color: #161D30;
     background-size: cover;
     background-attachment: fixed;
 }
 
-.product-body-color::after {
+.planetBodyColor::after {
     content: "";
     position: fixed;
     top: 0;
@@ -17,7 +16,7 @@
     z-index: -1;
 }
 
-.product-details-body {
+.planetDetailsContainer {
     display: flex;
     flex-direction: column;
     align-items: center; 
@@ -32,21 +31,21 @@
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
-.product-details-container {
+.planetDetailsBody {
     margin: 2rem;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.planet-img {
+.planetImg{
     width: 100% !important;
     height: 300px !important;
     object-fit: cover !important;
     border-radius: 5px !important;
 }
 
-.planet-details>p {
+.planetDetails > p {
     color: white;
     text-align: center;
 
@@ -56,7 +55,7 @@
     font-size: 1.2rem;
 }
 
-.planet-details>h1 {
+.planetDetails > h1 {
     color: white;
     text-align: center;
 
@@ -64,7 +63,7 @@
     width: 100%;
 }
 
-.planet-details-icon {
+.planetDetailsIcon {
     font-size: 25px !important;
     color: white;
     position: absolute;
@@ -76,14 +75,14 @@
     background-color: #161D30;
 }
 
-.planet-details-icon:hover {
+.planetDetailsIcon:hover {
     background-color: white;
     color: #161D30;
 
     transition: 0.2s all ease-in;
 }
 
-.planet-spinner {
+.planetSpinner {
     display: flex;
     align-items: center !important;
     margin-top: 20% ;
@@ -91,13 +90,13 @@
 }
 
 @media screen and (min-width: 700px) {
-    .planet-details>p {
+    .planetDetails > p {
         font-size: 1.6rem;
     }
 }
 
 @media screen and (min-width: 1200px) {
-    .planet-details>p {
+    .planetDetails > p {
         font-size: 1.8rem;
     }
 }

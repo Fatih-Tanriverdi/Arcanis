@@ -1,3 +1,4 @@
+import "./SearchBarExpedition.css";
 import { DatePicker, Select } from 'antd';
 import React, { useEffect, useState } from 'react';
 import APImanager from '../../apiManager';
@@ -68,7 +69,7 @@ export default function SearchBarExpedition() {
     /* LOOKUPS */
 
     return (
-        <div className='search-expedition-container '>
+        <div className='searchBarExpeditionContainer'>
             <div className='SelectRolePosition'>
                 <DatePicker onChange={onChange} placeholder='Kalkış Tarihi' />
             </div>
@@ -85,7 +86,6 @@ export default function SearchBarExpedition() {
             </div>
             <div className='SelectRolePosition'>
                 <Select
-                    id='modal-username-style-input'
                     onChange={handleSelectSpaceVehicle}
                     value={selectedSpaceVehicle}
                     placeholder='Uzay Aracı'
@@ -100,7 +100,6 @@ export default function SearchBarExpedition() {
             </div>
             <div className='SelectRolePosition'>
                 <Select
-                    id='modal-username-style-input'
                     onChange={handleSelectDeparturePlanet}
                     value={selectedDeparturePlanet}
                     placeholder='Kalkış Gezegeni'
@@ -116,7 +115,6 @@ export default function SearchBarExpedition() {
             <div className='SelectRolePosition'>
                 <Select
                     placeholder="Varış Gezegeni"
-                    id='modal-username-style-input'
                     onChange={handleSelectArrivalPlanet}
                     value={selectedArrivalPlanet}
                     name="arrivalPlanetId"

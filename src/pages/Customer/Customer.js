@@ -26,7 +26,7 @@ export default function AsideHeader() {
     }, []);
 
     return (
-        <div id='customer-panel-body'>
+        <div id='customerPageContainer'>
             <article className='headerCustomer'>
                 <div className='headerCustomerInfo'>
                     <h1 className="headerTitleStyle">Arcanis</h1>
@@ -45,17 +45,15 @@ export default function AsideHeader() {
                 </div>
             </article>
             <article>
-                <div className='customer-page-body' >
-                    <div className='customer-page-container'>
-                        <Routes>
-                            <Route path="/" element={<Ticket />} />
-                            <Route path="/hakkimizda" element={<About />} />
-                            <Route path="/biletlerim" element={<Ticket />} />
-                            <Route path="/iletisim" element={<Iletisim />} />
-                            <Route path="/planets" element={<Planets />} />
-                            <Route path="/planet/:id" element={<PlanetDetails />} />
-                        </Routes>
-                    </div>
+                <div className='customerPageBody' >
+                    <Routes>
+                        <Route path="/" element={<Ticket />} />
+                        <Route path="/hakkimizda" element={<About />} />
+                        <Route path="/biletlerim" element={<Ticket />} />
+                        <Route path="/iletisim" element={<Iletisim />} />
+                        <Route path="/planets" element={<Planets />} />
+                        <Route path="/planet/:id" element={<PlanetDetails />} />
+                    </Routes>
                 </div>
             </article>
             {isModalOpen && <AuthModal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} setAccessToken={setAccessToken} pageAuthType={"authLogin"} />}

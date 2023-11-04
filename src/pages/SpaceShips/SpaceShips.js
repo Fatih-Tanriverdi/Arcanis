@@ -119,16 +119,12 @@ export default function SpaceShips() {
     };
 
     return (
-        <container className='space-vehicle-container'>
-            <article className='space-vehicle-body'>
-                <div className='product-list'>
-                    <div>
-                        <TableListComp props={{ columns: columns, dataSource: spaceShipData }} text="spaceShips" pageSearchType={"spaceShips"} addButtonLabel={"Uzay Aracı Ekle"} addFilterName={"Uzay Aracı Filtreleme"} setPageOdata={setPageOdata} setPageSizeOdata={setPageSizeOdata} pageOdata={pageOdata} pageSizeOdata={pageSizeOdata} />
-                        {isModalOpen && (
-                            <EditModal rocket={selectedRocket} onCancel={handleModalClose} visible={isModalOpen} pageType={"spaceShips"} addEditTitle={"Uzay Aracı Güncelleme"} rocketDelete={handleDeleteRocket} />
-                        )}
-                    </div>
-                </div>
+        <container className='spaceVehicleContainer'>
+            <article className='spaceVehicleBody'>
+                <TableListComp props={{ columns: columns, dataSource: spaceShipData }} text="spaceShips" pageSearchType={"spaceShips"} addButtonLabel={"Uzay Aracı Ekle"} addFilterName={"Uzay Aracı Filtreleme"} setPageOdata={setPageOdata} setPageSizeOdata={setPageSizeOdata} pageOdata={pageOdata} pageSizeOdata={pageSizeOdata} />
+                {isModalOpen && (
+                    <EditModal rocket={selectedRocket} onCancel={handleModalClose} visible={isModalOpen} pageType={"spaceShips"} addEditTitle={"Uzay Aracı Güncelleme"} rocketDelete={handleDeleteRocket} />
+                )}
             </article>
         </container>
     )

@@ -71,38 +71,38 @@ export default function AsideHeader() {
     }, []);
 
     return (
-        <container id='admin-panel-body'>
-            <div className='admin-panel-all'>
-                <div className='aside'>
-                    <div className='renta-rocket'>
-                        <img alt="logo" className='admin-rocket-img' src='/images/rocket-img.png' />
-                        <h1>Renta Rocket</h1>
+        <container id='adminPanelContainer'>
+            <div className='adminPanelBody'>
+                <div className='adminNavigateBar'>
+                    <div className='arcanisLogoAndTitle'>
+                        <img alt="logo" className='arcanisImg' src='/images/rocket-img.png' />
+                        <h1>Arcanis</h1>
                     </div>
-                    <div className='admin-btn-container'>
-                        <div className='admin-btn-position'>
-                            <PageButton to="mainpage" className={`admin-panel-button ${activeButton === "Anasayfa" ? 'active' : ''}`} icon={<AiOutlineHome />} onClick={() => handleButtonClick("Anasayfa")} text="Anasayfa" />
-                            <PageButton to="userlist" className={`admin-panel-button ${activeButton === "Kullanıcılar" ? 'active' : ''}`} icon={<AiOutlineUser />} onClick={() => handleButtonClick("Kullanıcılar")} text="Kullanıcılar" />
-                            <PageButton to="spaceships" className={`admin-panel-button ${activeButton === "Uzay Araçları" ? 'active' : ''}`} icon={<AiOutlineRocket />} onClick={() => handleButtonClick("Uzay Araçları")} text="Uzay Araçları" />
-                            <PageButton to="planetsadmin" icon={<BiPlanet />} onClick={() => handleButtonClick("Gezegenler")} text="Gezegenler" className={`admin-panel-button ${activeButton === "Gezegenler" ? 'active' : ''}`} />
-                            <PageButton to="expedition" icon={<GiPathDistance />} onClick={() => handleButtonClick("Seferler")} text="Seferler" className={`admin-panel-button ${activeButton === "Seferler" ? 'active' : ''}`} />
-                            <PageButton to="ticketadmin" icon={<BsTicketPerforated />} onClick={() => handleButtonClick("Ticket")} text="Biletler" className={`admin-panel-button ${activeButton === "Ticket" ? 'active' : ''}`} />
+                    <div className='adminBtnGroup'>
+                        <div className='adminBtnPosition'>
+                            <PageButton to="mainpage" className={`adminPanelButton ${activeButton === "Anasayfa" ? 'active' : ''}`} icon={<AiOutlineHome />} onClick={() => handleButtonClick("Anasayfa")} text="Anasayfa" />
+                            <PageButton to="userlist" className={`adminPanelButton ${activeButton === "Kullanıcılar" ? 'active' : ''}`} icon={<AiOutlineUser />} onClick={() => handleButtonClick("Kullanıcılar")} text="Kullanıcılar" />
+                            <PageButton to="spaceships" className={`adminPanelButton ${activeButton === "Uzay Araçları" ? 'active' : ''}`} icon={<AiOutlineRocket />} onClick={() => handleButtonClick("Uzay Araçları")} text="Uzay Araçları" />
+                            <PageButton to="planetsadmin" icon={<BiPlanet />} onClick={() => handleButtonClick("Gezegenler")} text="Gezegenler" className={`adminPanelButton ${activeButton === "Gezegenler" ? 'active' : ''}`} />
+                            <PageButton to="expedition" icon={<GiPathDistance />} onClick={() => handleButtonClick("Seferler")} text="Seferler" className={`adminPanelButton ${activeButton === "Seferler" ? 'active' : ''}`} />
+                            <PageButton to="ticketadmin" icon={<BsTicketPerforated />} onClick={() => handleButtonClick("Ticket")} text="Biletler" className={`adminPanelButton ${activeButton === "Ticket" ? 'active' : ''}`} />
                         </div>
-                        <div className='admin-btn-exit-container'>
-                            <PageButton to="/" className="admin-panel-button-exit" icon={<BiExit />} onClick={handleLogout} text="Çıkış" id='icon-style adminpanel-exit-btn-position' />
+                        <div className='adminBtnExitBody'>
+                            <PageButton to="/" className="adminBtnExit" icon={<BiExit />} onClick={handleLogout} text="Çıkış" />
                         </div>
                     </div>
                 </div>
-                <article className='header'>
-                    <div className='header-position'>
-                        <div className='customer-btn'>
-                            <Link className='bilgi-button' to={"/"} alt={"Customer Page"}><BsFillArrowRightSquareFill /></Link>
-                            <p className='bilgi'>Müşteri Sayfası</p>
+                <article className='adminHeaderbar'>
+                    <div className='adminHeaderPosition'>
+                        <div className='customerPageBtn'>
+                            <Link className='customerInfoBtn' to={"/"} alt={"Customer Page"}><BsFillArrowRightSquareFill /></Link>
+                            <p className='customerInfo'>Müşteri Sayfası</p>
                         </div>
-                        <div className='admin-info-response-header'>
-                            <div className="admin-buttons">
-                                <div class="admin-menu">
-                                    <button class="admin-menu-button" id="admin-dropdown-button"><BiMenu /></button>
-                                    <div class="admin-dropdown-content" id="admin-dropdown-content">
+                        <div className='adminResponseHeader'>
+                            <div className="adminResponseButtons">
+                                <div class="adminResponseMenu">
+                                    <button class="adminResponseMenuButton"><BiMenu /></button>
+                                    <div class="adminResponseDropdownContent">
                                         <Link to="mainpage">Anasayfa</Link>
                                         <Link to="userlist">Kullanıcılar</Link>
                                         <Link to="spaceships">Uzay Araçları</Link>
@@ -114,13 +114,13 @@ export default function AsideHeader() {
                                     </div>
                                 </div>
                             </div>
-                            <div className='admin-info-response'>
-                                <div className='admin-info'>
+                            <div className='adminInfoResponse'>
+                                <div className='adminInfo'>
                                     <h1>{userInfo.name} {userInfo.surname}</h1>
                                     <span>Admin</span>
                                 </div>
-                                <div className='header-img'>
-                                    <img alt='admin' className='admin-img' src='/images/AdminPP.avif' />
+                                <div className='headerAdminImg'>
+                                    <img alt='admin' className='adminImg' src='/images/AdminPP.avif' />
                                 </div>
                             </div>
                         </div>

@@ -17,20 +17,19 @@ export default function Ticket() {
     }
 
     return (
-        <div className='ticket-page-container'>
-            <div className='ticket-page-body'>
-                <div className='ticket-page-body-position'>
-                    <div className='ticket-search'>
-                        <Space wrap className='ticket-dropdown-style'>
+        <div className='ticketPageContainer'>
+            <div className='ticketPageBody'>
+                <div className='ticketPageBodyPosition'>
+                    <div className='ticketSearch'>
+                        <Space wrap>
                             <Select
-                                className='ticketDepartureSelect'
                                 suffixIcon={<BsGeoAlt />}
                                 defaultValue="Kalkış Noktası"
                                 bordered={false}
                             >
                             </Select>
                         </Space>
-                        <Space wrap className='ticket-dropdown-style'>
+                        <Space wrap>
                             <Select
                                 suffixIcon={<BsGeoAlt />}
                                 defaultValue="Varış Noktası"
@@ -41,34 +40,34 @@ export default function Ticket() {
                         <Space>
                             <RangePicker bordered={false} placeholder={['Gidiş Tarihi', 'Dönüş Tarihi']} />
                         </Space>
-                        <Link className='ticket-btn-group'>
+                        <Link className='ticketBtnStyle'>
                             <button>Seyahat Bileti Bul</button>
                         </Link>
                     </div>
-                    <div className='ticket-decription'>
+                    <div className='ticketDescription'>
                         <h1>Uzayın Derinliklerine Yolculuk</h1>
-                        <div className='desk-box-container'>
-                            <div className='desc-box'>
+                        <div className='deskBoxContainer'>
+                            <div className='descBox'>
                                 <TfiHeadphoneAlt />
                                 <p>7/24 Müşteri Hizmetleri</p>
                             </div>
-                            <div className='desc-box'>
+                            <div className='descBox'>
                                 <BsCreditCard2Back />
                                 <p>Güvenli Ödeme</p>
                             </div>
-                            <div className='desc-box'>
+                            <div className='descBox'>
                                 <BsCashCoin />
                                 <p>Komisyon Yok, Ücretsiz</p>
                             </div>
-                            <div className='desc-box'>
+                            <div className='descBox'>
                                 <BsPeople />
                                 <p>Ayda 25 Milyondan Fazla Ziyaretçi</p>
                             </div>
-                            <div className='desc-box'>
+                            <div className='descBox'>
                                 <BsStopwatchFill />
                                 <p>İki Dakikada Biletini Al</p>
                             </div>
-                            <div className='desc-box'>
+                            <div className='descBox'>
                                 <BsCoin />
                                 <p>İptal Edilen Bilete Kesintisiz İade</p>
                             </div>
@@ -102,35 +101,35 @@ export default function Ticket() {
             <h1 className='ticketPageBodyQuestionsTitle'>Sıkça Sorulan Sorular</h1>
             <div className='ticketPageBodyQuestions'>
                 <div className='ticketPageBodyQuestionsBox'>
-                    <h3>Renta Rocket'de hangi roketler bulunuyor?</h3>
+                    <h3>Arcanis'de hangi roketler bulunuyor?</h3>
                     <i className='ticketPageBodyQuestionsBoxSvg' onClick={toggleAdditionalInfo}><BsFillArrowDownCircleFill /></i>
                     <div className='ticketPageBodyQuestionsBoxAdditional'>
                         Arcanis'de  SpaceX, Blue Origin, Virgin Galaactic gibi Evrenin dört bir yanına seferler düzenleyen yüzlerce Uzay Seyahati firmasına ulaşabilirsiniz.
                     </div>
                 </div>
                 <div className='ticketPageBodyQuestionsBox'>
-                    <h3>Renta Rocket'de biletini nasıl satın alabilirim?</h3>
+                    <h3>Arcanis'de biletini nasıl satın alabilirim?</h3>
                     <i className='ticketPageBodyQuestionsBoxSvg' onClick={toggleAdditionalInfo}><BsFillArrowDownCircleFill /></i>
                     <div className='ticketPageBodyQuestionsBoxAdditional'>
                         Arcanis'den Roket bileti satın almak için web sitemizi veya mobil uygulamalarımızı kullanabilirsiniz. Seyahat etmek istediğiniz yeri ve tarihi girdikten sonra tüm seferleri karşılaştırabilir, size uygun sefer için yolcu ve kart bilgilerinizi girerek biletinizi satın alabilirsiniz.
                     </div>
                 </div>
                 <div className='ticketPageBodyQuestionsBox'>
-                    <h3>Renta Rocket'de bilet satın alırken komisyon ödenir mi?</h3>
+                    <h3>Arcanis'de bilet satın alırken komisyon ödenir mi?</h3>
                     <i className='ticketPageBodyQuestionsBoxSvg' onClick={toggleAdditionalInfo}><BsFillArrowDownCircleFill /></i>
                     <div className='ticketPageBodyQuestionsBoxAdditional'>
                         Arcanis komisyon ücreti almaz. Arcanis'i kullanarak otobüs bileti alırken sadece biletinizin fiyatını ödersiniz.
                     </div>
                 </div>
                 <div className='ticketPageBodyQuestionsBox'>
-                    <h3>Renta Rocket'de biletimi iptal edilebilir miyim?</h3>
+                    <h3>Arcanis'de biletimi iptal edilebilir miyim?</h3>
                     <i className='ticketPageBodyQuestionsBoxSvg' onClick={toggleAdditionalInfo}><BsFillArrowDownCircleFill /></i>
                     <div className='ticketPageBodyQuestionsBoxAdditional'>
                         Roket biletinizi firmaların belirlediği iptal koşulları doğrultusunda iptal edebilirsiniz. İptal koşulları satın alma sırasında size bildirilir.
                     </div>
                 </div>
                 <div className='ticketPageBodyQuestionsBox'>
-                    <h3>Renta Rocket'de bilet iadem ne zaman gerçekleşir?</h3>
+                    <h3>Arcanis'de bilet iadem ne zaman gerçekleşir?</h3>
                     <i className='ticketPageBodyQuestionsBoxSvg' onClick={toggleAdditionalInfo}><BsFillArrowDownCircleFill /></i>
                     <div className='ticketPageBodyQuestionsBoxAdditional'>
                         İptal işleminiz onaylandıktan sonra ücret iadesi, hiçbir kesinti olmadan bankanıza aktarılır. Ödediğiniz tutar bankanızın iade prosedürlerine bağlı olarak 7 iş günü içerisinde hesabınıza yansır. Bankamatik kartları ile yapılan işlemlerde bu süreç 1-20 iş gününü bulabilir. İade süreci tamamen bankanıza bağlıdır ve Arcanis'in müdahale etme hakkı yoktur.

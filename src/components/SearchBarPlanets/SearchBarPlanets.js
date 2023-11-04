@@ -1,5 +1,6 @@
 import { Select } from 'antd';
 import React, { useState } from 'react';
+import "./SearchBarPlanets.css";
 
 export default function SearchBarPlanets() {
 
@@ -22,7 +23,7 @@ export default function SearchBarPlanets() {
     };
 
     return (
-        <div className='seacrh-bar-filter-container'>
+        <div className='searchBarPlanetsContainer'>
             <div className='SelectRolePosition'>
                 <Select
                     value={selectedFilters.sequence}

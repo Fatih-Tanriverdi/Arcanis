@@ -76,15 +76,15 @@ export default function Register({ setPageAuthType }) {
     };
 
     const ErrorMessage = ({ message }) => {
-        return <div id="error-message-register"><p>{message}</p></div>;
+        return <div id="errorMessageRegister"><p>{message}</p></div>;
     };
 
     return (
         <div className='authRegisterContainer'>
-            <div className="user-register">
+            <div className="userRegisterTitle">
                 <h1>Üye Ol</h1>
             </div>
-            <form className="input-group-register">
+            <form className="inputGroupRegister">
                 <AuthInputEmail value={values.emailAddress} onChange={handleInput} />
                 <br />
                 <AuthInputUsername value={values.username} onChange={handleInput} placeholder="Kullanıcı adı" />
@@ -99,12 +99,12 @@ export default function Register({ setPageAuthType }) {
                 <br />
                 <AuthButton text="Üye Ol" onClick={handleSubmit} />
             </form>
-            <div className="error-message-container">
+            <div className="errorMessageContainer">
                 {error && <ErrorMessage message={error} />}
-                {successMessage && <div className="success-message">{successMessage}</div>}
+                {successMessage && <div className="successMessage">{successMessage}</div>}
             </div>
             {loading && <ClipLoader color={"#7465F1"} />}
-            <Link onClick={handleRegisterClick} className="acconut-register">
+            <Link onClick={handleRegisterClick} className="accountRegister">
                 <a>Zaten bir hesabın var mı?</a>
             </Link>
         </div>

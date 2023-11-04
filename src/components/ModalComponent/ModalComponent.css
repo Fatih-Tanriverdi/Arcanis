@@ -26,10 +26,6 @@
     position: sticky !important;
 }
 
-#modal-footer-button-style>button>div>p {
-    color: white;
-}
-
 .addModalErrorContainer {
     display: flex;
     justify-content: center !important;
@@ -64,19 +60,13 @@
 /* MODAL TEXTAREA STYLE */
 /* MODAL */
 
-#modal-comment-style {
-    background-color: transparent !important;
-    padding-bottom: 5% !important;
-    color: white !important;
-}
-
-.modal-list {
+.modalistBody {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
 }
 
-.modal-list > .ant-input {
+.modalistBody > .ant-input {
     margin: 1rem;
     width: 90%;
     height: 3rem;
@@ -84,7 +74,7 @@
     border-color: #858B9B;
 }
 
-.modal-list > .ant-input-password {
+.modalistBody > .ant-input-password {
     margin: 1rem !important;
     width: 90% !important;
     height: 3rem !important;
@@ -93,7 +83,7 @@
     border-color: #858B9B !important;
 }
 
-.modal-list > .ant-input-password > input {
+.modalistBody > .ant-input-password > input {
     background-color: transparent !important;
 }
 
@@ -102,13 +92,13 @@
     color: white !important;
 }
 
-.modal-list > .ant-select {
+.modalistBody > .ant-select {
     width: 90%;
     height: 3rem !important;
     margin: 1rem;
 }
 
-.modal-list > .ant-select > .ant-select-selector {
+.modalistBody> .ant-select > .ant-select-selector {
     display: flex;
     justify-content: center;
     align-items: center;

@@ -1,4 +1,4 @@
-#admin-panel-body {
+#adminPanelContainer {
     display: flex !important;
     background-color: #161D30;
     background-size: cover;
@@ -6,7 +6,7 @@
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
-#admin-panel-body::after {
+#adminPanelContainer::after {
     content: "";
     position: fixed;
     top: 0;
@@ -18,7 +18,7 @@
     z-index: -1;
 }
 
-.admin-panel-all {
+.adminPanelBody {
     display: flex;
     height: 100%;
     width: 100%;
@@ -31,7 +31,7 @@
 
 /* NAVİGATE */
 
-.aside {
+.adminNavigateBar {
     display: none;
     background-color: #273046;
     padding: 1.5rem;
@@ -41,7 +41,7 @@
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
-.admin-rocket-img {
+.arcanisImg {
     height: 4.5rem;
     width: 4.5rem;
     border-radius: 50%;
@@ -49,17 +49,17 @@
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
-.renta-rocket {
+.arcanisLogoAndTitle {
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-evenly;
     border-bottom: 5px;
     padding: 10px;
     border-bottom: solid #161D30;
 }
 
-.renta-rocket>h1 {
-    font-size: 1.8rem;
+.arcanisLogoAndTitle > h1 {
+    font-size: 2.5rem;
     color: #7465F2;
 }
 
@@ -67,7 +67,7 @@
 
 /* HEADER */
 
-.header {
+.adminHeaderbar {
     background-color: #273046;
     flex: 80%;
     margin: 3rem;
@@ -79,25 +79,25 @@
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
-.header-position>div {
+.adminHeaderPosition>div {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.admin-info-response-header {
+.adminResponseHeader {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.admin-info-response {
+.adminInfoResponse {
     display: flex;
     justify-content: flex-end;
     align-items: center;
 }
 
-.admin-img {
+.adminImg {
     display: flex;
     align-items: center;
     height: 3rem;
@@ -108,7 +108,7 @@
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
-.admin-info {
+.adminInfo {
     display: flex;
     justify-content: flex-end !important;
     align-items: center;
@@ -116,7 +116,7 @@
     margin-right: 1rem;
 }
 
-.admin-info>h1 {
+.adminInfo>h1 {
     font-size: 1rem;
     display: flex;
     align-items: center;
@@ -126,7 +126,7 @@
     margin-top: 1rem;
 }
 
-.admin-info>span {
+.adminInfo>span {
     display: flex;
     justify-content: flex-end;
     font-size: 0.8rem;
@@ -134,19 +134,19 @@
     margin-left: 30rem;
 }
 
-.admin-buttons {
+.adminResponseButtons {
     display: flex;
     justify-content: flex-start;
     align-items: center;
 }
 
-.customer-btn > a > svg {
+.customerPageBtn > a > svg {
     color: #7465F2 !important;
     font-size: 3rem;
     margin-top: 0.5rem;
 }
 
-.bilgi {
+.customerInfo {
     display: none;
     background-color: transparent;
     padding: 0.5rem;
@@ -156,7 +156,7 @@
     font-size: 1rem;
 }
 
-.bilgi-button:hover + .bilgi {
+.customerInfoBtn:hover + .customerInfo {
     display: block;
 }
 
@@ -164,29 +164,29 @@
 
 /* BUTTON */
 
-.admin-panel-button {
+.adminPanelButton {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.admin-panel-button>span>svg,
-.admin-panel-button-exit>span>svg {
+.adminPanelButton>span>svg,
+.adminBtnExit>span>svg {
     font-size: 1rem !important;
 }
 
-.admin-panel-button>a,
-.admin-panel-button-exit>a {
+.adminPanelButton>a,
+.adminBtnExit>a {
     display: none;
 }
 
-.admin-panel-button-exit {
+.adminBtnExit {
     display: flex;
     justify-content: flex-;
     align-items: center;
 }
 
-.admin-panel-button-exit:hover {
+.adminBtnExit:hover {
     background-color: #7465F2;
     border-radius: 1rem;
     transition: 0.3s all ease-in;
@@ -198,14 +198,14 @@
     color: white !important;
 }
 
-.customer-btn {
+.customerPageBtn {
     display: none !important;
     justify-content: center;
     align-items: center;
     margin-left: 0.5rem;
 }
 
-.customer-btn-hover.active {
+.customerPageBtn.active {
     border-bottom-color: #7465F2;
     border-bottom-width: 2px !important;
     border-radius: 0 !important;
@@ -216,11 +216,11 @@
 
 /* BUTTON */
 
-.admin-panel-button.active {
+.adminPanelButton.active {
     background-color: #7465F2 !important;
 }
 
-.admin-btn-position {
+.adminBtnPosition {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -229,7 +229,7 @@
     margin-left: 1rem;
 }
 
-.admin-btn-exit-container {
+.adminBtnExitBody {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -238,7 +238,7 @@
     margin-top: auto;
 }
 
-.admin-btn-container {
+.adminBtnGroup {
     display: flex;
     justify-content: space-between;
     flex-direction: column;
@@ -248,12 +248,12 @@
 
 /* Dropdown Menü */
 
-.admin-menu {
+.adminResponseMenu {
     position: relative;
     display: inline-block;
 }
 
-.admin-menu-button {
+.adminResponseMenuButton {
     background-color: #7465F2;
     color: #fff;
     border-radius: 0.5rem;
@@ -262,7 +262,7 @@
     cursor: pointer;
 }
 
-.admin-dropdown-content {
+.adminResponseDropdownContent {
     display: none;
     position: absolute;
     background-color: #273046;
@@ -272,7 +272,7 @@
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
-.admin-dropdown-content a {
+.adminResponseDropdownContent a {
     color: white;
     padding: 12px 16px;
     border-radius: 0.5rem;
@@ -280,68 +280,68 @@
     display: block;
 }
 
-.admin-dropdown-content a:hover {
+.adminResponseDropdownContent a:hover {
     background-color: #7465F2;
     color: #fff;
 }
 
-.admin-menu:hover .admin-dropdown-content {
+.adminResponseMenu:hover .adminResponseDropdownContent {
     display: block;
 }
 
-.admin-menu:hover .admin-menu-button {
+.adminResponseMenu:hover .adminResponseMenuButton {
     background-color: #7465F2;
 }
 /* Dropdown Menü */
 
 @media screen and (min-width: 700px) {
-    .aside {
+    .adminNavigateBar {
         display: block;
         flex: 2%;
     }
 
-    .header {
+    .adminHeaderbar {
         margin-bottom: 0;
     }
 
-    .renta-rocket>h1 {
+    .arcanisLogoAndTitle>h1 {
         display: none;
     }
 
-    .admin-panel-button>a,
-    .admin-panel-button-exit>a {
+    .adminPanelButton>a,
+    .adminBtnExit > a {
         display: none;
     }
 
-    .admin-buttons {
+    .adminResponseButtons {
         display: none;
     }
 
-    .admin-panel-button>span>svg,
-    .admin-panel-button-exit>span>svg {
+    .adminPanelButton>span>svg,
+    .adminBtnExit>span>svg {
         font-size: 2rem !important;
     }
 
-    .admin-info>h1 {
+    .adminInfo>h1 {
         font-size: 1.5rem;
         margin-top: 0;
     }
 
-    .admin-info>span {
+    .adminInfo>span {
         font-size: 1rem;
     }
 
-    .admin-panel-button {
+    .adminPanelButton {
         margin-top: 2.5rem;
     }
 
-    .header-position {
+    .adminHeaderPosition {
         display: flex;
         justify-content: space-between;
         align-items: center;
     }
 
-    .customer-btn {
+    .customerPageBtn {
         display: flex !important;
         justify-content: center;
         align-items: center;
@@ -350,60 +350,54 @@
 }
 
 @media screen and (min-width: 1200px) {
-    .admin-buttons {
+    .adminResponseButtons {
         display: none;
     }
 
-    .aside {
+    .adminNavigateBar {
         display: block;
         flex: 15%;
     }
 
-    .header {
+    .adminHeaderbar {
         margin-bottom: 0;
     }
 
-    .renta-rocket>h1 {
+    .arcanisLogoAndTitle>h1 {
         display: block;
     }
 
-    .header-position {
-        display: flex;
-        justify-content: flex-end;
-        align-items: flex-start;
-    }
-
-    .header-position {
+    .adminHeaderPosition {
         display: flex;
         justify-content: space-between;
         align-items: center;
     }
 
-    .admin-info>h1 {
+    .adminInfo>h1 {
         font-size: 1.5rem;
     }
 
-    .admin-info>span {
+    .adminInfo>span {
         font-size: 1rem;
         margin-left: 33rem;
     }
 
-    .admin-panel-button>span>svg,
-    .admin-panel-button-exit>span>svg {
+    .adminPanelButton>span>svg,
+    .adminBtnExit>span>svg {
         font-size: 2rem !important;
     }
 
-    .admin-panel-button>a,
-    .admin-panel-button-exit>a {
+    .adminPanelButton>a,
+    .adminBtnExit>a {
         display: block;
         font-size: 1.7rem !important;
     }
 
-    .admin-panel-button {
+    .adminPanelButton {
         margin-top: 2.5rem;
     }
 
-    .customer-btn {
+    .customerPageBtn {
         display: flex !important;
         justify-content: center;
         align-items: center;

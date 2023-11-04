@@ -124,8 +124,8 @@ export default function MainPage() {
     /* Planet */
 
     return (
-        <container className='main-page-container' >
-            <div className='main-page-body'>
+        <container className='mainPageContainer' >
+            <div className='mainPageBody'>
                 <div className='mainPageTitle'>
                     <h3>Anasayfa</h3>
                     <p>1 ay önce güncellendi</p>

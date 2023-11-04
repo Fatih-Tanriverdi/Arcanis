@@ -27,20 +27,20 @@ export function PlanetCard({ defaultImage }) {
     return (
         <>
             {loading ? (
-                <div className='planetcard-spinner'>
-                    <div className='planetcard-spinner'><ClipLoader color={"#fff"} /></div>
+                <div className='planetCardSpinner'>
+                    <div><ClipLoader color={"#fff"} /></div>
                 </div>
             ) : (
                 planets.map(planet => (
-                    <div className='product-card' key={planet.id}>
-                        <div className='comment-rocket'>
+                    <div className='productCardContainer' key={planet.id}>
+                        <div className='planetComment'>
                             <h2>{planet.name}</h2>
-                            <p className='product-description'>{planet.description}</p>
-                            <Link to={`/planet/${planet.id}`} className='product-btn-group'>
+                            <p className='planetDescription'>{planet.description}</p>
+                            <Link to={`/planet/${planet.id}`} className='planetDetailsBtn'>
                                 <button>Detaylı İncele</button>
                             </Link>
                         </div>
-                        <div className='rocket-img'>
+                        <div className='planetImg'>
                             <img alt='none' src={defaultImage || planet.imageUrl} />
                         </div>
                     </div>

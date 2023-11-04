@@ -1,14 +1,3 @@
-.user-list-container {
-    display: flex;
-}
-
-.user-list-body {
-    display: flex;
-    flex-direction: column;
-    flex: 100%;
-}
-
-
 /* BUTTON */
 .editButton > svg{
     color: white;

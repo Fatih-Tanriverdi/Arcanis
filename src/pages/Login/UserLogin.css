@@ -19,18 +19,18 @@
     color: #73228B;
 }
 
-.forget-password {
+.forgetPassword {
     display: flex;
     justify-content: space-around !important;
     align-items: center;
     width: 140%;
 }
 
-.forget-password-custom {
+.forgetPasswordColor {
     color: white !important;
 }
 
-#error-message {
+#errorMessageLogin {
     display: flex;
     justify-content: center;
     width: 50rem;

@@ -236,12 +236,6 @@ td {
     color: white !important;
 }
 
-.search-filter-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 .ant-select:not(.ant-select-costumize-input) .ant-select-selector {
     background-color: transparent !important;
     border-color: #858B9B;
@@ -291,20 +285,6 @@ td {
     margin: 0;
 }
 
-.search-expedition-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    flex-wrap: wrap;
-}
-
-.search-ticketadmin-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 .ant-select-selector:hover {
     border-color: #7465F2 !important;
 }
@@ -312,7 +292,6 @@ td {
 .ant-select-focused .ant-select-selector {
     border-color: #7465F2 !important;
 }
-
 
 
 @media screen and (min-width: 700px) {

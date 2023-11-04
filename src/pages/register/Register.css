@@ -1,27 +1,28 @@
 .authRegisterContainer {
-    overflow-y: scroll !important;
+    height: 53rem;
+    overflow: auto !important;
 }
 
-.user-register > h1 {
+.userRegisterTitle > h1 {
     margin: 1rem;
     font-size: 2rem;
     color: white;
 }
 
-.acconut-register > a{
+.accountRegister > a{
     color: white;
     font-size: 1.2rem;
     border: none;
 }
 
-.error-message-container {
+.errorMessageContainer {
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 1rem;
 }
 
-#error-message-register {
+#errorMessageRegister {
     width: 50rem;
     background-color: #7465F1;
     border-radius: 0.5rem;
@@ -31,17 +32,17 @@
 
 @media screen and (min-width: 700px) {
 
-    .acconut-register > a {
+    .accountRegister > a {
         font-size: 1.5rem;
     }
 
-    .user-register > h1 {
+    .userRegisterTitle > h1 {
         margin: 1rem;
         font-size: 3rem;
         color: white;
     }
 
-    .acconut-register > a{
+    .accountRegister > a{
         color: white;
         font-size: 2rem;
         border: none;
@@ -50,21 +51,21 @@
 
 @media screen and (min-width: 1200px) {
 
-    .acconut-register > a {
+    .accountRegister > a {
         font-size: 1.7rem;
     }
 
-    .user-register > h1 {
+    .userRegisterTitle > h1 {
         margin-bottom: 0;
     }
 
-    .user-register > h1 {
+    .userRegisterTitle > h1 {
         margin: 1rem;
         font-size: 3rem;
         color: white;
     }
 
-    .acconut-register > a{
+    .accountRegister > a{
         color: white;
         font-size: 2rem;
         border: none;

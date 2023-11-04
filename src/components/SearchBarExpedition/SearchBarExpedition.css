@@ -1,0 +1,7 @@
+.searchBarExpeditionContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row !important;
+    flex-wrap: wrap;
+}

@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
 import '../ModalComponent/ModalComponent.css';
+import React, { useEffect, useState } from 'react';
 import { Space, Input, Button, Modal, Select } from 'antd';
 import { AiOutlineSave } from 'react-icons/ai';
 import { fetchRocketsGet, fetchRocketsPost } from '../../services/RocketService';
@@ -292,52 +292,91 @@ export function ModelComponent({ isModalVisible, onCancel, modalContent, addTitl
 
     const contentMap = {
         spaceShips: (
-            <Space direction="vertical" id='date-picker-body'>
-                <div className='modal-list'>
+            <Space direction="vertical">
+                <div className='modalistBody'>
                     <Input
-                        id='modal-username-style-input' value={valuesRockets.name} onChange={handleInput} placeholder='Araç Adı' name="name"
+                        value={valuesRockets.name}
+                        onChange={handleInput}
+                        placeholder='Araç Adı'
+                        name="name"
                     />
                     <Input
-                        id='modal-username-style-input' value={valuesRockets.modelName} onChange={handleInput} placeholder='Model Adı' name="modelName"
+                        value={valuesRockets.modelName}
+                        onChange={handleInput}
+                        placeholder='Model Adı'
+                        name="modelName"
                     />
                     <Input
-                        id='modal-username-style-input' value={valuesRockets.modelYear} onChange={handleInput} placeholder='Model Yılı' name="modelYear"
+                        value={valuesRockets.modelYear}
+                        onChange={handleInput}
+                        placeholder='Model Yılı'
+                        name="modelYear"
                     />
                     <Input
-                        id='modal-username-style-input' value={valuesRockets.serialNumber} onChange={handleInput} placeholder='Seri Numarası' name="serialNumber"
+                        value={valuesRockets.serialNumber}
+                        onChange={handleInput}
+                        placeholder='Seri Numarası'
+                        name="serialNumber"
                     />
                     <Input
-                        id='modal-username-style-input' value={valuesRockets.description} onChange={handleInput} placeholder='Açıklama' name="description"
+                        value={valuesRockets.description}
+                        onChange={handleInput}
+                        placeholder='Açıklama'
+                        name="description"
                     />
                     <Input
-                        id='modal-username-style-input' value={valuesRockets.maxNumberOfPassengers} onChange={handleInput} placeholder='Koltuk Numarası' name="maxNumberOfPassengers"
+                        value={valuesRockets.maxNumberOfPassengers}
+                        onChange={handleInput}
+                        placeholder='Koltuk Numarası'
+                        name="maxNumberOfPassengers"
                     />
                     <Input
-                        id='modal-username-style-input' value={valuesRockets.ageLimit} onChange={handleInput} placeholder='Yaş Sınırı' name="ageLimit"
+                        value={valuesRockets.ageLimit}
+                        onChange={handleInput}
+                        placeholder='Yaş Sınırı'
+                        name="ageLimit"
                     />
                 </div>
             </Space>
         ),
         users: (
-            <Space direction="vertical" id='date-picker-body'>
-                <div className='modal-list'>
+            <Space direction="vertical">
+                <div className='modalistBody'>
                     <Input
-                        id='modal-username-style-input' onChange={handleInput} value={valuesUsers.name} placeholder='İsim' name="name"
+                        onChange={handleInput}
+                        value={valuesUsers.name}
+                        placeholder='İsim'
+                        name="name"
                     />
                     <Input
-                        id='modal-username-style-input' onChange={handleInput} value={valuesUsers.surname} placeholder='Soyisim' name="surname"
+                        onChange={handleInput}
+                        value={valuesUsers.surname}
+                        placeholder='Soyisim'
+                        name="surname"
                     />
                     <Input
-                        id='modal-username-style-input' onChange={handleInput} value={valuesUsers.emailAddress} placeholder='E-Posta Address' name="emailAddress"
+                        onChange={handleInput}
+                        value={valuesUsers.emailAddress}
+                        placeholder='E-Posta Address'
+                        name="emailAddress"
                     />
                     <Input
-                        id='modal-username-style-input' onChange={handleInput} value={valuesUsers.phoneNumber} placeholder='Telefon Numarası' name="phoneNumber"
+                        onChange={handleInput}
+                        value={valuesUsers.phoneNumber}
+                        placeholder='Telefon Numarası'
+                        name="phoneNumber"
                     />
                     <Input
-                        id='modal-username-style-input' onChange={handleInput} value={valuesUsers.username} placeholder='Kullanıcı Adı' name="username"
+                        onChange={handleInput}
+                        value={valuesUsers.username}
+                        placeholder='Kullanıcı Adı'
+                        name="username"
                     />
                     <Input.Password
-                        id='modal-username-style-input' onChange={handleInput} value={valuesUsers.password} placeholder='Şifre' name="password"
+                        onChange={handleInput}
+                        value={valuesUsers.password}
+                        placeholder='Şifre'
+                        name="password"
                     />
                     <Select
                         defaultValue={valuesUsers.userRole}
@@ -354,49 +393,81 @@ export function ModelComponent({ isModalVisible, onCancel, modalContent, addTitl
             </Space>
         ),
         planets: (
-            <Space direction="vertical" id='date-picker-body'>
-                <div className='modal-list'>
+            <Space direction="vertical">
+                <div className='modalistBody'>
                     <Input
-                        id='modal-username-style-input' onChange={handleInput} value={valuesPlanets.name} placeholder='Gezegen Adı' name="name"
+                        onChange={handleInput}
+                        value={valuesPlanets.name}
+                        placeholder='Gezegen Adı'
+                        name="name"
                     />
                     <Input
-                        id='modal-username-style-input' onChange={handleInput} value={valuesPlanets.sequence} placeholder='Sıra' name="sequence"
+                        onChange={handleInput}
+                        value={valuesPlanets.sequence}
+                        placeholder='Sıra'
+                        name="sequence"
                     />
                     <Input
-                        id='modal-username-style-input' onChange={handleInput} value={valuesPlanets.difficultyLevel} placeholder='Zorluk Seviyesi' name="difficultyLevel"
+                        onChange={handleInput}
+                        value={valuesPlanets.difficultyLevel}
+                        placeholder='Zorluk Seviyesi'
+                        name="difficultyLevel"
                     />
                     <Input
-                        id='modal-username-style-input' onChange={handleInput} value={valuesPlanets.imageUrl} placeholder='Resim URL' name="imageUrl"
+                        onChange={handleInput}
+                        value={valuesPlanets.imageUrl}
+                        placeholder='Resim URL'
+                        name="imageUrl"
                     />
                     <Input
-                        id='modal-username-style-input' onChange={handleInput} value={valuesPlanets.detailsImageUrl} placeholder='Detaylı Resim Url' name="detailsImageUrl"
+                        onChange={handleInput}
+                        value={valuesPlanets.detailsImageUrl}
+                        placeholder='Detaylı Resim Url'
+                        name="detailsImageUrl"
                     />
                     <Input
-                        id='modal-username-style-input' onChange={handleInput} value={valuesPlanets.description} placeholder='Açıklama' name="description"
+                        onChange={handleInput}
+                        value={valuesPlanets.description}
+                        placeholder='Açıklama'
+                        name="description"
                     />
                     <Input
-                        id='modal-username-style-input' onChange={handleInput} value={valuesPlanets.summaryDescription} placeholder='Detaylı Açıklama' name="summaryDescription"
+                        onChange={handleInput}
+                        value={valuesPlanets.summaryDescription}
+                        placeholder='Detaylı Açıklama'
+                        name="summaryDescription"
                     />
                 </div>
             </Space>
         ),
         expedition: (
-            <Space direction="vertical" id='date-picker-body'>
-                <div className='modal-list'>
+            <Space direction="vertical">
+                <div className='modalistBody'>
                     <Input
-                        id='modal-username-style-input' onChange={handleInput} value={valuesExpeditions.name} placeholder='Sefer Adı' name="name"
+                        onChange={handleInput}
+                        value={valuesExpeditions.name}
+                        placeholder='Sefer Adı'
+                        name="name"
                     />
                     <Input
-                        id='modal-username-style-input' onChange={handleInput} value={valuesExpeditions.expeditionDate} placeholder='Kalkış Tarihi' name="expeditionDate"
+                        onChange={handleInput}
+                        value={valuesExpeditions.expeditionDate}
+                        placeholder='Kalkış Tarihi'
+                        name="expeditionDate"
                     />
                     <Input
-                        id='modal-username-style-input' onChange={handleInput} value={valuesExpeditions.arrivalDate} placeholder='Varış Tarihi' name="arrivalDate"
+                        onChange={handleInput}
+                        value={valuesExpeditions.arrivalDate}
+                        placeholder='Varış Tarihi'
+                        name="arrivalDate"
                     />
                     <Input
-                        id='modal-username-style-input' onChange={handleInput} value={valuesExpeditions.ticketPrice} placeholder='Bilet Fiyatı' name="ticketPrice"
+                        onChange={handleInput}
+                        value={valuesExpeditions.ticketPrice}
+                        placeholder='Bilet Fiyatı'
+                        name="ticketPrice"
                     />
                     <Select
-                        id='modal-username-style-input'
                         onChange={handleSelectSpaceVehicle}
                         value={selectedSpaceVehicle}
                         placeholder='Uzay Aracı'
@@ -409,7 +480,6 @@ export function ModelComponent({ isModalVisible, onCancel, modalContent, addTitl
                         ))}
                     </Select>
                     <Select
-                        id='modal-username-style-input'
                         onChange={handleSelectDeparturePlanet}
                         value={selectedDeparturePlanet}
                         placeholder='Kalkış Gezegeni'
@@ -423,7 +493,6 @@ export function ModelComponent({ isModalVisible, onCancel, modalContent, addTitl
                     </Select>
                     <Select
                         placeholder="Varış Gezegeni"
-                        id='modal-username-style-input'
                         onChange={handleSelectArrivalPlanet}
                         value={selectedArrivalPlanet}
                         name="arrivalPlanetId"
@@ -441,30 +510,28 @@ export function ModelComponent({ isModalVisible, onCancel, modalContent, addTitl
 
     return (
         <div className='modalCompContainer'>
-            <div className='modal-style'>
-                <Modal
-                    className='modalComponent'
-                    visible={isModalVisible}
-                    title={addTitle}
-                    onOk={handleOk}
-                    onCancel={onCancel}
-                    footer={[
-                        <Button style={{ backgroundColor: "#7465F2" }} onClick={handleOk} type='primary' text="Kaydet" key="submit">
-                            <AiOutlineSave style={{ color: "white" }} />
-                            Kaydet
-                        </Button>
-                    ]}
-                >
-                    <div id='modal-container'>
-                        {contentMap[modalContent]}
-                        {errorMessage && (
-                            <div className='addModalErrorContainer'>
-                                {errorMessage}
-                            </div>
-                        )}
-                    </div>
-                </Modal>
-            </div >
+            <Modal
+                className='modalComponent'
+                visible={isModalVisible}
+                title={addTitle}
+                onOk={handleOk}
+                onCancel={onCancel}
+                footer={[
+                    <Button style={{ backgroundColor: "#7465F2" }} onClick={handleOk} type='primary' text="Kaydet" key="submit">
+                        <AiOutlineSave style={{ color: "white" }} />
+                        Kaydet
+                    </Button>
+                ]}
+            >
+                <div id='modalBody'>
+                    {contentMap[modalContent]}
+                    {errorMessage && (
+                        <div className='addModalErrorContainer'>
+                            {errorMessage}
+                        </div>
+                    )}
+                </div>
+            </Modal>
         </div >
     )
 }

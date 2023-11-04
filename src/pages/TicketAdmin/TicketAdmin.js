@@ -104,16 +104,12 @@ export default function TicketAdmin() {
     };
 
     return (
-        <container className='space-vehicle-container'>
-            <article className='space-vehicle-body'>
-                <div className='product-list'>
-                    <div>
-                        <TableListComp props={{ columns: columns, dataSource: ticketSalesData }} text="Ticket" pageSearchType={"ticketAdmin"} addFilterName={"Bilet Filtreleme"} setPageOdata={setPageOdata} setPageSizeOdata={setPageSizeOdata} pageOdata={pageOdata} pageSizeOdata={pageSizeOdata} />
-                        {isModalOpen && (
-                            <EditModal ticket={selectedTicket} onCancel={handleModalClose} visible={isModalOpen} pageType={"ticketAdmin"} addEditTitle={"Bilet Güncelleme"} ticketDelete={handleDeleteTicket} />
-                        )}
-                    </div>
-                </div>
+        <container className='spaceVehicleContainer'>
+            <article className='spaceVehicleBody'>
+                <TableListComp props={{ columns: columns, dataSource: ticketSalesData }} text="Ticket" pageSearchType={"ticketAdmin"} addFilterName={"Bilet Filtreleme"} setPageOdata={setPageOdata} setPageSizeOdata={setPageSizeOdata} pageOdata={pageOdata} pageSizeOdata={pageSizeOdata} />
+                {isModalOpen && (
+                    <EditModal ticket={selectedTicket} onCancel={handleModalClose} visible={isModalOpen} pageType={"ticketAdmin"} addEditTitle={"Bilet Güncelleme"} ticketDelete={handleDeleteTicket} />
+                )}
             </article>
         </container>
     )

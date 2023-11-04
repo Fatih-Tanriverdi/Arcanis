@@ -1,17 +1,17 @@
-.ticket-page-container {
+.ticketPageContainer {
     display: flex;
     flex-direction: column;
     flex: 1;
 }
 
-.ticket-page-body-position {
+.ticketPageBodyPosition {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
 }
 
-.ticket-page-body {
+.ticketPageBody {
     display: flex;
     flex: 1;
     flex-direction: column;
@@ -30,7 +30,7 @@
 
 /* SEARCH */
 
-.ticket-search {
+.ticketSearch {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -47,7 +47,7 @@
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
-.ticket-btn-group>button {
+.ticketBtnStyle > button {
     display: inline-block;
     height: 2.5rem;
     width: 20rem;
@@ -65,28 +65,28 @@
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
-.ticket-btn-group>button:hover {
+.ticketBtnStyle > button:hover {
     background-color: #161D30;
     transition: 0.1s all ease-in;
 }
 
-.ticket-search .ant-select {
+.ticketSearch .ant-select {
     border-bottom: 0.1rem solid #7465F2;
     margin-top: 2rem !important;
     width: 25rem;
 }
 
-.ticket-search .ant-picker-range {
+.ticketSearch .ant-picker-range {
     margin: 2rem;
     width: 27rem !important;
 }
 
-.ticket-search .ant-picker-input {
+.ticketSearch .ant-picker-input {
     border-bottom: 0.1rem solid #7465F2;
     margin-top: 1rem !important;
 }
 
-.ticket-search .ant-picker-suffix>span {
+.ticketSearch .ant-picker-suffix>span {
     margin-top: 3rem !important;
 }
 
@@ -95,7 +95,7 @@
     color: white !important;
 }
 
-.ticket-search .ant-picker-range-separator>span {
+.ticketSearch .ant-picker-range-separator>span {
     margin-top: 3rem !important;
 }
 
@@ -103,18 +103,18 @@
 
 /* DESCRİPTİON */
 
-.ticket-decription>h1 {
+.ticketDescription > h1 {
     color: white !important;
 }
 
-.desk-box-container {
+.deskBoxContainer {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 2rem;
     margin: 3rem;
 }
 
-.desc-box {
+.descBox {
     height: 8rem !important;
     width: 8rem !important;
     color: white !important;
@@ -132,12 +132,12 @@
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
-.desc-box>svg {
+.descBox > svg {
     color: white;
     font-size: 2rem !important;
 }
 
-.desc-box>p {
+.descBox > p {
     font-size: 0.5rem !important;
     text-align: center;
 }
@@ -329,31 +329,31 @@
 /* FOOTER CONTAİNER */
 
 @media screen and (min-width: 700px) {
-    .ticket-page-body-position {
+    .ticketPageBodyPosition {
         flex-direction: row;
     }
 
-    .ticket-search {
+    .ticketSearch {
         min-height: 35rem !important;
         height: 100%;
         min-width: 35rem !important;
         width: 100%;
     }
 
-    .desc-box {
+    .descBox {
         height: 12rem !important;
         width: 12rem !important;
     }
 
-    .desc-box>svg {
+    .descBox > svg {
         font-size: 4rem !important;
     }
 
-    .desc-box>p {
+    .descBox > p {
         font-size: 0.9rem !important;
     }
 
-    .ticket-btn-group>button {
+    .ticketBtnStyle > button {
         height: 4rem;
         width: 28rem;
         font-size: 1.2rem;
@@ -377,41 +377,41 @@
         width: 25%;
     }
 
-    .ticket-search .ant-select {
+    .ticketSearch .ant-select {
         width: 30rem;
     }
 
-    .ticket-search .ant-picker-range {
+    .ticketSearch .ant-picker-range {
         width: 32rem !important;
     }
 }
 
 @media screen and (min-width: 1200px) {
-    .ticket-page-body-position {
+    .ticketPageBodyPosition {
         flex-direction: row;
     }
 
-    .ticket-search {
+    .ticketSearch {
         min-height: 35rem !important;
         height: 100%;
         min-width: 50rem !important;
         width: 100%;
     }
 
-    .desc-box {
+    .descBox {
         height: 12rem !important;
         width: 12rem !important;
     }
 
-    .desc-box>svg {
+    .descBox > svg {
         font-size: 4rem !important;
     }
 
-    .desc-box>p {
+    .descBox > p {
         font-size: 0.9rem !important;
     }
 
-    .ticket-btn-group>button {
+    .ticketBtnStyle > button {
         height: 6rem;
         width: 40rem;
         font-size: 1.2rem;
@@ -433,11 +433,11 @@
         width: 25%;
     }
 
-    .ticket-search .ant-select {
+    .ticketSearch .ant-select {
         width: 40rem;
     }
 
-    .ticket-search .ant-picker-range {
+    .ticketSearch .ant-picker-range {
         width: 42rem !important;
     }
 }

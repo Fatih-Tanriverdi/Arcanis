@@ -61,7 +61,7 @@ export function TableListComp({ pageSearchType, props, addButtonLabel, addFilter
                 <h1>{addFilterName}</h1>
                 <div className='seacrh-bar-filter-container'>
                     {getSearchContent()}
-                    <Button type="text" className="filter-btn">Filtrele</Button>
+                    <Button type="text" className="filter-btn" >Filtrele</Button>
                 </div>
             </div>
             <div className="listBtn">
