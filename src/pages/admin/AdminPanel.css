@@ -22,6 +22,7 @@
     display: flex;
     height: 100%;
     width: 100%;
+    overflow-y: scroll !important;
 }
 
 /** first-color =  #273046  **/
@@ -35,7 +36,6 @@
     display: none;
     background-color: #273046;
     padding: 1.5rem;
-    height: 100vh !important;
     border-radius: 0.5rem;
 
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
@@ -297,6 +297,9 @@
 @media screen and (min-width: 700px) {
     .adminNavigateBar {
         display: block;
+        position: sticky !important;
+        top: 0;
+        height: 100vh !important;
         flex: 2%;
     }
 
@@ -356,6 +359,7 @@
 
     .adminNavigateBar {
         display: block;
+        height: 100vh !important;
         flex: 15%;
     }
 
@@ -379,7 +383,6 @@
 
     .adminInfo>span {
         font-size: 1rem;
-        margin-left: 33rem;
     }
 
     .adminPanelButton>span>svg,

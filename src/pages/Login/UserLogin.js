@@ -1,6 +1,6 @@
-import "../Login/UserLogin.css";
-import AuthButton from "../../components/ButtonLogin/AuthButton";
-import "../../components/AuthInput/AuthInput.css";
+import "./UserLogin.css";
+import AuthButton from "../../components/buttonLogin/AuthButton.js";
+import "../../components/authInput/AuthInput.css";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { Button, Checkbox, Input } from 'antd';

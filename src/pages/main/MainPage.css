@@ -43,7 +43,7 @@
 
 .mainPageBody {
     width: 100%;
-    height: 40vh !important;
+    height: 30rem !important;
     margin-top: 3rem;
     background-color: #273046;
     border-radius: 0.5rem;
@@ -61,7 +61,7 @@
 .mainPageBox2,
 .mainPageBox3{
     width: 100%;
-    height: 44vh;
+    height: 35rem !important;
     margin-top: 1rem;
     background-color: #273046;
     border-radius: 0.5rem;
@@ -227,10 +227,11 @@
 
     .mainPageBody {
         width: 100%;
-        height: 30rem;
+        height: 25rem;
         margin-top: 3rem;
         background-color: #273046;
         border-radius: 0.5rem;
+        height: 40vh !important;
     }
 
     .mainPageBoxContainer {

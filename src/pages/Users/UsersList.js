@@ -1,10 +1,10 @@
-import "../Users/UsersList.css";
+import "./UsersList.css";
 import { useEffect, useState } from 'react';
 import { checkToken } from "../../services/AuthService";
-import { TableListComp } from "../../components/TableListComp/TableListComp";
+import { TableListComp } from "../../components/tableListComp/TableListComp";
 import { deleteUsers, fetchUsersDataGet } from "../../services/UserService";
 import { RiArrowRightSLine } from 'react-icons/ri';
-import EditUserModal from "../../components/EditModal/EditUserModal";
+import EditUserModal from "../../components/editModal/EditUserModal";
 import APImanager from '../../apiManager';
 import buildQuery from 'odata-query';
 

@@ -14,9 +14,8 @@
 }
 
 .modalComponent .ant-modal-body {
-    height: 66.5rem !important;
+    height: 100vh !important;
     width: auto !important;
-    overflow-y: scroll;
 }
 
 .modalComponent {

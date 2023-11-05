@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import '../AuthModal/AuthModal.css';
+import './AuthModal.css';
 import { Modal } from 'antd';
-import UserLogin from '../../pages/Login/UserLogin';
-import Register from '../../pages/Register/Register';
-import ResetPassword from '../../pages/ResetPassword/ResetPassword';
+import UserLogin from '../../pages/login/UserLogin';
+import Register from '../../pages/register/Register';
+import ResetPassword from '../../pages/resetPassword/ResetPassword';
 
 export default function AuthModal({ isModalOpen, setIsModalOpen, setAccessToken }) {
 

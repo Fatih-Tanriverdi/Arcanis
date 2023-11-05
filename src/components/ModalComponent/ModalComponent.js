@@ -1,4 +1,4 @@
-import '../ModalComponent/ModalComponent.css';
+import './ModalComponent.css';
 import React, { useEffect, useState } from 'react';
 import { Space, Input, Button, Modal, Select } from 'antd';
 import { AiOutlineSave } from 'react-icons/ai';

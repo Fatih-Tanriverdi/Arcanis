@@ -1,17 +1,17 @@
 import { Routes, Route } from "react-router-dom";
-import AdminPanel from "./pages/Admin/AdminPanel";
-import UsersList from "./pages/Users/UsersList";
-import MainPage from "./pages/Main/MainPage";
-import PlanetsAdmin from "./pages/PlanetsAdmin/PlanetsAdmin"
-import SpaceShips from "./pages/SpaceShips/SpaceShips";
-import Customer from "./pages/Customer/Customer";
-import Ticket from "./pages/Ticket/Ticket";
-import Planets from "./pages/Planets/Planets";
-import About from "./pages/About/About";
-import Iletisim from "./pages/Communication/Iletisim";
-import PlanetDetails from "./pages/PlanetDetails/PlanetDetails";
-import Expedition from "./pages/Expedition/Expedition";
-import TicketAdmin from "./pages/TicketAdmin/TicketAdmin";
+import AdminPanel from "./pages/admin/AdminPanel";
+import UsersList from "./pages/users/UsersList";
+import MainPage from "./pages/main/MainPage";
+import PlanetsAdmin from "./pages/planetsAdmin/PlanetsAdmin"
+import SpaceShips from "./pages/spaceShips/SpaceShips";
+import Customer from "./pages/customer/Customer";
+import Ticket from "./pages/ticket/Ticket";
+import Planets from "./pages/planets/Planets";
+import About from "./pages/about/About";
+import Iletisim from "./pages/communication/Iletisim";
+import PlanetDetails from "./pages/planetDetails/PlanetDetails";
+import Expedition from "./pages/expedition/Expedition";
+import TicketAdmin from "./pages/ticketAdmin/TicketAdmin";
 
 export default function App() {
 

@@ -1,12 +1,12 @@
 import "./Customer.css";
 import { Routes, Route, Link } from "react-router-dom";
-import About from "../../pages/About/About";
-import Planets from '../../pages/Planets/Planets';
-import Iletisim from '../Communication/Iletisim';
+import About from "../about/About";
+import Planets from '../planets/Planets';
+import Iletisim from '../communication/Iletisim';
 import { useEffect, useState } from "react";
-import Ticket from "../Ticket/Ticket";
-import PlanetDetails from "../PlanetDetails/PlanetDetails";
-import AuthModal from "../../components/AuthModal/AuthModal";
+import Ticket from "../ticket/Ticket";
+import PlanetDetails from "../planetDetails/PlanetDetails";
+import AuthModal from "../../components/authModal/AuthModal";
 
 export default function AsideHeader() {
     const [isModalOpen, setIsModalOpen] = useState(false);

@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import '../TableListComp/TableListComp.css';
+import './TableListComp.css';
 import { Input, Button, Table } from 'antd';
-import { ModelComponent } from '../ModalComponent/ModalComponent';
-import SearchBarSpaceShips from '../SearchBarSpaceShips/SearchBarSpaceShips';
-import SearchBarUsers from '../SearchBarUsers/SearchBarUsers';
-import SearchBarPlanets from '../SearchBarPlanets/SearchBarPlanets';
-import SearchBarExpedition from '../SearchBarExpedition/SearchBarExpedition';
-import SearchBarTicketAdmin from '../SearchBarTicketAdmin/SearchBarTicketAdmin';
+import { ModelComponent } from '../modalComponent/ModalComponent';
+import SearchBarSpaceShips from '../searchBarSpaceShips/SearchBarSpaceShips';
+import SearchBarUsers from '../searchBarUsers/SearchBarUsers';
+import SearchBarPlanets from '../searchBarPlanets/SearchBarPlanets';
+import SearchBarExpedition from '../searchBarExpedition/SearchBarExpedition';
+import SearchBarTicketAdmin from '../searchBarTicketAdmin/SearchBarTicketAdmin';
 
 export function TableListComp({ pageSearchType, props, addButtonLabel, addFilterName, setPageOdata, setPageSizeOdata, pageOdata, pageSizeOdata }) {
 
