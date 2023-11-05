@@ -24,7 +24,7 @@ export default function App({ setPageAuthType }) {
         }
         try {
             setLoading(true);
-            const message = await resetPassword(emailAddress);
+            await resetPassword(emailAddress);
             setLoading(false);
             setSuccessMessage("Mail adresinize şifre sıfırlama mesajı gönderildi. Lütfen e-mail adresinizi kontrol edin.");
             setTimeout(() => {

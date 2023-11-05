@@ -7,9 +7,13 @@
 html {
     font-family: 'Montserrat', sans-serif !important;
     font-size: 10px;
+    height: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
 }
 
 body {
+    height: 100% !important;
     font-size: 1.6rem;
     line-height: 1.5;
     text-align: center;

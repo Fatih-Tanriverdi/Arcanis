@@ -57,31 +57,31 @@ export function TableListComp({ pageSearchType, props, addButtonLabel, addFilter
 
     return (
         <div className='listCompContainer'>
-            <div className='search-bar-item-top'>
+            <div className='searchBarItemTop'>
                 <h1>{addFilterName}</h1>
-                <div className='seacrh-bar-filter-container'>
+                <div className='seacrhBarFilterContainer'>
                     {getSearchContent()}
-                    <Button type="text" className="filter-btn" >Filtrele</Button>
+                    <Button type="text" className="filterBtn" >Filtrele</Button>
                 </div>
             </div>
-            <div className="listBtn">
-                <div className='table-list-head'>
-                    <Button className='add-btn' type="text" onClick={() => showModall(pageSearchType)}>{addButtonLabel}</Button>
-                    <div className='input-user-group'>
+            <div className="listContainer">
+                <div className='tableListHead'>
+                    <Button className='addBtn' type="text" onClick={() => showModall(pageSearchType)}>{addButtonLabel}</Button>
+                    <div className='inputListGroup'>
                         <span>Search: </span>
                         <Input
-                            className='search-input'
+                            className='searchInput'
                             value={searchText}
                             onChange={handleSearch}
                         />
                     </div>
                 </div>
-                <div className='table'>
+                <div className='tableContainer'>
                     <Table
-                        className='table-list-container'
+                        className='tableListBody'
                         columns={props.columns}
                         dataSource={props.dataSource}
-                        rowClassName="table-row"
+                        rowClassName="tableRow"
                         pagination={{
                             total: 100,
                             current: pageOdata,

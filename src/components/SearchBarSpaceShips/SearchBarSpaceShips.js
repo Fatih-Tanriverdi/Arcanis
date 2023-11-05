@@ -1,14 +1,11 @@
 import { Select } from 'antd';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import APImanager from '../../apiManager';
-import buildQuery from 'odata-query';
-import { fetchRocketsGet } from '../../services/RocketService';
 import "./SearchBarSpaceShips.css";
 
 export default function SearchBarSpaceShips() {
 
     const [selectedFilters, setSelectedFilters] = useState([]);
-    const [searchBarSpaceShips, setSearchBarSpaceShips] = useState([]);
     const baseUrl = APImanager.getBaseURL();
 
     const modelYearOptions = [];
@@ -35,32 +32,6 @@ export default function SearchBarSpaceShips() {
         })
     };
 
-    useEffect(() => {
-        const modelYear = parseInt(selectedFilters.modelYear);
-        const MaxNumberOfPassengers = parseInt(selectedFilters.MaxNumberOfPassengers);
-        const ageLimit = parseInt(selectedFilters.ageLimit);
-
-        const queryWithPaging = buildQuery({
-            "filter": {
-                modelYear,
-                MaxNumberOfPassengers,
-                ageLimit,
-            },
-        });
-        async function searchBarSpaceShips() {
-            const url = `${baseUrl}/space-vehicles${queryWithPaging}`;
-            const data = await fetchRocketsGet(url)
-                .catch(error => {
-                    console.error('API request failed:', error);
-                    return [];
-                })
-            setSearchBarSpaceShips(data.value);
-        }
-        searchBarSpaceShips();
-    }, [selectedFilters]);
-
-    console.log(searchBarSpaceShips);
-
     return (
         < div className='searchBarSpaceShipsContainer'>
             <div className='SelectRolePosition'>
@@ -73,8 +44,8 @@ export default function SearchBarSpaceShips() {
             </div>
             <div className='SelectRolePosition'>
                 <Select
-                    value={selectedFilters.MaxNumberOfPassengers}
-                    onChange={(value) => setSelectedFilters({ ...selectedFilters, MaxNumberOfPassengers: value })}
+                    value={selectedFilters.maxNumberOfPassengers}
+                    onChange={(value) => setSelectedFilters({ ...selectedFilters, maxNumberOfPassengers: value })}
                     placeholder="Koltuk Numarası"
                     options={seatNumberOptions}
                 />

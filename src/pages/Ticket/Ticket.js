@@ -8,7 +8,6 @@ import { BsCreditCard2Back, BsCashCoin, BsPeople, BsStopwatchFill, BsCoin, BsGeo
 
 export default function Ticket() {
 
-    const { Option } = Select;
     const { RangePicker } = DatePicker;
 
     function toggleAdditionalInfo(event) {

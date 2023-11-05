@@ -213,7 +213,7 @@ export default function MainPage() {
                             <Popover content="Bu liste en çok seyahat eden 5 kullanıcımızın listesidir.">
                                 <div><AiOutlineQuestionCircle /></div>
                             </Popover>
-                            <a onClick={handleRefreshUsersMostTickets}><BiRefresh className='mainPageSvg' /></a>
+                            <i onClick={handleRefreshUsersMostTickets}><BiRefresh className='mainPageSvg' /></i>
                         </div>
                     </div>
                     <div className='mainPageBoxUsersInfoContainer'>
@@ -237,7 +237,7 @@ export default function MainPage() {
                             <Popover content="Bu liste, firmamızın şu ana kadar yaptığı ve tamamladığı bütün seyahatlerin listesidir.">
                                 <div><AiOutlineQuestionCircle /></div>
                             </Popover>
-                            <a onClick={handleRefreshExpeditions}><BiRefresh className='mainPageSvg' /></a>
+                            <i href='#' onClick={handleRefreshExpeditions}><BiRefresh className='mainPageSvg' /></i>
                         </div>
                     </div>
                     <div className='mainPageBoxUsersInfoContainer'>
@@ -269,7 +269,7 @@ export default function MainPage() {
                             <Popover content="Bu liste en çok seyahat edilen 5 Gezegenin listesidir.">
                                 <div><AiOutlineQuestionCircle /></div>
                             </Popover>
-                            <a onClick={handleRefreshPlanetsMostPopular}><BiRefresh className='mainPageSvg' /></a>
+                            <i href='#' onClick={handleRefreshPlanetsMostPopular}><BiRefresh className='mainPageSvg' /></i>
                         </div>
                     </div>
                     <div className='mainPageBoxUsersInfoContainer'>

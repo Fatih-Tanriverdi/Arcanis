@@ -75,11 +75,11 @@ export default function SpaceShips() {
     }, []);
 
     useEffect(() => {
-        const queryWithPaging = buildQuery({
-            "top": pageSizeOdata,
-            "skip": (pageOdata - 1) * pageSizeOdata,
-        });
         async function fetchSpaceShipData() {
+            const queryWithPaging = buildQuery({
+                "top": pageSizeOdata,
+                "skip": (pageOdata - 1) * pageSizeOdata,
+            });
             const url = `${baseUrl}/space-vehicles${queryWithPaging}`;
             const data = await fetchRocketsGet(url)
                 .catch(error => {
