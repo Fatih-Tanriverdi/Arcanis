@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import "./TicketAdmin.css";
 import { checkToken } from '../../services/AuthService';
-import { TableListComp } from "../../components/tableListComp/TableListComp"
-import EditModal from '../../components/editModal/EditUserModal';
+import { TableListComp } from "../../components/TableListComp/TableListComp"
+import EditModal from '../../components/EditModal/EditUserModal';
 import { RiArrowRightSLine } from 'react-icons/ri';
 import { deleteTicket, fetchTicketsGet } from '../../services/TicketService';
 import APImanager from '../../apiManager';

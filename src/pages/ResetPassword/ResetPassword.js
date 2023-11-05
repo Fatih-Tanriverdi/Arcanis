@@ -1,7 +1,7 @@
 import React, {useState } from "react";
 import "./ResetPassword.css";
 import { AiOutlineInfoCircle, AiOutlineMail } from "react-icons/ai";
-import AuthButton from "../../components/buttonLogin/AuthButton";
+import AuthButton from "../../components/buttonLogin/AuthButton"
 import { Input, Tooltip } from "antd";
 import { ClipLoader } from 'react-spinners';
 import { resetPassword } from '../../services/AuthService';

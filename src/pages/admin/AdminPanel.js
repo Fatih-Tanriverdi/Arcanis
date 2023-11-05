@@ -5,15 +5,15 @@ import { AiOutlineHome, AiOutlineRocket, AiOutlineUser } from "react-icons/ai";
 import { BiExit, BiPlanet, BiMenu } from "react-icons/bi";
 import { BsFillArrowRightSquareFill, BsTicketPerforated } from "react-icons/bs";
 import { GiPathDistance } from "react-icons/gi";
-import UsersList from '../users/UsersList';
+import UsersList from '../Users/UsersList';
 import MainPage from "../main/MainPage";
-import SpaceShips from '../spaceShips/SpaceShips';
-import PlanetsAdmin from '../planetsAdmin/PlanetsAdmin';
-import Expedition from "../expedition/Expedition";
+import SpaceShips from '../SpaceShips/SpaceShips';
+import PlanetsAdmin from '../PlanetsAdmin/PlanetsAdmin';
+import Expedition from "../Expedition/Expedition";
 import { PageButton } from '../../components/pageButton/PageButton';
 import { checkToken } from '../../services/AuthService';
 import { fetchUsersDataGet } from '../../services/UserService';
-import TicketAdmin from '../ticketAdmin/TicketAdmin';
+import TicketAdmin from '../TicketAdmin/TicketAdmin';
 import APImanager from '../../apiManager';
 
 export default function AsideHeader() {

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import "./SpaceShips.css";
 import { checkToken } from '../../services/AuthService';
-import { TableListComp } from "../../components/tableListComp/TableListComp";
+import { TableListComp } from "../../components/TableListComp/TableListComp";
 import { deleteRocket, fetchRocketsGet } from '../../services/RocketService';
-import EditModal from '../../components/editModal/EditUserModal';
+import EditModal from '../../components/EditModal/EditUserModal';
 import { RiArrowRightSLine } from 'react-icons/ri';
 import { Popover } from 'antd';
 import APImanager from '../../apiManager';

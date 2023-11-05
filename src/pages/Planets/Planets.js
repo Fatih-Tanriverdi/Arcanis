@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import "./Planets.css";
-import { PlanetCard } from '../../components/planetCard/PlanetCard';
+import { PlanetCard } from '../../components/PlanetCard/PlanetCard';
 import { checkToken } from '../../services/AuthService';
 
 export default function SpaceShips() {
