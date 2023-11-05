@@ -5,7 +5,7 @@ import { AiOutlineSave } from 'react-icons/ai';
 import { fetchRocketsGet, fetchRocketsPost } from '../../services/RocketService';
 import { fetchPlanetsGet, fetchPlanetsPost } from '../../services/PlanetService';
 import { fetchExpeditionPost } from '../../services/ExpeditionService';
-import { fetchUsersPost } from '../../services/UserService';
+import { fetchUsersPost } from '../../services/userService';
 import APImanager from '../../apiManager';
 
 export function ModelComponent({ isModalVisible, onCancel, modalContent, addTitle }) {

@@ -4,7 +4,7 @@ import "../../components/authInput/AuthInput.css";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { Button, Checkbox, Input } from 'antd';
-import { login } from '../../services/AuthService.js';
+import { login } from '../../services/authService.js';
 import { AiOutlineUser } from "react-icons/ai";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { ClipLoader } from 'react-spinners';

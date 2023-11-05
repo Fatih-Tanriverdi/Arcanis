@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import "./SpaceShips.css";
-import { checkToken } from '../../services/AuthService';
+import { checkToken } from '../../services/authService';
 import { TableListComp } from "../../components/TableListComp/TableListComp";
 import { deleteRocket, fetchRocketsGet } from '../../services/RocketService';
 import EditModal from '../../components/EditModal/EditUserModal';

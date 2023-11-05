@@ -1,8 +1,8 @@
 import "./UsersList.css";
 import { useEffect, useState } from 'react';
-import { checkToken } from "../../services/AuthService";
+import { checkToken } from "../../services/authService";
 import { TableListComp } from "../../components/TableListComp/TableListComp";
-import { deleteUsers, fetchUsersDataGet } from "../../services/UserService";
+import { deleteUsers, fetchUsersDataGet } from "../../services/userService";
 import { RiArrowRightSLine } from 'react-icons/ri';
 import EditUserModal from "../../components/EditModal/EditUserModal";
 import APImanager from '../../apiManager';

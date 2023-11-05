@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import "./PlanetsAdmin.css";
 import { useState } from 'react';
-import { checkToken } from '../../services/AuthService';
+import { checkToken } from '../../services/authService';
 import { TableListComp } from '../../components/TableListComp/TableListComp';
 import { deletePlanet, fetchPlanetsGet } from '../../services/PlanetService';
 import EditModal from '../../components/EditModal/EditUserModal';

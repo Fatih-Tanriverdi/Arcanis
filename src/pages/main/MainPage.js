@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import "./MainPage.css";
-import { checkToken } from '../../services/AuthService';
+import { checkToken } from '../../services/authService';
 import { TfiStatsUp } from 'react-icons/tfi';
 import { FiDollarSign } from 'react-icons/fi';
 import { LiaUserSolid } from 'react-icons/lia';
@@ -8,7 +8,7 @@ import { BiCube } from 'react-icons/bi';
 import { BiRefresh } from 'react-icons/bi';
 import { AiOutlineQuestionCircle } from 'react-icons/ai';
 import { Popover, Progress, Space } from 'antd';
-import { fetchUsersDataGet } from "../../services/UserService";
+import { fetchUsersDataGet } from "../../services/userService";
 import { fetchPlanetsGet } from '../../services/PlanetService';
 import { fetchExpenditionsGet } from '../../services/ExpeditionService';
 import APImanager from '../../apiManager';

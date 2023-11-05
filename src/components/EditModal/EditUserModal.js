@@ -1,7 +1,7 @@
 import "./EditUserModal.css";
 import React, { useEffect, useState } from 'react';
 import { Modal, Input, Space, Select, Button } from 'antd';
-import { putUsers } from '../../services/UserService';
+import { putUsers } from '../../services/userService';
 import { fetchRocketsGet, putRocket } from '../../services/RocketService';
 import { fetchPlanetsGet, putPlanet } from '../../services/PlanetService';
 import { putExpedition } from '../../services/ExpeditionService';

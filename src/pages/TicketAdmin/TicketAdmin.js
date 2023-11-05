@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import "./TicketAdmin.css";
-import { checkToken } from '../../services/AuthService';
+import { checkToken } from '../../services/authService';
 import { TableListComp } from "../../components/TableListComp/TableListComp"
 import EditModal from '../../components/EditModal/EditUserModal';
 import { RiArrowRightSLine } from 'react-icons/ri';

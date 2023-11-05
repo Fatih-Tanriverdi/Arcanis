@@ -4,7 +4,7 @@ import { AiOutlineInfoCircle, AiOutlineMail } from "react-icons/ai";
 import AuthButton from "../../components/buttonLogin/AuthButton"
 import { Input, Tooltip } from "antd";
 import { ClipLoader } from 'react-spinners';
-import { resetPassword } from '../../services/AuthService';
+import { resetPassword } from '../../services/authService';
 
 export default function App({ setPageAuthType }) {
     const [emailAddress, setEmailAddress] = useState("");

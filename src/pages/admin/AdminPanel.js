@@ -11,8 +11,8 @@ import SpaceShips from '../SpaceShips/SpaceShips';
 import PlanetsAdmin from '../PlanetsAdmin/PlanetsAdmin';
 import Expedition from "../Expedition/Expedition";
 import { PageButton } from '../../components/pageButton/PageButton';
-import { checkToken } from '../../services/AuthService';
-import { fetchUsersDataGet } from '../../services/UserService';
+import { checkToken } from '../../services/authService';
+import { fetchUsersDataGet } from '../../services/userService';
 import TicketAdmin from '../TicketAdmin/TicketAdmin';
 import APImanager from '../../apiManager';
 

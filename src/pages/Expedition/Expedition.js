@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import "./Expedition.css";
 import { useState } from 'react';
-import { checkToken } from '../../services/AuthService';
+import { checkToken } from '../../services/authService';
 import { TableListComp } from '../../components/TableListComp/TableListComp';
 import { deleteExpedition, fetchExpenditionsGet } from '../../services/ExpeditionService';
 import EditUserModal from '../../components/EditModal/EditUserModal';
