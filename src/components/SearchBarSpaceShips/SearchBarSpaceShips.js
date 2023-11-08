@@ -1,11 +1,14 @@
 import { Select } from 'antd';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import APImanager from '../../apiManager';
 import "./SearchBarSpaceShips.css";
+import buildQuery from 'odata-query';
+import { fetchRocketsGet } from '../../services/RocketService';
 
 export default function SearchBarSpaceShips() {
 
     const [selectedFilters, setSelectedFilters] = useState([]);
+    const [filteredSpaceShipData, setFilteredSpaceShipData] = useState([]);
     const baseUrl = APImanager.getBaseURL();
 
     const modelYearOptions = [];
@@ -31,6 +34,28 @@ export default function SearchBarSpaceShips() {
             label: age.toString()
         })
     };
+
+    useEffect(() => {
+        const modelYear = parseInt(selectedFilters.modelYear);
+        const MaxNumberOfPassengers = parseInt(selectedFilters.MaxNumberOfPassengers);
+        const ageLimit = parseInt(selectedFilters.ageLimit);
+
+        async function searchBarFilter() {
+            const queryWithPaging = buildQuery({
+                filter: { modelYear: modelYear, MaxNumberOfPassengers: MaxNumberOfPassengers, ageLimit: ageLimit }
+            });
+            const url = `${baseUrl}/space-vehicles${queryWithPaging}`;
+            const data = await fetchRocketsGet(url)
+                .catch(err => {
+                    console.log("API request failed", err);
+                })
+            setFilteredSpaceShipData(data);
+        }
+        searchBarFilter();
+    }, [baseUrl]);
+
+    console.log(filteredSpaceShipData);
+    console.log(selectedFilters);
 
     return (
         < div className='searchBarSpaceShipsContainer'>

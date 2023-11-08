@@ -21,7 +21,7 @@ export default function App() {
       <Route path="/*" element={<Customer />} />
       <Route path="about" element={<About />} />
       <Route path="ticket" element={<Ticket />} />
-      <Route path="iletisim" element={<Iletisim />} />
+      <Route path="communication" element={<Iletisim />} />
       <Route path="planets" element={<Planets />} />
       <Route path="/planet/:id" element={<PlanetDetails />} />
       <Route path="admin/*" element={<AdminPanel />}>

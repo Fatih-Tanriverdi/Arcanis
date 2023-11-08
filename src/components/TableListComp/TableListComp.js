@@ -55,6 +55,19 @@ export function TableListComp({ pageSearchType, props, addButtonLabel, addFilter
         }
     };
 
+    const modalTitle =
+        pageSearchType === 'spaceShips'
+            ? 'Uzay Aracı Ekle'
+            : pageSearchType === 'users'
+                ? 'Kullanıcı Ekle'
+                : pageSearchType === 'planets'
+                    ? 'Gezegen Ekle'
+                    : pageSearchType === 'expedition'
+                        ? 'Sefer Ekle'
+                        : pageSearchType === 'ticketAdmin'
+                            ? 'Yeni Bilet Ekle'
+                            : '';
+
     return (
         <div className='listCompContainer'>
             <div className='searchBarItemTop'>
@@ -93,7 +106,7 @@ export function TableListComp({ pageSearchType, props, addButtonLabel, addFilter
                         }}
                     />
                 </div>
-                <ModelComponent isModalVisible={isModalVisible} onCancel={handleCancel} modalContent={modelContent} addTitle={pageSearchType === 'spaceShips' ? 'Uzay Aracı Ekle' : pageSearchType === 'users' ? 'Kullanıcı Ekle' : pageSearchType === 'planets' ? 'Gezegen Ekle' : pageSearchType === 'expedition' ? 'Sefer Ekle' : pageSearchType === 'ticketAdmin' ? 'Yeni Bilet Ekle' : ''} />
+                <ModelComponent isModalVisible={isModalVisible} onCancel={handleCancel} modalContent={modelContent} addTitle={modalTitle} />
             </div>
         </div>
     )

@@ -92,7 +92,8 @@ export default function EditUserModal({ user, rocket, planet, ticket, expenditio
                     }
                 }
                 await putRocket(editRocket);
-                onSave(rocket.id, editRocket)
+                onSave(rocket.id, editRocket);
+                onCancel();
             }
             if (pageType === 'planets') {
                 const requiredFields = ['Name', 'Sequence', 'DifficultyLevel', 'ImageUrl', 'DetailsImageUrl', 'Description', 'summaryDescription'];
@@ -127,10 +128,8 @@ export default function EditUserModal({ user, rocket, planet, ticket, expenditio
                 await putTicket(editTicket);
                 onSave(ticket.id, editTicket);
             }
-            onCancel();
         } catch (error) {
             console.error("Güncelleme işlemi başarısız oldu.", error);
-            setErrorText("Güncelleme işlemi başarısız oldu.");
         }
     };
 

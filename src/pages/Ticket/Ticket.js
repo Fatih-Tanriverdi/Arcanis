@@ -22,6 +22,7 @@ export default function Ticket() {
                     <div className='ticketSearch'>
                         <Space wrap>
                             <Select
+                                className="selectDeparture"
                                 suffixIcon={<BsGeoAlt />}
                                 defaultValue="Kalkış Noktası"
                                 bordered={false}
@@ -30,6 +31,7 @@ export default function Ticket() {
                         </Space>
                         <Space wrap>
                             <Select
+                                className="selectArrival"
                                 suffixIcon={<BsGeoAlt />}
                                 defaultValue="Varış Noktası"
                                 bordered={false}

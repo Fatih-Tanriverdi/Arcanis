@@ -230,13 +230,13 @@
 
 .ticketPageBodyQuestionsBoxAdditional {
     display: none;
-
 }
 
 .ticketPageBodyQuestionsBoxAdditionalVisible {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: block;
+    position: absolute !important;
+    margin-top: 4rem !important;
+    font-size: 1.2rem;
 }
 
 /* BODY QUESTİONS */

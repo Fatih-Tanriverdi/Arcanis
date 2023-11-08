@@ -48,9 +48,8 @@ export default function AsideHeader() {
                 <div className='customerPageBody' >
                     <Routes>
                         <Route path="/" element={<Ticket />} />
-                        <Route path="/hakkimizda" element={<About />} />
-                        <Route path="/biletlerim" element={<Ticket />} />
-                        <Route path="/iletisim" element={<Iletisim />} />
+                        <Route path="/about" element={<About />} />
+                        <Route path="/communication" element={<Iletisim />} />
                         <Route path="/planets" element={<Planets />} />
                         <Route path="/planet/:id" element={<PlanetDetails />} />
                     </Routes>

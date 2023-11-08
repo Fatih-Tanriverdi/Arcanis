@@ -101,7 +101,7 @@ export default function App({ setPageAuthType, setIsModalOpen, setAccessToken })
             </div>
             <div className="forgetPassword">
                 <Checkbox className="checkboxColor" onChange={checkBox} style={{ color: "#73228B" }}><p className="forgetPasswordColor">Beni Hatırla</p></Checkbox>
-                <a href="authResetPassword" onClick={handleResetClick} className="forgetPasswordColor">Şifrenizi mi Unuttunuz?</a>
+                <a onClick={handleResetClick} className="forgetPasswordColor">Şifrenizi mi Unuttunuz?</a>
             </div>
             <div>
                 {error && <ErrorMessage message={error} />}
