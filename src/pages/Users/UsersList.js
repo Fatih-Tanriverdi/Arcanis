@@ -7,6 +7,7 @@ import { RiArrowRightSLine } from 'react-icons/ri';
 import EditUserModal from "../../components/EditModal/EditUserModal";
 import APImanager from '../../apiManager';
 import buildQuery from 'odata-query';
+import { Button, Input } from "antd";
 
 export default function UsersList() {
     const [selectedUser, setSelectedUser] = useState(null);
@@ -14,6 +15,10 @@ export default function UsersList() {
     const [usersData, setUsersData] = useState([]);
     const [pageOdata, setPageOdata] = useState(1);
     const [pageSizeOdata, setPageSizeOdata] = useState(10);
+
+    const [usersFiltersData, setUsersFiltersData] = useState([]);
+    const [userRoleType, setUserRoleType] = useState("");
+    const [isActive, setIsActive] = useState("");
     const baseUrl = APImanager.getBaseURL();
     const columns = [
         {
@@ -126,10 +131,55 @@ export default function UsersList() {
         setIsModalOpen(false);
     };
 
+    async function handleFilterButtonClick() {
+        const isActiveValue = parseInt(isActive);
+        const userRoleTypeValue = parseInt(userRoleType);
+        const filters = {};
+        if (isActiveValue) {
+            filters.isActive = isActiveValue;
+        }
+        if (userRoleTypeValue) {
+            filters.userRoleType = userRoleTypeValue;
+        }
+        const queryWithPaging = buildQuery({
+            filter: filters
+        });
+        const url = `${baseUrl}/users${queryWithPaging}`;
+        const data = await fetchUsersDataGet(url)
+            .catch(err => {
+                console.log("API request failed", err);
+            })
+        setUsersFiltersData(data.value);
+    }
+
     return (
         <div className='userListContainer'>
+            <div className='searchBarUsersContainer'>
+                <div className='searchBarTitle'>
+                    <h1>Kullanıcı Filtrele</h1>
+                </div>
+                <div className='SelectRolePosition'>
+                    <div className='searchInput'>
+                        <Input
+                            className='SearchBarSpaceShipsInput'
+                            value={userRoleType}
+                            onChange={(e) => setUserRoleType(e.target.value)}
+                            placeholder="Kullanıcı Rolü"
+                        />
+                    </div>
+                    <div className='searchInput'>
+                        <Input
+                            className='SearchBarSpaceShipsInput'
+                            value={isActive}
+                            onChange={(e) => setIsActive(e.target.value)}
+                            placeholder="Kullanıcı Durumu"
+                        />
+                    </div>
+                    <Button className='SearchBarFilterBtn' onClick={handleFilterButtonClick}>Filtrele</Button>
+                </div>
+            </div>
             <div className='userListBody'>
-                <TableListComp props={{ columns: columns, dataSource: usersData }} text="users" pageSearchType={"users"} addButtonLabel={"Kullanıcı Ekle"} addFilterName={"Kullanıcı Filtreleme"} setPageOdata={setPageOdata} setPageSizeOdata={setPageSizeOdata} pageOdata={pageOdata} pageSizeOdata={pageSizeOdata} />
+                <TableListComp props={{ columns: columns, dataSource: usersFiltersData && usersFiltersData.length ? usersFiltersData : usersData }} text="users" pageSearchType={"users"} addButtonLabel={"Kullanıcı Ekle"} addFilterName={"Kullanıcı Filtreleme"} setPageOdata={setPageOdata} setPageSizeOdata={setPageSizeOdata} pageOdata={pageOdata} pageSizeOdata={pageSizeOdata} />
                 {isModalOpen && (
                     <EditUserModal user={selectedUser} onCancel={handleModalClose} visible={isModalOpen} pageType={"users"} addEditTitle={"Kullanıcı Güncelleme"} userDelete={handleDeleteUser} />
                 )}

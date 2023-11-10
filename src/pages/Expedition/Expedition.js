@@ -10,6 +10,7 @@ import { fetchPlanetsGet } from '../../services/PlanetService';
 import { fetchRocketsGet } from '../../services/RocketService';
 import APImanager from '../../apiManager';
 import buildQuery from 'odata-query';
+import { Button, DatePicker, Input, Select } from 'antd';
 
 export default function UsersList() {
     const [spaceVehicleData, setSpaceVehicleData] = useState([]);
@@ -19,6 +20,15 @@ export default function UsersList() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [pageOdata, setPageOdata] = useState(1);
     const [pageSizeOdata, setPageSizeOdata] = useState(10);
+
+    const [expeditionFilter, setExpeditionFilter] = useState([]);
+    const [selectedSpaceVehicle, setSelectedSpaceVehicle] = useState("Uzay Aracı");
+    const [selectedDeparturePlanet, setSelectedDeparturePlanet] = useState("Kalkış Gezegeni");
+    const [selectedArrivalPlanet, setSelectedArrivalPlanet] = useState("Varış Gezegeni");
+
+    const [ticketPrice, setTicketPrice] = useState("");
+    const [arrivalDateFilter, setArrivalDateFilter] = useState(null);
+    const [expeditionDateFilter, setExpeditionDateFilter] = useState(null);
     const baseUrl = APImanager.getBaseURL();
     const columns = [
         {
@@ -50,6 +60,10 @@ export default function UsersList() {
             title: 'BİLET FİYATI',
             key: 'ticketPrice',
             dataIndex: 'ticketPrice',
+            render: (_, record) => {
+                const roundedTicketPrice = record.ticketPrice.toFixed();
+                return roundedTicketPrice;
+            },
         },
         {
             title: 'UZAY ARACI',
@@ -164,10 +178,140 @@ export default function UsersList() {
         setIsModalOpen(false);
     };
 
+    /* LOOKUPS */
+    useEffect(() => {
+        async function fetchPlanetData() {
+            try {
+                const url = `${baseUrl}/lookups/planets`;
+                const data = await fetchPlanetsGet(url);
+                setPlanetData(data);
+            } catch (error) {
+                console.error('API talebi başarısız oldu: ', error);
+            }
+        }
+        fetchPlanetData();
+    }, []);
+
+    useEffect(() => {
+        async function fetchRocketData() {
+            try {
+                const url = `${baseUrl}/lookups/space-vehicles`;
+                const data = await fetchRocketsGet(url);
+                setSpaceVehicleData(data);
+            } catch (error) {
+                console.error('API talebi başarısız oldu: ', error);
+            }
+        }
+        fetchRocketData();
+    }, []);
+    /* LOOKUPS */
+
+    const onChangeDepartureDate = (date, dateString) => {
+        setArrivalDateFilter(dateString);
+    };
+
+    const onChangeArrivalDate = (date, dateString) => {
+        setExpeditionDateFilter(dateString);
+    };
+
+    const handleSelectSpaceVehicle = (value) => {
+        setSelectedSpaceVehicle(value);
+    };
+
+    const handleSelectDeparturePlanet = (value) => {
+        setSelectedDeparturePlanet(value);
+    };
+
+    const handleSelectArrivalPlanet = (value) => {
+        setSelectedArrivalPlanet(value);
+    };
+
+    async function handleFilterButtonClick() {
+
+        const parsedTicketPrice = parseInt(ticketPrice);
+
+        const queryWithPaging = buildQuery({
+            filter: {
+                arrivalDate: arrivalDateFilter ? { ge: new Date(arrivalDateFilter) } : null,
+                expeditionDate: expeditionDateFilter ? { ge: new Date(expeditionDateFilter) } : null,
+            }
+        });
+        const url = `${baseUrl}/expenditions${queryWithPaging}`;
+        const data = await fetchExpenditionsGet(url)
+            .catch(err => {
+                console.log("API request failed", err);
+            })
+        setExpeditionFilter(data);
+    };
+
     return (
         <container className='expeditionContainer'>
+            <div className='searchBarExpeditionContainer'>
+                <div className='searchBarTitle'>
+                    <h1>Sefer Filtrele</h1>
+                </div>
+                <div className='searchBarExpeditionSelectContainer'>
+                    <div className='SelectRolePosition'>
+                        <DatePicker onChange={onChangeDepartureDate} placeholder='Kalkış Tarihi' />
+                    </div>
+                    <div className='SelectRolePosition'>
+                        <DatePicker onChange={onChangeArrivalDate} placeholder='Varış Tarihi' />
+                    </div>
+                    <div className='SelectRolePosition'>
+                        <Input
+                            className='SearchBarSpaceShipsInput'
+                            value={ticketPrice}
+                            onChange={(e) => setTicketPrice(e.target.value)}
+                            placeholder="Bilet Fiyatı"
+                        />
+                    </div>
+                    <div className='SelectRolePosition'>
+                        <Select
+                            onChange={handleSelectSpaceVehicle}
+                            value={selectedSpaceVehicle}
+                            placeholder='Uzay Aracı'
+                            name="spaceVehicleId"
+                        >
+                            {spaceVehicleData.map(vehicle => (
+                                <Select.Option key={vehicle.id} value={vehicle.id}>
+                                    {vehicle.displayName}
+                                </Select.Option>
+                            ))}
+                        </Select>
+                    </div>
+                    <div className='SelectRolePosition'>
+                        <Select
+                            onChange={handleSelectDeparturePlanet}
+                            value={selectedDeparturePlanet}
+                            placeholder='Kalkış Gezegeni'
+                            name="departurePlanetId"
+                        >
+                            {planetData.map(planet => (
+                                <Select.Option key={planet.id} value={planet.id}>
+                                    {planet.displayName}
+                                </Select.Option>
+                            ))}
+                        </Select>
+                    </div>
+                    <div className='SelectRolePosition'>
+                        <Select
+                            placeholder="Varış Gezegeni"
+                            onChange={handleSelectArrivalPlanet}
+                            value={selectedArrivalPlanet}
+                            name="arrivalPlanetId"
+                        >
+                            {planetData.map(planet => (
+                                <Select.Option key={planet.id} value={planet.id}>
+                                    {planet.displayName}
+                                </Select.Option>
+                            ))}
+                        </Select>
+                    </div>
+                    <Button className='SearchBarFilterBtn' onClick={handleFilterButtonClick}>Filtrele</Button>
+                </div>
+            </div>
             <article className='expeditionBody'>
-                <TableListComp props={{ columns: columns, dataSource: expenditions }} text="expedition" pageSearchType={"expedition"} addButtonLabel={"Sefer Ekle"} addFilterName={"Sefer Filtreleme"} setPageOdata={setPageOdata} setPageSizeOdata={setPageSizeOdata} pageOdata={pageOdata} pageSizeOdata={pageSizeOdata} />
+                <TableListComp props={{ columns: columns, dataSource: expeditionFilter.length ? expeditionFilter : expenditions }} text="expedition" pageSearchType={"expedition"} addButtonLabel={"Sefer Ekle"} addFilterName={"Sefer Filtreleme"} setPageOdata={setPageOdata} setPageSizeOdata={setPageSizeOdata} pageOdata={pageOdata} pageSizeOdata={pageSizeOdata} />
                 {isModalOpen && (
                     <EditUserModal expendition={selectedExpeditions} onCancel={handleModalClose} visible={isModalOpen} pageType={"expedition"} addEditTitle={"Sefer Güncelleme"} expeditionDelete={handleDeleteExpedition} />
                 )}

@@ -7,7 +7,7 @@ import { deletePlanet, fetchPlanetsGet } from '../../services/PlanetService';
 import EditModal from '../../components/EditModal/EditUserModal';
 import { RiArrowRightSLine } from 'react-icons/ri';
 import APImanager from '../../apiManager';
-import { Popover } from 'antd';
+import { Button, Input, Popover, Select } from 'antd';
 import buildQuery from 'odata-query';
 
 export default function UsersList() {
@@ -16,6 +16,11 @@ export default function UsersList() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [pageOdata, setPageOdata] = useState(1);
     const [pageSizeOdata, setPageSizeOdata] = useState(10);
+
+    const [squenceFilter, setSquenceFilter] = useState("");
+    const [difficultyLevelFilter, setDifficultyLevelFilter] = useState("");
+    const [planetsFilteredData, setPlanetsFilteredData] = useState([]);
+
     const baseUrl = APImanager.getBaseURL();
     const columns = [
         {
@@ -108,10 +113,53 @@ export default function UsersList() {
         setIsModalOpen(false);
     };
 
+    async function handleFilterButtonClick() {
+        const Sequence = parseInt(squenceFilter);
+        const DifficultyLevel = parseInt(difficultyLevelFilter);
+
+        const filters = {};
+        if (Sequence) {
+            filters.Sequence = Sequence;
+        }
+        if (DifficultyLevel) {
+            filters.DifficultyLevel = DifficultyLevel;
+        }
+
+        const queryWithPaging = buildQuery({ filter: filters });
+        const url = `${baseUrl}/planets${queryWithPaging}`;
+        const data = await fetchPlanetsGet(url)
+            .catch(err => {
+                console.log("API request failed", err);
+            })
+        setPlanetsFilteredData(data.value);
+    };
+
+    console.log(planetsFilteredData);
+
     return (
         <container className='planetsContainer'>
+            <div className='searchBarPlanetsContainer'>
+                <div className='searchBarTitle'>
+                    <h1>Gezegen Filtrele</h1>
+                </div>
+                <div className='SelectRolePosition'>
+                    <Input
+                        className='SearchBarSpaceShipsInput'
+                        value={squenceFilter}
+                        onChange={(e) => setSquenceFilter(e.target.value)}
+                        placeholder="Sıra Numarası"
+                    />
+                    <Input
+                        className='SearchBarSpaceShipsInput'
+                        value={difficultyLevelFilter}
+                        onChange={(e) => setDifficultyLevelFilter(e.target.value)}
+                        placeholder="Zorluk Seviyesi"
+                    />
+                    <Button className='SearchBarFilterBtn' onClick={handleFilterButtonClick}>Filtrele</Button>
+                </div>
+            </div>
             <article className='planetsBody'>
-                <TableListComp props={{ columns: columns, dataSource: planets }} text="planets" pageSearchType={"planets"} addButtonLabel={"Gezegen Ekle"} addFilterName={"Gezegen Filtreleme"} setPageOdata={setPageOdata} setPageSizeOdata={setPageSizeOdata} pageOdata={pageOdata} pageSizeOdata={pageSizeOdata} />
+                <TableListComp props={{ columns: columns, dataSource: planetsFilteredData.length ? planetsFilteredData : planets }} text="planets" pageSearchType={"planets"} addButtonLabel={"Gezegen Ekle"} addFilterName={"Gezegen Filtreleme"} setPageOdata={setPageOdata} setPageSizeOdata={setPageSizeOdata} pageOdata={pageOdata} pageSizeOdata={pageSizeOdata} />
                 {isModalOpen && (
                     <EditModal planet={selectedPlanet} onCancel={handleModalClose} visible={isModalOpen} pageType={"planets"} addEditTitle={"Gezegen Güncelleme"} planetDelete={handleDeletePlanet} />
                 )}

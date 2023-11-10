@@ -2,17 +2,11 @@ import React, { useState } from 'react';
 import './TableListComp.css';
 import { Input, Button, Table } from 'antd';
 import { ModelComponent } from '../ModalComponent/ModalComponent';
-import SearchBarSpaceShips from '../SearchBarSpaceShips/SearchBarSpaceShips';
-import SearchBarUsers from '../SearchBarUsers/SearchBarUsers';
-import SearchBarPlanets from '../SearchBarPlanets/SearchBarPlanets';
-import SearchBarExpedition from '../SearchBarExpedition/SearchBarExpedition';
-import SearchBarTicketAdmin from '../SearchBarTicketAdmin/SearchBarTicketAdmin';
 
-export function TableListComp({ pageSearchType, props, addButtonLabel, addFilterName, setPageOdata, setPageSizeOdata, pageOdata, pageSizeOdata }) {
+export function TableListComp({ pageSearchType, props, addButtonLabel, setPageOdata, setPageSizeOdata, pageOdata, pageSizeOdata }) {
 
     const [modelContent, setModelContent] = useState("");
     const [isModalVisible, setIsModalVisible] = useState(false);
-    const [searchText, setSearchText] = useState("");
 
     const showModall = (content) => {
         setIsModalVisible(true);
@@ -21,38 +15,6 @@ export function TableListComp({ pageSearchType, props, addButtonLabel, addFilter
 
     const handleCancel = () => {
         setIsModalVisible(false);
-    };
-
-    const handleSearch = (e) => {
-        const searchText = e.target.value;
-        setSearchText(searchText);
-    };
-
-    const getSearchContent = () => {
-        switch (pageSearchType) {
-            case 'spaceShips':
-                return (
-                    <SearchBarSpaceShips />
-                );
-            case 'users':
-                return (
-                    <SearchBarUsers />
-                );
-            case 'planets':
-                return (
-                    <SearchBarPlanets />
-                );
-            case 'expedition':
-                return (
-                    <SearchBarExpedition />
-                );
-            case 'ticketAdmin':
-                return (
-                    <SearchBarTicketAdmin />
-                );
-            default:
-                return null;
-        }
     };
 
     const modalTitle =
@@ -70,13 +32,6 @@ export function TableListComp({ pageSearchType, props, addButtonLabel, addFilter
 
     return (
         <div className='listCompContainer'>
-            <div className='searchBarItemTop'>
-                <h1>{addFilterName}</h1>
-                <div className='seacrhBarFilterContainer'>
-                    {getSearchContent()}
-                    <Button type="text" className="filterBtn" >Filtrele</Button>
-                </div>
-            </div>
             <div className="listContainer">
                 <div className='tableListHead'>
                     <Button className='addBtn' type="text" onClick={() => showModall(pageSearchType)}>{addButtonLabel}</Button>
@@ -84,8 +39,6 @@ export function TableListComp({ pageSearchType, props, addButtonLabel, addFilter
                         <span>Search: </span>
                         <Input
                             className='searchInput'
-                            value={searchText}
-                            onChange={handleSearch}
                         />
                     </div>
                 </div>

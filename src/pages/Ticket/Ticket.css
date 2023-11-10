@@ -47,7 +47,7 @@
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
-.ticketBtnStyle > button {
+.ticketBtnStyle>button {
     display: inline-block;
     height: 2.5rem;
     width: 20rem;
@@ -65,7 +65,7 @@
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
-.ticketBtnStyle > button:hover {
+.ticketBtnStyle>button:hover {
     background-color: #161D30;
     transition: 0.1s all ease-in;
 }
@@ -103,7 +103,7 @@
 
 /* DESCRİPTİON */
 
-.ticketDescription > h1 {
+.ticketDescription>h1 {
     color: white !important;
 }
 
@@ -132,12 +132,12 @@
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
-.descBox > svg {
+.descBox>svg {
     color: white;
     font-size: 2rem !important;
 }
 
-.descBox > p {
+.descBox>p {
     font-size: 0.5rem !important;
     text-align: center;
 }
@@ -345,15 +345,15 @@
         width: 12rem !important;
     }
 
-    .descBox > svg {
+    .descBox>svg {
         font-size: 4rem !important;
     }
 
-    .descBox > p {
+    .descBox>p {
         font-size: 0.9rem !important;
     }
 
-    .ticketBtnStyle > button {
+    .ticketBtnStyle>button {
         height: 4rem;
         width: 28rem;
         font-size: 1.2rem;
@@ -403,15 +403,15 @@
         width: 12rem !important;
     }
 
-    .descBox > svg {
+    .descBox>svg {
         font-size: 4rem !important;
     }
 
-    .descBox > p {
+    .descBox>p {
         font-size: 0.9rem !important;
     }
 
-    .ticketBtnStyle > button {
+    .ticketBtnStyle>button {
         height: 6rem;
         width: 40rem;
         font-size: 1.2rem;

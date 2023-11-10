@@ -5,15 +5,36 @@ import { TfiHeadphoneAlt } from "react-icons/tfi";
 import { FaWallet } from "react-icons/fa";
 import { BsFillRocketTakeoffFill, BsFillArrowDownCircleFill } from "react-icons/bs";
 import { BsCreditCard2Back, BsCashCoin, BsPeople, BsStopwatchFill, BsCoin, BsGeoAlt, BsFillClockFill, BsFillLockFill } from "react-icons/bs";
+import { useEffect, useState } from "react";
+import APImanager from '../../apiManager';
+import { fetchPlanetsGet } from "../../services/PlanetService";
+import { checkToken } from "../../services/authService";
 
 export default function Ticket() {
 
+    const [planetData, setPlanetData] = useState([]);
     const { RangePicker } = DatePicker;
+    const baseUrl = APImanager.getBaseURL();
 
     function toggleAdditionalInfo(event) {
         const additionalInfo = event.currentTarget.nextElementSibling;
         additionalInfo.classList.toggle('ticketPageBodyQuestionsBoxAdditionalVisible');
     }
+
+    /* LOOKUPS */
+    useEffect(() => {
+        async function fetchPlanetData() {
+            try {
+                const url = `${baseUrl}/lookups/planets`;
+                const data = await fetchPlanetsGet(url);
+                setPlanetData(data);
+            } catch (error) {
+                console.error('API talebi başarısız oldu: ', error);
+            }
+        }
+        fetchPlanetData();
+    }, []);
+    /* LOOKUPS */
 
     return (
         <div className='ticketPageContainer'>
@@ -27,6 +48,11 @@ export default function Ticket() {
                                 defaultValue="Kalkış Noktası"
                                 bordered={false}
                             >
+                                {planetData.map(planet => (
+                                    <Select.Option key={planet.id} value={planet.id}>
+                                        {planet.displayName}
+                                    </Select.Option>
+                                ))}
                             </Select>
                         </Space>
                         <Space wrap>
@@ -36,6 +62,11 @@ export default function Ticket() {
                                 defaultValue="Varış Noktası"
                                 bordered={false}
                             >
+                                {planetData.map(planet => (
+                                    <Select.Option key={planet.id} value={planet.id}>
+                                        {planet.displayName}
+                                    </Select.Option>
+                                ))}
                             </Select>
                         </Space>
                         <Space>
