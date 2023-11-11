@@ -19,6 +19,7 @@ export default function UsersList() {
     const [usersFiltersData, setUsersFiltersData] = useState([]);
     const [userRoleType, setUserRoleType] = useState("");
     const [isActive, setIsActive] = useState("");
+    const [totalPageCount, setTotalPageCount] = useState(1);
     const baseUrl = APImanager.getBaseURL();
     const columns = [
         {
@@ -88,21 +89,8 @@ export default function UsersList() {
     }, []);
 
     useEffect(() => {
-        const queryWithPaging = buildQuery({
-            "top": pageSizeOdata,
-            "skip": (pageOdata - 1) * pageSizeOdata,
-        });
-        async function fetchUsersListData() {
-            const url = `${baseUrl}/users${queryWithPaging}`;
-            const data = await fetchUsersDataGet(url)
-                .catch(error => {
-                    console.error('API request failed:', error);
-                    return [];
-                })
-            setUsersData(data.value);
-        }
-        fetchUsersListData();
-    }, []);
+        handleFilterButtonClick();
+    }, [pageOdata, pageSizeOdata]);
 
     const handleDeleteUser = (Id) => {
         const confirmDelete = window.confirm('Kullanıcıyı silmek istediğine emin misin?');
@@ -149,6 +137,8 @@ export default function UsersList() {
             .catch(err => {
                 console.log("API request failed", err);
             })
+        const totalPageCount = Math.ceil(data["@odata.count"]);
+        setTotalPageCount(totalPageCount);
         setUsersFiltersData(data.value);
     }
 
@@ -179,7 +169,7 @@ export default function UsersList() {
                 </div>
             </div>
             <div className='userListBody'>
-                <TableListComp props={{ columns: columns, dataSource: usersFiltersData && usersFiltersData.length ? usersFiltersData : usersData }} text="users" pageSearchType={"users"} addButtonLabel={"Kullanıcı Ekle"} addFilterName={"Kullanıcı Filtreleme"} setPageOdata={setPageOdata} setPageSizeOdata={setPageSizeOdata} pageOdata={pageOdata} pageSizeOdata={pageSizeOdata} />
+                <TableListComp props={{ columns: columns, dataSource: usersFiltersData && usersFiltersData.length ? usersFiltersData : usersData }} text="users" pageSearchType={"users"} addButtonLabel={"Kullanıcı Ekle"} addFilterName={"Kullanıcı Filtreleme"} setPageOdata={setPageOdata} setPageSizeOdata={setPageSizeOdata} pageOdata={pageOdata} pageSizeOdata={pageSizeOdata} totalPageCount={totalPageCount}/>
                 {isModalOpen && (
                     <EditUserModal user={selectedUser} onCancel={handleModalClose} visible={isModalOpen} pageType={"users"} addEditTitle={"Kullanıcı Güncelleme"} userDelete={handleDeleteUser} />
                 )}

@@ -50,6 +50,7 @@
 @media screen and (min-width: 1200px) {
     .searchInputPosition {
         flex-direction: row !important;
+        flex-wrap: wrap;
     }
 
     .SearchBarSpaceShipsInput {

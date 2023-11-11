@@ -48,27 +48,20 @@ export default function AsideHeader() {
     }, []);
 
     useEffect(() => {
-        const savedActiveButton = localStorage.getItem("activeButton");
-        if (savedActiveButton) {
-            setActiveButton(savedActiveButton);
-        }
-    }, []);
 
-    useEffect(() => {
-        const isFirstLogin = localStorage.getItem("isActive") !== "true";
-        const savedActiveButton = localStorage.getItem("activeButton");
+        const isFirstLogin = localStorage.getItem("isFirstLogin") === "true";
 
+        debugger;
         if (isFirstLogin) {
-            setActiveButton(savedActiveButton);
             localStorage.setItem("activeButton", "Anasayfa");
-            localStorage.setItem("isFirstLogin", "true");
+            localStorage.setItem("isFirstLogin", "false");
+            setActiveButton("Anasayfa");
         } else {
             const savedActiveButton = localStorage.getItem("activeButton");
-            if (savedActiveButton) {
-                setActiveButton(savedActiveButton);
-            }
+            setActiveButton(savedActiveButton);
         }
     }, []);
+
 
     return (
         <container id='adminPanelContainer'>

@@ -20,6 +20,7 @@ export default function UsersList() {
     const [squenceFilter, setSquenceFilter] = useState("");
     const [difficultyLevelFilter, setDifficultyLevelFilter] = useState("");
     const [planetsFilteredData, setPlanetsFilteredData] = useState([]);
+    const [totalPageCount, setTotalPageCount] = useState(1);
 
     const baseUrl = APImanager.getBaseURL();
     const columns = [
@@ -70,20 +71,7 @@ export default function UsersList() {
     }, []);
 
     useEffect(() => {
-        const queryWithPaging = buildQuery({
-            "top": pageSizeOdata,
-            "skip": (pageOdata - 1) * pageSizeOdata,
-        });
-        async function planetsData() {
-            const url = `${baseUrl}/planets${queryWithPaging}`;
-            const data = await fetchPlanetsGet(url)
-                .catch(error => {
-                    console.error('API request failed:', error);
-                    return [];
-                })
-            setPlanets(data.value);
-        }
-        planetsData();
+        handleFilterButtonClick();
     }, [pageOdata, pageSizeOdata]);
 
     const handleDeletePlanet = (Id) => {
@@ -131,10 +119,10 @@ export default function UsersList() {
             .catch(err => {
                 console.log("API request failed", err);
             })
+        const totalPageCount = Math.ceil(data["@odata.count"]);
+        setTotalPageCount(totalPageCount);
         setPlanetsFilteredData(data.value);
     };
-
-    console.log(planetsFilteredData);
 
     return (
         <container className='planetsContainer'>
@@ -159,7 +147,7 @@ export default function UsersList() {
                 </div>
             </div>
             <article className='planetsBody'>
-                <TableListComp props={{ columns: columns, dataSource: planetsFilteredData.length ? planetsFilteredData : planets }} text="planets" pageSearchType={"planets"} addButtonLabel={"Gezegen Ekle"} addFilterName={"Gezegen Filtreleme"} setPageOdata={setPageOdata} setPageSizeOdata={setPageSizeOdata} pageOdata={pageOdata} pageSizeOdata={pageSizeOdata} />
+                <TableListComp props={{ columns: columns, dataSource: planetsFilteredData.length ? planetsFilteredData : planets }} text="planets" pageSearchType={"planets"} addButtonLabel={"Gezegen Ekle"} addFilterName={"Gezegen Filtreleme"} setPageOdata={setPageOdata} setPageSizeOdata={setPageSizeOdata} pageOdata={pageOdata} pageSizeOdata={pageSizeOdata} totalPageCount={totalPageCount} />
                 {isModalOpen && (
                     <EditModal planet={selectedPlanet} onCancel={handleModalClose} visible={isModalOpen} pageType={"planets"} addEditTitle={"Gezegen Güncelleme"} planetDelete={handleDeletePlanet} />
                 )}

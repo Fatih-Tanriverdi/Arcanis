@@ -3,7 +3,7 @@ import './TableListComp.css';
 import { Input, Button, Table } from 'antd';
 import { ModelComponent } from '../ModalComponent/ModalComponent';
 
-export function TableListComp({ pageSearchType, props, addButtonLabel, setPageOdata, setPageSizeOdata, pageOdata, pageSizeOdata }) {
+export function TableListComp({ pageSearchType, props, addButtonLabel, setPageOdata, setPageSizeOdata, pageOdata, pageSizeOdata, totalPageCount }) {
 
     const [modelContent, setModelContent] = useState("");
     const [isModalVisible, setIsModalVisible] = useState(false);
@@ -35,12 +35,6 @@ export function TableListComp({ pageSearchType, props, addButtonLabel, setPageOd
             <div className="listContainer">
                 <div className='tableListHead'>
                     <Button className='addBtn' type="text" onClick={() => showModall(pageSearchType)}>{addButtonLabel}</Button>
-                    <div className='inputListGroup'>
-                        <span>Search: </span>
-                        <Input
-                            className='searchInput'
-                        />
-                    </div>
                 </div>
                 <div className='tableContainer'>
                     <Table
@@ -49,12 +43,14 @@ export function TableListComp({ pageSearchType, props, addButtonLabel, setPageOd
                         dataSource={props.dataSource}
                         rowClassName="tableRow"
                         pagination={{
-                            total: 100,
+                            total: totalPageCount,
                             current: pageOdata,
                             pageSize: pageSizeOdata,
+                            showSizeChanger : true,
                             onChange: (page, pageSize) => {
                                 setPageOdata(page);
                                 setPageSizeOdata(pageSize);
+
                             }
                         }}
                     />

@@ -1,7 +1,7 @@
 /* LIST GROUP */
 .listContainer {
     width: 100%;
-    height: 63vh !important;
+    min-height: 50vh !important;
     background-color: #273046;
     margin: 0 auto;
     margin-top: 1.5rem;

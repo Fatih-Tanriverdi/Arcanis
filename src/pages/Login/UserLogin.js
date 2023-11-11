@@ -59,6 +59,8 @@ export default function App({ setPageAuthType, setIsModalOpen, setAccessToken })
         } else {
             loginAndNavigate(username, passwordInput, emailAddress);
             setAccessToken(localStorage.getItem('access-token'));
+            debugger;
+            localStorage.setItem("isFirstLogin", "true");
             setIsModalOpen(true);
         }
     };

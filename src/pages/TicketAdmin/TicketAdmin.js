@@ -17,9 +17,10 @@ export default function TicketAdmin() {
     const [pageSizeOdata, setPageSizeOdata] = useState(10);
 
     const [seatNumber, setSeatNumber] = useState("");
-    const [creationDate, setCreationDate] = useState(null);
-    const [orderDate, setOrderDate] = useState(null);
+    const [creationDate, setCreationDate] = useState("");
+    const [orderDate, setOrderDate] = useState("");
     const [ticketAdminFilter, setTicketAdminFilter] = useState([]);
+    const [totalPageCount, setTotalPageCount] = useState(1);
     const baseUrl = APImanager.getBaseURL();
 
     const columns = [
@@ -65,20 +66,7 @@ export default function TicketAdmin() {
     }, []);
 
     useEffect(() => {
-        const queryWithPaging = buildQuery({
-            "top": pageSizeOdata,
-            "skip": (pageOdata - 1) * pageSizeOdata,
-        });
-        async function fetchTicketSalesData() {
-            const url = `${baseUrl}/ticket-sales${queryWithPaging}`;
-            const data = await fetchTicketsGet(url)
-                .catch(error => {
-                    console.error('API request failed:', error);
-                    return [];
-                });
-            setTicketSalesData(data.value);
-        }
-        fetchTicketSalesData();
+        handleFilterButtonClick();
     }, [pageOdata, pageSizeOdata]);
 
     const handleDeleteTicket = (Id) => {
@@ -118,26 +106,32 @@ export default function TicketAdmin() {
 
     async function handleFilterButtonClick() {
         const SeatNumber = parseInt(seatNumber);
-        const CreatedDate = creationDate;
-        const OrderDate = orderDate;
+        const CreatedDate = creationDate ? new Date(creationDate).toISOString() : null;
+        const OrderDate = orderDate ? new Date(orderDate).toISOString() : null;
+
+        const count = true;
+        const top = pageSizeOdata;
+        const skip = (pageOdata - 1) * pageSizeOdata;
+
         const filters = {};
         if (SeatNumber) {
+
             filters.SeatNumber = SeatNumber;
         }
         if (CreatedDate) {
-            filters.CreatedDate = { ge: new Date(CreatedDate).toISOString() };
+            filters.CreatedDate = { ge: CreatedDate };
         }
         if (OrderDate) {
-            filters.OrderDate = { ge: new Date(OrderDate).toISOString() };
+            filters.OrderDate = { ge: OrderDate };
         }
-        const queryWithPaging = buildQuery({
-            filter: filters
-        });
+        const queryWithPaging = buildQuery({ filter: filters, count, top, skip });
         const url = `${baseUrl}/ticket-sales${queryWithPaging}`;
         const data = await fetchTicketsGet(url)
             .catch(err => {
                 console.log("API request failed", err);
             })
+        const totalPageCount = Math.ceil(data["@odata.count"]);
+        setTotalPageCount(totalPageCount);
         setTicketAdminFilter(data.value);
     };
 
@@ -166,7 +160,7 @@ export default function TicketAdmin() {
                 </div>
             </div>
             <article className='spaceVehicleBody'>
-                <TableListComp props={{ columns: columns, dataSource: ticketAdminFilter.length ? ticketAdminFilter : ticketSalesData }} text="Ticket" pageSearchType={"ticketAdmin"} addFilterName={"Bilet Filtreleme"} setPageOdata={setPageOdata} setPageSizeOdata={setPageSizeOdata} pageOdata={pageOdata} pageSizeOdata={pageSizeOdata} />
+                <TableListComp props={{ columns: columns, dataSource: ticketAdminFilter.length ? ticketAdminFilter : ticketSalesData }} text="Ticket" pageSearchType={"ticketAdmin"} addFilterName={"Bilet Filtreleme"} setPageOdata={setPageOdata} setPageSizeOdata={setPageSizeOdata} pageOdata={pageOdata} pageSizeOdata={pageSizeOdata} totalPageCount={totalPageCount} />
                 {isModalOpen && (
                     <EditModal ticket={selectedTicket} onCancel={handleModalClose} visible={isModalOpen} pageType={"ticketAdmin"} addEditTitle={"Bilet Güncelleme"} ticketDelete={handleDeleteTicket} />
                 )}

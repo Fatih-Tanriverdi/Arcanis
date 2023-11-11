@@ -17,10 +17,14 @@ export default function SpaceShips() {
     const [pageSizeOdata, setPageSizeOdata] = useState(10);
     const [filteredSpaceShipData, setFilteredSpaceShipData] = useState([]);
 
-    const [modelYearFilter, setModelYearFilter] = useState("");
-    const [maxNumberOfPassengersFilter, setMaxNumberOfPassengersFilter] = useState("");
-    const [ageLimitFilter, setAgeLimitFilter] = useState("");
-
+    const [maxModelYearFilter, setMaxModelYearFilter] = useState("");
+    const [maxMaxNumberOfPassengersFilter, setMaxMaxNumberOfPassengersFilter] = useState("");
+    const [maxAgeLimitFilter, setMaxAgeLimitFilter] = useState("");
+    const [minModelYearFilter, setMinModelYearFilter] = useState("");
+    const [minMaxNumberOfPassengersFilter, setMinMaxNumberOfPassengersFilter] = useState("");
+    const [minAgeLimitFilter, setMinAgeLimitFilter] = useState("");
+    const [search, setSearch] = useState("");
+    const [totalPageCount, setTotalPageCount] = useState(1);
     const baseUrl = APImanager.getBaseURL();
 
     const columns = [
@@ -33,37 +37,37 @@ export default function SpaceShips() {
             ),
         },
         {
-            title: 'ARAÇ ADI',
+            title: 'Araç Adı',
             dataIndex: 'Name',
             key: 'user',
         },
         {
-            title: 'MODEL ADI',
+            title: 'Model Adı',
             dataIndex: 'ModelName',
             key: 'modelName',
         },
         {
-            title: 'MODEL YILI',
+            title: 'Model Yılı',
             dataIndex: 'ModelYear',
             key: 'modelYear',
         },
         {
-            title: 'SERI NUMARASI',
+            title: 'Seri Numarası',
             key: 'SerialNumber',
             dataIndex: 'SerialNumber',
         },
         {
-            title: 'KOLTUK NUMARASI',
+            title: 'Koltuk Numarası',
             key: 'MaxNumberOfPassengers',
             dataIndex: 'MaxNumberOfPassengers',
         },
         {
-            title: 'YAŞ SINIRI',
+            title: 'Yaş Sınırı',
             dataIndex: 'AgeLimit',
             key: 'ageLimit',
         },
         {
-            title: 'AÇIKLAMA',
+            title: 'Açıklama',
             dataIndex: 'Description',
             key: 'description',
             render: (text) => (
@@ -81,20 +85,7 @@ export default function SpaceShips() {
     }, []);
 
     useEffect(() => {
-        async function fetchSpaceShipData() {
-            const queryWithPaging = buildQuery({
-                "top": pageSizeOdata,
-                "skip": (pageOdata - 1) * pageSizeOdata,
-            });
-            const url = `${baseUrl}/space-vehicles${queryWithPaging}`;
-            const data = await fetchRocketsGet(url)
-                .catch(error => {
-                    console.error('API request failed:', error);
-                    return [];
-                });
-            setSpaceShipData(data.value);
-        }
-        fetchSpaceShipData();
+        getSpaceVehicles();
     }, [pageOdata, pageSizeOdata]);
 
     const handleDeleteRocket = (Id) => {
@@ -124,27 +115,50 @@ export default function SpaceShips() {
         setIsModalOpen(false);
     };
 
-    async function handleFilterButtonClick() {
-        const modelYear = parseInt(modelYearFilter);
-        const maxNumberOfPassengers = parseInt(maxNumberOfPassengersFilter);
-        const ageLimit = parseInt(ageLimitFilter);
-        const filters = {};
-        if (modelYear) {
-            filters.ModelYear = modelYear;
+    async function getSpaceVehicles() {
+        const maxModelYear = parseInt(maxModelYearFilter);
+        const maxMaxNumberOfPassengers = parseInt(maxMaxNumberOfPassengersFilter);
+        const maxAgeLimit = parseInt(maxAgeLimitFilter);
+        const minModelYear = parseInt(minModelYearFilter);
+        const minMaxNumberOfPassengers = parseInt(minMaxNumberOfPassengersFilter);
+        const minAgeLimit = parseInt(minAgeLimitFilter);
+
+        const filters = {
+            ModelYear: {},
+            MaxNumberOfPassengers: {}
+        };
+
+        const count = true;
+        const top = pageSizeOdata;
+        const skip = (pageOdata - 1) * pageSizeOdata;
+
+        if (minModelYear > 0) {
+            filters.ModelYear["ge"] = minModelYear;
         }
-        if (maxNumberOfPassengers) {
-            filters.MaxNumberOfPassengers = maxNumberOfPassengers;
+
+        if (maxModelYear > 0) {
+            filters.ModelYear["le"] = maxModelYear;
         }
-        if (ageLimit) {
-            filters.AgeLimit = ageLimit;
+        if (maxMaxNumberOfPassengers > 0) {
+            filters.MaxNumberOfPassengers["le"] = maxMaxNumberOfPassengers
         }
-        const queryWithFilters = buildQuery({ filter: filters });
+
+        const queryWithFilters = buildQuery({ count, filter: filters, top, skip });
         const url = `${baseUrl}/space-vehicles${queryWithFilters}`;
         const data = await fetchRocketsGet(url)
             .catch(err => {
                 console.log("API request failed", err);
             });
-        setFilteredSpaceShipData(data.value);
+
+        if (data !== undefined && data.value !== null) {
+            const totalPageCount = Math.ceil(data["@odata.count"]);
+            setTotalPageCount(totalPageCount);
+            setFilteredSpaceShipData(data.value);
+        }
+        else
+        {
+            setFilteredSpaceShipData([]);
+        }
     }
 
     return (
@@ -156,33 +170,83 @@ export default function SpaceShips() {
                 <div className='searchInputPosition'>
                     <div className='searchInput'>
                         <Input
+                            type='number'
                             className='SearchBarSpaceShipsInput'
-                            value={modelYearFilter}
-                            onChange={(e) => setModelYearFilter(e.target.value)}
-                            placeholder="Model Yılı"
+                            value={maxModelYearFilter}
+                            onChange={(e) => setMaxModelYearFilter(e.target.value)}
+                            placeholder="Max Model Yılı"
+                            defaultValue={0}
+                            min={0}
+                        />
+                    </div>
+                    <div className='searchInput'>
+                        <Input
+                            type='number'
+                            className='SearchBarSpaceShipsInput'
+                            value={minModelYearFilter}
+                            onChange={(e) => setMinModelYearFilter(e.target.value)}
+                            placeholder="Min Model Yılı"
+                            defaultValue={0}
+                            min={0}
+                        />
+                    </div>
+                    <div className='searchInput'>
+                        <Input
+                            type='number'
+                            className='SearchBarSpaceShipsInput'
+                            value={maxMaxNumberOfPassengersFilter}
+                            onChange={(e) => setMaxMaxNumberOfPassengersFilter(e.target.value)}
+                            placeholder="Max Koltuk Numarası"
+                            defaultValue={0}
+                            min={0}
+                        />
+                    </div>
+                    <div className='searchInput'>
+                        <Input
+                            type='number'
+                            className='SearchBarSpaceShipsInput'
+                            value={minMaxNumberOfPassengersFilter}
+                            onChange={(e) => setMinMaxNumberOfPassengersFilter(e.target.value)}
+                            placeholder="Min Koltuk Numarası"
+                            defaultValue={0}
+                            min={0}
+                        />
+                    </div>
+                    <div className='searchInput'>
+                        <Input
+                            type='number'
+                            className='SearchBarSpaceShipsInput'
+                            value={maxAgeLimitFilter}
+                            onChange={(e) => setMaxAgeLimitFilter(e.target.value)}
+                            placeholder="Max Yaş Sınırı"
+                            defaultValue={0}
+                            min={0}
+                        />
+                    </div>
+                    <div className='searchInput'>
+                        <Input
+                            type='number'
+                            className='SearchBarSpaceShipsInput'
+                            value={minAgeLimitFilter}
+                            onChange={(e) => setMinAgeLimitFilter(e.target.value)}
+                            placeholder="Min Yaş Sınırı"
+                            defaultValue={0}
+                            min={0}
                         />
                     </div>
                     <div className='searchInput'>
                         <Input
                             className='SearchBarSpaceShipsInput'
-                            value={maxNumberOfPassengersFilter}
-                            onChange={(e) => setMaxNumberOfPassengersFilter(e.target.value)}
-                            placeholder="Koltuk Numarası"
+                            value={search}
+                            onChange={(e) => setSearch(e.target.value)}
+                            placeholder="Genel arama"
                         />
                     </div>
-                    <div className='searchInput'>
-                        <Input
-                            className='SearchBarSpaceShipsInput'
-                            value={ageLimitFilter}
-                            onChange={(e) => setAgeLimitFilter(e.target.value)}
-                            placeholder="Yaş Sınırı"
-                        />
-                    </div>
-                    <Button className='SearchBarFilterBtn' onClick={handleFilterButtonClick}>Filtrele</Button>
+                    <Button className='SearchBarFilterBtn' onClick={getSpaceVehicles}>Filtrele</Button>
                 </div>
             </div>
             <article className='spaceVehicleBody'>
-                <TableListComp props={{ columns: columns, dataSource: filteredSpaceShipData.length ? filteredSpaceShipData : spaceShipData }} filteredSpaceShipData={filteredSpaceShipData} text="spaceShips" pageSearchType={"spaceShips"} addButtonLabel={"Uzay Aracı Ekle"} addFilterName={"Uzay Aracı Filtreleme"} setPageOdata={setPageOdata} setPageSizeOdata={setPageSizeOdata} pageOdata={pageOdata} pageSizeOdata={pageSizeOdata} />
+                <TableListComp props={{ columns: columns, dataSource: filteredSpaceShipData.length ? filteredSpaceShipData : spaceShipData }} filteredSpaceShipData={filteredSpaceShipData} text="spaceShips" pageSearchType={"spaceShips"} addButtonLabel={"Uzay Aracı Ekle"} addFilterName={"Uzay Aracı Filtreleme"} setPageOdata={setPageOdata} setPageSizeOdata={setPageSizeOdata} pageOdata={pageOdata} pageSizeOdata={pageSizeOdata} totalPageCount={totalPageCount} />
                 {isModalOpen && (
                     <EditModal rocket={selectedRocket} onCancel={handleModalClose} visible={isModalOpen} pageType={"spaceShips"} addEditTitle={"Uzay Aracı Güncelleme"} rocketDelete={handleDeleteRocket} />
                 )}

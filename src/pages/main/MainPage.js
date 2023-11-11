@@ -212,9 +212,9 @@ export default function MainPage() {
                             <div className='mainPageBoxUsersInfo' key={ticketData.id}>
                                 <h5>{ticketData.name}</h5>
                                 <div className='mainPageBoxUsersInfoSpinner'>
-                                    <p>{ticketData.value} - {ticketData.rate.toFixed(1)}%</p>
-                                    <Space size={30}>
-                                        <Progress type="circle" percent={ticketData.rate} size={20} strokeColor={progresColor} />
+                                    <p>{ticketData.value}-</p>
+                                    <Space size={100}>
+                                        <Progress type="circle" percent={ticketData.rate.toFixed()} size={45} strokeColor={progresColor} />
                                     </Space>
                                 </div>
                             </div>
@@ -235,7 +235,7 @@ export default function MainPage() {
                         <div className='mainPageExpeditionsBody'>
                             <Space wrap>
                                 {expeditionsTotalCompleted && expeditionsTotalCompleted.rate !== undefined ? (
-                                    <Progress type="dashboard" percent={expeditionsTotalCompleted.rate.toFixed(2)} strokeColor={conicColors} />
+                                    <Progress type="dashboard" size={180} percent={expeditionsTotalCompleted.rate.toFixed(2)} strokeColor={conicColors} />
                                 ) : (
                                     <Progress type="dashboard" percent={0} strokeColor={conicColors} />
                                 )}
@@ -268,9 +268,9 @@ export default function MainPage() {
                             <div className='mainPageBoxUsersInfo' key={planetData.id}>
                                 <h5>{planetData.name}</h5>
                                 <div className='mainPageBoxUsersInfoSpinner'>
-                                    <p>{planetData.value} - {planetData.rate.toFixed(1)}%</p>
+                                    <p>{planetData.value}-</p>
                                     <Space size={30}>
-                                        <Progress type="circle" percent={planetData.rate} size={20} strokeColor={progresColor} />
+                                        <Progress type="circle" percent={planetData.rate.toFixed()} size={45} strokeColor={progresColor} />
                                     </Space>
                                 </div>
                             </div>
