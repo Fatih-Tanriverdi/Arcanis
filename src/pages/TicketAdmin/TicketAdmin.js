@@ -25,10 +25,10 @@ export default function TicketAdmin() {
     const columns = [
         {
             title: '',
-            dataIndex: 'id',
-            key: 'id',
-            render: (id, record) => (
-                <button className="editButton" onClick={() => handleEditRocket(id)}><RiArrowRightSLine /></button>
+            dataIndex: 'Id',
+            key: 'Id',
+            render: (Id, record) => (
+                <button className="editButton" onClick={() => handleEditRocket(Id)}><RiArrowRightSLine /></button>
             ),
         },
         {
@@ -81,15 +81,15 @@ export default function TicketAdmin() {
         fetchTicketSalesData();
     }, [pageOdata, pageSizeOdata]);
 
-    const handleDeleteTicket = (id) => {
+    const handleDeleteTicket = (Id) => {
         const confirmDelete = window.confirm('Kullanıcıyı silmek istediğine emin misin?');
         if (!confirmDelete) {
             return;
         }
-        deleteTicket(id)
+        deleteTicket(Id)
             .then(() => {
                 setTicketSalesData((prevSpaceShipData) =>
-                    prevSpaceShipData.filter((ticket) => ticket.id !== id)
+                    prevSpaceShipData.filter((ticket) => ticket.Id !== Id)
                 );
             })
             .catch(error => {
@@ -97,8 +97,8 @@ export default function TicketAdmin() {
             });
     };
 
-    const handleEditRocket = (id) => {
-        const ticketEdit = ticketSalesData.find(ticket => ticket.id === id);
+    const handleEditRocket = (Id) => {
+        const ticketEdit = ticketSalesData.find(ticket => ticket.Id === Id);
         setSelectedTicket(ticketEdit);
         setIsModalOpen(true);
     };

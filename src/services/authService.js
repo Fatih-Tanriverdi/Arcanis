@@ -101,13 +101,3 @@ export const resetPassword = async (emailAddress) => {
     return "Şifre sıfırlama e-postası başarıyla gönderildi. Lütfen e-postanızı kontrol edin.";
 };
 /* ResetPassword */
-
-
-
-
-
-
-
-
-
-

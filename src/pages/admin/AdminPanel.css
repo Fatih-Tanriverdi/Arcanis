@@ -128,7 +128,6 @@
 
 .adminInfo>span {
     display: flex;
-    justify-content: flex-end;
     font-size: 0.8rem;
     color: white;
     margin-left: 30rem;

@@ -5,7 +5,7 @@ import { TableListComp } from "../../components/TableListComp/TableListComp";
 import { deleteRocket, fetchRocketsGet } from '../../services/RocketService';
 import EditModal from '../../components/EditModal/EditUserModal';
 import { RiArrowRightSLine } from 'react-icons/ri';
-import { Button, Input, Popover, Select } from 'antd';
+import { Button, Input, Popover } from 'antd';
 import APImanager from '../../apiManager';
 import buildQuery from 'odata-query';
 
@@ -15,7 +15,6 @@ export default function SpaceShips() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [pageOdata, setPageOdata] = useState(1);
     const [pageSizeOdata, setPageSizeOdata] = useState(10);
-    const [selectedFilters, setSelectedFilters] = useState([]);
     const [filteredSpaceShipData, setFilteredSpaceShipData] = useState([]);
 
     const [modelYearFilter, setModelYearFilter] = useState("");
@@ -27,10 +26,10 @@ export default function SpaceShips() {
     const columns = [
         {
             title: '',
-            dataIndex: 'id',
-            key: 'id',
-            render: (id, record) => (
-                <button className="editButton" onClick={() => handleEditRocket(id)}><RiArrowRightSLine /></button>
+            dataIndex: 'Id',
+            key: 'Id',
+            render: (Id, record) => (
+                <button className="editButton" onClick={() => handleEditRocket(Id)}><RiArrowRightSLine /></button>
             ),
         },
         {
@@ -98,15 +97,15 @@ export default function SpaceShips() {
         fetchSpaceShipData();
     }, [pageOdata, pageSizeOdata]);
 
-    const handleDeleteRocket = (id) => {
+    const handleDeleteRocket = (Id) => {
         const confirmDelete = window.confirm('Kullanıcıyı silmek istediğine emin misin?');
         if (!confirmDelete) {
             return;
         }
-        deleteRocket(id)
+        deleteRocket(Id)
             .then(() => {
                 setSpaceShipData((prevSpaceShipData) =>
-                    prevSpaceShipData.filter((rocket) => rocket.id !== id)
+                    prevSpaceShipData.filter((rocket) => rocket.Id !== Id)
                 );
             })
             .catch(error => {
@@ -114,8 +113,8 @@ export default function SpaceShips() {
             });
     };
 
-    const handleEditRocket = (id) => {
-        const rocketEdit = spaceShipData.find(rocket => rocket.id === id);
+    const handleEditRocket = (Id) => {
+        const rocketEdit = spaceShipData.find(rocket => rocket.Id === Id);
         setSelectedRocket(rocketEdit);
         setIsModalOpen(true);
     };

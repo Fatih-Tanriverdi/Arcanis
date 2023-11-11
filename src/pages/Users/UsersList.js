@@ -22,10 +22,10 @@ export default function UsersList() {
     const baseUrl = APImanager.getBaseURL();
     const columns = [
         {
-            key: 'id',
-            dataIndex: 'id',
-            render: (id, record) => (
-                <button className="editButton" onClick={() => handleEditUser(id)}><RiArrowRightSLine /></button>
+            key: 'Id',
+            dataIndex: 'Id',
+            render: (Id, record) => (
+                <button className="editButton" onClick={() => handleEditUser(Id)}><RiArrowRightSLine /></button>
             ),
         },
         {
@@ -104,15 +104,15 @@ export default function UsersList() {
         fetchUsersListData();
     }, []);
 
-    const handleDeleteUser = (id) => {
+    const handleDeleteUser = (Id) => {
         const confirmDelete = window.confirm('Kullanıcıyı silmek istediğine emin misin?');
         if (!confirmDelete) {
             return;
         }
-        deleteUsers(id)
+        deleteUsers(Id)
             .then(() => {
                 setUsersData((prevUsersData) =>
-                    prevUsersData.filter((user) => user.id !== id)
+                    prevUsersData.filter((user) => user.Id !== Id)
                 );
             })
             .catch(error => {
@@ -120,8 +120,8 @@ export default function UsersList() {
             });
     };
 
-    const handleEditUser = (id) => {
-        const userToEdit = usersData.find(user => user.id === id);
+    const handleEditUser = (Id) => {
+        const userToEdit = usersData.find(user => user.Id === Id);
         setSelectedUser(userToEdit);
         setIsModalOpen(true);
     };

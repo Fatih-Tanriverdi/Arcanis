@@ -29,7 +29,7 @@ export default function AsideHeader() {
         <div id='customerPageContainer'>
             <article className='headerCustomer'>
                 <div className='headerCustomerInfo'>
-                    <h1 className="headerTitleStyle">Arcanis</h1>
+                    <Link to="/"><h1 className="headerTitleStyle">Arcanis</h1></Link>
                     <div className="headerButtonContainer">
                         {accessToken ?
                             <>

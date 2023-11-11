@@ -92,7 +92,7 @@ export default function EditUserModal({ user, rocket, planet, ticket, expenditio
                     }
                 }
                 await putRocket(editRocket);
-                onSave(rocket.id, editRocket);
+                onSave(rocket.Id, editRocket);
                 onCancel();
             }
             if (pageType === 'planets') {

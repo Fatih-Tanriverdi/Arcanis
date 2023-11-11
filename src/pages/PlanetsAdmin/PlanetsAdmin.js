@@ -25,10 +25,10 @@ export default function UsersList() {
     const columns = [
         {
             title: '',
-            key: 'id',
-            dataIndex: 'id',
-            render: (id, record) => (
-                <button className="editButton" onClick={() => handleEditPlanet(id)}><RiArrowRightSLine /></button>
+            key: 'Id',
+            dataIndex: 'Id',
+            render: (Id, record) => (
+                <button className="editButton" onClick={() => handleEditPlanet(Id)}><RiArrowRightSLine /></button>
             ),
         },
         {
@@ -86,15 +86,15 @@ export default function UsersList() {
         planetsData();
     }, [pageOdata, pageSizeOdata]);
 
-    const handleDeletePlanet = (id) => {
+    const handleDeletePlanet = (Id) => {
         const confirmDelete = window.confirm('Kullanıcıyı silmek istediğine emin misin?');
         if (!confirmDelete) {
             return;
         }
-        deletePlanet(id)
+        deletePlanet(Id)
             .then(() => {
                 setPlanets((prevPlanetsData) =>
-                    prevPlanetsData.filter((planet) => planet.Id !== id)
+                    prevPlanetsData.filter((planet) => planet.Id !== Id)
                 );
             })
             .catch(error => {
@@ -102,8 +102,8 @@ export default function UsersList() {
             });
     };
 
-    const handleEditPlanet = (id) => {
-        const planetEdit = planets.find(planet => planet.id === id);
+    const handleEditPlanet = (Id) => {
+        const planetEdit = planets.find(planet => planet.Id === Id);
         setSelectedPlanet(planetEdit);
         setIsModalOpen(true);
     };
