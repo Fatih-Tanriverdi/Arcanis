@@ -22,9 +22,9 @@ export default function UsersList() {
     const [pageSizeOdata, setPageSizeOdata] = useState(10);
 
     const [expeditionFilter, setExpeditionFilter] = useState([]);
-    const [selectedSpaceVehicle, setSelectedSpaceVehicle] = useState("");
-    const [selectedDeparturePlanet, setSelectedDeparturePlanet] = useState("");
-    const [selectedArrivalPlanet, setSelectedArrivalPlanet] = useState("");
+    const [selectedSpaceVehicle, setSelectedSpaceVehicle] = useState("Uzay Aracı");
+    const [selectedDeparturePlanet, setSelectedDeparturePlanet] = useState("Kalkış Gezegeni");
+    const [selectedArrivalPlanet, setSelectedArrivalPlanet] = useState("Varış Gezegeni");
 
     const [ticketPrice, setTicketPrice] = useState("");
     const [arrivalDateFilter, setArrivalDateFilter] = useState(null);
@@ -215,58 +215,34 @@ export default function UsersList() {
     };
 
     const handleSelectSpaceVehicle = (value) => {
-        const selectedVehicle = spaceVehicleData.find(vehicle => vehicle.id === value);
-        setSelectedSpaceVehicle(selectedVehicle ? selectedVehicle.id : value);
+        setSelectedSpaceVehicle(value);
     };
 
     const handleSelectDeparturePlanet = (value) => {
-        const selectedPlanet = planetData.find(planet => planet.id === value);
-        setSelectedDeparturePlanet(selectedPlanet ? selectedPlanet.id : value);
+        setSelectedDeparturePlanet(value);
     };
 
     const handleSelectArrivalPlanet = (value) => {
-        const selectedPlanet = planetData.find(planet => planet.id === value);
-        setSelectedArrivalPlanet(selectedPlanet ? selectedPlanet.id : value);
+        setSelectedArrivalPlanet(value);
     };
 
     async function handleFilterButtonClick() {
-        const filterObject = {};
-    
-        if (selectedSpaceVehicle) {
-            filterObject.spaceVehicleId = { eq: selectedSpaceVehicle };
-        }
-    
-        if (selectedDeparturePlanet) {
-            filterObject.departurePlanetId = { eq: selectedDeparturePlanet };
-        }
-    
-        if (selectedArrivalPlanet) {
-            filterObject.arrivalPlanetId = { eq: selectedArrivalPlanet };
-        }
-    
-        const queryWithPaging = buildQuery({
-            filter: filterObject,
-        });
 
-        console.log(filterObject);
-    
-        const url = `${baseUrl}/expenditions${queryWithPaging}`;
-    
-        try {
-            const response = await fetchExpenditionsGet(url);
-    
-            if (!response || !response.value) {
-                console.error('API response is undefined or does not have a value property.');
-                return;
+        const parsedTicketPrice = parseInt(ticketPrice);
+
+        const queryWithPaging = buildQuery({
+            filter: {
+                arrivalDate: arrivalDateFilter ? { ge: new Date(arrivalDateFilter) } : null,
+                expeditionDate: expeditionDateFilter ? { ge: new Date(expeditionDateFilter) } : null,
             }
-    
-            setExpeditionFilter(response.value);
-            console.log(filterObject);
-        } catch (err) {
-            console.log('API request failed', err);
-        }
-    }    
-    
+        });
+        const url = `${baseUrl}/expenditions${queryWithPaging}`;
+        const data = await fetchExpenditionsGet(url)
+            .catch(err => {
+                console.log("API request failed", err);
+            })
+        setExpeditionFilter(data);
+    };
 
     return (
         <container className='expeditionContainer'>
@@ -335,9 +311,7 @@ export default function UsersList() {
                 </div>
             </div>
             <article className='expeditionBody'>
-                <TableListComp props={{
-                    columns: columns, dataSource: expeditionFilter?.length ? expeditionFilter : expenditions
-                }} text="expedition" pageSearchType={"expedition"} addButtonLabel={"Sefer Ekle"} addFilterName={"Sefer Filtreleme"} setPageOdata={setPageOdata} setPageSizeOdata={setPageSizeOdata} pageOdata={pageOdata} pageSizeOdata={pageSizeOdata} />
+                <TableListComp props={{ columns: columns, dataSource: expeditionFilter.length ? expeditionFilter :  expenditions }} text="expedition" pageSearchType={"expedition"} addButtonLabel={"Sefer Ekle"} addFilterName={"Sefer Filtreleme"} setPageOdata={setPageOdata} setPageSizeOdata={setPageSizeOdata} pageOdata={pageOdata} pageSizeOdata={pageSizeOdata} />
                 {isModalOpen && (
                     <EditUserModal expendition={selectedExpeditions} onCancel={handleModalClose} visible={isModalOpen} pageType={"expedition"} addEditTitle={"Sefer Güncelleme"} expeditionDelete={handleDeleteExpedition} />
                 )}

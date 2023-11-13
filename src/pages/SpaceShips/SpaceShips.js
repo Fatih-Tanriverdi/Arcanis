@@ -125,8 +125,7 @@ export default function SpaceShips() {
 
         const filters = {
             ModelYear: {},
-            MaxNumberOfPassengers: {},
-            AgeLimit: {}
+            MaxNumberOfPassengers: {}
         };
 
         const count = true;
@@ -140,21 +139,8 @@ export default function SpaceShips() {
         if (maxModelYear > 0) {
             filters.ModelYear["le"] = maxModelYear;
         }
-
-        if (minMaxNumberOfPassengers > 0) {
-            filters.MaxNumberOfPassengers["ge"] = minMaxNumberOfPassengers;
-        }
-
         if (maxMaxNumberOfPassengers > 0) {
-            filters.MaxNumberOfPassengers["le"] = maxMaxNumberOfPassengers;
-        }
-
-        if (minAgeLimit > 0) {
-            filters.AgeLimit["ge"] = minAgeLimit;
-        }
-
-        if (maxAgeLimit > 0) {
-            filters.AgeLimit["le"] = maxAgeLimit;
+            filters.MaxNumberOfPassengers["le"] = maxMaxNumberOfPassengers
         }
 
         const queryWithFilters = buildQuery({ count, filter: filters, top, skip });

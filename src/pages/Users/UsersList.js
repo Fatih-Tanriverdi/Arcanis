@@ -51,13 +51,13 @@ export default function UsersList() {
         },
         {
             title: 'KULLANICI ADI',
-            dataIndex: 'Username',
-            key: 'Username',
+            dataIndex: 'username',
+            key: 'username',
         },
         {
             title: 'AKTİF',
-            dataIndex: 'IsActive',
-            key: 'IsActive',
+            dataIndex: 'isActive',
+            key: 'isActive',
             render: (text) => {
                 if (text === true) {
                     return 'Aktif';
@@ -70,8 +70,17 @@ export default function UsersList() {
         },
         {
             title: 'ROL',
-            dataIndex: 'UserRoleType',
-            key: 'UserRoleType',
+            dataIndex: 'userRoleType',
+            key: 'userRoleType',
+            render: (text) => {
+                if (text === 1) {
+                    return 'Admin';
+                } else if (text === 2) {
+                    return 'Customer';
+                } else {
+                    return 'Unknown';
+                }
+            },
         },
     ];
 
@@ -110,43 +119,28 @@ export default function UsersList() {
         setIsModalOpen(false);
     };
 
-    function capitalizeFirstLetter(string) {
-        return string.charAt(0).toUpperCase() + string.slice(1);
-    }
-
     async function handleFilterButtonClick() {
-        const isActiveValue = isActive;
-        const userRoleTypeValue = userRoleType;
-
-        const count = true;
-        const top = pageSizeOdata;
-        const skip = (pageOdata - 1) * pageSizeOdata;
-
+        const isActiveValue = parseInt(isActive);
+        const userRoleTypeValue = parseInt(userRoleType);
         const filters = {};
-        if (isActiveValue === "Aktif") {
-            filters.IsActive = true;
-        } else if (isActiveValue === "Aktif Değil"){
-            filters.IsActive = false;
+        if (isActiveValue) {
+            filters.isActive = isActiveValue;
         }
         if (userRoleTypeValue) {
-            filters.UserRoleType = userRoleTypeValue;
+            filters.userRoleType = userRoleTypeValue;
         }
-        const queryWithPaging = buildQuery({ filter: filters, count, top, skip });
+        const queryWithPaging = buildQuery({
+            filter: filters
+        });
         const url = `${baseUrl}/users${queryWithPaging}`;
-        try {
-            const data = await fetchUsersDataGet(url);
-
-            if (data && data["@odata.count"] !== undefined) {
-                const totalPageCount = Math.ceil(data["@odata.count"]);
-                setTotalPageCount(totalPageCount);
-                setUsersFiltersData(data.value);
-            } else {
-                console.error("Invalid API response:", data);
-            }
-        } catch (err) {
-            console.error("API request failed", err);
-        }
-    };
+        const data = await fetchUsersDataGet(url)
+            .catch(err => {
+                console.log("API request failed", err);
+            })
+        const totalPageCount = Math.ceil(data["@odata.count"]);
+        setTotalPageCount(totalPageCount);
+        setUsersFiltersData(data.value);
+    }
 
     return (
         <div className='userListContainer'>
@@ -159,7 +153,7 @@ export default function UsersList() {
                         <Input
                             className='SearchBarSpaceShipsInput'
                             value={userRoleType}
-                            onChange={(e) => setUserRoleType(capitalizeFirstLetter(e.target.value))}
+                            onChange={(e) => setUserRoleType(e.target.value)}
                             placeholder="Kullanıcı Rolü"
                         />
                     </div>
@@ -175,7 +169,7 @@ export default function UsersList() {
                 </div>
             </div>
             <div className='userListBody'>
-                <TableListComp props={{ columns: columns, dataSource: usersFiltersData && usersFiltersData.length ? usersFiltersData : usersData }} text="users" pageSearchType={"users"} addButtonLabel={"Kullanıcı Ekle"} addFilterName={"Kullanıcı Filtreleme"} setPageOdata={setPageOdata} setPageSizeOdata={setPageSizeOdata} pageOdata={pageOdata} pageSizeOdata={pageSizeOdata} totalPageCount={totalPageCount} />
+                <TableListComp props={{ columns: columns, dataSource: usersFiltersData && usersFiltersData.length ? usersFiltersData : usersData }} text="users" pageSearchType={"users"} addButtonLabel={"Kullanıcı Ekle"} addFilterName={"Kullanıcı Filtreleme"} setPageOdata={setPageOdata} setPageSizeOdata={setPageSizeOdata} pageOdata={pageOdata} pageSizeOdata={pageSizeOdata} totalPageCount={totalPageCount}/>
                 {isModalOpen && (
                     <EditUserModal user={selectedUser} onCancel={handleModalClose} visible={isModalOpen} pageType={"users"} addEditTitle={"Kullanıcı Güncelleme"} userDelete={handleDeleteUser} />
                 )}

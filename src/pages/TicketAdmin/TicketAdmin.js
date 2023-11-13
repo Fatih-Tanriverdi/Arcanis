@@ -17,8 +17,8 @@ export default function TicketAdmin() {
     const [pageSizeOdata, setPageSizeOdata] = useState(10);
 
     const [seatNumber, setSeatNumber] = useState("");
-    const [creationDate, setCreationDate] = useState();
-    const [orderDate, setOrderDate] = useState();
+    const [creationDate, setCreationDate] = useState("");
+    const [orderDate, setOrderDate] = useState("");
     const [ticketAdminFilter, setTicketAdminFilter] = useState([]);
     const [totalPageCount, setTotalPageCount] = useState(1);
     const baseUrl = APImanager.getBaseURL();
@@ -106,6 +106,8 @@ export default function TicketAdmin() {
 
     async function handleFilterButtonClick() {
         const SeatNumber = parseInt(seatNumber);
+        const CreatedDate = creationDate ? new Date(creationDate).toISOString() : null;
+        const OrderDate = orderDate ? new Date(orderDate).toISOString() : null;
 
         const count = true;
         const top = pageSizeOdata;
@@ -113,31 +115,24 @@ export default function TicketAdmin() {
 
         const filters = {};
         if (SeatNumber) {
+
             filters.SeatNumber = SeatNumber;
         }
-        if (creationDate) {
-            filters.CreatedDate = new Date(creationDate).toISOString();
+        if (CreatedDate) {
+            filters.CreatedDate = { ge: CreatedDate };
         }
-        if (orderDate) {
-            filters.OrderDate = new Date(orderDate).toISOString();
+        if (OrderDate) {
+            filters.OrderDate = { ge: OrderDate };
         }
-        console.log(filters);
         const queryWithPaging = buildQuery({ filter: filters, count, top, skip });
         const url = `${baseUrl}/ticket-sales${queryWithPaging}`;
         const data = await fetchTicketsGet(url)
             .catch(err => {
                 console.log("API request failed", err);
             })
-
-        if (data !== undefined && data.value !== null) {
-            const totalPageCount = Math.ceil(data["@odata.count"]);
-            setTotalPageCount(totalPageCount);
-            setTicketAdminFilter(data.value);
-        }
-        else {
-            setTicketAdminFilter([]);
-        }
-        console.log(creationDate);
+        const totalPageCount = Math.ceil(data["@odata.count"]);
+        setTotalPageCount(totalPageCount);
+        setTicketAdminFilter(data.value);
     };
 
     return (

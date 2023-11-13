@@ -7,7 +7,7 @@ import { deletePlanet, fetchPlanetsGet } from '../../services/PlanetService';
 import EditModal from '../../components/EditModal/EditUserModal';
 import { RiArrowRightSLine } from 'react-icons/ri';
 import APImanager from '../../apiManager';
-import { Button, Input, Popover } from 'antd';
+import { Button, Input, Popover, Select } from 'antd';
 import buildQuery from 'odata-query';
 
 export default function UsersList() {
@@ -119,15 +119,9 @@ export default function UsersList() {
             .catch(err => {
                 console.log("API request failed", err);
             })
-
-        if (data !== undefined && data.value !== null) {
-            const totalPageCount = Math.ceil(data["@odata.count"]);
-            setTotalPageCount(totalPageCount);
-            setPlanetsFilteredData(data.value);
-        }
-        else {
-            setPlanetsFilteredData([]);
-        }
+        const totalPageCount = Math.ceil(data["@odata.count"]);
+        setTotalPageCount(totalPageCount);
+        setPlanetsFilteredData(data.value);
     };
 
     return (
