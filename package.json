@@ -22,7 +22,6 @@
     "react-scripts": "5.0.1",
     "react-spinners": "^0.13.8",
     "react-text-mask": "^5.5.0",
-    "react-vis": "^1.12.1",
     "redux": "^4.2.1",
     "web-vitals": "^2.1.4"
   },
@@ -49,5 +48,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "gh-pages": "^6.0.0"
   }
 }
