@@ -1,5 +1,5 @@
 const APIManager = {
-    baseURL: 'http://lambalog.com/api',
+    baseURL: 'https://lambalog.com/api',
 
     getBaseURL() {
         return this.baseURL;
