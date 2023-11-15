@@ -9,10 +9,8 @@ export function PageButton(props) {
         <div className='navigate'>
             <ul>
                 <li>
-                    <Link to={props.to}>
-                        <Button type='link' className={props.className} id={props.id} icon={props.icon} size="large" onClick={props.onClick}>
-                            <a href={props.href}>{props.text}</a>
-                        </Button>
+                    <Link type='link' to={props.to} className={props.className} id={props.id} icon={props.icon} size="large" onClick={props.onClick}>
+                        {props.text}
                     </Link>
                 </li>
             </ul>

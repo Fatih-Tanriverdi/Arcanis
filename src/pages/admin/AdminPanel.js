@@ -50,8 +50,6 @@ export default function AsideHeader() {
     useEffect(() => {
 
         const isFirstLogin = localStorage.getItem("isFirstLogin") === "true";
-
-        debugger;
         if (isFirstLogin) {
             localStorage.setItem("activeButton", "Anasayfa");
             localStorage.setItem("isFirstLogin", "false");

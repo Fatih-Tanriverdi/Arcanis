@@ -167,21 +167,25 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
+    color: #7465F2 !important;
 }
 
 .adminPanelButton>span>svg,
 .adminBtnExit>span>svg {
+    color: white !important;
     font-size: 1rem !important;
 }
 
 .adminPanelButton>a,
 .adminBtnExit>a {
+    color: white !important;
     display: none;
 }
 
 .adminBtnExit {
     display: flex;
-    justify-content: flex-;
+    justify-content: center;
     align-items: center;
 }
 
