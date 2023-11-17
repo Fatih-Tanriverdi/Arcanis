@@ -163,12 +163,18 @@
 
 /* BUTTON */
 
+.adminBtnPosition > a {
+    color: white !important;
+}
+
 .adminPanelButton {
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 1rem !important;
+    border-radius: 0.5rem;
 
-    color: #7465F2 !important;
+    color: white !important;
 }
 
 .adminPanelButton>span>svg,
@@ -187,6 +193,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    color: white !important;
 }
 
 .adminBtnExit:hover {

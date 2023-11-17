@@ -59,7 +59,6 @@ export default function App({ setPageAuthType, setIsModalOpen, setAccessToken })
         } else {
             loginAndNavigate(username, passwordInput, emailAddress);
             setAccessToken(localStorage.getItem('access-token'));
-            debugger;
             localStorage.setItem("isFirstLogin", "true");
             setIsModalOpen(true);
         }
@@ -110,7 +109,7 @@ export default function App({ setPageAuthType, setIsModalOpen, setAccessToken })
             </div>
             {loading && <ClipLoader color={"#7465F1"} />}
             <AuthButton text="Giriş Yap" onClick={handleLogin} />
-            <p>Henüz üye değil misiniz?</p>
+            <p className="forgetPasswordColor">Henüz üye değil misiniz?</p>
             <Button className='authModalRegisterButton' onClick={handleRegisterClick}>Üye Ol</Button>
         </div>
     );

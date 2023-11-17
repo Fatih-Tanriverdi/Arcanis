@@ -26,6 +26,10 @@
     width: 140%;
 }
 
+.ant-input {
+    color: white !important;
+}
+
 .forgetPasswordColor {
     color: white !important;
 }
@@ -81,6 +85,12 @@
 
 .ant-modal-close-x {
     color: white;
+}
+
+.authLoginContainer h1,
+.authLoginContainer h2,
+.authLoginContainer p {
+    color: white !important;
 }
 
 /* LOGIN CONTENT */

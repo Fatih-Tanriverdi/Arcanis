@@ -7,6 +7,8 @@ import { useEffect, useState } from "react";
 import Ticket from "../Ticket/Ticket";
 import PlanetDetails from "../PlanetDetails/PlanetDetails";
 import AuthModal from "../../components/AuthModal/AuthModal";
+import PasswordResetScreen from "../PasswordResetScreen/PasswordResetScreen";
+import NotFoundPage from "../NotFound/NotFound";
 
 export default function AsideHeader() {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -39,17 +41,19 @@ export default function AsideHeader() {
                             :
                             <a className="headerButtonStyle" onClick={() => handleButtonModalClick("Üye Girişi")}>Üye Girişi</a>
                         }
-                        <Link to="/hakkimizda" className="headerButtonStyle borderRL">Hakkımızda</Link>
-                        <Link to="/iletisim" className="headerButtonStyle">İletişim</Link>
+                        <Link to="/about" className="headerButtonStyle borderRL">Hakkımızda</Link>
+                        <Link to="/communication" className="headerButtonStyle">İletişim</Link>
                     </div>
                 </div>
             </article>
             <article>
                 <div className='customerPageBody' >
                     <Routes>
+                        <Route path="*" element={<NotFoundPage />} />
                         <Route path="/" element={<Ticket />} />
                         <Route path="/about" element={<About />} />
                         <Route path="/communication" element={<Iletisim />} />
+                        <Route path="/reset-password/:recoveryCode" element={<PasswordResetScreen />} />
                         <Route path="/planets" element={<Planets />} />
                         <Route path="/planet/:id" element={<PlanetDetails />} />
                     </Routes>

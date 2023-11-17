@@ -101,3 +101,28 @@ export const resetPassword = async (emailAddress) => {
     return "Şifre sıfırlama e-postası başarıyla gönderildi. Lütfen e-postanızı kontrol edin.";
 };
 /* ResetPassword */
+
+/* PasswordResetKey */
+export const passwordResetKey = async (password, rePassword, recoveryCode) => {
+    const baseUrl = APImanager.getBaseURL();
+
+    const response = await fetch(`${baseUrl}/users/reset-password`, {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        body: JSON.stringify({password, rePassword, recoveryCode})
+    });
+    const data = await response.json();
+
+    if (!response.ok) {
+        if (data.Messages) {
+            return data.Messages.join(", ");
+        } else {
+            return "Bir hata oluştu.";
+        }
+    }
+    return null;
+};
+/* PasswordResetKey */

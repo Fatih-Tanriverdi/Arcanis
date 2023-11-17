@@ -235,7 +235,7 @@ export default function MainPage() {
                         <div className='mainPageExpeditionsBody'>
                             <Space wrap>
                                 {expeditionsTotalCompleted && expeditionsTotalCompleted.rate !== undefined ? (
-                                    <Progress type="dashboard" size={180} percent={expeditionsTotalCompleted.rate.toFixed(2)} strokeColor={conicColors} />
+                                    <Progress type="dashboard" size={180} percent={expeditionsTotalCompleted.rate.toFixed()} strokeColor={conicColors} />
                                 ) : (
                                     <Progress type="dashboard" percent={0} strokeColor={conicColors} />
                                 )}

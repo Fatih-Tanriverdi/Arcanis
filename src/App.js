@@ -12,18 +12,22 @@ import Iletisim from "./pages/Communication/Iletisim";
 import PlanetDetails from "./pages/PlanetDetails/PlanetDetails";
 import Expedition from "./pages/Expedition/Expedition";
 import TicketAdmin from "./pages/TicketAdmin/TicketAdmin";
+import NotFoundPage from "./pages/NotFound/NotFound";
+import PasswordResetScreen from "./pages/PasswordResetScreen/PasswordResetScreen";
 
 export default function App() {
 
   return (
     <Routes>
-      <Route path="/" element={<Customer />}/>
-      <Route path="/*" element={<Customer />} />
-      <Route path="about" element={<About />} />
-      <Route path="ticket" element={<Ticket />} />
-      <Route path="communication" element={<Iletisim />} />
-      <Route path="planets" element={<Planets />} />
-      <Route path="/planet/:id" element={<PlanetDetails />} />
+      <Route path="*" element={<NotFoundPage />} />
+      <Route path="/" element={<Customer />}>
+        <Route path="about" element={<About />} />
+        <Route path="ticket" element={<Ticket />} />
+        <Route path="communication" element={<Iletisim />} />
+        <Route path="planets" element={<Planets />} />
+        <Route path="/planet/:id" element={<PlanetDetails />} />
+        <Route path="/reset-password/:recoveryCode" element={<PasswordResetScreen />} />
+      </Route>
       <Route path="admin/*" element={<AdminPanel />}>
         <Route path="userlist" element={<UsersList />} />
         <Route path="spaceships" element={<SpaceShips />} />

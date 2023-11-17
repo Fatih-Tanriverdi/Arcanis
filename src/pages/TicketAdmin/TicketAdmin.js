@@ -17,8 +17,8 @@ export default function TicketAdmin() {
     const [pageSizeOdata, setPageSizeOdata] = useState(10);
 
     const [seatNumber, setSeatNumber] = useState("");
-    const [creationDate, setCreationDate] = useState();
-    const [orderDate, setOrderDate] = useState();
+    const [orderDateStart, setOrderDateStart] = useState(null);
+    const [orderDateEnd, setOrderDateEnd] = useState(null);
     const [ticketAdminFilter, setTicketAdminFilter] = useState([]);
     const [totalPageCount, setTotalPageCount] = useState(1);
     const baseUrl = APImanager.getBaseURL();
@@ -33,10 +33,9 @@ export default function TicketAdmin() {
             ),
         },
         {
-            title: 'OLUŞTURMA TARİHİ',
-            dataIndex: 'CreatedDate',
-            key: 'CreatedDate',
-            render: (expeditionDate, record) => formatDate(expeditionDate)
+            title: 'Müşteri Adı',
+            key: 'FullName',
+            render: (data) => `${data.User.Name} ${data.User.Surname}`
         },
         {
             title: 'SEFER ID',
@@ -96,41 +95,38 @@ export default function TicketAdmin() {
         setIsModalOpen(false);
     };
 
-    const onChangeCreationDate = (date, dateString) => {
-        setCreationDate(dateString);
+    const onChangeOrderDateStart = (date, dateString) => {
+        setOrderDateStart(dateString);
     };
 
-    const onChangeOrderDate = (date, dateString) => {
-        setOrderDate(dateString);
+    const onChangeOrderDateEnd = (date, dateString) => {
+        setOrderDateEnd(dateString);
     };
 
     async function handleFilterButtonClick() {
-        const SeatNumber = parseInt(seatNumber);
-        const CreatedDate = creationDate ? new Date(creationDate).toISOString() : null;
-        const OrderDate = orderDate ? new Date(orderDate).toISOString() : null;
 
         const count = true;
         const top = pageSizeOdata;
         const skip = (pageOdata - 1) * pageSizeOdata;
+        const expand = 'User';
 
         const filters = {};
-        if (SeatNumber) {
 
-            filters.SeatNumber = SeatNumber;
+        if (seatNumber > 0) {
+            filters.SeatNumber = parseInt(seatNumber);
         }
-        if (creationDate) {
-            filters.CreatedDate = new Date(creationDate).toISOString();
+        if (orderDateStart) {
+            filters.OrderDate = { ge: new Date(orderDateStart) };
         }
-        if (orderDate) {
-            filters.OrderDate = new Date(orderDate).toISOString();
+        if (orderDateEnd) {
+            filters.OrderDate = { le: new Date(orderDateEnd) };
         }
+
         console.log(filters);
-        const queryWithPaging = buildQuery({ filter: filters, count, top, skip });
+        const queryWithPaging = buildQuery({ filter: filters, count, top, skip, expand });
         const url = `${baseUrl}/ticket-sales${queryWithPaging}`;
         const data = await fetchTicketsGet(url)
-            .catch(err => {
-                console.log("API request failed", err);
-            })
+            .catch(err => { console.log("API request failed", err); })
         if (data !== undefined && data.value !== null) {
             const totalPageCount = Math.ceil(data["@odata.count"]);
             setTotalPageCount(totalPageCount);
@@ -139,7 +135,6 @@ export default function TicketAdmin() {
         else {
             setTicketAdminFilter([]);
         }
-        console.log(creationDate);
     };
 
     return (
@@ -150,10 +145,10 @@ export default function TicketAdmin() {
                 </div>
                 <div className='searchBarTicketSelectContainer'>
                     <div className='SelectRolePosition'>
-                        <DatePicker onChange={onChangeCreationDate} placeholder='Oluşturma Tarihi' />
+                        <DatePicker onChange={onChangeOrderDateStart} placeholder='Sipariş Başlangıç Tarihi' />
                     </div>
                     <div className='SelectRolePosition'>
-                        <DatePicker onChange={onChangeOrderDate} placeholder='Sipariş Tarihi' />
+                        <DatePicker onChange={onChangeOrderDateEnd} placeholder='Sipariş Bitiş Tarihi' />
                     </div>
                     <div className='SelectRolePosition'>
                         <Input
