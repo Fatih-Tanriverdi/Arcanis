@@ -8,8 +8,8 @@ import EditUserModal from '../../components/EditModal/EditUserModal';
 import { RiArrowRightSLine } from 'react-icons/ri';
 import { fetchPlanetsGet } from '../../services/PlanetService';
 import { fetchRocketsGet } from '../../services/RocketService';
-import APImanager from '../../apiManager';
-import buildQuery, { guid } from 'odata-query';
+import Config from "../../config-file.json"
+import buildQuery from 'odata-query';
 import { Button, DatePicker, Input, Select } from 'antd';
 
 export default function UsersList() {
@@ -30,7 +30,7 @@ export default function UsersList() {
     const [ticketPrice, setTicketPrice] = useState("");
     const [arrivalDateFilter, setArrivalDateFilter] = useState(null);
     const [expeditionDateFilter, setExpeditionDateFilter] = useState(null);
-    const baseUrl = APImanager.getBaseURL();
+    
     const columns = [
         {
             title: '',
@@ -62,8 +62,9 @@ export default function UsersList() {
             key: 'TicketPrice',
             dataIndex: 'TicketPrice',
             render: (_, record) => {
-                const roundedTicketPrice = record.ticketPrice;
-                return roundedTicketPrice;
+                const roundedTicketPrice = record.TicketPrice.toFixed(2);
+                const formattedTicketPrice = new Intl.NumberFormat('tr-TR', { style: 'currency', currency: 'TRY' }).format(roundedTicketPrice);
+                return formattedTicketPrice;
             },
         },
         {
@@ -111,7 +112,7 @@ export default function UsersList() {
     useEffect(() => {
         async function fetchRocketData() {
             try {
-                const url = `${baseUrl}/lookups/space-vehicles`;
+                const url = `${Config.SERVICE_URL}/lookups/space-vehicles`;
                 const data = await fetchRocketsGet(url);
                 setSpaceVehicleData(data);
             } catch (error) {
@@ -124,7 +125,7 @@ export default function UsersList() {
     useEffect(() => {
         async function fetchPlanetData() {
             try {
-                const url = `${baseUrl}/lookups/planets`;
+                const url = `${Config.SERVICE_URL}/lookups/planets`;
                 const data = await fetchPlanetsGet(url);
                 setPlanetData(data);
             } catch (error) {
@@ -215,7 +216,7 @@ export default function UsersList() {
 
         const queryWithPaging = buildQuery({ filter: filterObject, count, top, skip });
         console.log(filterObject);
-        const url = `${baseUrl}/expenditions${queryWithPaging}`;
+        const url = `${Config.SERVICE_URL}/expenditions${queryWithPaging}`;
         const data = await fetchExpenditionsGet(url)
             .catch(err => { console.log("API request failed", err); })
         if (data !== undefined && data.value !== null) {

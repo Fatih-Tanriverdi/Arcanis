@@ -4,17 +4,17 @@ import { Link, useParams } from 'react-router-dom';
 import { IoIosArrowBack } from 'react-icons/io';
 import { fetchPlanetsGet } from '../../services/PlanetService';
 import { ClipLoader } from 'react-spinners';
-import APImanager from '../../apiManager';
+import Config from "../../config-file.json"
 
 export default function PlanetDetails() {
     const [planetDetails, setPlanetDetails] = useState(null);
-    const baseUrl = APImanager.getBaseURL();
+    
     const { id } = useParams();
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const url = `${baseUrl}/planets/${id}`
+                const url = `${Config.SERVICE_URL}/planets/${id}`
                 const data = await fetchPlanetsGet(url);
                 setPlanetDetails(data);
             } catch (error) {

@@ -1,4 +1,4 @@
-import APImanager from '../apiManager';
+import Config from "../config-file.json"
 
 /* UsersDataGet */
 export async function fetchTicketsGet(url) {
@@ -26,10 +26,10 @@ export async function fetchTicketsGet(url) {
 /* DeleteRocket */
 
 export async function deleteTicket(id) {
-    const baseUrl = APImanager.getBaseURL();
+    
     try {
         const localStorageToken = localStorage.getItem('access-token');
-        const response = await fetch(`${baseUrl}/ticket-sales/${id}`, {
+        const response = await fetch(`${Config.SERVICE_URL}/ticket-sales/${id}`, {
             method: "DELETE",
             headers: {
                 'Content-Type': 'application/json',
@@ -54,10 +54,10 @@ export async function deleteTicket(id) {
 /* putExpedition */
 
 export async function putTicket(ticketSalesData) {
-    const baseUrl = APImanager.getBaseURL();
+    
     try {
         const localStorageToken = localStorage.getItem('access-token');
-        const response = await fetch(`${baseUrl}/ticket-sales`, {
+        const response = await fetch(`${Config.SERVICE_URL}/ticket-sales`, {
             method: "PUT",
             headers: {
                 'Content-Type': 'application/json',

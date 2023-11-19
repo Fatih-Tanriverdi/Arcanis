@@ -1,7 +1,7 @@
 .authRegisterContainer .ınputRegister,
 .authRegisterContainer .ınputRegisterPassword {
     background-color: transparent !important;
-    width: 40rem !important;
+    width: 100% !important;
     height: 3rem !important;
     margin: 0.7rem;
     border-radius: 0;

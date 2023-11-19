@@ -3,11 +3,20 @@
     border-left: 0.1rem solid white !important;
 }
 
-
 /** first-color =  #273046  **/
 /** second-color =  #161D30  **/
 /** third-color =  #5D5E9C  **/
 /** fourth-color =  #858B9B  **/
+
+/* Mouse ile text seçimi engelleme */
+body {
+    -webkit-user-select: none;
+    /* Safari */
+    -ms-user-select: none;
+    /* IE 10 and IE 11 */
+    user-select: none;
+    /* Standard syntax */
+}
 
 #customerPageContainer {
     display: flex;
@@ -63,17 +72,13 @@
     cursor: pointer;
 }
 
-.headerButtonContainer > a:hover {
+.headerButtonContainer>a:hover {
     color: #7465F2;
 }
 
 /* HEADER */
 
 
-@media screen and (min-width: 700px) {
+@media screen and (min-width: 700px) {}
 
-}
-
-@media screen and (min-width: 1200px) {
-
-}
+@media screen and (min-width: 1200px) {}

@@ -1,0 +1,19 @@
+.buyTicketModal {
+    width: 80% !important;
+    color: white !important;
+}
+
+.buyTicketModal .ant-modal-content,
+.buyTicketModal .ant-modal-header {
+    background-color: #273046 !important;
+    color: white !important;
+}
+
+.buyTicketModalButton {
+    background-color: #7465F2 !important;
+}
+
+.buyTicketModalButton:hover {
+    background-color: #273046 !important;
+    border-color: #7465F2 !important;
+}

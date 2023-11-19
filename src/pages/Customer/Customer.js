@@ -9,6 +9,7 @@ import PlanetDetails from "../PlanetDetails/PlanetDetails";
 import AuthModal from "../../components/AuthModal/AuthModal";
 import PasswordResetScreen from "../PasswordResetScreen/PasswordResetScreen";
 import NotFoundPage from "../NotFound/NotFound";
+import BuyTicket from "../BuyTicket/BuyTicket";
 
 export default function AsideHeader() {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -55,6 +56,7 @@ export default function AsideHeader() {
                         <Route path="/communication" element={<Iletisim />} />
                         <Route path="/reset-password/:recoveryCode" element={<PasswordResetScreen />} />
                         <Route path="/planets" element={<Planets />} />
+                        <Route path="buyticket" element={<BuyTicket />} />
                         <Route path="/planet/:id" element={<PlanetDetails />} />
                     </Routes>
                 </div>

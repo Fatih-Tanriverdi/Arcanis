@@ -11,7 +11,7 @@ import { Popover, Progress, Space } from 'antd';
 import { fetchUsersDataGet } from "../../services/userService";
 import { fetchPlanetsGet } from '../../services/PlanetService';
 import { fetchExpenditionsGet } from '../../services/ExpeditionService';
-import APImanager from '../../apiManager';
+import Config from "../../config-file.json"
 
 export default function MainPage() {
 
@@ -19,7 +19,7 @@ export default function MainPage() {
     const [planetsMostPopulerData, setPlanetsMostPopulerData] = useState([]);
     const [expeditionsTotalCompleted, setExpeditionsTotalCompleted] = useState([]);
     const [totalAmountsCompleted, setTotalAmountsCompleted] = useState([]);
-    const baseUrl = APImanager.getBaseURL();
+    
 
     const progresColor = [
         { color: '#7366F0' },
@@ -44,7 +44,7 @@ export default function MainPage() {
 
     /* Total */
     async function fetchTotalMostTicketsData() {
-        const url = `${baseUrl}/statistics/total-amounts`;
+        const url = `${Config.SERVICE_URL}/statistics/total-amounts`;
         const data = await fetchUsersDataGet(url)
             .catch(error => {
                 console.error('API request failed:', error);
@@ -55,7 +55,7 @@ export default function MainPage() {
     /* Total */
     /* Ticket */
     async function fetchUsersMostTicketsData() {
-        const url = `${baseUrl}/statistics/users-who-purchased-most-tickets`;
+        const url = `${Config.SERVICE_URL}/statistics/users-who-purchased-most-tickets`;
         const data = await fetchUsersDataGet(url)
             .catch(error => {
                 console.error('API request failed:', error);
@@ -65,7 +65,7 @@ export default function MainPage() {
     }
 
     const handleRefreshUsersMostTickets = async () => {
-        const url = `${baseUrl}/statistics/users-who-purchased-most-tickets`;
+        const url = `${Config.SERVICE_URL}/statistics/users-who-purchased-most-tickets`;
         const data = await fetchUsersDataGet(url).catch((error) => {
             console.error('API request failed:', error);
             return [];
@@ -75,7 +75,7 @@ export default function MainPage() {
     /* Ticket */
     /* Expedetion */
     async function fetcTotalExpeditionsData() {
-        const url = `${baseUrl}/statistics/completed-expeditions`;
+        const url = `${Config.SERVICE_URL}/statistics/completed-expeditions`;
         const data = await fetchExpenditionsGet(url)
             .catch(error => {
                 console.error('API request failed:', error);
@@ -85,7 +85,7 @@ export default function MainPage() {
     }
 
     const handleRefreshExpeditions = async () => {
-        const url = `${baseUrl}/statistics/completed-expeditions`;
+        const url = `${Config.SERVICE_URL}/statistics/completed-expeditions`;
         const data = await fetchExpenditionsGet(url).catch((error) => {
             console.error('API request failed:', error);
             return [];
@@ -95,7 +95,7 @@ export default function MainPage() {
     /* Expedetion */
     /* Planet */
     async function fetchUsersMostPlanetsData() {
-        const url = `${baseUrl}/statistics/most-traveled-planet`;
+        const url = `${Config.SERVICE_URL}/statistics/most-traveled-planet`;
         const data = await fetchPlanetsGet(url)
             .catch(error => {
                 console.error('API request failed:', error);
@@ -105,7 +105,7 @@ export default function MainPage() {
     }
 
     const handleRefreshPlanetsMostPopular = async () => {
-        const url = `${baseUrl}/statistics/most-traveled-planet`;
+        const url = `${Config.SERVICE_URL}/statistics/most-traveled-planet`;
         const data = await fetchPlanetsGet(url).catch((error) => {
             console.error('API request failed:', error);
             return [];

@@ -1,4 +1,4 @@
-import APImanager from '../apiManager';
+import Config from "../config-file.json"
 
 /* FetchRocketsGet */
 export async function fetchRocketsGet(url) {
@@ -56,10 +56,10 @@ export async function fetchRocketsPost(valuesRockets, url) {
 /* DeleteRocket */
 
 export async function deleteRocket(id) {
-    const baseUrl = APImanager.getBaseURL();
+    
     try {
         const localStorageToken = localStorage.getItem('access-token');
-        const response = await fetch(`${baseUrl}/space-vehicles/${id}`, {
+        const response = await fetch(`${Config.SERVICE_URL}/space-vehicles/${id}`, {
             method: "DELETE",
             headers: {
                 'Content-Type': 'application/json',
@@ -84,10 +84,10 @@ export async function deleteRocket(id) {
 /* putRocket */
 
 export async function putRocket(spaceShipData) {
-    const baseUrl = APImanager.getBaseURL();
+    
     try {
         const localStorageToken = localStorage.getItem('access-token');
-        const response = await fetch(`${baseUrl}/space-vehicles`, {
+        const response = await fetch(`${Config.SERVICE_URL}/space-vehicles`, {
             method: "PUT",
             headers: {
                 'Content-Type': 'application/json',

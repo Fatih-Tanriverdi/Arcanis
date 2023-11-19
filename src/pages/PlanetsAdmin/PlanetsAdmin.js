@@ -6,7 +6,7 @@ import { TableListComp } from '../../components/TableListComp/TableListComp';
 import { deletePlanet, fetchPlanetsGet } from '../../services/PlanetService';
 import EditModal from '../../components/EditModal/EditUserModal';
 import { RiArrowRightSLine } from 'react-icons/ri';
-import APImanager from '../../apiManager';
+import Config from "../../config-file.json"
 import { Button, Input, Popover } from 'antd';
 import buildQuery from 'odata-query';
 
@@ -22,7 +22,7 @@ export default function UsersList() {
     const [planetsFilteredData, setPlanetsFilteredData] = useState([]);
     const [totalPageCount, setTotalPageCount] = useState(1);
 
-    const baseUrl = APImanager.getBaseURL();
+    
     const columns = [
         {
             title: '',
@@ -114,7 +114,7 @@ export default function UsersList() {
         }
 
         const queryWithPaging = buildQuery({ filter: filters });
-        const url = `${baseUrl}/planets${queryWithPaging}`;
+        const url = `${Config.SERVICE_URL}/planets${queryWithPaging}`;
         const data = await fetchPlanetsGet(url)
             .catch(err => {
                 console.log("API request failed", err);

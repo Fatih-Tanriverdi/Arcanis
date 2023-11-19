@@ -236,7 +236,6 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
     margin-bottom: auto;
     margin-left: 1rem;
 }

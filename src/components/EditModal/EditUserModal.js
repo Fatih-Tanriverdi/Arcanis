@@ -6,7 +6,7 @@ import { fetchRocketsGet, putRocket } from '../../services/RocketService';
 import { fetchPlanetsGet, putPlanet } from '../../services/PlanetService';
 import { putExpedition } from '../../services/ExpeditionService';
 import { putTicket } from '../../services/TicketService';
-import APImanager from '../../apiManager';
+import Config from "../../config-file.json"
 
 export default function EditUserModal({ user, rocket, planet, ticket, expendition, onSave, onCancel, visible, pageType, addEditTitle, userDelete, rocketDelete, planetDelete, expeditionDelete, ticketDelete }) {
     const [editedData, setEditedData] = useState(user);
@@ -14,12 +14,9 @@ export default function EditUserModal({ user, rocket, planet, ticket, expenditio
     const [editPlanet, setEditPlanet] = useState(planet);
     const [editExpedition, setEditExpedition] = useState(expendition);
     const [editTicket, setEditTicket] = useState(ticket);
-    const baseUrl = APImanager.getBaseURL();
-
     const [errorText, setErrorText] = useState("");
     const [spaceVehicleData, setSpaceVehicleData] = useState([]);
     const [planetData, setPlanetData] = useState([]);
-
     const [spaceVehicleId, setSelectedSpaceVehicle] = useState("Space Vehicle");
     const [departurePlanetId, setSelectedDeparturePlanet] = useState("Departure Planet");
     const [arrivalPlanetId, setSelectedArrivalPlanet] = useState("Arrival Planet");
@@ -156,7 +153,7 @@ export default function EditUserModal({ user, rocket, planet, ticket, expenditio
     useEffect(() => {
         async function fetchPlanetData() {
             try {
-                const url = `${baseUrl}/lookups/planets`;
+                const url = `${Config.SERVICE_URL}/lookups/planets`;
                 const data = await fetchPlanetsGet(url);
                 setPlanetData(data);
             } catch (error) {
@@ -169,7 +166,7 @@ export default function EditUserModal({ user, rocket, planet, ticket, expenditio
     useEffect(() => {
         async function fetchRocketData() {
             try {
-                const url = `${baseUrl}/lookups/space-vehicles`;
+                const url = `${Config.SERVICE_URL}/lookups/space-vehicles`;
                 const data = await fetchRocketsGet(url);
                 setSpaceVehicleData(data);
             } catch (error) {

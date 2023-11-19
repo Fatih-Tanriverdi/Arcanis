@@ -1,4 +1,4 @@
-import APImanager from '../apiManager';
+import Config from "../config-file.json"
 import axios from 'axios';
 
 /* FetchPlanetsGet */
@@ -44,10 +44,10 @@ export async function fetchPlanetsPost(valuesPlanets, url) {
 /* putPlanet */
 
 export async function putPlanet(planets) {
-    const baseUrl = APImanager.getBaseURL();
+    
     try {
         const localStorageToken = localStorage.getItem('access-token');
-        const response = await axios.put(`${baseUrl}/planets`, planets, {
+        const response = await axios.put(`${Config.SERVICE_URL}/planets`, planets, {
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
@@ -65,10 +65,10 @@ export async function putPlanet(planets) {
 /* DeletePlanet */
 
 export async function deletePlanet(id) {
-    const baseUrl = APImanager.getBaseURL();
+    
     try {
         const localStorageToken = localStorage.getItem('access-token');
-        const response = await axios.delete(`${baseUrl}/planets/${id}`, {
+        const response = await axios.delete(`${Config.SERVICE_URL}/planets/${id}`, {
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',

@@ -5,7 +5,7 @@ import { TableListComp } from "../../components/TableListComp/TableListComp"
 import EditModal from '../../components/EditModal/EditUserModal';
 import { RiArrowRightSLine } from 'react-icons/ri';
 import { deleteTicket, fetchTicketsGet } from '../../services/TicketService';
-import APImanager from '../../apiManager';
+import Config from "../../config-file.json"
 import buildQuery from 'odata-query';
 import { Button, DatePicker, Input } from 'antd';
 
@@ -21,7 +21,7 @@ export default function TicketAdmin() {
     const [orderDateEnd, setOrderDateEnd] = useState(null);
     const [ticketAdminFilter, setTicketAdminFilter] = useState([]);
     const [totalPageCount, setTotalPageCount] = useState(1);
-    const baseUrl = APImanager.getBaseURL();
+    
 
     const columns = [
         {
@@ -124,7 +124,7 @@ export default function TicketAdmin() {
 
         console.log(filters);
         const queryWithPaging = buildQuery({ filter: filters, count, top, skip, expand });
-        const url = `${baseUrl}/ticket-sales${queryWithPaging}`;
+        const url = `${Config.SERVICE_URL}/ticket-sales${queryWithPaging}`;
         const data = await fetchTicketsGet(url)
             .catch(err => { console.log("API request failed", err); })
         if (data !== undefined && data.value !== null) {

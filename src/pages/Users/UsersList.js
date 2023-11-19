@@ -5,9 +5,9 @@ import { TableListComp } from "../../components/TableListComp/TableListComp";
 import { deleteUsers, fetchUsersDataGet } from "../../services/userService";
 import { RiArrowRightSLine } from 'react-icons/ri';
 import EditUserModal from "../../components/EditModal/EditUserModal";
-import APImanager from '../../apiManager';
+import Config from "../../config-file.json"
 import buildQuery from 'odata-query';
-import { Button, Input } from "antd";
+import { Button, Select } from "antd";
 
 export default function UsersList() {
     const [selectedUser, setSelectedUser] = useState(null);
@@ -17,10 +17,10 @@ export default function UsersList() {
     const [pageSizeOdata, setPageSizeOdata] = useState(10);
 
     const [usersFiltersData, setUsersFiltersData] = useState([]);
-    const [userRoleType, setUserRoleType] = useState("");
-    const [isActive, setIsActive] = useState("");
+    const [userRoleType, setUserRoleType] = useState();
+    const [isActive, setIsActive] = useState();
     const [totalPageCount, setTotalPageCount] = useState(1);
-    const baseUrl = APImanager.getBaseURL();
+
     const columns = [
         {
             key: 'Id',
@@ -83,6 +83,16 @@ export default function UsersList() {
         handleFilterButtonClick();
     }, [pageOdata, pageSizeOdata]);
 
+    const userRole = {
+        Admin: "Admin",
+        Customer: "Customer"
+    };
+
+    const userActive = {
+        Aktif: true,
+        Pasif: false
+    }
+
     const handleDeleteUser = (Id) => {
         const confirmDelete = window.confirm('Kullanıcıyı silmek istediğine emin misin?');
         if (!confirmDelete) {
@@ -110,10 +120,6 @@ export default function UsersList() {
         setIsModalOpen(false);
     };
 
-    function capitalizeFirstLetter(string) {
-        return string.charAt(0).toUpperCase() + string.slice(1);
-    }
-
     async function handleFilterButtonClick() {
         const isActiveValue = isActive;
         const userRoleTypeValue = userRoleType;
@@ -123,17 +129,16 @@ export default function UsersList() {
         const skip = (pageOdata - 1) * pageSizeOdata;
         const filters = {};
 
-        if (isActiveValue === "Aktif") {
-            filters.IsActive = true;
-        } else if (isActiveValue === "Aktif Değil") {
-            filters.IsActive = false;
+        if (isActiveValue) {
+            filters.IsActive = isActiveValue;
         }
 
         if (userRoleTypeValue) {
             filters.UserRoleType = userRoleTypeValue;
         }
+
         const queryWithPaging = buildQuery({ filter: filters, count, top, skip });
-        const url = `${baseUrl}/users${queryWithPaging}`;
+        const url = `${Config.SERVICE_URL}/users${queryWithPaging}`;
         try {
             const data = await fetchUsersDataGet(url);
             if (data && data["@odata.count"] !== undefined) {
@@ -156,20 +161,32 @@ export default function UsersList() {
                 </div>
                 <div className='SelectRolePosition'>
                     <div className='searchInput'>
-                        <Input
+                        <Select
                             className='SearchBarSpaceShipsInput'
                             value={userRoleType}
-                            onChange={(e) => setUserRoleType(capitalizeFirstLetter(e.target.value))}
+                            onChange={(value) => setUserRoleType(value)}
                             placeholder="Kullanıcı Rolü"
-                        />
+                        >
+                            {Object.entries(userRole).map(([key, value]) => (
+                                <Select.Option key={key} value={value}>
+                                    {key}
+                                </Select.Option>
+                            ))}
+                        </Select>
                     </div>
                     <div className='searchInput'>
-                        <Input
+                        <Select
                             className='SearchBarSpaceShipsInput'
                             value={isActive}
-                            onChange={(e) => setIsActive(e.target.value)}
+                            onChange={(value) => setIsActive(value)}
                             placeholder="Kullanıcı Durumu"
-                        />
+                        >
+                            {Object.entries(userActive).map(([key, value]) => (
+                                <Select.Option key={key} value={value}>
+                                    {key}
+                                </Select.Option>
+                            ))}
+                        </Select>
                     </div>
                     <Button className='SearchBarFilterBtn' onClick={handleFilterButtonClick}>Filtrele</Button>
                 </div>

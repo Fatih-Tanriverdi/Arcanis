@@ -6,7 +6,7 @@ import { deleteRocket, fetchRocketsGet } from '../../services/RocketService';
 import EditModal from '../../components/EditModal/EditUserModal';
 import { RiArrowRightSLine } from 'react-icons/ri';
 import { Button, Input, Popover } from 'antd';
-import APImanager from '../../apiManager';
+import Config from "../../config-file.json"
 import buildQuery from 'odata-query';
 
 export default function SpaceShips() {
@@ -25,7 +25,7 @@ export default function SpaceShips() {
     const [minAgeLimitFilter, setMinAgeLimitFilter] = useState("");
     const [search, setSearch] = useState("");
     const [totalPageCount, setTotalPageCount] = useState(1);
-    const baseUrl = APImanager.getBaseURL();
+    
 
     const columns = [
         {
@@ -153,7 +153,7 @@ export default function SpaceShips() {
         }
 
         const queryWithFilters = buildQuery({ count, filter: filters, top, skip });
-        const url = `${baseUrl}/space-vehicles${queryWithFilters}`;
+        const url = `${Config.SERVICE_URL}/space-vehicles${queryWithFilters}`;
         const data = await fetchRocketsGet(url)
             .catch(err => {
                 console.log("API request failed", err);

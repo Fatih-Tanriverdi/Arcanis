@@ -6,13 +6,12 @@ import { fetchRocketsGet, fetchRocketsPost } from '../../services/RocketService'
 import { fetchPlanetsGet, fetchPlanetsPost } from '../../services/PlanetService';
 import { fetchExpeditionPost } from '../../services/ExpeditionService';
 import { fetchUsersPost } from '../../services/userService';
-import APImanager from '../../apiManager';
+import Config from "../../config-file.json"
 
 export function ModelComponent({ isModalVisible, onCancel, modalContent, addTitle }) {
     const [errorMessage, setErrorMessage] = useState(null);
     const [spaceVehicleData, setSpaceVehicleData] = useState([]);
     const [planetData, setPlanetData] = useState([]);
-    const baseUrl = APImanager.getBaseURL();
 
     const [selectedSpaceVehicle, setSelectedSpaceVehicle] = useState("Uzay Araçları");
     const [selectedDeparturePlanet, setSelectedDeparturePlanet] = useState("Kalkış Gezegeni");
@@ -140,7 +139,7 @@ export function ModelComponent({ isModalVisible, onCancel, modalContent, addTitl
                 setErrorMessage(errors[field]);
             }
         } else {
-            const url = `${baseUrl}/space-vehicles`;
+            const url = `${Config.SERVICE_URL}/space-vehicles`;
             try {
                 const data = await fetchRocketsPost(valuesRockets, url);
                 console.log(data);
@@ -153,7 +152,7 @@ export function ModelComponent({ isModalVisible, onCancel, modalContent, addTitl
     useEffect(() => {
         async function fetchRocketData() {
             try {
-                const url = `${baseUrl}/lookups/space-vehicles`;
+                const url = `${Config.SERVICE_URL}/lookups/space-vehicles`;
                 const data = await fetchRocketsGet(url);
                 setSpaceVehicleData(data);
             } catch (error) {
@@ -212,7 +211,7 @@ export function ModelComponent({ isModalVisible, onCancel, modalContent, addTitl
             return;
         }
 
-        const url = `${baseUrl}/users`;
+        const url = `${Config.SERVICE_URL}/users`;
         try {
             const data = await fetchUsersPost(valuesUsers, url);
             console.log(data);
@@ -244,7 +243,7 @@ export function ModelComponent({ isModalVisible, onCancel, modalContent, addTitl
                 setErrorMessage(errors[field]);
             }
         } else {
-            const url = `${baseUrl}/planets`;
+            const url = `${Config.SERVICE_URL}/planets`;
             try {
                 const data = await fetchPlanetsPost(valuesPlanets, url);
                 console.log(data);
@@ -257,7 +256,7 @@ export function ModelComponent({ isModalVisible, onCancel, modalContent, addTitl
     useEffect(() => {
         async function fetchPlanetData() {
             try {
-                const url = `${baseUrl}/lookups/planets`;
+                const url = `${Config.SERVICE_URL}/lookups/planets`;
                 const data = await fetchPlanetsGet(url);
                 setPlanetData(data);
             } catch (error) {
@@ -270,7 +269,7 @@ export function ModelComponent({ isModalVisible, onCancel, modalContent, addTitl
 
     /* EXPEDITION */
     const expeditionsPost = async () => {
-        const url = `${baseUrl}/expenditions`;
+        const url = `${Config.SERVICE_URL}/expenditions`;
         const formattedExpeditionDate = new Date(valuesExpeditions.expeditionDate).toISOString();
         const formattedArrivalDate = new Date(valuesExpeditions.arrivalDate).toISOString();
 

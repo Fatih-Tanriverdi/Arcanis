@@ -1,5 +1,5 @@
 .authBtn {
-    padding-top: 2.5rem;
+    padding-top: 2rem;
 }
 
 .authBtn>button {
@@ -9,9 +9,9 @@
     font-size: 2rem;
     cursor: pointer;
     border: none;
-    width: 40rem !important;
+    width: 30rem !important;
     height: 4rem;
-    margin: 1rem;
+    margin: 2rem 0rem 2rem 0rem;
     color: white;
 }
 

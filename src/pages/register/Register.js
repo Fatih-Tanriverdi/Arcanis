@@ -104,9 +104,14 @@ export default function Register({ setPageAuthType }) {
                 {successMessage && <div className="successMessage">{successMessage}</div>}
             </div>
             {loading && <ClipLoader color={"#7465F1"} />}
+            <p>
+            Zaten bir hesabın var mı? &nbsp;
+            <span>
             <Link onClick={handleRegisterClick} className="accountRegister">
-                <a href="authLogin">Zaten bir hesabın var mı?</a>
+                Giriş yap
             </Link>
+            </span>
+            </p>
         </div>
     );
 }

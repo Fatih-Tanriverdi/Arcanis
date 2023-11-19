@@ -1,4 +1,4 @@
-import APImanager from '../apiManager';
+import Config from "../config-file.json"
 
 /* UsersDataGet */
 export async function fetchUsersDataGet(url) {
@@ -55,10 +55,10 @@ export async function fetchUsersPost(valuesUsers, url) {
 /* DeleteUsers */
 
 export async function deleteUsers(id) {
-    const baseUrl = APImanager.getBaseURL();
+    
     try {
         const localStorageToken = localStorage.getItem('access-token');
-        const response = await fetch(`${baseUrl}/users/${id}`, {
+        const response = await fetch(`${Config.SERVICE_URL}/users/${id}`, {
             method: "DELETE",
             headers: {
                 'Content-Type': 'application/json',
@@ -83,10 +83,10 @@ export async function deleteUsers(id) {
 /* putUsers */
 
 export async function putUsers(userData) {
-    const baseUrl = APImanager.getBaseURL();
+    
     try {
         const localStorageToken = localStorage.getItem('access-token');
-        const response = await fetch(`${baseUrl}/users`, {
+        const response = await fetch(`${Config.SERVICE_URL}/users`, {
             method: "PUT",
             headers: {
                 'Content-Type': 'application/json',

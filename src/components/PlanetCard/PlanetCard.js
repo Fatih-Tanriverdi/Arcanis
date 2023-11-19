@@ -3,16 +3,15 @@ import './PlanetCard.css';
 import { Link } from 'react-router-dom';
 import { fetchPlanetsGet } from '../../services/PlanetService';
 import { ClipLoader } from 'react-spinners';
-import APImanager from '../../apiManager';
+import Config from "../../config-file.json"
 
 export function PlanetCard({ defaultImage }) {
     const [planets, setPlanets] = useState([]);
     const [loading, setLoading] = useState(true);
-    const baseUrl = APImanager.getBaseURL();
 
     useEffect(() => {
         async function getPlanets() {
-            const url = `${baseUrl}/planets`;
+            const url = `${Config.SERVICE_URL}/planets`;
             const data = await fetchPlanetsGet(url)
                 .catch(error => {
                     console.error('API request failed:', error);

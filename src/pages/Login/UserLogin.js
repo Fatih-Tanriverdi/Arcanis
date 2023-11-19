@@ -1,9 +1,9 @@
 import "./UserLogin.css";
 import AuthButton from "../../components/buttonLogin/AuthButton.js";
 import "../../components/authInput/AuthInput.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,Link } from "react-router-dom";
 import { useState } from "react";
-import { Button, Checkbox, Input } from 'antd';
+import { Checkbox, Input } from 'antd';
 import { login } from '../../services/authService.js';
 import { AiOutlineUser } from "react-icons/ai";
 import { RiLockPasswordLine } from "react-icons/ri";
@@ -109,8 +109,7 @@ export default function App({ setPageAuthType, setIsModalOpen, setAccessToken })
             </div>
             {loading && <ClipLoader color={"#7465F1"} />}
             <AuthButton text="Giriş Yap" onClick={handleLogin} />
-            <p className="forgetPasswordColor">Henüz üye değil misiniz?</p>
-            <Button className='authModalRegisterButton' onClick={handleRegisterClick}>Üye Ol</Button>
+            <p className="forgetPasswordColor">Henüz üye değil misiniz? <Link onClick={handleRegisterClick}>Üye ol</Link></p>
         </div>
     );
 }

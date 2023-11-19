@@ -1,4 +1,4 @@
-import APImanager from '../apiManager';
+import Config from "../config-file.json"
 
 /* FetchPlanetsGet */
 export async function fetchExpenditionsGet(url) {
@@ -56,10 +56,10 @@ export async function fetchExpeditionPost(valuesExpeditions, url) {
 /* DeleteExpeditions */
 
 export async function deleteExpedition(id) {
-    const baseUrl = APImanager.getBaseURL();
+    
     try {
         const localStorageToken = localStorage.getItem('access-token');
-        const response = await fetch(`${baseUrl}/expenditions/${id}`, {
+        const response = await fetch(`${Config.SERVICE_URL}/expenditions/${id}`, {
             method: "DELETE",
             headers: {
                 'Content-Type': 'application/json',
@@ -84,10 +84,10 @@ export async function deleteExpedition(id) {
 /* putExpedition */
 
 export async function putExpedition(expenditions) {
-    const baseUrl = APImanager.getBaseURL();
+    
     try {
         const localStorageToken = localStorage.getItem('access-token');
-        const response = await fetch(`${baseUrl}/expenditions`, {
+        const response = await fetch(`${Config.SERVICE_URL}/expenditions`, {
             method: "PUT",
             headers: {
                 'Content-Type': 'application/json',

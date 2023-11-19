@@ -14,12 +14,11 @@ import { PageButton } from '../../components/pageButton/PageButton';
 import { checkToken } from '../../services/authService';
 import { fetchUsersDataGet } from '../../services/userService';
 import TicketAdmin from '../TicketAdmin/TicketAdmin';
-import APImanager from '../../apiManager';
+import Config from "../../config-file.json"
 
 export default function AsideHeader() {
     const [activeButton, setActiveButton] = useState("");
     const [userInfo, setUserInfo] = useState({});
-    const baseUrl = APImanager.getBaseURL();
 
     const handleButtonClick = (buttonText) => {
         setActiveButton(buttonText);
@@ -36,7 +35,7 @@ export default function AsideHeader() {
 
     useEffect(() => {
         async function getUser() {
-            const url = `${baseUrl}/users/info`;
+            const url = `${Config.SERVICE_URL}/users/info`;
             const data = await fetchUsersDataGet(url)
                 .catch(error => {
                     console.error('API request failed:', error);
