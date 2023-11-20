@@ -26,7 +26,7 @@ export async function fetchTicketsGet(url) {
 /* DeleteRocket */
 
 export async function deleteTicket(id) {
-    
+
     try {
         const localStorageToken = localStorage.getItem('access-token');
         const response = await fetch(`${Config.SERVICE_URL}/ticket-sales/${id}`, {
@@ -54,7 +54,7 @@ export async function deleteTicket(id) {
 /* putExpedition */
 
 export async function putTicket(ticketSalesData) {
-    
+
     try {
         const localStorageToken = localStorage.getItem('access-token');
         const response = await fetch(`${Config.SERVICE_URL}/ticket-sales`, {
@@ -69,6 +69,36 @@ export async function putTicket(ticketSalesData) {
 
         if (!response.ok) {
             throw new Error('API request failed');
+        }
+
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        throw error;
+    }
+}
+
+/* putExpedition */
+
+/* putExpedition */
+
+export async function postTicketSales(ticketSalesData) {
+
+    try {
+        const localStorageToken = localStorage.getItem('access-token');
+        const response = await fetch(`${Config.SERVICE_URL}/ticket-sales/buy-ticket`, {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': `Bearer ${localStorageToken}`
+            },
+            body: JSON.stringify(ticketSalesData),
+        });
+
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.Messages);
         }
 
         const data = await response.json();

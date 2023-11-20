@@ -9,6 +9,7 @@ export default function BuyTicket({ ticketSalesFilter, totalPageCount, pageOdata
 
     const [spaceVehicleData, setSpaceVehicleData] = useState([]);
     const [isModalVisible, setModalVisible] = useState(false);
+    const [ticketId, setTicketId] = useState();
 
     const columns = [
         {
@@ -79,6 +80,7 @@ export default function BuyTicket({ ticketSalesFilter, totalPageCount, pageOdata
 
     const handleBuyClick = (record) => {
         setModalVisible(true);
+        setTicketId(record.Id);
     };
 
     return (
@@ -104,6 +106,7 @@ export default function BuyTicket({ ticketSalesFilter, totalPageCount, pageOdata
             <BuyTicketModal
                 visible={isModalVisible}
                 onClose={() => setModalVisible(false)}
+                ticketId={ticketId}
             />
         </div>
     )

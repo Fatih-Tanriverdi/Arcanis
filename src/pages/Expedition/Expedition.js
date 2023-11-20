@@ -157,7 +157,7 @@ export default function UsersList() {
     };
 
     const handleEditExpedition = (id) => {
-        const expendEdit = expenditions.find(expend => expend.id === id);
+        const expendEdit = expeditionFilter.find(expend => expend.id === id);
         setSelectedExpeditions(expendEdit);
         setIsModalOpen(true);
     };
@@ -215,7 +215,6 @@ export default function UsersList() {
         }
 
         const queryWithPaging = buildQuery({ filter: filterObject, count, top, skip });
-        console.log(filterObject);
         const url = `${Config.SERVICE_URL}/expenditions${queryWithPaging}`;
         const data = await fetchExpenditionsGet(url)
             .catch(err => { console.log("API request failed", err); })

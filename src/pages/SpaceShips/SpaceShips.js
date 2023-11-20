@@ -105,7 +105,7 @@ export default function SpaceShips() {
     };
 
     const handleEditRocket = (Id) => {
-        const rocketEdit = spaceShipData.find(rocket => rocket.Id === Id);
+        const rocketEdit = filteredSpaceShipData.find(rocket => rocket.Id === Id);
         setSelectedRocket(rocketEdit);
         setIsModalOpen(true);
     };

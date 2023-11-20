@@ -110,7 +110,7 @@ export default function UsersList() {
     };
 
     const handleEditUser = (Id) => {
-        const userToEdit = usersData.find(user => user.Id === Id);
+        const userToEdit = usersFiltersData.find(user => user.Id === Id);
         setSelectedUser(userToEdit);
         setIsModalOpen(true);
     };

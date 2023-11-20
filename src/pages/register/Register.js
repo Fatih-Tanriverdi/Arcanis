@@ -5,6 +5,7 @@ import AuthButton from "../../components/buttonLogin/AuthButton";
 import { registerUser } from '../../services/authService';
 import { ClipLoader } from 'react-spinners';
 import { AuthInputEmail, AuthInputUsername, AuthInputPassword, AuthInputName, AuthInputSurname, AuthInputPhoneNumber } from '../../components/authInput/AuthInput';
+import FloatLabel from "../../components/float-label/float-label";
 
 export default function Register({ setPageAuthType }) {
     const navigate = useNavigate();
@@ -85,17 +86,24 @@ export default function Register({ setPageAuthType }) {
                 <h1>Üye Ol</h1>
             </div>
             <form className="inputGroupRegister">
-                <AuthInputEmail value={values.emailAddress} onChange={handleInput} />
-                <br />
-                <AuthInputUsername value={values.username} onChange={handleInput} placeholder="Kullanıcı adı" />
-                <br />
-                <AuthInputPassword value={values.password} onChange={handleInput} />
-                <br />
-                <AuthInputName value={values.name} onChange={handleInput} />
-                <br />
-                <AuthInputSurname value={values.surname} onChange={handleInput} />
-                <br />
-                <AuthInputPhoneNumber value={maskPhoneNumber(values.phoneNumber)} onChange={handleInput} />
+                <FloatLabel label="E-posta adresi">
+                    <AuthInputEmail value={values.emailAddress} onChange={handleInput} />
+                </FloatLabel>
+                <FloatLabel label="Kullanıcı Adı">
+                    <AuthInputUsername value={values.username} onChange={handleInput} />
+                </FloatLabel>
+                <FloatLabel label="Şifre">
+                    <AuthInputPassword value={values.password} onChange={handleInput} />
+                </FloatLabel>
+                <FloatLabel label="Ad">
+                    <AuthInputName value={values.name} onChange={handleInput} />
+                </FloatLabel>
+                <FloatLabel label="Soyad">
+                    <AuthInputSurname value={values.surname} onChange={handleInput} />
+                </FloatLabel>
+                <FloatLabel label="Telefon Numarası">
+                    <AuthInputPhoneNumber value={maskPhoneNumber(values.phoneNumber)} onChange={handleInput} />
+                </FloatLabel>
                 <br />
                 <AuthButton text="Üye Ol" onClick={handleSubmit} />
             </form>
@@ -105,12 +113,12 @@ export default function Register({ setPageAuthType }) {
             </div>
             {loading && <ClipLoader color={"#7465F1"} />}
             <p>
-            Zaten bir hesabın var mı? &nbsp;
-            <span>
-            <Link onClick={handleRegisterClick} className="accountRegister">
-                Giriş yap
-            </Link>
-            </span>
+                Zaten bir hesabın var mı? &nbsp;
+                <span>
+                    <Link onClick={handleRegisterClick} className="accountRegister">
+                        Giriş yap
+                    </Link>
+                </span>
             </p>
         </div>
     );

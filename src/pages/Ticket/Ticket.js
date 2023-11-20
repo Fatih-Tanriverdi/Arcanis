@@ -161,7 +161,7 @@ export default function Ticket() {
                                 onChange={onChangeArrivalDate} disabledDate={disabledReturnDate} placeholder="Dönüş Tarihi" />
                         </Space>
                         <div className="checkBoxTicket">
-                            <Checkbox checked={checked} onChange={handleChange}>Tek Yön</Checkbox>
+                            <Checkbox style={{ color: "white" }} checked={checked} onChange={handleChange}>Tek Yön</Checkbox>
                         </div>
                         <Link className='ticketBtnStyle'>
                             <button onClick={handleTicketSearch}>Seyahat Bileti Bul</button>
@@ -286,7 +286,7 @@ export default function Ticket() {
                         <div className='ticketPageFooterInfoBox'>
                             <th className='ticketPageListGroup'>
                                 <td className='ticketPageListHeader'>
-                                    Renta Rocket
+                                    Arcanis
                                 </td>
                                 <ul>
                                     <li>
@@ -328,7 +328,7 @@ export default function Ticket() {
                         <div className='ticketPageFooterInfoBox'>
                             <th className='ticketPageListGroup'>
                                 <td className='ticketPageListHeader'>
-                                    Renta Rocket
+                                    Arcanis
                                 </td>
                                 <ul>
                                     <li>

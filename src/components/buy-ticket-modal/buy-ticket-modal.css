@@ -1,5 +1,5 @@
 .buyTicketModal {
-    width: 80% !important;
+    width: 40% !important;
     color: white !important;
 }
 
@@ -10,10 +10,70 @@
 }
 
 .buyTicketModalButton {
+    width: 90% !important;
     background-color: #7465F2 !important;
 }
 
 .buyTicketModalButton:hover {
     background-color: #273046 !important;
     border-color: #7465F2 !important;
+}
+
+.paymentScreenContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.paymentCardNumber,
+.paymentCardName {
+    background-color: transparent !important;
+    border-color: #7465F2 !important;
+    margin-top: 2rem !important;
+    width: 90% !important;
+}
+
+.paymentScreenCVV {
+    display: flex;
+    justify-content: space-around !important;
+    align-items: center;
+    width: 97% !important;
+}
+
+.paymentCardExpıryDate,
+.paymentCardCVV {
+    background-color: transparent !important;
+    border-color: #7465F2 !important;
+    margin: 2rem !important;
+}
+
+.paymentSeatNumber {
+    background-color: transparent;
+    border-color: #7465F2;
+    width: 100% !important;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 999;
+}
+
+.errorMessageBuyTicket {
+    background-color: #7465F2 !important;
+    color: white !important;
+    padding: 2rem !important;
+    margin: 2rem !important;
+    border-radius: 0.5rem !important;
+    text-align: center !important;
+}
+
+.ant-message-notice-content {
+    background-color: white !important;
+    color: black !important;
 }

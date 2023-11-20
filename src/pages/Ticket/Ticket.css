@@ -33,7 +33,7 @@
 .ticketSearch {
     display: flex;
     flex-direction: column;
-    max-height: 30rem !important;
+    max-height: 35rem !important;
     height: 100%;
     max-width: 30rem !important;
     width: 100%;
@@ -101,6 +101,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
+    margin-top: 1rem !important;
 }
 
 .arrivalDateTicket.disabled {
@@ -120,16 +122,15 @@
     justify-content: center !important;
 }
 
-.selectDeparture .ant-select-selector:hover,
-.selectArrival .ant-select-selector:hover {
-    border: none !important;
-    border-color: transparent !important;
+.anticon-calendar {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+
+    margin-bottom: 1rem !important;
 }
 
-.departureDateTicket .anticon-calendar,
-.arrivalDateTicket .anticon-calendar {
-    padding-bottom: 1rem !important;
-}
+
 
 /* SEARCH */
 
@@ -329,8 +330,8 @@
 .ticketPageFooterInfoBox {
     display: flex;
     width: 100%;
-    justify-content: flex-start ;
-    align-items: flex-start ;
+    justify-content: flex-start !important;
+    align-items: flex-start !important;
     flex-wrap: wrap;
     cursor: pointer;
     border-radius: 0.5rem;
@@ -365,9 +366,8 @@
     display: flex !important;
     align-items: flex-start !important;
     margin-top: 1.2rem;
-    margin-left: 3rem;
+    margin-left: 6rem;
 }
-
 
 /* FOOTER CONTAİNER */
 
@@ -408,9 +408,6 @@
     }
 
     .ticketPageBodyContentInfoBox {
-        display: flex !important;
-        justify-content: center !important;
-        align-items: center !important;
         width: calc(50% - 2rem);
         margin: 1rem;
     }
@@ -429,6 +426,16 @@
 
     .ticketSearch .ant-picker-range {
         width: 32rem !important;
+    }
+
+    .departureDateTicket,
+    .arrivalDateTicket {
+        width: 20rem !important;
+    }
+
+    .ticketPageFooterInfoBox {
+        justify-content: center !important;
+        align-items: center !important;
     }
 }
 
@@ -476,9 +483,6 @@
     }
 
     .ticketPageFooterInfoBox {
-        display: flex !important;
-        justify-content: center !important;
-        align-items: center !important;
         width: 25%;
     }
 
@@ -492,19 +496,11 @@
 
     .departureDateTicket,
     .arrivalDateTicket {
-        border: none !important;
         width: 20rem !important;
     }
 
-    .ant-space {
-        margin-top: 1rem !important;
-    }
-
-    .checkBoxTicket {
-        margin-left: 6rem;
-    }
-
-    .ticketPagePromoContent h3 {
-        font-size: 1.2rem;
+    .ticketPageFooterInfoBox {
+        justify-content: center !important;
+        align-items: center !important;
     }
 }

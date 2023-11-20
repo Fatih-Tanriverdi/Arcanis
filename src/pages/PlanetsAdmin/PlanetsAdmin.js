@@ -91,7 +91,7 @@ export default function UsersList() {
     };
 
     const handleEditPlanet = (Id) => {
-        const planetEdit = planets.find(planet => planet.Id === Id);
+        const planetEdit = planetsFilteredData.find(planet => planet.Id === Id);
         setSelectedPlanet(planetEdit);
         setIsModalOpen(true);
     };

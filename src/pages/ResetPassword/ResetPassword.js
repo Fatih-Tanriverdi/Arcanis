@@ -1,10 +1,11 @@
-import React, {useState } from "react";
+import React, { useState } from "react";
 import "./ResetPassword.css";
 import { AiOutlineInfoCircle, AiOutlineMail } from "react-icons/ai";
 import AuthButton from "../../components/buttonLogin/AuthButton"
 import { Input, Tooltip } from "antd";
 import { ClipLoader } from 'react-spinners';
 import { resetPassword } from '../../services/authService';
+import FloatLabel from "../../components/float-label/float-label";
 
 export default function App({ setPageAuthType }) {
     const [emailAddress, setEmailAddress] = useState("");
@@ -50,20 +51,21 @@ export default function App({ setPageAuthType }) {
                 </span>
             </div>
             <div className="inputGroupRecover">
-                <Input
-                    className="ınputResetPassword"
-                    name="emailAddress"
-                    value={emailAddress}
-                    onChange={(e) => setEmailAddress(e.target.value)}
-                    type="email"
-                    placeholder="E-posta"
-                    prefix={<AiOutlineMail className="site-form-item-icon" />}
-                    suffix={
-                        <Tooltip title="Extra information">
-                            <AiOutlineInfoCircle style={{ color: 'white' }} />
-                        </Tooltip>
-                    }
-                />
+                <FloatLabel label="E-posta">
+                    <Input
+                        className="ınputResetPassword"
+                        name="emailAddress"
+                        value={emailAddress}
+                        onChange={(e) => setEmailAddress(e.target.value)}
+                        type="email"
+                        prefix={<AiOutlineMail className="site-form-item-icon" />}
+                        suffix={
+                            <Tooltip title="Extra information">
+                                <AiOutlineInfoCircle style={{ color: 'white' }} />
+                            </Tooltip>
+                        }
+                    />
+                </FloatLabel>
             </div>
             {loading && <ClipLoader color={"#7465F1"} />}
             {successMessage && <div className="successMessage">{successMessage}</div>}

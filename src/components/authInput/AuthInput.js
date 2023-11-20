@@ -12,7 +12,6 @@ export function AuthInputEmail(props) {
             value={props.value}
             onChange={props.onChange}
             type="email"
-            placeholder=" E-posta adresi"
             prefix={<AiOutlineMail className="site-form-item-icon"/>}
             suffix={
                 <Tooltip title="Extra information">
@@ -45,7 +44,6 @@ export function AuthInputPassword(props) {
             value={props.value}
             onChange={props.onChange}
             type="password"
-            placeholder="Şifre"
             prefix={<RiLockPasswordLine />}
         />
     )
@@ -59,7 +57,6 @@ export function AuthInputName(props) {
             value={props.value}
             onChange={props.onChange}
             type="text"
-            placeholder="Ad"
             prefix={<AiOutlineUser className="site-form-item-icon" />}
         />
     )
@@ -73,7 +70,6 @@ export function AuthInputSurname(props) {
             value={props.value}
             onChange={props.onChange}
             type="text"
-            placeholder="Soyad"
             prefix={<AiOutlineUser />}
         />
     )
@@ -87,7 +83,6 @@ export function AuthInputPhoneNumber(props) {
             value={props.value}
             onChange={props.onChange}
             type="text"
-            placeholder="Telefon numarası"
             prefix={<AiOutlinePhone className="site-form-item-icon" />}
         />
     )

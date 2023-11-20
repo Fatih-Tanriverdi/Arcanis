@@ -5,7 +5,7 @@ import { TableListComp } from "../../components/TableListComp/TableListComp"
 import EditModal from '../../components/EditModal/EditUserModal';
 import { RiArrowRightSLine } from 'react-icons/ri';
 import { deleteTicket, fetchTicketsGet } from '../../services/TicketService';
-import Config from "../../config-file.json"
+import Config from "../../config-file.json";
 import buildQuery from 'odata-query';
 import { Button, DatePicker, Input } from 'antd';
 
@@ -21,7 +21,6 @@ export default function TicketAdmin() {
     const [orderDateEnd, setOrderDateEnd] = useState(null);
     const [ticketAdminFilter, setTicketAdminFilter] = useState([]);
     const [totalPageCount, setTotalPageCount] = useState(1);
-    
 
     const columns = [
         {
@@ -85,7 +84,7 @@ export default function TicketAdmin() {
     };
 
     const handleEditRocket = (Id) => {
-        const ticketEdit = ticketSalesData.find(ticket => ticket.Id === Id);
+        const ticketEdit = ticketAdminFilter.find(ticket => ticket.Id === Id);
         setSelectedTicket(ticketEdit);
         setIsModalOpen(true);
     };
@@ -122,7 +121,6 @@ export default function TicketAdmin() {
             filters.OrderDate = { le: new Date(orderDateEnd) };
         }
 
-        console.log(filters);
         const queryWithPaging = buildQuery({ filter: filters, count, top, skip, expand });
         const url = `${Config.SERVICE_URL}/ticket-sales${queryWithPaging}`;
         const data = await fetchTicketsGet(url)

@@ -14,6 +14,7 @@ import Expedition from "./pages/Expedition/Expedition";
 import TicketAdmin from "./pages/TicketAdmin/TicketAdmin";
 import NotFoundPage from "./pages/NotFound/NotFound";
 import PasswordResetScreen from "./pages/PasswordResetScreen/PasswordResetScreen";
+import MyTicket from "./pages/my-ticket/my-ticket";
 
 export default function App() {
 
@@ -24,6 +25,7 @@ export default function App() {
         <Route path="about" element={<About />} />
         <Route path="ticket" element={<Ticket />} />
         <Route path="communication" element={<Iletisim />} />
+        <Route path="myticket" element={<MyTicket />} />
         <Route path="planets" element={<Planets />} />
         <Route path="/planet/:id" element={<PlanetDetails />} />
         <Route path="/reset-password/:recoveryCode" element={<PasswordResetScreen />} />

@@ -1,13 +1,14 @@
 import "./UserLogin.css";
 import AuthButton from "../../components/buttonLogin/AuthButton.js";
 import "../../components/authInput/AuthInput.css";
-import { useNavigate,Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useState } from "react";
 import { Checkbox, Input } from 'antd';
 import { login } from '../../services/authService.js';
 import { AiOutlineUser } from "react-icons/ai";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { ClipLoader } from 'react-spinners';
+import FloatLabel from "../../components/float-label/float-label.js";
 
 export default function App({ setPageAuthType, setIsModalOpen, setAccessToken }) {
     const navigate = useNavigate();
@@ -25,9 +26,9 @@ export default function App({ setPageAuthType, setIsModalOpen, setAccessToken })
         setError(null);
     };
 
-    const loginAndNavigate = async (username, password, emailAddress ) => {
+    const loginAndNavigate = async (username, password, emailAddress) => {
         setLoading(true);
-        const { token, isAdmin } = await login(username, password, emailAddress );
+        const { token, isAdmin } = await login(username, password, emailAddress);
 
         if (token) {
             localStorage.setItem('access-token', token);
@@ -42,6 +43,7 @@ export default function App({ setPageAuthType, setIsModalOpen, setAccessToken })
             setTimeout(hideErrorMessage, 3000);
         }
         setLoading(false);
+        setIsModalOpen(false);
     };
 
     const handleLogin = async (e) => {
@@ -82,23 +84,24 @@ export default function App({ setPageAuthType, setIsModalOpen, setAccessToken })
                 <h1>Üye Girişi</h1>
             </div>
             <div className="inputGroupUser">
-                <Input
-                    id="userNameInput"
-                    className="loginPageUsernameInput"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                    placeholder="Kullanıcı adı veya E-posta"
-                    prefix={<AiOutlineUser />}
-                />
-                <br />
-                <Input.Password
-                    id="passwordInput"
-                    className='loginPagePasswordInput'
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    prefix={<RiLockPasswordLine />}
-                    placeholder="Şifre"
-                />
+                <FloatLabel label="Kullanıcı adı veya E-posta" name="username" value={username}>
+                    <Input
+                        id="userNameInput"
+                        className="loginPageUsernameInput"
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
+                        prefix={<AiOutlineUser />}
+                    />
+                </FloatLabel>
+                <FloatLabel label="Şifre" name="password" value={password}>
+                    <Input.Password
+                        id="passwordInput"
+                        className='loginPagePasswordInput'
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        prefix={<RiLockPasswordLine />}
+                    />
+                </FloatLabel>
             </div>
             <div className="forgetPassword">
                 <Checkbox className="checkboxColor" onChange={checkBox} style={{ color: "#73228B" }}><p className="forgetPasswordColor">Beni Hatırla</p></Checkbox>

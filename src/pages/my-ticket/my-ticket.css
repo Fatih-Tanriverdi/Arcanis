@@ -1,0 +1,16 @@
+.myTicketTable {
+    width: 100% !important;
+}
+
+.myTicketContainer {
+    margin: 5rem !important;
+}
+
+.myTicketTitle {
+    margin: 3rem !important;
+    font-size: 3rem !important;
+}
+
+.myTicketTable .ant-table-thead {
+    position: static !important;
+}

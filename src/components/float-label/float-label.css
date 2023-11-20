@@ -1,0 +1,40 @@
+.float-label {
+    position: relative;
+    margin: 0rem;
+}
+
+.float-label>input {
+    background-color: transparent !important;
+}
+
+.label {
+    font-size: 1.5rem;
+    font-weight: normal;
+    position: absolute;
+    pointer-events: none;
+    left: 5rem;
+    top: 1.5rem;
+    transition: 0.2s ease all;
+}
+
+.label-float {
+    top: 0rem ;
+    font-size: 1rem;
+}
+
+.float-label .ant-input {
+    padding: 1.6rem 1.2rem 0.4rem 1.1rem;
+}
+
+.float-label .ant-select .ant-select-selector {
+    padding: 1.6rem 1rem 0.4rem 1.1rem;
+}
+
+.float-label .ant-select-single:not(.ant-select-customize-input) .ant-select-selector {
+    padding: 1.6rem 1rem 0.4rem 1.1rem;
+    height: 5rem;
+}
+
+.float-label .ant-select-single .ant-select-selector .ant-select-selection-search {
+    top: 1.6rem;
+}

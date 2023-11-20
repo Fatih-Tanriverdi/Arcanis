@@ -3,7 +3,6 @@
     background-color: transparent !important;
     width: 100% !important;
     height: 3rem !important;
-    margin: 0.7rem;
     border-radius: 0;
     border-bottom: 0.1rem solid white !important;
     border: none;
@@ -31,6 +30,5 @@
     .authRegisterContainer .ınputRegisterPassword {
         width: 50rem !important;
         height: 3.5rem !important;
-        margin: 1rem;
     }
 }

@@ -70,7 +70,7 @@ export default function EditUserModal({ user, rocket, planet, ticket, expenditio
     const handleSave = async () => {
         try {
             if (pageType === 'users') {
-                const requiredFields = ['name', 'surname', 'EmailAddress', 'PhoneNumber', 'username', 'password'];
+                const requiredFields = ['Name', 'Surname', 'EmailAddress', 'PhoneNumber', 'username', 'password'];
                 for (const field of requiredFields) {
                     if (!editedData[field]) {
                         setErrorText(`Lütfen ${field} alanını doldurun.`);
@@ -177,6 +177,7 @@ export default function EditUserModal({ user, rocket, planet, ticket, expenditio
     }, []);
 
     const getPageContent = () => {
+        console.log('xxxx',editedData)
         switch (pageType) {
             case 'spaceShips':
                 return (
@@ -233,15 +234,15 @@ export default function EditUserModal({ user, rocket, planet, ticket, expenditio
                         <div className='modalistBody'>
                             <Input
                                 placeholder='İsim'
-                                name="name"
-                                value={editedData.name}
-                                onChange={(e) => setEditedData({ ...editedData, name: e.target.value })}
+                                name="Name"
+                                value={editedData.Name}
+                                onChange={(e) => setEditedData({ ...editedData, Name: e.target.value })}
                             />
                             <Input
                                 placeholder='Soyisim'
-                                name="surname"
-                                value={editedData.surname}
-                                onChange={(e) => setEditedData({ ...editedData, surname: e.target.value })}
+                                name="Surname"
+                                value={editedData.Surname}
+                                onChange={(e) => setEditedData({ ...editedData, Surname: e.target.value })}
                             />
                             <Input
                                 placeholder='E-Posta Adresi'
@@ -335,26 +336,26 @@ export default function EditUserModal({ user, rocket, planet, ticket, expenditio
                     <Space direction="vertical">
                         <div className='modalistBody'>
                             <Input
-                                onChange={(e) => setEditExpedition({ ...editExpedition, name: e.target.value })}
+                                onChange={(e) => setEditExpedition({ ...editExpedition, Name: e.target.value })}
                                 value={editExpedition.name}
                                 placeholder='Sefer Adı'
                                 name="name"
                             />
                             <Input
-                                onChange={(e) => setEditExpedition({ ...editExpedition, expeditionDate: e.target.value })}
+                                onChange={(e) => setEditExpedition({ ...editExpedition, ExpeditionDate: e.target.value })}
                                 value={editExpedition.expeditionDate}
                                 placeholder='Sefer Tarihi'
                                 name="expeditionDate"
                             />
                             <Input
-                                onChange={(e) => setEditExpedition({ ...editExpedition, arrivalDate: e.target.value })}
+                                onChange={(e) => setEditExpedition({ ...editExpedition, ArrivalDate: e.target.value })}
                                 value={editExpedition.arrivalDate}
                                 placeholder='Varış Tarihi'
                                 name="arrivalDate"
                             />
                             <Select
                                 value={editExpedition.ticketPrice}
-                                onChange={(value) => setEditExpedition({ ...editExpedition, ticketPrice: value })}
+                                onChange={(value) => setEditExpedition({ ...editExpedition, TicketPrice: value })}
                                 placeholder="Bilet Fiyatı"
                                 options={priceOptions}
                             />

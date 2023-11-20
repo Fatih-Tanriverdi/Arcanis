@@ -1,5 +1,6 @@
 .authRegisterContainer {
-    height: 53rem;
+    min-height: 53rem;
+    height: 100% !important;
     overflow: auto !important;
 }
 

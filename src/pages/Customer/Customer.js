@@ -10,6 +10,7 @@ import AuthModal from "../../components/AuthModal/AuthModal";
 import PasswordResetScreen from "../PasswordResetScreen/PasswordResetScreen";
 import NotFoundPage from "../NotFound/NotFound";
 import BuyTicket from "../BuyTicket/BuyTicket";
+import MyTicket from "../my-ticket/my-ticket";
 
 export default function AsideHeader() {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -36,8 +37,8 @@ export default function AsideHeader() {
                     <div className="headerButtonContainer">
                         {accessToken ?
                             <>
-                                <a className="headerButtonStyle" onClick={() => handleButtonModalClick("Çıkış Yap")}>Çıkış Yap</a>
-                                <Link to="/biletlerim" className="headerButtonStyle borderRL">Biletlerim</Link>
+                                <Link to="/" className="headerButtonStyle" onClick={() => handleButtonModalClick("Çıkış Yap")}>Çıkış Yap</Link>
+                                <Link to="/myticket" className="headerButtonStyle borderRL">Biletlerim</Link>
                             </>
                             :
                             <a className="headerButtonStyle" onClick={() => handleButtonModalClick("Üye Girişi")}>Üye Girişi</a>
@@ -54,6 +55,7 @@ export default function AsideHeader() {
                         <Route path="/" element={<Ticket />} />
                         <Route path="/about" element={<About />} />
                         <Route path="/communication" element={<Iletisim />} />
+                        <Route path="/myticket" element={<MyTicket />} />
                         <Route path="/reset-password/:recoveryCode" element={<PasswordResetScreen />} />
                         <Route path="/planets" element={<Planets />} />
                         <Route path="buyticket" element={<BuyTicket />} />
