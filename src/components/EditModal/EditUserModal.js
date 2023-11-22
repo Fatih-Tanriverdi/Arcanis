@@ -7,6 +7,7 @@ import { fetchPlanetsGet, putPlanet } from '../../services/PlanetService';
 import { putExpedition } from '../../services/ExpeditionService';
 import { putTicket } from '../../services/TicketService';
 import Config from "../../config-file.json"
+import FloatLabel from "../float-label/float-label";
 
 export default function EditUserModal({ user, rocket, planet, ticket, expendition, onSave, onCancel, visible, pageType, addEditTitle, userDelete, rocketDelete, planetDelete, expeditionDelete, ticketDelete }) {
     const [editedData, setEditedData] = useState(user);
@@ -17,9 +18,9 @@ export default function EditUserModal({ user, rocket, planet, ticket, expenditio
     const [errorText, setErrorText] = useState("");
     const [spaceVehicleData, setSpaceVehicleData] = useState([]);
     const [planetData, setPlanetData] = useState([]);
-    const [spaceVehicleId, setSelectedSpaceVehicle] = useState("Space Vehicle");
-    const [departurePlanetId, setSelectedDeparturePlanet] = useState("Departure Planet");
-    const [arrivalPlanetId, setSelectedArrivalPlanet] = useState("Arrival Planet");
+    const [spaceVehicleId, setSelectedSpaceVehicle] = useState();
+    const [separturePlanetId, setSelectedDeparturePlanet] = useState("Departure Planet");
+    const [srrivalPlanetId, setSelectedArrivalPlanet] = useState("Arrival Planet");
 
     const UserRole = {
         ADMIN: 1,
@@ -70,7 +71,7 @@ export default function EditUserModal({ user, rocket, planet, ticket, expenditio
     const handleSave = async () => {
         try {
             if (pageType === 'users') {
-                const requiredFields = ['Name', 'Surname', 'EmailAddress', 'PhoneNumber', 'username', 'password'];
+                const requiredFields = ['Name', 'Surname', 'EmailAdress', 'PhoneNumber', 'Username', 'Password'];
                 for (const field of requiredFields) {
                     if (!editedData[field]) {
                         setErrorText(`Lütfen ${field} alanını doldurun.`);
@@ -104,7 +105,7 @@ export default function EditUserModal({ user, rocket, planet, ticket, expenditio
                 onSave(planet.id, editPlanet);
             }
             if (pageType === 'expedition') {
-                const requiredFields = ['name', 'expeditionDate', 'arrivalDate', 'ticketPrice', 'spaceVehicleId', 'departurePlanetId', 'arrivalPlanetId'];
+                const requiredFields = ['Name', 'ExpeditionDate', 'ArrivalDate', 'TicketPrice', 'SpaceVehicleId', 'DeparturePlanetId', 'ArrivalPlanetId'];
                 for (const field of requiredFields) {
                     if (!editExpedition[field]) {
                         setErrorText(`Lütfen ${field} alanını doldurun.`);
@@ -131,7 +132,7 @@ export default function EditUserModal({ user, rocket, planet, ticket, expenditio
     };
 
     const handleDeleteUser = () => {
-        userDelete(user.id);
+        userDelete(user.Id);
     };
 
     const handleDeleteRocket = () => {
@@ -143,7 +144,7 @@ export default function EditUserModal({ user, rocket, planet, ticket, expenditio
     };
 
     const handleDeleteExpedition = () => {
-        expeditionDelete(expendition.id);
+        expeditionDelete(expendition.Id);
     };
 
     const handleDeleteTickets = () => {
@@ -177,54 +178,67 @@ export default function EditUserModal({ user, rocket, planet, ticket, expenditio
     }, []);
 
     const getPageContent = () => {
-        console.log('xxxx',editedData)
+        console.log('xxxx', editedData)
         switch (pageType) {
             case 'spaceShips':
                 return (
                     <Space direction="vertical">
                         <div className='modalistBody'>
-                            <Input
-                                value={editRocket.Name}
-                                onChange={(e) => setEditRocket({ ...editRocket, Name: e.target.value })}
-                                placeholder='Araç Adı'
-                                name="Name"
-                            />
-                            <Input
-                                value={editRocket.ModelName}
-                                onChange={(e) => setEditRocket({ ...editRocket, ModelName: e.target.value })}
-                                placeholder='Model Yılı'
-                                name="ModelName"
-                            />
-                            <Input
-                                value={editRocket.ModelYear}
-                                onChange={(e) => setEditRocket({ ...editRocket, ModelYear: e.target.value })}
-                                placeholder='Model Adı'
-                                name="ModelYear"
-                            />
-                            <Input
-                                value={editRocket.SerialNumber}
-                                onChange={(e) => setEditRocket({ ...editRocket, SerialNumber: e.target.value })}
-                                placeholder='Seri Numarası'
-                                name="SerialNumber"
-                            />
-                            <Input
-                                value={editRocket.Description}
-                                onChange={(e) => setEditRocket({ ...editRocket, Description: e.target.value })}
-                                placeholder='Açıklama'
-                                name="Description"
-                            />
-                            <Input
-                                value={editRocket.MaxNumberOfPassengers}
-                                onChange={(e) => setEditRocket({ ...editRocket, MaxNumberOfPassengers: e.target.value })}
-                                placeholder='Koltuk Numarası'
-                                name="MaxNumberOfPassengers"
-                            />
-                            <Input
-                                value={editRocket.AgeLimit}
-                                onChange={(e) => setEditRocket({ ...editRocket, AgeLimit: e.target.value })}
-                                placeholder='Yaş Sınırı'
-                                name="AgeLimit"
-                            />
+                            <FloatLabel label="Araç Adı" name="name" value={editRocket.Name}>
+                                <Input
+                                    value={editRocket.Name}
+                                    onChange={(e) => setEditRocket({ ...editRocket, Name: e.target.value })}
+                                    name="Name"
+                                />
+                            </FloatLabel>
+                            <FloatLabel label="Model Yılı" name="ModelName" value={editRocket.ModelName}>
+                                <Input
+                                    value={editRocket.ModelName}
+                                    onChange={(e) => setEditRocket({ ...editRocket, ModelName: e.target.value })}
+                                    placeholder='Model Yılı'
+                                    name="ModelName"
+                                />
+                            </FloatLabel>
+                            <FloatLabel label="Model Adı" name="ModelYear" value={editRocket.ModelYear}>
+                                <Input
+                                    value={editRocket.ModelYear}
+                                    onChange={(e) => setEditRocket({ ...editRocket, ModelYear: e.target.value })}
+                                    placeholder='Model Adı'
+                                    name="ModelYear"
+                                />
+                            </FloatLabel>
+                            <FloatLabel label="Seri Numarası" name="SerialNumber" value={editRocket.SerialNumber}>
+                                <Input
+                                    value={editRocket.SerialNumber}
+                                    onChange={(e) => setEditRocket({ ...editRocket, SerialNumber: e.target.value })}
+                                    placeholder='Seri Numarası'
+                                    name="SerialNumber"
+                                />
+                            </FloatLabel>
+                            <FloatLabel label="Açıklama" name="Description" value={editRocket.Description}>
+                                <Input
+                                    value={editRocket.Description}
+                                    onChange={(e) => setEditRocket({ ...editRocket, Description: e.target.value })}
+                                    placeholder='Açıklama'
+                                    name="Description"
+                                />
+                            </FloatLabel>
+                            <FloatLabel label="Koltuk Numarası" name="MaxNumberOfPassengers" value={editRocket.MaxNumberOfPassengers}>
+                                <Input
+                                    value={editRocket.MaxNumberOfPassengers}
+                                    onChange={(e) => setEditRocket({ ...editRocket, MaxNumberOfPassengers: e.target.value })}
+                                    placeholder='Koltuk Numarası'
+                                    name="MaxNumberOfPassengers"
+                                />
+                            </FloatLabel>
+                            <FloatLabel label="Yaş Sınırı" name="AgeLimit" value={editRocket.AgeLimit}>
+                                <Input
+                                    value={editRocket.AgeLimit}
+                                    onChange={(e) => setEditRocket({ ...editRocket, AgeLimit: e.target.value })}
+                                    placeholder='Yaş Sınırı'
+                                    name="AgeLimit"
+                                />
+                            </FloatLabel>
                         </div>
                     </Space>
                 );
@@ -232,53 +246,61 @@ export default function EditUserModal({ user, rocket, planet, ticket, expenditio
                 return (
                     <Space direction="vertical">
                         <div className='modalistBody'>
-                            <Input
-                                placeholder='İsim'
-                                name="Name"
-                                value={editedData.Name}
-                                onChange={(e) => setEditedData({ ...editedData, Name: e.target.value })}
-                            />
-                            <Input
-                                placeholder='Soyisim'
-                                name="Surname"
-                                value={editedData.Surname}
-                                onChange={(e) => setEditedData({ ...editedData, Surname: e.target.value })}
-                            />
-                            <Input
-                                placeholder='E-Posta Adresi'
-                                name="emailAddress"
-                                value={editedData.EmailAddress}
-                                onChange={(e) => setEditedData({ ...editedData, EmailAddress: e.target.value })}
-                            />
-                            <Input
-                                placeholder='Telefon Numarası'
-                                name="phoneNumber"
-                                value={editedData.PhoneNumber}
-                                onChange={(e) => setEditedData({ ...editedData, PhoneNumber: e.target.value })}
-                            />
-                            <Input
-                                placeholder='Kullanıcı Adı'
-                                name="username"
-                                value={editedData.username}
-                                onChange={(e) => setEditedData({ ...editedData, username: e.target.value })}
-                            />
-                            <Input
-                                placeholder='Şifre'
-                                name="password"
-                                value={editedData.password}
-                                onChange={(e) => setEditedData({ ...editedData, password: e.target.value })}
-                            />
-                            <Select
-                                value={editedData.userRole || undefined}
-                                onChange={handleUserRoleChange}
-                                placeholder="Rol"
-                            >
-                                {Object.values(UserRole).map((role) => (
-                                    <Select.Option key={role} value={role}>
-                                        {role === UserRole.ADMIN ? "Admin" : role === UserRole.CUSTOMER ? "Customer" : " "}
-                                    </Select.Option>
-                                ))}
-                            </Select>
+                            <FloatLabel label="İsim" name="Name" value={editedData.Name}>
+                                <Input
+                                    name="Name"
+                                    value={editedData.Name}
+                                    onChange={(e) => setEditedData({ ...editedData, Name: e.target.value })}
+                                />
+                            </FloatLabel>
+                            <FloatLabel label="Soyisim" name="Surname" value={editedData.Surname}>
+                                <Input
+                                    name="Surname"
+                                    value={editedData.Surname}
+                                    onChange={(e) => setEditedData({ ...editedData, Surname: e.target.value })}
+                                />
+                            </FloatLabel>
+                            <FloatLabel label="E-Posta Adresi" name="Email" value={editedData.Email}>
+                                <Input
+                                    name="Email"
+                                    value={editedData.Email}
+                                    onChange={(e) => setEditedData({ ...editedData, Email: e.target.value })}
+                                />
+                            </FloatLabel>
+                            <FloatLabel label="Telefon Numarası" name="Phone" value={editedData.Phone}>
+                                <Input
+                                    name="Phone"
+                                    value={editedData.Phone}
+                                    onChange={(e) => setEditedData({ ...editedData, Phone: e.target.value })}
+                                />
+                            </FloatLabel>
+                            <FloatLabel label="Kullanıcı Adı" name="Username" value={editedData.Username}>
+                                <Input
+                                    name="Username"
+                                    value={editedData.Username}
+                                    onChange={(e) => setEditedData({ ...editedData, Username: e.target.value })}
+                                />
+                            </FloatLabel>
+                            <FloatLabel label="Şifre" name="password" value={editedData.Password}>
+                                <Input
+                                    name="password"
+                                    value={editedData.Password}
+                                    onChange={(e) => setEditedData({ ...editedData, Password: e.target.value })}
+                                />
+                            </FloatLabel>
+                            <FloatLabel label="Rol" name="UserRoleType" value={editedData.UserRoleType}>
+                                <Select
+                                    value={editedData.UserRoleType || undefined}
+                                    onChange={handleUserRoleChange}
+                                    placeholder="Rol"
+                                >
+                                    {Object.values(UserRole).map((role) => (
+                                        <Select.Option key={role} value={role}>
+                                            {role === UserRole.ADMIN ? "Admin" : role === UserRole.CUSTOMER ? "Customer" : " "}
+                                        </Select.Option>
+                                    ))}
+                                </Select>
+                            </FloatLabel>
                         </div>
                     </Space>
                 );
@@ -286,48 +308,55 @@ export default function EditUserModal({ user, rocket, planet, ticket, expenditio
                 return (
                     <Space direction="vertical">
                         <div className='modalistBody'>
-                            <Input
-                                onChange={(e) => setEditPlanet({ ...editPlanet, Name: e.target.value })} 
-                                value={editPlanet.Name} 
-                                placeholder='Gezegen Adı'
-                                name="Name"
-                            />
-                            <Input
-                                onChange={(e) => setEditPlanet({ ...editPlanet, Sequence: e.target.value })} 
-                                value={editPlanet.Sequence} 
-                                placeholder='Sıra' 
-                                name="Sequence"
-                            />
-                            <Input
-                                onChange={(e) => setEditPlanet({ ...editPlanet, DifficultyLevel: e.target.value })} 
-                                value={editPlanet.DifficultyLevel} 
-                                placeholder='Zorluk Seviyesi' 
-                                name="DifficultyLevel"
-                            />
-                            <Input
-                                onChange={(e) => setEditPlanet({ ...editPlanet, ImageUrl: e.target.value })} 
-                                value={editPlanet.ImageUrl} 
-                                placeholder='Resim Url' 
-                                name="ImageUrl"
-                            />
-                            <Input
-                                onChange={(e) => setEditPlanet({ ...editPlanet, DetailsImageUrl: e.target.value })} 
-                                value={editPlanet.DetailsImageUrl} 
-                                placeholder='Detaylı Resim Url' 
-                                name="DetailsImageUrl"
-                            />
-                            <Input
-                                onChange={(e) => setEditPlanet({ ...editPlanet, Description: e.target.value })} 
-                                value={editPlanet.Description} 
-                                placeholder='Açıklama' 
-                                name="Description"
-                            />
-                            <Input
-                                onChange={(e) => setEditPlanet({ ...editPlanet, summaryDescription: e.target.value })} 
-                                value={editPlanet.summaryDescription} 
-                                placeholder='Detaylı Açıklama' 
-                                name="summaryDescription"
-                            />
+                            <FloatLabel label="Gezegen Adı" name="Name" value={editPlanet.Name}>
+                                <Input
+                                    onChange={(e) => setEditPlanet({ ...editPlanet, Name: e.target.value })}
+                                    value={editPlanet.Name}
+                                    name="Name"
+                                />
+                            </FloatLabel>
+                            <FloatLabel label="Sıra" name="Sequence" value={editPlanet.Sequence}>
+                                <Input
+                                    onChange={(e) => setEditPlanet({ ...editPlanet, Sequence: e.target.value })}
+                                    value={editPlanet.Sequence}
+                                    name="Sequence"
+                                />
+                            </FloatLabel>
+                            <FloatLabel label="Zorluk Seviyesi" name="DifficultyLevel" value={editPlanet.DifficultyLevel}>
+                                <Input
+                                    onChange={(e) => setEditPlanet({ ...editPlanet, DifficultyLevel: e.target.value })}
+                                    value={editPlanet.DifficultyLevel}
+                                    name="DifficultyLevel"
+                                />
+                            </FloatLabel>
+                            <FloatLabel label="Resim Url" name="ImageUrl" value={editPlanet.ImageUrl}>
+                                <Input
+                                    onChange={(e) => setEditPlanet({ ...editPlanet, ImageUrl: e.target.value })}
+                                    value={editPlanet.ImageUrl}
+                                    name="ImageUrl"
+                                />
+                            </FloatLabel>
+                            <FloatLabel label="Detaylı Resim Url" name="DetailsImageUrl" value={editPlanet.DetailsImageUrl}>
+                                <Input
+                                    onChange={(e) => setEditPlanet({ ...editPlanet, DetailsImageUrl: e.target.value })}
+                                    value={editPlanet.DetailsImageUrl}
+                                    name="DetailsImageUrl"
+                                />
+                            </FloatLabel>
+                            <FloatLabel label="Açıklama" name="Description" value={editPlanet.Description}>
+                                <Input
+                                    onChange={(e) => setEditPlanet({ ...editPlanet, Description: e.target.value })}
+                                    value={editPlanet.Description}
+                                    name="Description"
+                                />
+                            </FloatLabel>
+                            <FloatLabel label="Detaylı Açıklama" name="summaryDescription" value={editPlanet.summaryDescription}>
+                                <Input
+                                    onChange={(e) => setEditPlanet({ ...editPlanet, summaryDescription: e.target.value })}
+                                    value={editPlanet.summaryDescription}
+                                    name="summaryDescription"
+                                />
+                            </FloatLabel>
                         </div>
                     </Space>
                 );
@@ -335,66 +364,80 @@ export default function EditUserModal({ user, rocket, planet, ticket, expenditio
                 return (
                     <Space direction="vertical">
                         <div className='modalistBody'>
-                            <Input
-                                onChange={(e) => setEditExpedition({ ...editExpedition, Name: e.target.value })}
-                                value={editExpedition.name}
-                                placeholder='Sefer Adı'
-                                name="name"
-                            />
-                            <Input
-                                onChange={(e) => setEditExpedition({ ...editExpedition, ExpeditionDate: e.target.value })}
-                                value={editExpedition.expeditionDate}
-                                placeholder='Sefer Tarihi'
-                                name="expeditionDate"
-                            />
-                            <Input
-                                onChange={(e) => setEditExpedition({ ...editExpedition, ArrivalDate: e.target.value })}
-                                value={editExpedition.arrivalDate}
-                                placeholder='Varış Tarihi'
-                                name="arrivalDate"
-                            />
-                            <Select
-                                value={editExpedition.ticketPrice}
-                                onChange={(value) => setEditExpedition({ ...editExpedition, TicketPrice: value })}
-                                placeholder="Bilet Fiyatı"
-                                options={priceOptions}
-                            />
-                            <Select
-                                onChange={handleSelectSpaceVehicle}
-                                value={spaceVehicleId}
-                                placeholder='Uzay Aracı'
-                                name="spaceVehicleId"
-                            >
-                                {spaceVehicleData.map(vehicle => (
-                                    <Select.Option key={vehicle.id} value={vehicle.id}>
-                                        {vehicle.displayName}
-                                    </Select.Option>
-                                ))}
-                            </Select>
-                            <Select
-                                onChange={handleSelectDeparturePlanet}
-                                value={departurePlanetId}
-                                placeholder='Kalkış Gezegeni'
-                                name="departurePlanetId"
-                            >
-                                {planetData.map(planet => (
-                                    <Select.Option key={planet.id} value={planet.id}>
-                                        {planet.displayName}
-                                    </Select.Option>
-                                ))}
-                            </Select>
-                            <Select
-                                placeholder="Varış Gezegeni"
-                                onChange={handleSelectArrivalPlanet}
-                                value={arrivalPlanetId}
-                                name="arrivalPlanetId"
-                            >
-                                {planetData.map(planet => (
-                                    <Select.Option key={planet.id} value={planet.id}>
-                                        {planet.displayName}
-                                    </Select.Option>
-                                ))}
-                            </Select>
+                            <FloatLabel label="Sefer Adı" name="Name" value={editExpedition.Name}>
+                                <Input
+                                    onChange={(e) => setEditExpedition({ ...editExpedition, Name: e.target.value })}
+                                    value={editExpedition.Name}
+                                    placeholder='Sefer Adı'
+                                    name="Name"
+                                />
+                            </FloatLabel>
+                            <FloatLabel label="Sefer Tarihi" name="ExpeditionDate" value={editExpedition.ExpeditionDate}>
+                                <Input
+                                    onChange={(e) => setEditExpedition({ ...editExpedition, ExpeditionDate: e.target.value })}
+                                    value={editExpedition.ExpeditionDate}
+                                    placeholder='Sefer Tarihi'
+                                    name="ExpeditionDate"
+                                />
+                            </FloatLabel>
+                            <FloatLabel label="Varış Adı" name="ArrivalDate" value={editExpedition.ArrivalDate}>
+                                <Input
+                                    onChange={(e) => setEditExpedition({ ...editExpedition, ArrivalDate: e.target.value })}
+                                    value={editExpedition.ArrivalDate}
+                                    placeholder='Varış Tarihi'
+                                    name="ArrivalDate"
+                                />
+                            </FloatLabel>
+                            <FloatLabel label="Bilet Fiyatı" name="TicketPrice" value={editExpedition.TicketPrice}>
+                                <Input
+                                    value={editExpedition.TicketPrice}
+                                    onChange={(value) => setEditExpedition({ ...editExpedition, TicketPrice: value })}
+                                    placeholder="Bilet Fiyatı"
+                                    name="TicketPrice"
+                                />
+                            </FloatLabel>
+                            <FloatLabel label="Uzay Aracı" name="SpaceVehicleId" value={editExpedition.SpaceVehicleId}>
+                                <Select
+                                    onChange={handleSelectSpaceVehicle}
+                                    value={editExpedition.SpaceVehicleId}
+                                    placeholder='Uzay Aracı'
+                                    name="SpaceVehicleId"
+                                >
+                                    {spaceVehicleData.map(vehicle => (
+                                        <Select.Option key={vehicle.id} value={vehicle.id}>
+                                            {vehicle.displayName}
+                                        </Select.Option>
+                                    ))}
+                                </Select>
+                            </FloatLabel>
+                            <FloatLabel label="Kalkış Gezegeni" name="DeparturePlanetId" value={editExpedition.DeparturePlanetId}>
+                                <Select
+                                    onChange={handleSelectDeparturePlanet}
+                                    value={editExpedition.DeparturePlanetId}
+                                    placeholder='Kalkış Gezegeni'
+                                    name="DeparturePlanetId"
+                                >
+                                    {planetData.map(planet => (
+                                        <Select.Option key={planet.id} value={planet.id}>
+                                            {planet.displayName}
+                                        </Select.Option>
+                                    ))}
+                                </Select>
+                            </FloatLabel>
+                            <FloatLabel label="Varış Gezegeni" name="ArrivalPlanetId" value={editExpedition.ArrivalPlanetId}>
+                                <Select
+                                    placeholder="Varış Gezegeni"
+                                    onChange={handleSelectArrivalPlanet}
+                                    value={editExpedition.ArrivalPlanetId}
+                                    name="ArrivalPlanetId"
+                                >
+                                    {planetData.map(planet => (
+                                        <Select.Option key={planet.id} value={planet.id}>
+                                            {planet.displayName}
+                                        </Select.Option>
+                                    ))}
+                                </Select>
+                            </FloatLabel>
                         </div>
                     </Space>
                 );
@@ -402,25 +445,28 @@ export default function EditUserModal({ user, rocket, planet, ticket, expenditio
                 return (
                     <Space direction="vertical">
                         <div className='modalistBody'>
-                            <Input
-                                onChange={(e) => setEditTicket({ ...editTicket, CreatedDate: e.target.value })}
-                                value={editTicket.CreatedDate}
-                                placeholder='Oluşturma Tarihi'
-                                name="CreatedDate"
-                            />
-                            <Input
-                                onChange={(e) => setEditTicket({ ...editTicket, ExpeditionId: e.target.value })}
-                                value={editTicket.ExpeditionId}
-                                placeholder='Sefer Id'
-                                name="ExpeditionId"
-                            />
-                            <Select
-                                value={editTicket.SeatNumber}
-                                onChange={(value) => setEditTicket({ ...editTicket, SeatNumber: value })}
-                                placeholder="Koltuk Numarası"
-                                name="SeatNumber"
-                                options={ageLimitOptions}
-                            />
+                            <FloatLabel label="Oluşturma Tarihi" name="CreatedDate" value={editTicket.CreatedDate}>
+                                <Input
+                                    onChange={(e) => setEditTicket({ ...editTicket, CreatedDate: e.target.value })}
+                                    value={editTicket.CreatedDate}
+                                    name="CreatedDate"
+                                />
+                            </FloatLabel>
+                            <FloatLabel label="Sefer Id" name="ExpeditionId" value={editTicket.ExpeditionId}>
+                                <Input
+                                    onChange={(e) => setEditTicket({ ...editTicket, ExpeditionId: e.target.value })}
+                                    value={editTicket.ExpeditionId}
+                                    name="ExpeditionId"
+                                />
+                            </FloatLabel>
+                            <FloatLabel label="Koltuk Numarası" name="SeatNumber" value={editTicket.SeatNumber}>
+                                <Select
+                                    value={editTicket.SeatNumber}
+                                    onChange={(value) => setEditTicket({ ...editTicket, SeatNumber: value })}
+                                    name="SeatNumber"
+                                    options={ageLimitOptions}
+                                />
+                            </FloatLabel>
                         </div>
                     </Space>
                 );

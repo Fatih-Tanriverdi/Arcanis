@@ -156,7 +156,9 @@ export default function TicketAdmin() {
                             placeholder="Koltuk Numarası"
                         />
                     </div>
-                    <Button className='SearchBarFilterBtn' onClick={handleFilterButtonClick}>Filtrele</Button>
+                    <div className='SelectRolePosition'>
+                        <Button className='SearchBarFilterBtn' onClick={handleFilterButtonClick}>Filtrele</Button>
+                    </div>
                 </div>
             </div>
             <article className='spaceVehicleBody'>

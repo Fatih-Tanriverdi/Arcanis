@@ -20,14 +20,20 @@
     flex-wrap: wrap;
 }
 
+.SearchBarTicketPrıceInput {
+    width: 25rem !important;
+    background-color: transparent !important;
+    border-color: #858B9B;
+}
+
 
 @media screen and (min-width: 700px) {
     .searchBarExpeditionSelectContainer {
         flex-direction: row !important;
     }
 
-    .SearchBarSpaceShipsInput {
-        width: 20rem !important;
+    .SearchBarTicketPrıceInput {
+        width: 25rem !important;
     }
 }
 
@@ -36,7 +42,7 @@
         flex-direction: row !important;
     }
 
-    .SearchBarSpaceShipsInput {
+    .SearchBarTicketPrıceInput {
         width: 25rem !important;
     }
 }

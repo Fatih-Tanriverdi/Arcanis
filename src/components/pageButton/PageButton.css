@@ -1,3 +1,25 @@
 .navigate>ul>li {
     list-style: none;
 }
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button-icon {
+    margin-right: 1rem !important;
+}
+
+@media screen and (min-width: 1200px) {
+    .navigate>ul>li {
+        display: block !important;
+    }
+}
+
+@media screen and (min-width: 700px) {
+    .navigate>ul>li {
+        display: block !important;
+    }
+}

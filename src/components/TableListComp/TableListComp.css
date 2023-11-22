@@ -252,6 +252,10 @@ td {
         font-size: 1rem !important;
     }
 
+    .tableListBody {
+        width: 100% !important;
+    }
+
 }
 
 @media screen and (min-width: 1200px) {

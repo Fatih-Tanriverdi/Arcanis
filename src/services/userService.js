@@ -51,7 +51,6 @@ export async function fetchUsersPost(valuesUsers, url) {
 
 /* FetchUserstPost */
 
-
 /* DeleteUsers */
 
 export async function deleteUsers(id) {

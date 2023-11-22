@@ -25,7 +25,7 @@ export default function SpaceShips() {
     const [minAgeLimitFilter, setMinAgeLimitFilter] = useState("");
     const [search, setSearch] = useState("");
     const [totalPageCount, setTotalPageCount] = useState(1);
-    
+
 
     const columns = [
         {
@@ -164,8 +164,7 @@ export default function SpaceShips() {
             setTotalPageCount(totalPageCount);
             setFilteredSpaceShipData(data.value);
         }
-        else
-        {
+        else {
             setFilteredSpaceShipData([]);
         }
     }
@@ -251,7 +250,9 @@ export default function SpaceShips() {
                             placeholder="Genel arama"
                         />
                     </div>
-                    <Button className='SearchBarFilterBtn' onClick={getSpaceVehicles}>Filtrele</Button>
+                    <div className='searchInput'>
+                        <Button className='SearchBarSpaceShipsFilterBtn' onClick={getSpaceVehicles}>Filtrele</Button>
+                    </div>
                 </div>
             </div>
             <article className='spaceVehicleBody'>

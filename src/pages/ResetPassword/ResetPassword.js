@@ -51,7 +51,7 @@ export default function App({ setPageAuthType }) {
                 </span>
             </div>
             <div className="inputGroupRecover">
-                <FloatLabel label="E-posta">
+                <FloatLabel label="E-posta" name="emailAddress" value={emailAddress}>
                     <Input
                         className="ınputResetPassword"
                         name="emailAddress"

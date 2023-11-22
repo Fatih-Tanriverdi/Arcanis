@@ -19,10 +19,14 @@
     flex-direction: column !important;
 }
 
+.SearchBarSpaceShipsInput {
+    width: 25rem !important;
+}
 
 @media screen and (min-width: 700px) {
     .searchBarTicketSelectContainer {
         flex-direction: row !important;
+        flex-wrap: wrap !important;
     }
 
     .SearchBarSpaceShipsInput {

@@ -1,5 +1,5 @@
 .authRegisterContainer {
-    min-height: 53rem;
+    min-height: 40rem;
     height: 100% !important;
     overflow: auto !important;
 }
@@ -48,6 +48,10 @@
         font-size: 2rem;
         border: none;
     }
+
+    .authRegisterContainer {
+        min-height: 53rem;
+    }
 }
 
 @media screen and (min-width: 1200px) {
@@ -69,5 +73,9 @@
     .accountRegister > a{
         color: white;
         border: none;
+    }
+
+    .authRegisterContainer {
+        min-height: 53rem;
     }
 }

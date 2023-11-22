@@ -38,8 +38,8 @@
 
 /* MODAL TEXTAREA STYLE */
 .ant-input-affix-wrapper {
-    width: 220px !important;
-    height: 32px !important;
+    width: 22rem !important;
+    height: 4 !important;
     background-color: transparent !important;
     color: white !important;
 }
@@ -65,25 +65,27 @@
     flex-wrap: wrap;
 }
 
-.modalistBody > .ant-input {
+.modalistBody > .float-label .ant-input {
     margin: 1rem;
-    width: 90%;
-    height: 3rem;
+    width: 45rem  !important;
+    height: 4rem;
     background-color: transparent;
     border-color: #858B9B;
 }
 
-.modalistBody > .ant-input-password {
+.modalistBody > .float-label > label {
+    left: 2.5rem;
+    background-color: #273046 !important;
+    z-index: 3 !important;
+}
+
+.modalistBody > .float-label .ant-input-password {
     margin: 1rem !important;
-    width: 90% !important;
-    height: 3rem !important;
+    width: 45rem !important;
+    height: 4rem !important;
     border-radius: 0.5rem !important;
     background-color: transparent !important;
     border-color: #858B9B !important;
-}
-
-.modalistBody > .ant-input-password > input {
-    background-color: transparent !important;
 }
 
 .modalComponent .ant-modal-close-x,
@@ -91,16 +93,28 @@
     color: white !important;
 }
 
-.modalistBody > .ant-select {
-    width: 90%;
-    height: 3rem !important;
-    margin: 1rem;
+.modalistBody > .float-label .ant-select {
+    width: 45rem !important;
+    height: 4rem !important;
+    margin: 1rem !important;
 }
 
-.modalistBody> .ant-select > .ant-select-selector {
+.modalistBody> .float-label .ant-select > .ant-select-selector {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100% !important;
-    height: 3rem !important;
+    width: 45rem !important;
+    height: 4rem !important;
+}
+
+
+
+
+.ant-input-affix-wrapper {
+    width: 220px !important;
+    height: 32px !important;
+    background-color: transparent !important;
+    color: white !important;
+    display: flex;
+    align-items: center;
 }

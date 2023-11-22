@@ -86,22 +86,22 @@ export default function Register({ setPageAuthType }) {
                 <h1>Üye Ol</h1>
             </div>
             <form className="inputGroupRegister">
-                <FloatLabel label="E-posta adresi">
+                <FloatLabel label="E-posta adresi" name="emailAddress" value={values.emailAddress}>
                     <AuthInputEmail value={values.emailAddress} onChange={handleInput} />
                 </FloatLabel>
-                <FloatLabel label="Kullanıcı Adı">
+                <FloatLabel label="Kullanıcı Adı" name="username" value={values.username}>
                     <AuthInputUsername value={values.username} onChange={handleInput} />
                 </FloatLabel>
-                <FloatLabel label="Şifre">
+                <FloatLabel label="Şifre" name="password" value={values.password}>
                     <AuthInputPassword value={values.password} onChange={handleInput} />
                 </FloatLabel>
-                <FloatLabel label="Ad">
+                <FloatLabel label="Ad" name="name" value={values.name}>
                     <AuthInputName value={values.name} onChange={handleInput} />
                 </FloatLabel>
-                <FloatLabel label="Soyad">
+                <FloatLabel label="Soyad" name="surname" value={values.surname}>
                     <AuthInputSurname value={values.surname} onChange={handleInput} />
                 </FloatLabel>
-                <FloatLabel label="Telefon Numarası">
+                <FloatLabel label="Telefon Numarası" name="phoneNumber" value={values.phoneNumber}>
                     <AuthInputPhoneNumber value={maskPhoneNumber(values.phoneNumber)} onChange={handleInput} />
                 </FloatLabel>
                 <br />

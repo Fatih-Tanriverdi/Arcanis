@@ -36,15 +36,23 @@
     border: none;
 }
 
+.SearchBarSpaceShipsFilterBtn {
+    background-color: #7465F2;
+    border: none;
+    margin: 1rem !important;
+}
+
 
 @media screen and (min-width: 700px) {
     .searchInputPosition {
         flex-direction: row !important;
+        flex-wrap: wrap;
     }
 
     .SearchBarSpaceShipsInput {
         width: 20rem !important;
     }
+
 }
 
 @media screen and (min-width: 1200px) {

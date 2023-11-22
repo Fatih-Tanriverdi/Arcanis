@@ -8,14 +8,13 @@ import EditUserModal from '../../components/EditModal/EditUserModal';
 import { RiArrowRightSLine } from 'react-icons/ri';
 import { fetchPlanetsGet } from '../../services/PlanetService';
 import { fetchRocketsGet } from '../../services/RocketService';
-import Config from "../../config-file.json"
+import Config from "../../config-file.json";
 import buildQuery from 'odata-query';
 import { Button, DatePicker, Input, Select } from 'antd';
 
 export default function UsersList() {
     const [spaceVehicleData, setSpaceVehicleData] = useState([]);
     const [planetData, setPlanetData] = useState([]);
-    const [expenditions, setExpenditions] = useState([]);
     const [selectedExpeditions, setSelectedExpeditions] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [pageOdata, setPageOdata] = useState(1);
@@ -30,14 +29,14 @@ export default function UsersList() {
     const [ticketPrice, setTicketPrice] = useState("");
     const [arrivalDateFilter, setArrivalDateFilter] = useState(null);
     const [expeditionDateFilter, setExpeditionDateFilter] = useState(null);
-    
+
     const columns = [
         {
             title: '',
             dataIndex: 'Id',
             key: 'Id',
-            render: (id, record) => (
-                <button className="editButton" onClick={() => handleEditExpedition(id)}><RiArrowRightSLine /></button>
+            render: (Id, record) => (
+                <button className="editButton" onClick={() => handleEditExpedition(Id)}><RiArrowRightSLine /></button>
             ),
         },
         {
@@ -140,15 +139,15 @@ export default function UsersList() {
         handleFilterButtonClick();
     }, [pageOdata, pageSizeOdata]);
 
-    const handleDeleteExpedition = (id) => {
+    const handleDeleteExpedition = (Id) => {
         const confirmDelete = window.confirm('Expeditioni silmek istediğinize emin misiniz?');
         if (!confirmDelete) {
             return;
         }
-        deleteExpedition(id)
+        deleteExpedition(Id)
             .then(() => {
-                setExpenditions((prevExpenditionsData) =>
-                    prevExpenditionsData.filter((expendition) => expendition.id !== id)
+                setExpeditionFilter((prevExpenditionFilterData) =>
+                    prevExpenditionFilterData.filter((expendition) => expendition.Id !== Id)
                 );
             })
             .catch(error => {
@@ -156,8 +155,8 @@ export default function UsersList() {
             });
     };
 
-    const handleEditExpedition = (id) => {
-        const expendEdit = expeditionFilter.find(expend => expend.id === id);
+    const handleEditExpedition = (Id) => {
+        const expendEdit = expeditionFilter.find(expend => expend.Id === Id);
         setSelectedExpeditions(expendEdit);
         setIsModalOpen(true);
     };
@@ -179,12 +178,12 @@ export default function UsersList() {
         const selectedVehicle = spaceVehicleData.find(vehicle => vehicle.id === value);
         setSelectedSpaceVehicle(selectedVehicle ? selectedVehicle.id : value);
     };
-    
+
     const handleSelectDeparturePlanet = (value) => {
         const selectedPlanet = planetData.find(planet => planet.id === value);
         setSelectedDeparturePlanet(selectedPlanet ? selectedPlanet.id : value);
     };
-    
+
     const handleSelectArrivalPlanet = (value) => {
         const selectedPlanet = planetData.find(planet => planet.id === value);
         setSelectedArrivalPlanet(selectedPlanet ? selectedPlanet.id : value);
@@ -205,13 +204,13 @@ export default function UsersList() {
             filterObject.expeditionDate = { ge: new Date(expeditionDateFilter) };
         }
         if (selectedSpaceVehicle) {
-            filterObject.spaceVehicleId = { eq: {type:'guid', value:selectedSpaceVehicle }  };
+            filterObject.spaceVehicleId = { eq: { type: 'guid', value: selectedSpaceVehicle } };
         }
         if (selectedDeparturePlanet) {
-            filterObject.departurePlanetId = { eq: {type:'guid', value:selectedDeparturePlanet } };
+            filterObject.departurePlanetId = { eq: { type: 'guid', value: selectedDeparturePlanet } };
         }
         if (selectedArrivalPlanet) {
-            filterObject.arrivalPlanetId = { eq: {type:'guid', value:selectedArrivalPlanet} };
+            filterObject.arrivalPlanetId = { eq: { type: 'guid', value: selectedArrivalPlanet } };
         }
 
         const queryWithPaging = buildQuery({ filter: filterObject, count, top, skip });
@@ -243,7 +242,7 @@ export default function UsersList() {
                     </div>
                     <div className='SelectRolePosition'>
                         <Input
-                            className='SearchBarSpaceShipsInput'
+                            className='SearchBarTicketPrıceInput'
                             value={ticketPrice}
                             onChange={(e) => setTicketPrice(e.target.value)}
                             placeholder="Bilet Fiyatı"
@@ -291,13 +290,15 @@ export default function UsersList() {
                             ))}
                         </Select>
                     </div>
-                    <Button className='SearchBarFilterBtn' onClick={handleFilterButtonClick}>Filtrele</Button>
+                    <div className='SelectBarFilterPosition'>
+                        <Button className='SearchBarFilterBtn' onClick={handleFilterButtonClick}>Filtrele</Button>
+                    </div>
                 </div>
             </div>
             <article className='expeditionBody'>
                 <TableListComp props={{
-                    columns: columns, dataSource: expeditionFilter?.length ? expeditionFilter : expenditions
-                }} text="expedition" pageSearchType={"expedition"} addButtonLabel={"Sefer Ekle"} addFilterName={"Sefer Filtreleme"} setPageOdata={setPageOdata} setPageSizeOdata={setPageSizeOdata} pageOdata={pageOdata} pageSizeOdata={pageSizeOdata} totalPageCount={totalPageCount}/>
+                    columns: columns, dataSource: expeditionFilter?.length ? expeditionFilter : null
+                }} text="expedition" pageSearchType={"expedition"} addButtonLabel={"Sefer Ekle"} addFilterName={"Sefer Filtreleme"} setPageOdata={setPageOdata} setPageSizeOdata={setPageSizeOdata} pageOdata={pageOdata} pageSizeOdata={pageSizeOdata} totalPageCount={totalPageCount} />
                 {isModalOpen && (
                     <EditUserModal expendition={selectedExpeditions} onCancel={handleModalClose} visible={isModalOpen} pageType={"expedition"} addEditTitle={"Sefer Güncelleme"} expeditionDelete={handleDeleteExpedition} />
                 )}

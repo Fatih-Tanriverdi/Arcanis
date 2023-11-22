@@ -7,15 +7,16 @@ import { fetchPlanetsGet, fetchPlanetsPost } from '../../services/PlanetService'
 import { fetchExpeditionPost } from '../../services/ExpeditionService';
 import { fetchUsersPost } from '../../services/userService';
 import Config from "../../config-file.json"
+import FloatLabel from '../float-label/float-label';
 
 export function ModelComponent({ isModalVisible, onCancel, modalContent, addTitle }) {
     const [errorMessage, setErrorMessage] = useState(null);
     const [spaceVehicleData, setSpaceVehicleData] = useState([]);
     const [planetData, setPlanetData] = useState([]);
 
-    const [selectedSpaceVehicle, setSelectedSpaceVehicle] = useState("Uzay Araçları");
-    const [selectedDeparturePlanet, setSelectedDeparturePlanet] = useState("Kalkış Gezegeni");
-    const [selectedArrivalPlanet, setSelectedArrivalPlanet] = useState("Varış Gezegeni");
+    const [selectedSpaceVehicle, setSelectedSpaceVehicle] = useState("");
+    const [selectedDeparturePlanet, setSelectedDeparturePlanet] = useState("");
+    const [selectedArrivalPlanet, setSelectedArrivalPlanet] = useState("");
 
     const handleUserRoleChange = (value) => {
         SetValuesUsers((prev) => ({ ...prev, userRole: value }));
@@ -293,215 +294,244 @@ export function ModelComponent({ isModalVisible, onCancel, modalContent, addTitl
         spaceShips: (
             <Space direction="vertical">
                 <div className='modalistBody'>
-                    <Input
-                        value={valuesRockets.name}
-                        onChange={handleInput}
-                        placeholder='Araç Adı'
-                        name="name"
-                    />
-                    <Input
-                        value={valuesRockets.modelName}
-                        onChange={handleInput}
-                        placeholder='Model Adı'
-                        name="modelName"
-                    />
-                    <Input
-                        value={valuesRockets.modelYear}
-                        onChange={handleInput}
-                        placeholder='Model Yılı'
-                        name="modelYear"
-                    />
-                    <Input
-                        value={valuesRockets.serialNumber}
-                        onChange={handleInput}
-                        placeholder='Seri Numarası'
-                        name="serialNumber"
-                    />
-                    <Input
-                        value={valuesRockets.description}
-                        onChange={handleInput}
-                        placeholder='Açıklama'
-                        name="description"
-                    />
-                    <Input
-                        value={valuesRockets.maxNumberOfPassengers}
-                        onChange={handleInput}
-                        placeholder='Koltuk Numarası'
-                        name="maxNumberOfPassengers"
-                    />
-                    <Input
-                        value={valuesRockets.ageLimit}
-                        onChange={handleInput}
-                        placeholder='Yaş Sınırı'
-                        name="ageLimit"
-                    />
+                    <FloatLabel label="Araç Adı" name="name" value={valuesRockets.name}>
+                        <Input
+                            value={valuesRockets.name}
+                            onChange={handleInput}
+                            name="name"
+                        />
+                    </FloatLabel>
+                    <FloatLabel label="Model Adı" name="modelName" value={valuesRockets.modelName}>
+                        <Input
+                            value={valuesRockets.modelName}
+                            onChange={handleInput}
+                            name="modelName"
+                        />
+                    </FloatLabel>
+                    <FloatLabel label="Model Yılı" name="modelYear" value={valuesRockets.modelYear}>
+                        <Input
+                            value={valuesRockets.modelYear}
+                            onChange={handleInput}
+                            name="modelYear"
+                        />
+                    </FloatLabel>
+                    <FloatLabel label="Seri Numarası" name="serialNumber" value={valuesRockets.serialNumber}>
+                        <Input
+                            value={valuesRockets.serialNumber}
+                            onChange={handleInput}
+                            name="serialNumber"
+                        />
+                    </FloatLabel>
+                    <FloatLabel label="Açıklama" name="description" value={valuesRockets.description}>
+                        <Input
+                            value={valuesRockets.description}
+                            onChange={handleInput}
+                            name="description"
+                        />
+                    </FloatLabel>
+                    <FloatLabel label="Koltuk Numarası" name="maxNumberOfPassengers" value={valuesRockets.maxNumberOfPassengers}>
+                        <Input
+                            value={valuesRockets.maxNumberOfPassengers}
+                            onChange={handleInput}
+                            name="maxNumberOfPassengers"
+                        />
+                    </FloatLabel>
+                    <FloatLabel label="Yaş Sınırı" name="ageLimit" value={valuesRockets.ageLimit}>
+                        <Input
+                            value={valuesRockets.ageLimit}
+                            onChange={handleInput}
+                            name="ageLimit"
+                        />
+                    </FloatLabel>
                 </div>
             </Space>
         ),
         users: (
             <Space direction="vertical">
                 <div className='modalistBody'>
-                    <Input
-                        onChange={handleInput}
-                        value={valuesUsers.name}
-                        placeholder='İsim'
-                        name="name"
-                    />
-                    <Input
-                        onChange={handleInput}
-                        value={valuesUsers.surname}
-                        placeholder='Soyisim'
-                        name="surname"
-                    />
-                    <Input
-                        onChange={handleInput}
-                        value={valuesUsers.emailAddress}
-                        placeholder='E-Posta Address'
-                        name="emailAddress"
-                    />
-                    <Input
-                        onChange={handleInput}
-                        value={valuesUsers.phoneNumber}
-                        placeholder='Telefon Numarası'
-                        name="phoneNumber"
-                    />
-                    <Input
-                        onChange={handleInput}
-                        value={valuesUsers.username}
-                        placeholder='Kullanıcı Adı'
-                        name="username"
-                    />
-                    <Input.Password
-                        onChange={handleInput}
-                        value={valuesUsers.password}
-                        placeholder='Şifre'
-                        name="password"
-                    />
-                    <Select
-                        defaultValue={valuesUsers.userRole}
-                        onChange={handleUserRoleChange}
-                        placeholder="Rol"
-                    >
-                        {Object.values(UserRole).map(role => (
-                            <Select.Option key={role} value={role}>
-                                {role === UserRole.ADMIN ? "Admin" : role === UserRole.CUSTOMER ? "Customer" : ""}
-                            </Select.Option>
-                        ))}
-                    </Select>
+                    <FloatLabel label="İsim" name="name" value={valuesUsers.name}>
+                        <Input
+                            onChange={handleInput}
+                            value={valuesUsers.name}
+                            name="name"
+                        />
+                    </FloatLabel>
+                    <FloatLabel label="Soyisim" name="surname" value={valuesUsers.surname}>
+                        <Input
+                            onChange={handleInput}
+                            value={valuesUsers.surname}
+                            name="surname"
+                        />
+                    </FloatLabel>
+                    <FloatLabel label="E-Posta Address" name="emailAddress" value={valuesUsers.emailAddress}>
+                        <Input
+                            onChange={handleInput}
+                            value={valuesUsers.emailAddress}
+                            name="emailAddress"
+                        />
+                    </FloatLabel>
+                    <FloatLabel label="Telefon Numarası" name="phoneNumber" value={valuesUsers.phoneNumber}>
+                        <Input
+                            onChange={handleInput}
+                            value={valuesUsers.phoneNumber}
+                            name="phoneNumber"
+                        />
+                    </FloatLabel>
+                    <FloatLabel label="Kullanıcı Adı" name="username" value={valuesUsers.username}>
+                        <Input
+                            onChange={handleInput}
+                            value={valuesUsers.username}
+                            name="username"
+                        />
+                    </FloatLabel>
+                    <FloatLabel label="Şifre" name="password" value={valuesUsers.password}>
+                        <Input.Password
+                            onChange={handleInput}
+                            value={valuesUsers.password}
+                            name="password"
+                        />
+                    </FloatLabel>
+                    <FloatLabel label="Rol" name="userRole" value={valuesUsers.userRole}>
+                        <Select
+                            defaultValue={valuesUsers.userRole}
+                            onChange={handleUserRoleChange}
+                        >
+                            {Object.values(UserRole).map(role => (
+                                <Select.Option key={role} value={role}>
+                                    {role === UserRole.ADMIN ? "Admin" : role === UserRole.CUSTOMER ? "Customer" : ""}
+                                </Select.Option>
+                            ))}
+                        </Select>
+                    </FloatLabel>
                 </div>
             </Space>
         ),
         planets: (
             <Space direction="vertical">
                 <div className='modalistBody'>
-                    <Input
-                        onChange={handleInput}
-                        value={valuesPlanets.name}
-                        placeholder='Gezegen Adı'
-                        name="name"
-                    />
-                    <Input
-                        onChange={handleInput}
-                        value={valuesPlanets.sequence}
-                        placeholder='Sıra'
-                        name="sequence"
-                    />
-                    <Input
-                        onChange={handleInput}
-                        value={valuesPlanets.difficultyLevel}
-                        placeholder='Zorluk Seviyesi'
-                        name="difficultyLevel"
-                    />
-                    <Input
-                        onChange={handleInput}
-                        value={valuesPlanets.imageUrl}
-                        placeholder='Resim URL'
-                        name="imageUrl"
-                    />
-                    <Input
-                        onChange={handleInput}
-                        value={valuesPlanets.detailsImageUrl}
-                        placeholder='Detaylı Resim Url'
-                        name="detailsImageUrl"
-                    />
-                    <Input
-                        onChange={handleInput}
-                        value={valuesPlanets.description}
-                        placeholder='Açıklama'
-                        name="description"
-                    />
-                    <Input
-                        onChange={handleInput}
-                        value={valuesPlanets.summaryDescription}
-                        placeholder='Detaylı Açıklama'
-                        name="summaryDescription"
-                    />
+                    <FloatLabel label="Gezegen Adı" name="name" value={valuesPlanets.name}>
+                        <Input
+                            onChange={handleInput}
+                            value={valuesPlanets.name}
+                            name="name"
+                        />
+                    </FloatLabel>
+                    <FloatLabel label="Sıra" name="sequence" value={valuesPlanets.sequence}>
+                        <Input
+                            onChange={handleInput}
+                            value={valuesPlanets.sequence}
+                            name="sequence"
+                        />
+                    </FloatLabel>
+                    <FloatLabel label="Zorluk Seviyesi" name="difficultyLevel" value={valuesPlanets.difficultyLevel}>
+                        <Input
+                            onChange={handleInput}
+                            value={valuesPlanets.difficultyLevel}
+                            name="difficultyLevel"
+                        />
+                    </FloatLabel>
+                    <FloatLabel label="Resim URL" name="imageUrl" value={valuesPlanets.imageUrl}>
+                        <Input
+                            onChange={handleInput}
+                            value={valuesPlanets.imageUrl}
+                            name="imageUrl"
+                        />
+                    </FloatLabel>
+                    <FloatLabel label="Detaylı Resim Url" name="detailsImageUrl" value={valuesPlanets.detailsImageUrl}>
+                        <Input
+                            onChange={handleInput}
+                            value={valuesPlanets.detailsImageUrl}
+                            name="detailsImageUrl"
+                        />
+                    </FloatLabel>
+                    <FloatLabel label="Açıklama" name="description" value={valuesPlanets.description}>
+                        <Input
+                            onChange={handleInput}
+                            value={valuesPlanets.description}
+                            name="description"
+                        />
+                    </FloatLabel>
+                    <FloatLabel label="Detaylı Açıklama" name="summaryDescription" value={valuesPlanets.summaryDescription}>
+                        <Input
+                            onChange={handleInput}
+                            value={valuesPlanets.summaryDescription}
+                            name="summaryDescription"
+                        />
+                    </FloatLabel>
                 </div>
             </Space>
         ),
         expedition: (
             <Space direction="vertical">
                 <div className='modalistBody'>
-                    <Input
-                        onChange={handleInput}
-                        value={valuesExpeditions.name}
-                        placeholder='Sefer Adı'
-                        name="name"
-                    />
-                    <Input
-                        onChange={handleInput}
-                        value={valuesExpeditions.expeditionDate}
-                        placeholder='Kalkış Tarihi'
-                        name="expeditionDate"
-                    />
-                    <Input
-                        onChange={handleInput}
-                        value={valuesExpeditions.arrivalDate}
-                        placeholder='Varış Tarihi'
-                        name="arrivalDate"
-                    />
-                    <Input
-                        onChange={handleInput}
-                        value={valuesExpeditions.ticketPrice}
-                        placeholder='Bilet Fiyatı'
-                        name="ticketPrice"
-                    />
-                    <Select
-                        onChange={handleSelectSpaceVehicle}
-                        value={selectedSpaceVehicle}
-                        placeholder='Uzay Aracı'
-                        name="spaceVehicleId"
-                    >
-                        {spaceVehicleData.map(vehicle => (
-                            <Select.Option key={vehicle.id} value={vehicle.id}>
-                                {vehicle.displayName}
-                            </Select.Option>
-                        ))}
-                    </Select>
-                    <Select
-                        onChange={handleSelectDeparturePlanet}
-                        value={selectedDeparturePlanet}
-                        placeholder='Kalkış Gezegeni'
-                        name="departurePlanetId"
-                    >
-                        {planetData.map(planet => (
-                            <Select.Option key={planet.id} value={planet.id}>
-                                {planet.displayName}
-                            </Select.Option>
-                        ))}
-                    </Select>
-                    <Select
-                        placeholder="Varış Gezegeni"
-                        onChange={handleSelectArrivalPlanet}
-                        value={selectedArrivalPlanet}
-                        name="arrivalPlanetId"
-                    >
-                        {planetData.map(planet => (
-                            <Select.Option key={planet.id} value={planet.id}>
-                                {planet.displayName}
-                            </Select.Option>
-                        ))}
-                    </Select>
+                    <FloatLabel label="Sefer Adıı" name="name" value={valuesPlanets.name}>
+                        <Input
+                            onChange={handleInput}
+                            value={valuesExpeditions.name}
+                            name="name"
+                        />
+                    </FloatLabel>
+                    <FloatLabel label="Kalkış Tarihi" name="expeditionDate" value={valuesPlanets.expeditionDate}>
+                        <Input
+                            onChange={handleInput}
+                            value={valuesExpeditions.expeditionDate}
+                            name="expeditionDate"
+                        />
+                    </FloatLabel>
+                    <FloatLabel label="Varış Tarihi" name="arrivalDate" value={valuesPlanets.arrivalDate}>
+                        <Input
+                            onChange={handleInput}
+                            value={valuesExpeditions.arrivalDate}
+                            name="arrivalDate"
+                        />
+                    </FloatLabel>
+                    <FloatLabel label="Bilet Fiyatı" name="ticketPrice" value={valuesPlanets.ticketPrice}>
+                        <Input
+                            onChange={handleInput}
+                            value={valuesExpeditions.ticketPrice}
+                            name="ticketPrice"
+                        />
+                    </FloatLabel>
+                    <FloatLabel label="Uzay Aracı" name="spaceVehicleId" value={selectedSpaceVehicle}>
+                        <Select
+                            onChange={handleSelectSpaceVehicle}
+                            value={selectedSpaceVehicle}
+                            placeholder='Uzay Aracı'
+                            name="spaceVehicleId"
+                        >
+                            {spaceVehicleData.map(vehicle => (
+                                <Select.Option key={vehicle.id} value={vehicle.id}>
+                                    {vehicle.displayName}
+                                </Select.Option>
+                            ))}
+                        </Select>
+                    </FloatLabel>
+                    <FloatLabel label="Kalkış Gezegeni" name="departurePlanetId" value={selectedDeparturePlanet}>
+                        <Select
+                            onChange={handleSelectDeparturePlanet}
+                            value={selectedDeparturePlanet}
+                            name="departurePlanetId"
+                        >
+                            {planetData.map(planet => (
+                                <Select.Option key={planet.id} value={planet.id}>
+                                    {planet.displayName}
+                                </Select.Option>
+                            ))}
+                        </Select>
+                    </FloatLabel>
+                    <FloatLabel label="Varış Gezegeni" name="arrivalPlanetId" value={selectedArrivalPlanet}>
+                        <Select
+                            onChange={handleSelectArrivalPlanet}
+                            value={selectedArrivalPlanet}
+                            name="arrivalPlanetId"
+                        >
+                            {planetData.map(planet => (
+                                <Select.Option key={planet.id} value={planet.id}>
+                                    {planet.displayName}
+                                </Select.Option>
+                            ))}
+                        </Select>
+                    </FloatLabel>
                 </div>
             </Space>
         )

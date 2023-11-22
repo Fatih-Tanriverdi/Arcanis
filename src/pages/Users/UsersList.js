@@ -12,7 +12,6 @@ import { Button, Select } from "antd";
 export default function UsersList() {
     const [selectedUser, setSelectedUser] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [usersData, setUsersData] = useState([]);
     const [pageOdata, setPageOdata] = useState(1);
     const [pageSizeOdata, setPageSizeOdata] = useState(10);
 
@@ -25,6 +24,7 @@ export default function UsersList() {
         {
             key: 'Id',
             dataIndex: 'Id',
+            key: 'Id',
             render: (Id, record) => (
                 <button className="editButton" onClick={() => handleEditUser(Id)}><RiArrowRightSLine /></button>
             ),
@@ -100,8 +100,8 @@ export default function UsersList() {
         }
         deleteUsers(Id)
             .then(() => {
-                setUsersData((prevUsersData) =>
-                    prevUsersData.filter((user) => user.Id !== Id)
+                setUsersFiltersData((prevUsersFilterData) =>
+                prevUsersFilterData.filter((user) => user.Id !== Id)
                 );
             })
             .catch(error => {
@@ -162,7 +162,7 @@ export default function UsersList() {
                 <div className='SelectRolePosition'>
                     <div className='searchInput'>
                         <Select
-                            className='SearchBarSpaceShipsInput'
+                            className='SearchBarUserRoleInput'
                             value={userRoleType}
                             onChange={(value) => setUserRoleType(value)}
                             placeholder="Kullanıcı Rolü"
@@ -176,7 +176,7 @@ export default function UsersList() {
                     </div>
                     <div className='searchInput'>
                         <Select
-                            className='SearchBarSpaceShipsInput'
+                            className='SearchBarUserRoleInput'
                             value={isActive}
                             onChange={(value) => setIsActive(value)}
                             placeholder="Kullanıcı Durumu"
@@ -192,7 +192,7 @@ export default function UsersList() {
                 </div>
             </div>
             <div className='userListBody'>
-                <TableListComp props={{ columns: columns, dataSource: usersFiltersData && usersFiltersData.length ? usersFiltersData : usersData }} text="users" pageSearchType={"users"} addButtonLabel={"Kullanıcı Ekle"} addFilterName={"Kullanıcı Filtreleme"} setPageOdata={setPageOdata} setPageSizeOdata={setPageSizeOdata} pageOdata={pageOdata} pageSizeOdata={pageSizeOdata} totalPageCount={totalPageCount} />
+                <TableListComp props={{ columns: columns, dataSource: usersFiltersData && usersFiltersData.length ? usersFiltersData : null }} text="users" pageSearchType={"users"} addButtonLabel={"Kullanıcı Ekle"} addFilterName={"Kullanıcı Filtreleme"} setPageOdata={setPageOdata} setPageSizeOdata={setPageSizeOdata} pageOdata={pageOdata} pageSizeOdata={pageSizeOdata} totalPageCount={totalPageCount} />
                 {isModalOpen && (
                     <EditUserModal user={selectedUser} onCancel={handleModalClose} visible={isModalOpen} pageType={"users"} addEditTitle={"Kullanıcı Güncelleme"} userDelete={handleDeleteUser} />
                 )}

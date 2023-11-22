@@ -71,6 +71,9 @@
 }
 
 .mainPageBox2 {
+    display: flex !important;
+    justify-content: center;
+    flex-direction: column !important;
     margin-top: 1rem;
 }
 
@@ -79,7 +82,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 2rem;
+    font-size: 1.5rem;
 
     margin: 1rem 2rem 1rem 2rem;
 }
@@ -110,7 +113,7 @@
 .mainPageBodyContent {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     flex-direction: column;
 }
 
@@ -200,14 +203,14 @@
     align-items: center;
 }
 
-.mainPageBoxUsersInfo > h5,
+.mainPageBoxUsersInfo>h5,
 .mainPageBoxUsersInfoSpinner {
     font-size: 1.4rem !important;
     margin-top: 4% !important;
     box-sizing: border-box !important;
 }
 
-.mainPageBoxUsersInfoSpinner > p {
+.mainPageBoxUsersInfoSpinner>p {
     font-size: 1.3rem !important;
 }
 
@@ -232,13 +235,38 @@
     }
 
     .mainPageBodyContent {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+        justify-content: center;
+        align-items: flex-start;
+    }    
+
+    .mainPageBodyContentTitle {
+        font-size: 1rem !important;
+        margin: 1rem !important;
+    }
+
+    .mainPageBodyContentSvg {
         display: flex;
         justify-content: center;
         align-items: center;
-        flex-direction: column;
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(20%, 1fr));
-        gap: 20px;
+        width: 5rem;
+        height: 5rem;
+        cursor: pointer;
+        border-radius: 50%;
+        overflow: hidden;
+    }
+    
+    .mainPageBodyContentSvg > svg {
+        font-size: 1rem;
+        cursor: pointer;
+        border-radius: 50%;
+    }
+    
+
+    .mainPageBodyContentTitle>p {
+        font-size: 1rem !important;
     }
 }
 
@@ -258,6 +286,7 @@
     .mainPageBox1,
     .mainPageBox2,
     .mainPageBox3 {
+        min-height: 44.5rem;
         height: 100% !important;
     }
 
@@ -268,6 +297,8 @@
     }
 
     .mainPageBox2 {
+        min-height: 44.5rem;
+        height: 100% !important;
         margin: 1rem;
     }
 
@@ -279,5 +310,10 @@
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(20%, 1fr));
         gap: 20px;
+    }
+
+    .mainPageTitle,
+    .mainPageBoxTitle {
+        font-size: 2rem;
     }
 }

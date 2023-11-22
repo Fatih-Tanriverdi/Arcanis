@@ -47,7 +47,7 @@
 
 .ticketBtnStyle>button {
     display: inline-block;
-    height: 2.5rem;
+    height: 4rem;
     width: 20rem;
     box-sizing: border-box;
     border: transparent;
@@ -130,7 +130,12 @@
     margin-bottom: 1rem !important;
 }
 
-
+.checkBoxTicket {
+    display: flex !important;
+    align-items: flex-start !important;
+    margin-top: 1.2rem;
+    margin-left: 3rem;
+}
 
 /* SEARCH */
 
@@ -254,6 +259,13 @@
     padding: 2rem;
 }
 
+.ticketPageBodyQuestionsBox > h3 {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    font-size: 0.9rem !important;
+}
+
 .ticketPageBodyQuestionsBoxSvg {
     display: flex;
     align-items: center;
@@ -362,13 +374,6 @@
     border-bottom: 0.1rem solid white;
 }
 
-.checkBoxTicket {
-    display: flex !important;
-    align-items: flex-start !important;
-    margin-top: 1.2rem;
-    margin-left: 6rem;
-}
-
 /* FOOTER CONTAİNER */
 
 @media screen and (min-width: 700px) {
@@ -430,12 +435,20 @@
 
     .departureDateTicket,
     .arrivalDateTicket {
-        width: 20rem !important;
+        width: 15rem !important;
     }
 
     .ticketPageFooterInfoBox {
         justify-content: center !important;
         align-items: center !important;
+    }
+
+    .checkBoxTicket {
+        margin-left: 6rem;
+    }
+
+    .ticketPageBodyQuestionsBox > h3 {
+        font-size: 2rem !important;
     }
 }
 
@@ -502,5 +515,13 @@
     .ticketPageFooterInfoBox {
         justify-content: center !important;
         align-items: center !important;
+    }
+
+    .checkBoxTicket {
+        margin-left: 6rem;
+    }
+
+    .ticketPageBodyQuestionsBox > h3 {
+        font-size: 2rem !important;
     }
 }

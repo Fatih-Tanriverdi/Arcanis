@@ -69,7 +69,7 @@
 
 .adminHeaderbar {
     background-color: #273046;
-    flex: 90%;
+    width: 85% !important;
     margin: 3rem;
     margin-bottom: 90rem;
     padding: 1rem;
@@ -79,58 +79,49 @@
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
-.adminHeaderPosition>div {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 .adminResponseHeader {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    width: 100% !important;
 }
 
 .adminInfoResponse {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important; 
 }
 
 .adminImg {
     display: flex;
+    justify-content: center;
     align-items: center;
     height: 3rem;
     width: 3rem;
     border-radius: 50%;
-    margin-right: 1rem;
+    margin-left: 0.5rem !important;
 
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
 .adminInfo {
     display: flex;
-    justify-content: flex-end !important;
-    align-items: center;
+    align-items: flex-end !important;
     flex-direction: column;
-    margin-right: 1rem;
 }
 
 .adminInfo>h1 {
     font-size: 1rem;
     display: flex;
+    justify-content: space-between !important;
     align-items: center;
     color: white;
-
-    margin-left: 25rem;
-    margin-top: 1rem;
 }
 
 .adminInfo>span {
     display: flex;
     font-size: 0.8rem;
     color: white;
-    margin-left: 30rem;
 }
 
 .adminResponseButtons {
@@ -148,7 +139,7 @@
 .customerInfo {
     display: none;
     background-color: transparent;
-    padding: 0.5rem;
+    padding: 0.3rem;
     border: 0.2rem solid #7465F2;
     border-radius: 1rem;
     margin-left: 1rem;
@@ -187,6 +178,10 @@
 .adminBtnExit>a {
     color: white !important;
     display: none;
+}
+
+.adminPanelButton > ul > li > a {
+    display: none !important;
 }
 
 .adminBtnExit {
@@ -316,15 +311,28 @@
 
     .adminHeaderbar {
         margin-bottom: 0;
+        flex: 100% !important;
     }
 
     .arcanisLogoAndTitle>h1 {
         display: none;
     }
 
+    .adminBtnPosition {
+        margin: 0 !important;
+    }
+
     .adminPanelButton>a,
     .adminBtnExit > a {
         display: none;
+    }
+
+    .button-text {
+        display: none !important;
+    }
+
+    .button-icon {
+        padding-left: 0.6rem;
     }
 
     .adminResponseButtons {
@@ -361,6 +369,25 @@
         align-items: center;
         margin-left: 0.5rem;
     }
+
+    .adminResponseHeader {
+        justify-content: flex-end !important;
+    }
+
+    .adminBtnPosition {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .arcanisImg {
+        margin-right: 0rem !important;
+    }
+
+    .adminInfo>h1,
+    .adminInfo>span {
+        font-size: 0.9rem;
+    }
 }
 
 @media screen and (min-width: 1200px) {
@@ -376,6 +403,7 @@
 
     .adminHeaderbar {
         margin-bottom: 0;
+        flex: 100% !important;
     }
 
     .arcanisLogoAndTitle>h1 {
@@ -416,5 +444,27 @@
         justify-content: center;
         align-items: center;
         margin-left: 0.5rem;
+    }
+
+    .adminResponseHeader {
+        justify-content: flex-end !important;
+    }
+
+    .adminPanelButton,
+    .adminBtnExit {
+        font-size: 1.5rem !important;
+    }
+
+    .button-text {
+        display: block !important;
+        padding: 0rem 2rem 0rem 2rem;
+    }
+
+    .button-icon {
+        display: none !important;
+    }
+
+    .arcanisImg {
+        margin-right: 1rem !important;
     }
 }

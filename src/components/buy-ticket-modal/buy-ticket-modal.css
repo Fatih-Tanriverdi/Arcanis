@@ -31,27 +31,38 @@
     background-color: transparent !important;
     border-color: #7465F2 !important;
     margin-top: 2rem !important;
+    min-width: 50rem !important;
     width: 90% !important;
+}
+
+.paymentScreenContainer .float-label label {
+    margin-top: 1.5rem !important;
 }
 
 .paymentScreenCVV {
     display: flex;
-    justify-content: space-around !important;
+    justify-content: center !important;
     align-items: center;
-    width: 97% !important;
+
 }
 
 .paymentCardExpıryDate,
 .paymentCardCVV {
+    width: 23rem !important;
     background-color: transparent !important;
     border-color: #7465F2 !important;
-    margin: 2rem !important;
+    margin: 2rem 2rem !important;
 }
 
 .paymentSeatNumber {
     background-color: transparent;
     border-color: #7465F2;
-    width: 100% !important;
+    width: 23rem !important;
+    margin-top: 2rem !important;
+}
+
+.paymentScreenCVV .paymentSeatNumberContainer .float-label label {
+    margin-bottom: 10rem !important;
 }
 
 .overlay {

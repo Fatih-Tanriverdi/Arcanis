@@ -88,53 +88,55 @@ export default function BuyTicketModal({ visible, onClose, ticketId }) {
                     >
                         <div className='paymentScreenContainer'>
                             <h1>Ödeme Ekranı</h1>
-                            <FloatLabel label="İsim Soyisim">
+                            <FloatLabel label="İsim Soyisim" name="cardName" value={cardName}>
                                 <Input
                                     className='paymentCardName'
                                     value={cardName}
                                     onChange={(e) => setCardName(e.target.value)}
                                 />
                             </FloatLabel>
-                            <FloatLabel>
+                            <FloatLabel label="Kart Numarası" name="cardNumber" value={cardNumber}>
                                 <Input
                                     className='paymentCardNumber'
-                                    placeholder='Kart Numarası'
                                     value={maskCardNumber(cardNumber)}
                                     onChange={(e) => setCardNumber(e.target.value)}
                                     type='text'
                                 />
                             </FloatLabel>
                             <div className='paymentScreenCVV'>
-                                <Input
-                                    className='paymentCardExpıryDate'
-                                    placeholder='Son Kullanma Tarihi'
-                                    type='text'
-                                    value={cardExpıryDate}
-                                    onChange={(e) => {
-                                        const formattedDate = e.target.value.replace(/[^0-9]/g, '').slice(0, 4);
-                                        if (formattedDate.length <= 2) {
-                                            setCardExpıryDate(formattedDate);
-                                        } else {
-                                            setCardExpıryDate(`${formattedDate.slice(0, 2)}/${formattedDate.slice(2)}`);
-                                        }
-                                    }}
-                                />
-                                <Input
-                                    className='paymentCardCVV'
-                                    placeholder='CVV'
-                                    type='number'
-                                    value={cardCvv}
-                                    onChange={(e) => setCardCvv(e.target.value.slice(0, 3))}
-                                />
+                                <FloatLabel label="Son Kullanma Tarihi" name="cardExpıryDate" value={cardExpıryDate}>
+                                    <Input
+                                        className='paymentCardExpıryDate'
+                                        type='text'
+                                        value={cardExpıryDate}
+                                        onChange={(e) => {
+                                            const formattedDate = e.target.value.replace(/[^0-9]/g, '').slice(0, 4);
+                                            if (formattedDate.length <= 2) {
+                                                setCardExpıryDate(formattedDate);
+                                            } else {
+                                                setCardExpıryDate(`${formattedDate.slice(0, 2)}/${formattedDate.slice(2)}`);
+                                            }
+                                        }}
+                                    />
+                                </FloatLabel>
+                                <FloatLabel label="CVV" name="cardCvv" value={cardCvv}>
+                                    <Input
+                                        className='paymentCardCVV'
+                                        type='number'
+                                        value={cardCvv}
+                                        onChange={(e) => setCardCvv(e.target.value.slice(0, 3))}
+                                    />
+                                </FloatLabel>
                             </div>
                             <div className='paymentSeatNumberContainer'>
-                                <Input
-                                    className='paymentSeatNumber'
-                                    placeholder='Koltuk Numarası'
-                                    value={seatNumber}
-                                    onChange={(e) => setSeatNumber(e.target.value)}
-                                    type='number'
-                                />
+                                <FloatLabel label="Koltuk Numarası" name="seatNumber" value={seatNumber}>
+                                    <Input
+                                        className='paymentSeatNumber'
+                                        value={seatNumber}
+                                        onChange={(e) => setSeatNumber(e.target.value)}
+                                        type='number'
+                                    />
+                                </FloatLabel>
                             </div>
                         </div>
                         <div style={{ textAlign: 'center', marginTop: '20px' }}>

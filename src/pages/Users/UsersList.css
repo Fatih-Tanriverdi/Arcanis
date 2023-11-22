@@ -19,8 +19,9 @@
     flex-direction: column !important;
 }
 
-.SearchBarSpaceShipsInput {
-    width: 20rem !important;
+.SearchBarUserRoleInput {
+    max-width: 30rem !important;
+    margin-bottom: 1rem !important;
 }
 
 /* BUTTON */
@@ -44,8 +45,10 @@
         flex-direction: row !important;
     }
 
-    .SearchBarSpaceShipsInput {
-        width: 20rem !important;
+    .SearchBarUserRoleInput {
+        width: 80% !important;
+        margin-right: 2rem;
+        margin-bottom: 0 !important;
     }
 }
 
@@ -54,7 +57,7 @@
         flex-direction: row !important;
     }
 
-    .SearchBarSpaceShipsInput {
+    .SearchBarUserRoleInput {
         width: 25rem !important;
     }
 }
