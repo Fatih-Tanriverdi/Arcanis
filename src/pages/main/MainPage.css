@@ -294,6 +294,7 @@
         display: flex;
         justify-content: space-between;
         flex-direction: row;
+        margin-bottom: 2rem;
     }
 
     .mainPageBox2 {
