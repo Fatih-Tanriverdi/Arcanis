@@ -16,62 +16,70 @@ export default function UsersList() {
     const [pageSizeOdata, setPageSizeOdata] = useState(10);
 
     const [usersFiltersData, setUsersFiltersData] = useState([]);
-    const [userRoleType, setUserRoleType] = useState();
-    const [isActive, setIsActive] = useState();
+    const [userRoleType, setUserRoleType] = useState(null);
+    const [isActive, setIsActive] = useState(null);
     const [totalPageCount, setTotalPageCount] = useState(1);
 
     const columns = [
         {
             key: 'Id',
             dataIndex: 'Id',
-            key: 'Id',
             render: (Id, record) => (
                 <button className="editButton" onClick={() => handleEditUser(Id)}><RiArrowRightSLine /></button>
             ),
         },
         {
-            title: 'İSİM',
+            title: 'İsim',
             dataIndex: 'Name',
             key: 'Name',
         },
         {
-            title: 'SOYİSİM',
+            title: 'Soyisim',
             dataIndex: 'Surname',
             key: 'Surname',
         },
         {
-            title: 'E-POSTA',
+            title: 'Mail Adresi',
             dataIndex: 'Email',
             key: 'Email',
         },
         {
-            title: 'TELEFON',
+            title: 'Telefon',
             dataIndex: 'Phone',
             key: 'Phone',
         },
         {
-            title: 'KULLANICI ADI',
+            title: 'Kullanıcı Adı',
             dataIndex: 'Username',
             key: 'Username',
         },
         {
-            title: 'AKTİF',
+            title: 'Durumu',
             dataIndex: 'IsActive',
             key: 'IsActive',
-            render: (text) => {
-                if (text === true) {
+            render: (value) => {
+                if (value === true) {
                     return 'Aktif';
-                } else if (text === false) {
+                } else if (value === false) {
                     return 'Aktif Değil';
                 } else {
-                    return 'Unknown';
+                    return 'Belirsiz';
                 }
             },
         },
         {
-            title: 'ROL',
+            title: 'Rolü',
             dataIndex: 'UserRoleType',
             key: 'UserRoleType',
+            render: (value) => {
+                if (value === 'Admin') {
+                    return 'Yönetici';
+                } else if (value === 'Customer') {
+                    return 'Müşteri';
+                } else {
+                    return 'Belirsiz';
+                }
+            },
         },
     ];
 
@@ -84,8 +92,8 @@ export default function UsersList() {
     }, [pageOdata, pageSizeOdata]);
 
     const userRole = {
-        Admin: "Admin",
-        Customer: "Customer"
+        Admin: "Yönetici",
+        Customer: "Müşteri"
     };
 
     const userActive = {
@@ -129,11 +137,11 @@ export default function UsersList() {
         const skip = (pageOdata - 1) * pageSizeOdata;
         const filters = {};
 
-        if (isActiveValue) {
+        if (isActiveValue != null) {
             filters.IsActive = isActiveValue;
         }
 
-        if (userRoleTypeValue) {
+        if (userRoleTypeValue != null) {
             filters.UserRoleType = userRoleTypeValue;
         }
 
@@ -168,8 +176,8 @@ export default function UsersList() {
                             placeholder="Kullanıcı Rolü"
                         >
                             {Object.entries(userRole).map(([key, value]) => (
-                                <Select.Option key={key} value={value}>
-                                    {key}
+                                <Select.Option key={key} value={key}>
+                                    {value}
                                 </Select.Option>
                             ))}
                         </Select>
