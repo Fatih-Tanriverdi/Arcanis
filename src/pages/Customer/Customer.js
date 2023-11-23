@@ -29,9 +29,6 @@ export default function AsideHeader() {
 
     useEffect(() => {
         setAccessToken(localStorage.getItem('access-token'));
-    }, []);
-
-    useEffect(() => {
         const handleResize = () => {
             setIsMobile(window.innerWidth <= 768);
         };

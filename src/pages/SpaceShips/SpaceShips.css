@@ -42,6 +42,10 @@
     margin: 1rem !important;
 }
 
+.searchInput button span {
+    color: white !important;
+}
+
 
 @media screen and (min-width: 700px) {
     .searchInputPosition {

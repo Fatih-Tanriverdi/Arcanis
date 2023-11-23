@@ -150,18 +150,16 @@ export function ModelComponent({ isModalVisible, onCancel, modalContent, addTitl
         }
     };
 
-    useEffect(() => {
-        async function fetchRocketData() {
-            try {
-                const url = `${Config.SERVICE_URL}/lookups/space-vehicles`;
-                const data = await fetchRocketsGet(url);
-                setSpaceVehicleData(data);
-            } catch (error) {
-                console.error('API talebi başarısız oldu: ', error);
-            }
+    async function fetchRocketData() {
+        try {
+            const url = `${Config.SERVICE_URL}/lookups/space-vehicles`;
+            const data = await fetchRocketsGet(url);
+            setSpaceVehicleData(data);
+        } catch (error) {
+            console.error('API talebi başarısız oldu: ', error);
         }
-        fetchRocketData();
-    }, []);
+    }
+
     /* ROCKET */
 
     /* USERS */
@@ -254,16 +252,18 @@ export function ModelComponent({ isModalVisible, onCancel, modalContent, addTitl
         }
     };
 
-    useEffect(() => {
-        async function fetchPlanetData() {
-            try {
-                const url = `${Config.SERVICE_URL}/lookups/planets`;
-                const data = await fetchPlanetsGet(url);
-                setPlanetData(data);
-            } catch (error) {
-                console.error('API talebi başarısız oldu: ', error);
-            }
+    async function fetchPlanetData() {
+        try {
+            const url = `${Config.SERVICE_URL}/lookups/planets`;
+            const data = await fetchPlanetsGet(url);
+            setPlanetData(data);
+        } catch (error) {
+            console.error('API talebi başarısız oldu: ', error);
         }
+    }
+
+    useEffect(() => {
+        fetchRocketData();
         fetchPlanetData();
     }, []);
     /* PLANET */

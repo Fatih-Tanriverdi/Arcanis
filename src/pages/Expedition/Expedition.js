@@ -86,10 +86,6 @@ export default function UsersList() {
         },
     ];
 
-    useEffect(() => {
-        checkToken();
-    }, []);
-
     /* Sunucudan gelen veriler düzeltilerek kullanıcıya gösteriliyor*/
     const mapSpaceVehicleIdToName = (spaceVehicleId) => {
         const spaceVehicle = spaceVehicleData.find(vehicle => vehicle.id === spaceVehicleId);
@@ -108,30 +104,31 @@ export default function UsersList() {
     /* Sunucudan gelen veriler düzeltilerek kullanıcıya gösteriliyor*/
 
     /* LOOKUPS */
-    useEffect(() => {
-        async function fetchRocketData() {
-            try {
-                const url = `${Config.SERVICE_URL}/lookups/space-vehicles`;
-                const data = await fetchRocketsGet(url);
-                setSpaceVehicleData(data);
-            } catch (error) {
-                console.error('API talebi başarısız oldu: ', error);
-            }
+
+    async function fetchRocketData() {
+        try {
+            const url = `${Config.SERVICE_URL}/lookups/space-vehicles`;
+            const data = await fetchRocketsGet(url);
+            setSpaceVehicleData(data);
+        } catch (error) {
+            console.error('API talebi başarısız oldu: ', error);
         }
-        fetchRocketData();
-    }, []);
+    }
+
+    async function fetchPlanetData() {
+        try {
+            const url = `${Config.SERVICE_URL}/lookups/planets`;
+            const data = await fetchPlanetsGet(url);
+            setPlanetData(data);
+        } catch (error) {
+            console.error('API talebi başarısız oldu: ', error);
+        }
+    }
 
     useEffect(() => {
-        async function fetchPlanetData() {
-            try {
-                const url = `${Config.SERVICE_URL}/lookups/planets`;
-                const data = await fetchPlanetsGet(url);
-                setPlanetData(data);
-            } catch (error) {
-                console.error('API talebi başarısız oldu: ', error);
-            }
-        }
         fetchPlanetData();
+        fetchRocketData();
+        checkToken();
     }, []);
     /* LOOKUPS */
 

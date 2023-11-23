@@ -1,5 +1,5 @@
 .buyTicketModal {
-    width: 40% !important;
+    width: 100% !important;
     color: white !important;
 }
 
@@ -31,11 +31,12 @@
     background-color: transparent !important;
     border-color: #7465F2 !important;
     margin-top: 2rem !important;
-    min-width: 50rem !important;
-    width: 90% !important;
+    width: 34rem !important;
 }
 
 .paymentScreenContainer .float-label label {
+    left: 2.5rem !important;
+    font-size: 1rem;
     margin-top: 1.5rem !important;
 }
 
@@ -47,7 +48,7 @@
 
 .paymentCardExpıryDate,
 .paymentCardCVV {
-    width: 23rem !important;
+    width: 15rem !important;
     background-color: transparent !important;
     border-color: #7465F2 !important;
     margin: 2rem 2rem !important;
@@ -86,4 +87,30 @@
 .ant-message-notice-content {
     background-color: white !important;
     color: black !important;
+}
+
+@media screen and (min-width: 700px) {
+    .buyTicketModal {
+        width: 50% !important;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .buyTicketModal {
+        width: 30% !important;
+    }
+
+    .paymentScreenContainer .float-label label {
+        font-size: 1.2rem !important;
+    }
+
+    .paymentCardNumber,
+    .paymentCardName {
+        width: 40rem !important;
+    }
+
+    .paymentCardExpıryDate,
+    .paymentCardCVV {
+        width: 18rem !important;
+    }
 }

@@ -274,5 +274,13 @@
     .mainPageBoxTitle {
         font-size: 2rem;
     }
-}
 
+    .mainPageBodyContentSvg {
+        width: 6rem;
+        height: 6rem;
+    }
+
+    .mainPageBodyContentSvg svg {
+        font-size: 1.5rem !important;
+    }
+}

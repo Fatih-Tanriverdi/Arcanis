@@ -26,7 +26,6 @@ export default function SpaceShips() {
     const [search, setSearch] = useState("");
     const [totalPageCount, setTotalPageCount] = useState(1);
 
-
     const columns = [
         {
             title: '',

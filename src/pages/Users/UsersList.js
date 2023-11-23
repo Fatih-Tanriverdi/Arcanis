@@ -159,7 +159,7 @@ export default function UsersList() {
         } catch (err) {
             console.error("API request failed", err);
         }
-    }
+    };
 
     return (
         <div className='userListContainer'>

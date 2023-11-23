@@ -8,7 +8,6 @@ import Config from "../../config-file.json"
 
 export default function PlanetDetails() {
     const [planetDetails, setPlanetDetails] = useState(null);
-    
     const { id } = useParams();
 
     useEffect(() => {

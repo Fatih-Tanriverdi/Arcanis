@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./AdminPanel.css";
-import { Routes, Route, Link, useNavigate } from "react-router-dom";
+import { Routes, Route, Link } from "react-router-dom";
 import { AiOutlineHome, AiOutlineRocket, AiOutlineUser } from "react-icons/ai";
 import { BiExit, BiPlanet, BiMenu } from "react-icons/bi";
 import { BsFillArrowRightSquareFill, BsTicketPerforated } from "react-icons/bs";
@@ -29,21 +29,14 @@ export default function AsideHeader() {
     localStorage.removeItem("access-token");
   };
 
-  useEffect(() => {
-    checkToken();
-  }, []);
-
-  useEffect(() => {
-    async function getUser() {
-      const url = `${Config.SERVICE_URL}/users/info`;
-      const data = await fetchUsersDataGet(url).catch((error) => {
-        console.error("API request failed:", error);
-        return [];
-      });
-      setUserInfo(data);
-    }
-    getUser();
-  }, []);
+  async function getUser() {
+    const url = `${Config.SERVICE_URL}/users/info`;
+    const data = await fetchUsersDataGet(url).catch((error) => {
+      console.error("API request failed:", error);
+      return [];
+    });
+    setUserInfo(data);
+  }
 
   useEffect(() => {
     const isFirstLogin = localStorage.getItem("isFirstLogin") === "true";
@@ -55,6 +48,8 @@ export default function AsideHeader() {
       const savedActiveButton = localStorage.getItem("activeButton");
       setActiveButton(savedActiveButton);
     }
+    getUser();
+    checkToken();
   }, []);
 
   return (

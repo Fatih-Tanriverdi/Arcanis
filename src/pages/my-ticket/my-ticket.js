@@ -3,13 +3,11 @@ import './my-ticket.css';
 import { Table } from 'antd';
 import { fetchTicketsGet } from '../../services/TicketService';
 import Config from "../../config-file.json"
-import { fetchUsersDataGet } from '../../services/userService';
 import buildQuery from 'odata-query';
 
 export default function MyTicket() {
 
     const [myTicket, setMyTicket] = useState([]);
-    const [userData, setUserData] = useState([]);
 
     const columns = [
         {
@@ -41,7 +39,6 @@ export default function MyTicket() {
     }
 
     useEffect(() => {
-        console.log('çalışıyor')
         const fetchData = async () => {
             try {
                 const expand = 'User,Expedition';
@@ -49,8 +46,7 @@ export default function MyTicket() {
                 const url = `${Config.SERVICE_URL}/ticket-sales${queryWithPaging}`;
                 const data = await fetchTicketsGet(url);
                 setMyTicket(data.value);
-console.log(data.value)
-                
+
             } catch (error) {
                 console.error('Error fetching data:', error);
             }

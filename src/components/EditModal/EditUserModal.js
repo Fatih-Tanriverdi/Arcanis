@@ -19,28 +19,12 @@ export default function EditUserModal({ user, rocket, planet, ticket, expenditio
     const [spaceVehicleData, setSpaceVehicleData] = useState([]);
     const [planetData, setPlanetData] = useState([]);
     const [spaceVehicleId, setSelectedSpaceVehicle] = useState();
-    const [separturePlanetId, setSelectedDeparturePlanet] = useState("Departure Planet");
-    const [srrivalPlanetId, setSelectedArrivalPlanet] = useState("Arrival Planet");
+    const [separturePlanetId, setSelectedDeparturePlanet] = useState();
+    const [srrivalPlanetId, setSelectedArrivalPlanet] = useState();
 
     const UserRole = {
         ADMIN: 1,
         CUSTOMER: 2,
-    };
-
-    const priceOptions = [];
-    for (let price = 100000; price <= 500000; price += 10000) {
-        priceOptions.push({
-            value: price.toLocaleString(),
-            label: `$${price.toLocaleString()}`
-        });
-    };
-
-    const ageLimitOptions = [];
-    for (let age = 1; age <= 100; age++) {
-        ageLimitOptions.push({
-            value: age.toString(),
-            label: age.toString()
-        })
     };
 
     const handleUserRoleChange = (value) => {
@@ -489,14 +473,14 @@ export default function EditUserModal({ user, rocket, planet, ticket, expenditio
                                         pageType === 'expedition' ? handleDeleteExpedition :
                                             pageType === 'ticketAdmin' ? handleDeleteTickets : null
                         }>
-                            Delete
+                            Sil
                         </Button>
                         <div>
                             <Button className='editSaveButton' key="save" type="primary" onClick={handleSave}>
-                                Save
+                                Güncelle
                             </Button>
                             <Button className='editCancelButton' key="cancel" onClick={onCancel}>
-                                Cancel
+                                İptal
                             </Button>
                         </div>
                     </div>

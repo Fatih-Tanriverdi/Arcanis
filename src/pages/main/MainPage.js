@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import "./MainPage.css";
 import { checkToken } from "../../services/authService";
 import { TfiStatsUp } from "react-icons/tfi";
-import { FiDollarSign } from "react-icons/fi";
 import { LiaUserSolid } from "react-icons/lia";
 import { BiCube } from "react-icons/bi";
 import { BiRefresh } from "react-icons/bi";
@@ -17,9 +16,7 @@ import { displayMoney } from "../../helpers/utils";
 export default function MainPage() {
   const [usersMostTicketsData, setUsersMostTicketsData] = useState([]);
   const [planetsMostPopulerData, setPlanetsMostPopulerData] = useState([]);
-  const [expeditionsTotalCompleted, setExpeditionsTotalCompleted] = useState(
-    []
-  );
+  const [expeditionsTotalCompleted, setExpeditionsTotalCompleted] = useState([]);
   const [totalAmountsCompleted, setTotalAmountsCompleted] = useState([]);
 
   const progresColor = [

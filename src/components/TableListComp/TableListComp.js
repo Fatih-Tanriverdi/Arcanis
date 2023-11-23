@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './TableListComp.css';
-import { Input, Button, Table, Spin} from 'antd';
+import { Button, Table } from 'antd';
 import { ModelComponent } from '../ModalComponent/ModalComponent';
 
 export function TableListComp({ pageSearchType, props, addButtonLabel, setPageOdata, setPageSizeOdata, pageOdata, pageSizeOdata, totalPageCount }) {

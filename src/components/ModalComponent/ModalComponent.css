@@ -55,7 +55,7 @@
 
 .modalistBody > .float-label .ant-input {
     margin: 1rem;
-    width: 45rem  !important;
+    width: 30rem  !important;
     height: 4rem;
     background-color: transparent;
     border-color: #858B9B;
@@ -69,7 +69,7 @@
 
 .modalistBody > .float-label .ant-input-password {
     margin: 1rem !important;
-    width: 45rem !important;
+    width: 30rem !important;
     height: 4rem !important;
     border-radius: 0.5rem !important;
     background-color: transparent !important;
@@ -85,7 +85,7 @@
 }
 
 .modalistBody > .float-label .ant-select {
-    width: 45rem !important;
+    width: 30rem !important;
     height: 4rem !important;
     margin: 1rem !important;
 }
@@ -94,7 +94,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 45rem !important;
+    width: 30rem !important;
     height: 4rem !important;
 }
 
@@ -105,4 +105,23 @@
     color: white !important;
     display: flex;
     align-items: center;
+}
+
+
+@media screen and (min-width: 700px) {
+    .modalistBody > .float-label .ant-select,
+    .modalistBody> .float-label .ant-select > .ant-select-selector,
+    .modalistBody > .float-label .ant-input,
+    .modalistBody > .float-label .ant-input-password {
+        width: 45rem !important;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .modalistBody > .float-label .ant-select,
+    .modalistBody> .float-label .ant-select > .ant-select-selector,
+    .modalistBody > .float-label .ant-input,
+    .modalistBody > .float-label .ant-input-password {
+        width: 45rem !important;
+    }
 }
