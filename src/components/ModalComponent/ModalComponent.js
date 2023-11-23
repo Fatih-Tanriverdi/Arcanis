@@ -103,15 +103,19 @@ export function ModelComponent({ isModalVisible, onCancel, modalContent, addTitl
     const handleOk = async () => {
         if (modalContent === 'spaceShips') {
             rocketPost();
+            onCancel();
         }
         if (modalContent === 'users') {
             usersPost();
+            onCancel();
         }
         if (modalContent === 'planets') {
             planetsPost();
+            onCancel();
         }
         if (modalContent === 'expedition') {
             expeditionsPost();
+            onCancel();
         }
         setTimeout(() => {
             setErrorMessage(null);

@@ -40,3 +40,11 @@
 .editButtonContainer span {
     color: white !important;
 }
+
+.modalistBody .float-label .label {
+    top: 2rem !important;
+}
+
+.modalistBody .float-label .label-float {
+    top: 0rem !important;
+}

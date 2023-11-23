@@ -136,6 +136,10 @@ export default function UsersList() {
         handleFilterButtonClick();
     }, [pageOdata, pageSizeOdata]);
 
+    useEffect(() => {
+        handleFilterButtonClick();
+    }, [expeditionFilter]);
+
     const handleDeleteExpedition = (Id) => {
         const confirmDelete = window.confirm('Expeditioni silmek istediğinize emin misiniz?');
         if (!confirmDelete) {

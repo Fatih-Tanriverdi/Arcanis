@@ -67,6 +67,10 @@ export default function TicketAdmin() {
         handleFilterButtonClick();
     }, [pageOdata, pageSizeOdata]);
 
+    useEffect(() => {
+        handleFilterButtonClick();
+    }, [ticketAdminFilter])
+
     const handleDeleteTicket = (Id) => {
         const confirmDelete = window.confirm('Kullanıcıyı silmek istediğine emin misin?');
         if (!confirmDelete) {

@@ -19,13 +19,6 @@ export default function MainPage() {
   const [expeditionsTotalCompleted, setExpeditionsTotalCompleted] = useState([]);
   const [totalAmountsCompleted, setTotalAmountsCompleted] = useState([]);
 
-  const progresColor = [
-    { color: "#7366F0" },
-    { color: "#00CEE7" },
-    { color: "#EA5354" },
-    { color: "#29C76F" },
-  ];
-
   const conicColors = {
     "0%": "#87d068",
     "50%": "#ffe58f",
@@ -219,7 +212,7 @@ export default function MainPage() {
                       type="circle"
                       percent={ticketData.rate.toFixed()}
                       size={45}
-                      strokeColor={progresColor}
+                      strokeColor="#7465F2"
                     />
                   </Space>
                 </div>
@@ -298,7 +291,7 @@ export default function MainPage() {
                       type="circle"
                       percent={planetData.rate.toFixed()}
                       size={45}
-                      strokeColor={progresColor}
+                      strokeColor="#7465F2"
                     />
                   </Space>
                 </div>

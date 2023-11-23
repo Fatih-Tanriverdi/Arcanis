@@ -74,6 +74,10 @@ export default function UsersList() {
         handleFilterButtonClick();
     }, [pageOdata, pageSizeOdata]);
 
+    useEffect(() => {
+        handleFilterButtonClick();
+    }, [planetsFilteredData]);
+
     const handleDeletePlanet = (Id) => {
         const confirmDelete = window.confirm('Kullanıcıyı silmek istediğine emin misin?');
         if (!confirmDelete) {

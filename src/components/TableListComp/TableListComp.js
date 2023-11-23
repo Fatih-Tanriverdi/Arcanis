@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './TableListComp.css';
 import { Button, Table } from 'antd';
 import { ModelComponent } from '../ModalComponent/ModalComponent';
@@ -7,6 +7,11 @@ export function TableListComp({ pageSearchType, props, addButtonLabel, setPageOd
 
     const [modelContent, setModelContent] = useState("");
     const [isModalVisible, setIsModalVisible] = useState(false);
+    const [dataSource, setDataSource] = useState(props.dataSource);
+
+    useEffect(() => {
+        setDataSource(props.dataSource);
+    }, [props.dataSource]);
 
     const showModall = (content) => {
         setIsModalVisible(true);
@@ -40,22 +45,21 @@ export function TableListComp({ pageSearchType, props, addButtonLabel, setPageOd
                     <Table
                         className='tableListBody'
                         columns={props.columns}
-                        dataSource={props.dataSource}
+                        dataSource={dataSource}
                         rowClassName="tableRow"
                         pagination={{
                             total: totalPageCount,
                             current: pageOdata,
                             pageSize: pageSizeOdata,
-                            showSizeChanger : true,
+                            showSizeChanger: true,
                             onChange: (page, pageSize) => {
                                 setPageOdata(page);
                                 setPageSizeOdata(pageSize);
-
                             }
                         }}
                     />
                 </div>
-                <ModelComponent isModalVisible={isModalVisible} onCancel={handleCancel} modalContent={modelContent} addTitle={modalTitle} />
+                <ModelComponent isModalVisible={isModalVisible} onCancel={handleCancel} modalContent={modelContent} addTitle={modalTitle}/>
             </div>
         </div>
     )

@@ -9,7 +9,7 @@ import { putTicket } from '../../services/TicketService';
 import Config from "../../config-file.json"
 import FloatLabel from "../float-label/float-label";
 
-export default function EditUserModal({ user, rocket, planet, ticket, expendition, onSave, onCancel, visible, pageType, addEditTitle, userDelete, rocketDelete, planetDelete, expeditionDelete, ticketDelete }) {
+export default function EditUserModal({ user, rocket, planet, ticket, expendition, onCancel, visible, pageType, addEditTitle, userDelete, rocketDelete, planetDelete, expeditionDelete, ticketDelete }) {
     const [editedData, setEditedData] = useState(user);
     const [editRocket, setEditRocket] = useState(rocket);
     const [editPlanet, setEditPlanet] = useState(planet);
@@ -19,8 +19,8 @@ export default function EditUserModal({ user, rocket, planet, ticket, expenditio
     const [spaceVehicleData, setSpaceVehicleData] = useState([]);
     const [planetData, setPlanetData] = useState([]);
     const [spaceVehicleId, setSelectedSpaceVehicle] = useState();
-    const [separturePlanetId, setSelectedDeparturePlanet] = useState();
-    const [srrivalPlanetId, setSelectedArrivalPlanet] = useState();
+    const [departurePlanetId, setSelectedDeparturePlanet] = useState();
+    const [arrivalPlanetId, setSelectedArrivalPlanet] = useState();
 
     const UserRole = {
         ADMIN: 1,
@@ -54,6 +54,7 @@ export default function EditUserModal({ user, rocket, planet, ticket, expenditio
 
     const handleSave = async () => {
         try {
+            console.log("pageType",pageType)
             if (pageType === 'users') {
                 const requiredFields = ['Name', 'Surname', 'EmailAdress', 'PhoneNumber', 'Username', 'Password'];
                 for (const field of requiredFields) {
@@ -63,7 +64,7 @@ export default function EditUserModal({ user, rocket, planet, ticket, expenditio
                     }
                 }
                 await putUsers(editedData);
-                onSave(user.id, editedData);
+                onCancel();
             }
             if (pageType === 'spaceShips') {
                 const requiredFields = ['Name', 'ModelName', 'ModelYear', 'SerialNumber', 'Description', 'MaxNumberOfPassengers', 'AgeLimit'];
@@ -74,11 +75,10 @@ export default function EditUserModal({ user, rocket, planet, ticket, expenditio
                     }
                 }
                 await putRocket(editRocket);
-                onSave(rocket.Id, editRocket);
-                onCancel();
+                await onCancel();
             }
             if (pageType === 'planets') {
-                const requiredFields = ['Name', 'Sequence', 'DifficultyLevel', 'ImageUrl', 'DetailsImageUrl', 'Description', 'summaryDescription'];
+                const requiredFields = ['Name', 'Sequence', 'DifficultyLevel', 'ImageUrl', 'DetailsImageUrl', 'Description'];
                 for (const field of requiredFields) {
                     if (!editPlanet[field]) {
                         setErrorText(`Lütfen ${field} alanını doldurun.`);
@@ -86,7 +86,7 @@ export default function EditUserModal({ user, rocket, planet, ticket, expenditio
                     }
                 }
                 await putPlanet(editPlanet);
-                onSave(planet.id, editPlanet);
+                onCancel();
             }
             if (pageType === 'expedition') {
                 const requiredFields = ['Name', 'ExpeditionDate', 'ArrivalDate', 'TicketPrice', 'SpaceVehicleId', 'DeparturePlanetId', 'ArrivalPlanetId'];
@@ -97,7 +97,7 @@ export default function EditUserModal({ user, rocket, planet, ticket, expenditio
                     }
                 }
                 await putExpedition(editExpedition);
-                onSave(expendition.id, editExpedition);
+                onCancel();
             }
             if (pageType === 'ticketAdmin') {
                 const requiredFields = ['CreatedDate', 'ExpeditionId', 'SeatNumber'];
@@ -108,10 +108,11 @@ export default function EditUserModal({ user, rocket, planet, ticket, expenditio
                     }
                 }
                 await putTicket(editTicket);
-                onSave(ticket.id, editTicket);
+                onCancel();
+
             }
         } catch (error) {
-            console.error("Güncelleme işlemi başarısız oldu.", error);
+            setErrorText(error.Messages);
         }
     };
 
@@ -332,13 +333,6 @@ export default function EditUserModal({ user, rocket, planet, ticket, expenditio
                                     name="Description"
                                 />
                             </FloatLabel>
-                            <FloatLabel label="Detaylı Açıklama" name="summaryDescription" value={editPlanet.summaryDescription}>
-                                <Input
-                                    onChange={(e) => setEditPlanet({ ...editPlanet, summaryDescription: e.target.value })}
-                                    value={editPlanet.summaryDescription}
-                                    name="summaryDescription"
-                                />
-                            </FloatLabel>
                         </div>
                     </Space>
                 );
@@ -444,7 +438,7 @@ export default function EditUserModal({ user, rocket, planet, ticket, expenditio
                             <FloatLabel label="Koltuk Numarası" name="SeatNumber" value={editTicket.SeatNumber}>
                                 <Input
                                     value={editTicket.SeatNumber}
-                                    onChange={(value) => setEditTicket({ ...editTicket, SeatNumber: value })}
+                                    onChange={(e) => setEditTicket({ ...editTicket, SeatNumber: e.target.value })}
                                     name="SeatNumber"
                                 />
                             </FloatLabel>

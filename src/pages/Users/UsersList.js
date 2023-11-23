@@ -91,6 +91,10 @@ export default function UsersList() {
         handleFilterButtonClick();
     }, [pageOdata, pageSizeOdata]);
 
+    useEffect(() => {
+        handleFilterButtonClick();
+    }, [usersFiltersData]);
+
     const userRole = {
         Admin: "Yönetici",
         Customer: "Müşteri"

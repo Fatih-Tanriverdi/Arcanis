@@ -37,13 +37,13 @@ export default function App({ setPageAuthType, setIsModalOpen, setAccessToken })
             } else {
                 navigate('/');
                 setAccessToken(localStorage.getItem('access-token'));
+                setIsModalOpen(false);
             }
         } else {
             setError('Kullanıcı adı, şifre veya e-posta yanlış.');
             setTimeout(hideErrorMessage, 3000);
         }
         setLoading(false);
-        setIsModalOpen(false);
     };
 
     const handleLogin = async (e) => {

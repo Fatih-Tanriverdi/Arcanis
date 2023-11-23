@@ -1,8 +1,8 @@
 import Config from "../config-file.json"
 
 /* UserLogin */
-export const login = async ( username, password, emailAddress ) => {
-    
+export const login = async (username, password, emailAddress) => {
+
     const response = await fetch(`${Config.SERVICE_URL}/auth/login`, {
         method: "POST",
         headers: {
@@ -11,13 +11,14 @@ export const login = async ( username, password, emailAddress ) => {
         },
         body: JSON.stringify({ username, password, emailAddress })
     });
+
     const data = await response.json();
 
     if (!response.ok) {
         if (data.Messages) {
-            return data.Messages.join(", ");
+            return { errorMessages: data.Messages };
         } else {
-            return "Bir hata oluştu.";
+            return { errorMessages: ["Bir hata oluştu."] };
         }
     }
 
@@ -28,7 +29,7 @@ export const login = async ( username, password, emailAddress ) => {
 
 /* RegisterUser */
 export const registerUser = async (values) => {
-    
+
     const phoneNumberWithoutMask = values.phoneNumber.replace(/[^0-9]/g, '');
 
     const response = await fetch(`${Config.SERVICE_URL}/users/register`, {
@@ -58,7 +59,7 @@ export const registerUser = async (values) => {
 
 /* CheckToken */
 export const checkToken = async () => {
-    
+
     const localStorageToken = localStorage.getItem('access-token');
 
     if (localStorageToken === null || localStorageToken === '') {
@@ -83,15 +84,15 @@ export const checkToken = async () => {
 
 /* ResetPassword */
 export const resetPassword = async (emailAddress) => {
-    
+
     const response = await fetch(
-        `${Config.SERVICE_URL}/users/forgot-password?mailAddress=${emailAddress}`,{
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-                Accept: "application/json",
-            },
-        }
+        `${Config.SERVICE_URL}/users/forgot-password?mailAddress=${emailAddress}`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+        },
+    }
     );
     if (response.status !== 200) {
         const data = await response.json();
@@ -104,7 +105,7 @@ export const resetPassword = async (emailAddress) => {
 
 /* PasswordResetKey */
 export const passwordResetKey = async (password, rePassword, recoveryCode) => {
-    
+
 
     const response = await fetch(`${Config.SERVICE_URL}/users/reset-password`, {
         method: "POST",
@@ -112,7 +113,7 @@ export const passwordResetKey = async (password, rePassword, recoveryCode) => {
             'Content-Type': 'application/json',
             'Accept': 'application/json'
         },
-        body: JSON.stringify({password, rePassword, recoveryCode})
+        body: JSON.stringify({ password, rePassword, recoveryCode })
     });
     const data = await response.json();
 

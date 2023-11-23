@@ -44,7 +44,7 @@
 .authLoginContainer .loginPageUsernameInput,
 .authLoginContainer .loginPagePasswordInput {
     background-color: transparent !important;
-    width: 100% !important;
+    width: 30rem !important;
     height: 3.5rem !important;
     margin: 1rem;
     border-radius: 0;

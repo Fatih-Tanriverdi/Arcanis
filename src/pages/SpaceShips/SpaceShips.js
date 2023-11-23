@@ -87,6 +87,10 @@ export default function SpaceShips() {
         getSpaceVehicles();
     }, [pageOdata, pageSizeOdata]);
 
+    useEffect(() => {
+        getSpaceVehicles();
+    }, [filteredSpaceShipData]);
+
     const handleDeleteRocket = (Id) => {
         const confirmDelete = window.confirm('Kullanıcıyı silmek istediğine emin misin?');
         if (!confirmDelete) {
@@ -110,7 +114,6 @@ export default function SpaceShips() {
     };
 
     const handleModalClose = () => {
-        setSelectedRocket(null);
         setIsModalOpen(false);
     };
 
