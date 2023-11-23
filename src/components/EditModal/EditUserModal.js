@@ -152,33 +152,31 @@ export default function EditUserModal({ user, rocket, planet, ticket, expenditio
     };
 
     useEffect(() => {
-        async function fetchPlanetData() {
-            try {
-                const url = `${Config.SERVICE_URL}/lookups/planets`;
-                const data = await fetchPlanetsGet(url);
-                setPlanetData(data);
-            } catch (error) {
-                console.error('API talebi başarısız oldu: ', error);
-            }
-        }
         fetchPlanetData();
-    }, []);
-
-    useEffect(() => {
-        async function fetchRocketData() {
-            try {
-                const url = `${Config.SERVICE_URL}/lookups/space-vehicles`;
-                const data = await fetchRocketsGet(url);
-                setSpaceVehicleData(data);
-            } catch (error) {
-                console.error('API talebi başarısız oldu: ', error);
-            }
-        }
         fetchRocketData();
     }, []);
 
+    async function fetchPlanetData() {
+        try {
+            const url = `${Config.SERVICE_URL}/lookups/planets`;
+            const data = await fetchPlanetsGet(url);
+            setPlanetData(data);
+        } catch (error) {
+            console.error('API talebi başarısız oldu: ', error);
+        }
+    }
+
+    async function fetchRocketData() {
+        try {
+            const url = `${Config.SERVICE_URL}/lookups/space-vehicles`;
+            const data = await fetchRocketsGet(url);
+            setSpaceVehicleData(data);
+        } catch (error) {
+            console.error('API talebi başarısız oldu: ', error);
+        }
+    }
+
     const getPageContent = () => {
-        console.log('xxxx', editedData)
         switch (pageType) {
             case 'spaceShips':
                 return (
@@ -460,11 +458,10 @@ export default function EditUserModal({ user, rocket, planet, ticket, expenditio
                                 />
                             </FloatLabel>
                             <FloatLabel label="Koltuk Numarası" name="SeatNumber" value={editTicket.SeatNumber}>
-                                <Select
+                                <Input
                                     value={editTicket.SeatNumber}
                                     onChange={(value) => setEditTicket({ ...editTicket, SeatNumber: value })}
                                     name="SeatNumber"
-                                    options={ageLimitOptions}
                                 />
                             </FloatLabel>
                         </div>

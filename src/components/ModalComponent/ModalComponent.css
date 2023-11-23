@@ -5,10 +5,6 @@
     border-bottom: 1px solid white !important;
 }
 
-.modalComponent .ant-modal-header>.ant-modal-title {
-    color: white;
-}
-
 .modalComponent .ant-modal-content {
     background-color: #273046 !important;
 }
@@ -44,16 +40,8 @@
     color: white !important;
 }
 
-.ant-input-suffix>span {
-    color: white !important;
-}
-
 .modal-usarname-style>input {
     width: 22rem;
-}
-
-.ant-input::placeholder {
-    color: white !important;
 }
 
 /* MODAL TEXTAREA STYLE */
@@ -89,7 +77,10 @@
 }
 
 .modalComponent .ant-modal-close-x,
-.modalComponent .ant-select-arrow {
+.modalComponent .ant-select-arrow,
+.ant-input::placeholder,
+.ant-input-suffix>span,
+.modalComponent .ant-modal-header>.ant-modal-title {
     color: white !important;
 }
 
@@ -106,9 +97,6 @@
     width: 45rem !important;
     height: 4rem !important;
 }
-
-
-
 
 .ant-input-affix-wrapper {
     width: 220px !important;

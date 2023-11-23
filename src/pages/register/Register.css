@@ -4,6 +4,10 @@
     overflow: auto !important;
 }
 
+.authRegisterContainer p {
+    color: white !important;
+}
+
 .userRegisterTitle > h1 {
     margin: 1rem;
     font-size: 2rem;

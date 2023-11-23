@@ -16,17 +16,14 @@ export default function BuyTicketModal({ visible, onClose, ticketId }) {
 
     const handleOk = async () => {
         try {
-
             if (!cardName || !cardNumber || !cardExpıryDate || !cardCvv || !seatNumber) {
                 setErrorMessage("Lütfen tüm kart bilgilerini eksiksiz girin.");
-
                 setTimeout(() => {
                     setErrorMessage("");
                 }, 3000);
 
                 return;
             }
-
             const ticketSalesData = {
                 expeditionId: ticketId,
                 seatNumber: parseInt(seatNumber),
@@ -38,7 +35,6 @@ export default function BuyTicketModal({ visible, onClose, ticketId }) {
                     cvv: parseInt(cardCvv, 10),
                 },
             };
-
             const response = await postTicketSales(ticketSalesData);
             setOpen(false);
             onClose();
@@ -54,7 +50,6 @@ export default function BuyTicketModal({ visible, onClose, ticketId }) {
             }
         } catch (error) {
             setErrorMessage(error.message);
-
             setTimeout(() => {
                 setErrorMessage("");
             }, 3000);
@@ -69,7 +64,6 @@ export default function BuyTicketModal({ visible, onClose, ticketId }) {
     const maskCardNumber = (cardNumber) => {
         const cleanedNumber = cardNumber.replace(/\D/g, '').slice(0, 16);
         const maskedNumber = cleanedNumber.replace(/(.{4})/g, '$1-').slice(0, 19);
-
         return maskedNumber;
     };
 

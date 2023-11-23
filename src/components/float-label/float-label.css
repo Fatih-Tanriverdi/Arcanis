@@ -15,10 +15,11 @@
     left: 5rem;
     top: 0.5rem;
     transition: 0.2s ease all;
+    color: white !important;
 }
 
 .label-float {
-    top: 0rem ;
+    top: -1rem ;
     font-size: 1rem;
 }
 

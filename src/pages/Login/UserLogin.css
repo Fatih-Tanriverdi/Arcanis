@@ -26,10 +26,6 @@
     width: 100%;
 }
 
-.ant-input {
-    color: white !important;
-}
-
 .forgetPasswordColor {
     font-size: 0.8rem;
     color: white !important;
@@ -71,14 +67,16 @@
     font-size: 3.5rem;
 }
 
-.ant-modal-close-x {
-    color: white;
-}
-
 .authLoginContainer h1,
 .authLoginContainer h2,
-.authLoginContainer p {
+.authLoginContainer p,
+.ant-modal-close-x,
+.ant-input {
     color: white !important;
+}
+
+.inputGroupUser .float-label {
+    margin-bottom: 1rem !important;
 }
 
 /* LOGIN CONTENT */

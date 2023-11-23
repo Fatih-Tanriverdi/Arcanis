@@ -3,11 +3,6 @@
     border-left: 0.1rem solid white !important;
 }
 
-/** first-color =  #273046  **/
-/** second-color =  #161D30  **/
-/** third-color =  #5D5E9C  **/
-/** fourth-color =  #858B9B  **/
-
 /* Mouse ile text seçimi engelleme */
 body {
     -webkit-user-select: none;
@@ -78,14 +73,6 @@ body {
 }
 
 /* HEADER */
-
-
-@media screen and (min-width: 700px) {}
-
-@media screen and (min-width: 1200px) {}
-
-
-/* CSS dosyanızda */
 
 .dropbtn {
     background-color: #7465F2;

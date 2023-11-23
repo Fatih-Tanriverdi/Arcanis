@@ -30,11 +30,11 @@ export default function App() {
         <Route path="/planet/:id" element={<PlanetDetails />} />
         <Route path="/reset-password/:recoveryCode" element={<PasswordResetScreen />} />
       </Route>
-      <Route path="admin/*" element={<AdminPanel />}>
+      <Route path="admin" element={<AdminPanel />}>
         <Route path="userlist" element={<UsersList />} />
         <Route path="spaceships" element={<SpaceShips />} />
         <Route path="mainpage" element={<MainPage />} />
-        <Route path="planestadmin" element={<PlanetsAdmin />} />
+        <Route path="planetsadmin" element={<PlanetsAdmin />} />
         <Route path="expedition" element={<Expedition />} />
         <Route path="ticketadmin" element={<TicketAdmin />} />
       </Route>

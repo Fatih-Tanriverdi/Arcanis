@@ -15,29 +15,10 @@
     background-color: #28414A;
 }
 
-/* svgColors */
-
-.svgColor-1 {
-    color: #7366F0;
-}
-
-.svgColor-2 {
-    color: #00CEE7;
-}
-
-.svgColor-3 {
-    color: #EA5354;
-}
-
-.svgColor-4 {
-    color: #29C76F;
-}
-
-/* svgColors */
-
 /* Colors */
 
-.mainPageContainer {
+.mainPageContainer,
+.mainPageBoxContainer {
     display: flex;
     flex-direction: column;
 }
@@ -47,13 +28,9 @@
     margin-top: 3rem;
     background-color: #273046;
     border-radius: 0.5rem;
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-}
 
-.mainPageBoxContainer {
-    display: flex;
-    height: auto;
-    flex-direction: column;
+    overflow-y: scroll;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
 .mainPageBox1,
@@ -75,19 +52,12 @@
 }
 
 .mainPageTitle,
-.mainPageBoxTitle {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 1.5rem;
-
-    margin: 1rem 2rem 1rem 2rem;
-}
-
+.mainPageBoxTitle,
 .mainPageBoxUsersInfo {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    font-size: 1.5rem;
 
     margin: 1rem 2rem 1rem 2rem;
 }
@@ -103,7 +73,8 @@
     margin-right: 1rem;
 }
 
-.ant-progress {
+.ant-progress,
+.ant-progress-text {
     color: white !important;
 }
 
@@ -152,10 +123,6 @@
     margin-top: 2rem;
 }
 
-.mainPageBodyContentTitle>p {
-    padding-top: 0;
-}
-
 .mainPageExpeditionsFooter {
     display: flex;
     justify-content: space-around;
@@ -190,10 +157,6 @@
     font-size: 2rem;
 }
 
-.ant-progress-text {
-    color: white !important;
-}
-
 .mainPageBoxInfoContainer {
     display: flex;
     justify-content: center;
@@ -220,10 +183,6 @@
 
 .mainPageSvg:hover {
     opacity: 0.5;
-}
-
-.tryIcon{
-    font-size: 2.4rem;
 }
 
 
@@ -256,7 +215,6 @@
         height: 5rem;
         cursor: pointer;
         border-radius: 50%;
-        overflow: hidden;
     }
     
     .mainPageBodyContentSvg > svg {

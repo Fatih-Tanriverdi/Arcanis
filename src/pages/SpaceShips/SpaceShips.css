@@ -52,7 +52,6 @@
     .SearchBarSpaceShipsInput {
         width: 20rem !important;
     }
-
 }
 
 @media screen and (min-width: 1200px) {
@@ -65,4 +64,3 @@
         width: 25rem !important;
     }
 }
-

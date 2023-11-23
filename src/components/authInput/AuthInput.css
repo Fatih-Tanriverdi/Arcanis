@@ -15,7 +15,6 @@
 
 
 @media screen and (min-width: 700px) {
-
     .authRegisterContainer .ınputRegister,
     .authRegisterContainer .ınputRegisterPassword {
         width: 50rem !important;
@@ -25,7 +24,6 @@
 }
 
 @media screen and (min-width: 1200px) {
-
     .authRegisterContainer .ınputRegister,
     .authRegisterContainer .ınputRegisterPassword {
         width: 50rem !important;

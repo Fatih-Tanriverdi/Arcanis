@@ -25,11 +25,6 @@
     overflow-y: scroll !important;
 }
 
-/** first-color =  #273046  **/
-/** second-color =  #161D30  **/
-/** third-color =  #5D5E9C  **/
-/** fourth-color =  #858B9B  **/
-
 /* NAVİGATE */
 
 .adminNavigateBar {
@@ -79,17 +74,11 @@
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
-.adminResponseHeader {
-    display: flex !important;
-    justify-content: space-between !important;
-    align-items: center !important;
-    width: 100% !important;
-}
-
+.adminResponseHeader,
 .adminInfoResponse {
     display: flex !important;
     justify-content: space-between !important;
-    align-items: center !important; 
+    align-items: center !important;
 }
 
 .adminImg {
@@ -146,7 +135,8 @@
     font-size: 1rem;
 }
 
-.customerInfoBtn:hover + .customerInfo {
+.customerInfoBtn:hover + .customerInfo,
+.adminResponseMenu:hover .adminResponseDropdownContent {
     display: block;
 }
 
@@ -154,11 +144,8 @@
 
 /* BUTTON */
 
-.adminBtnPosition > a {
-    color: white !important;
-}
-
-.adminPanelButton {
+.adminPanelButton,
+.adminBtnExit {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -176,21 +163,7 @@
 
 .adminPanelButton>a,
 .adminBtnExit>a {
-    color: white !important;
     display: none;
-}
-
-.adminPanelButton > ul > li > a {
-    display: none !important;
-}
-
-.adminBtnExit {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 1rem;
-    border-radius: 0.5rem;
-    color: white !important;
 }
 
 .adminBtnExit:hover {
@@ -200,10 +173,6 @@
 }
 
 /* BUTTON */
-
-.css-dev-only-do-not-override-12upa3x {
-    color: white !important;
-}
 
 .customerPageBtn {
     display: none !important;
@@ -222,10 +191,6 @@
 /* BUTTON */
 
 /* BUTTON */
-
-.adminPanelButton.active {
-    background-color: #7465F2 !important;
-}
 
 .adminBtnPosition {
     display: flex;
@@ -286,18 +251,13 @@
     display: block;
 }
 
-.adminResponseDropdownContent a:hover {
+.adminResponseDropdownContent a:hover,
+.adminPanelButton.active,
+.adminResponseMenu:hover .adminResponseMenuButton {
     background-color: #7465F2;
     color: #fff;
 }
 
-.adminResponseMenu:hover .adminResponseDropdownContent {
-    display: block;
-}
-
-.adminResponseMenu:hover .adminResponseMenuButton {
-    background-color: #7465F2;
-}
 /* Dropdown Menü */
 
 @media screen and (min-width: 700px) {
@@ -314,29 +274,20 @@
         flex: 100% !important;
     }
 
-    .arcanisLogoAndTitle>h1 {
-        display: none;
-    }
-
     .adminBtnPosition {
         margin: 0 !important;
     }
 
     .adminPanelButton>a,
-    .adminBtnExit > a {
+    .adminBtnExit > a,
+    .arcanisLogoAndTitle>h1,
+    .button-text,
+    .adminResponseButtons {
         display: none;
-    }
-
-    .button-text {
-        display: none !important;
     }
 
     .button-icon {
         padding-left: 0.6rem;
-    }
-
-    .adminResponseButtons {
-        display: none;
     }
 
     .adminPanelButton>span>svg,
@@ -391,7 +342,8 @@
 }
 
 @media screen and (min-width: 1200px) {
-    .adminResponseButtons {
+    .adminResponseButtons,
+    .button-icon {
         display: none;
     }
 
@@ -458,10 +410,6 @@
     .button-text {
         display: block !important;
         padding: 0rem 2rem 0rem 2rem;
-    }
-
-    .button-icon {
-        display: none !important;
     }
 
     .arcanisImg {

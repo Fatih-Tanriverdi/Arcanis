@@ -84,17 +84,14 @@
     margin-top: 1rem !important;
 }
 
-.ticketSearch .ant-picker-suffix>span {
+.ticketSearch .ant-picker-suffix>span,
+.ticketSearch .ant-picker-range-separator>span {
     margin-top: 3rem !important;
 }
 
 .ant-picker-input>input {
     width: 50% !important;
     color: white !important;
-}
-
-.ticketSearch .ant-picker-range-separator>span {
-    margin-top: 3rem !important;
 }
 
 .ant-space {
@@ -118,6 +115,11 @@
 .selectArrival {
     display: flex !important;
     justify-content: center !important;
+}
+
+.selectDeparture .ant-select-selector,
+.selectArrival .ant-select-selector {
+    border: none !important;
 }
 
 .anticon-calendar {
@@ -309,6 +311,10 @@
     align-items: center;
 }
 
+.ticketPagePromoContent h1 {
+    color: #7465F2 !important;
+}
+
 .ticketPagePromoContent i {
     margin-right: 1rem;
     margin-top: 0.5rem;
@@ -375,7 +381,8 @@
 /* FOOTER CONTAİNER */
 
 @media screen and (min-width: 700px) {
-    .ticketPageBodyPosition {
+    .ticketPageBodyPosition,
+    .ticketPageFooterContainer {
         flex-direction: row;
     }
 
@@ -415,16 +422,12 @@
         margin: 1rem;
     }
 
-    .ticketPageFooterContainer {
-        flex-direction: row;
-    }
-
     .ticketPageFooterInfoBox {
         width: 25%;
     }
 
     .ticketSearch .ant-select {
-        width: 30rem;
+        width: 30rem !important;
     }
 
     .ticketSearch .ant-picker-range {
@@ -451,10 +454,6 @@
 }
 
 @media screen and (min-width: 1200px) {
-    .ticketPageBodyPosition {
-        flex-direction: row;
-    }
-
     .ticketSearch {
         min-height: 35rem !important;
         height: 100%;
@@ -481,7 +480,9 @@
         font-size: 1.2rem;
     }
 
-    .ticketPageBodyContent {
+    .ticketPageBodyContent,
+    .ticketPageFooterContainer,
+    .ticketPageBodyPosition {
         flex-direction: row;
     }
 
@@ -489,20 +490,9 @@
         width: 23%;
     }
 
-    .ticketPageFooterContainer {
-        flex-direction: row;
-    }
-
-    .ticketPageFooterInfoBox {
-        width: 25%;
-    }
-
-    .ticketSearch .ant-select {
-        width: 40rem;
-    }
-
-    .ticketSearch .ant-picker-range {
-        width: 42rem !important;
+    .ticketSearch .ant-select,
+    .ticketSearch .ant-picker-range  {
+        width: 40rem !important;
     }
 
     .departureDateTicket,
