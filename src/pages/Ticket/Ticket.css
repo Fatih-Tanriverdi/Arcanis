@@ -100,13 +100,13 @@
     align-items: center;
 }
 
-.arrivalDateTicket.disabled {
+.lastDateTicket.disabled {
     opacity: 0.5;
     pointer-events: none;
 }
 
-.departureDateTicket,
-.arrivalDateTicket {
+.firstDateTicket,
+.lastDateTicket {
     border: none !important;
     width: 13rem !important;
 }
@@ -434,8 +434,8 @@
         width: 32rem !important;
     }
 
-    .departureDateTicket,
-    .arrivalDateTicket {
+    .firstDateTicket,
+    .lastDateTicket {
         width: 15rem !important;
     }
 
@@ -495,8 +495,8 @@
         width: 40rem !important;
     }
 
-    .departureDateTicket,
-    .arrivalDateTicket {
+    .firstDateTicket,
+    .lastDateTicket {
         width: 20rem !important;
     }
 

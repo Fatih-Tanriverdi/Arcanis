@@ -91,9 +91,9 @@ export default function UsersList() {
         handleFilterButtonClick();
     }, [pageOdata, pageSizeOdata]);
 
-    useEffect(() => {
-        handleFilterButtonClick();
-    }, [usersFiltersData]);
+    // useEffect(() => {
+    //     handleFilterButtonClick();
+    // }, [usersFiltersData]);
 
     const userRole = {
         Admin: "Yönetici",
