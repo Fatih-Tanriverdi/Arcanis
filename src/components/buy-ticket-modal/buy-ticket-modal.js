@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import './buy-ticket-modal.css';
 import { Button, Input, Modal, message } from 'antd';
-import { postTicketSales } from '../../services/TicketService';
 import FloatLabel from '../float-label/float-label';
+import { postData } from '../../services/BaseApiOperations';
+import Config from "../../config-file.json";
 
 export default function BuyTicketModal({ visible, onClose, ticketId }) {
 
@@ -35,7 +36,9 @@ export default function BuyTicketModal({ visible, onClose, ticketId }) {
                     cvv: parseInt(cardCvv, 10),
                 },
             };
-            const response = await postTicketSales(ticketSalesData);
+            const data = ticketSalesData;
+            const url = `${Config.SERVICE_URL}/ticket-sales/buy-ticket`;
+            const response = await postData(url, data);
             setOpen(false);
             onClose();
 

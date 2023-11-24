@@ -3,14 +3,12 @@ import "./Expedition.css";
 import { useState } from 'react';
 import { checkToken } from '../../services/authService';
 import { TableListComp } from '../../components/TableListComp/TableListComp';
-import { deleteExpedition, fetchExpenditionsGet } from '../../services/ExpeditionService';
 import EditUserModal from '../../components/EditModal/EditUserModal';
 import { RiArrowRightSLine } from 'react-icons/ri';
-import { fetchPlanetsGet } from '../../services/PlanetService';
-import { fetchRocketsGet } from '../../services/RocketService';
 import Config from "../../config-file.json";
 import buildQuery from 'odata-query';
 import { Button, DatePicker, Input, Select } from 'antd';
+import { deleteDataById, getData } from '../../services/BaseApiOperations';
 
 export default function UsersList() {
     const [spaceVehicleData, setSpaceVehicleData] = useState([]);
@@ -108,7 +106,7 @@ export default function UsersList() {
     async function fetchRocketData() {
         try {
             const url = `${Config.SERVICE_URL}/lookups/space-vehicles`;
-            const data = await fetchRocketsGet(url);
+            const data = await getData(url);
             setSpaceVehicleData(data);
         } catch (error) {
             console.error('API talebi başarısız oldu: ', error);
@@ -118,7 +116,7 @@ export default function UsersList() {
     async function fetchPlanetData() {
         try {
             const url = `${Config.SERVICE_URL}/lookups/planets`;
-            const data = await fetchPlanetsGet(url);
+            const data = await getData(url);
             setPlanetData(data);
         } catch (error) {
             console.error('API talebi başarısız oldu: ', error);
@@ -136,16 +134,13 @@ export default function UsersList() {
         handleFilterButtonClick();
     }, [pageOdata, pageSizeOdata]);
 
-    useEffect(() => {
-        handleFilterButtonClick();
-    }, [expeditionFilter]);
-
     const handleDeleteExpedition = (Id) => {
         const confirmDelete = window.confirm('Expeditioni silmek istediğinize emin misiniz?');
         if (!confirmDelete) {
             return;
         }
-        deleteExpedition(Id)
+        const url = `${Config.SERVICE_URL}/expenditions/${Id}`;
+        deleteDataById(url)
             .then(() => {
                 setExpeditionFilter((prevExpenditionFilterData) =>
                     prevExpenditionFilterData.filter((expendition) => expendition.Id !== Id)
@@ -216,7 +211,7 @@ export default function UsersList() {
 
         const queryWithPaging = buildQuery({ filter: filterObject, count, top, skip });
         const url = `${Config.SERVICE_URL}/expenditions${queryWithPaging}`;
-        const data = await fetchExpenditionsGet(url)
+        const data = await getData(url)
             .catch(err => { console.log("API request failed", err); })
         if (data !== undefined && data.value !== null) {
             const totalPageCount = Math.ceil(data["@odata.count"]);

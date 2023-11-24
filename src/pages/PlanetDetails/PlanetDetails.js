@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import './PlanetDetails.css';
 import { Link, useParams } from 'react-router-dom';
 import { IoIosArrowBack } from 'react-icons/io';
-import { fetchPlanetsGet } from '../../services/PlanetService';
 import { ClipLoader } from 'react-spinners';
 import Config from "../../config-file.json"
+import { getData } from '../../services/BaseApiOperations';
 
 export default function PlanetDetails() {
     const [planetDetails, setPlanetDetails] = useState(null);
@@ -14,7 +14,7 @@ export default function PlanetDetails() {
         const fetchData = async () => {
             try {
                 const url = `${Config.SERVICE_URL}/planets/${id}`
-                const data = await fetchPlanetsGet(url);
+                const data = await getData(url);
                 setPlanetDetails(data);
             } catch (error) {
                 console.error("Hata oluştu: ", error);

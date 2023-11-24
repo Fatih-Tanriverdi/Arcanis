@@ -2,12 +2,12 @@ import "./UsersList.css";
 import { useEffect, useState } from 'react';
 import { checkToken } from "../../services/authService";
 import { TableListComp } from "../../components/TableListComp/TableListComp";
-import { deleteUsers, fetchUsersDataGet } from "../../services/userService";
 import { RiArrowRightSLine } from 'react-icons/ri';
 import EditUserModal from "../../components/EditModal/EditUserModal";
 import Config from "../../config-file.json"
 import buildQuery from 'odata-query';
 import { Button, Select } from "antd";
+import { deleteDataById, getData } from "../../services/BaseApiOperations";
 
 export default function UsersList() {
     const [selectedUser, setSelectedUser] = useState(null);
@@ -91,10 +91,6 @@ export default function UsersList() {
         handleFilterButtonClick();
     }, [pageOdata, pageSizeOdata]);
 
-    useEffect(() => {
-        handleFilterButtonClick();
-    }, [usersFiltersData]);
-
     const userRole = {
         Admin: "Yönetici",
         Customer: "Müşteri"
@@ -110,7 +106,8 @@ export default function UsersList() {
         if (!confirmDelete) {
             return;
         }
-        deleteUsers(Id)
+        const url = `${Config.SERVICE_URL}/users/${Id}`;
+        deleteDataById(Id)
             .then(() => {
                 setUsersFiltersData((prevUsersFilterData) =>
                 prevUsersFilterData.filter((user) => user.Id !== Id)
@@ -152,7 +149,7 @@ export default function UsersList() {
         const queryWithPaging = buildQuery({ filter: filters, count, top, skip });
         const url = `${Config.SERVICE_URL}/users${queryWithPaging}`;
         try {
-            const data = await fetchUsersDataGet(url);
+            const data = await getData(url);
             if (data && data["@odata.count"] !== undefined) {
                 const totalPageCount = Math.ceil(data["@odata.count"]);
                 setTotalPageCount(totalPageCount);

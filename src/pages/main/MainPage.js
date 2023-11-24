@@ -7,11 +7,9 @@ import { BiCube } from "react-icons/bi";
 import { BiRefresh } from "react-icons/bi";
 import { AiOutlineQuestionCircle } from "react-icons/ai";
 import { Popover, Progress, Space } from "antd";
-import { fetchUsersDataGet } from "../../services/userService";
-import { fetchPlanetsGet } from "../../services/PlanetService";
-import { fetchExpenditionsGet } from "../../services/ExpeditionService";
 import Config from "../../config-file.json";
 import { displayMoney } from "../../helpers/utils";
+import { getData } from "../../services/BaseApiOperations";
 
 export default function MainPage() {
   const [usersMostTicketsData, setUsersMostTicketsData] = useState([]);
@@ -36,7 +34,7 @@ export default function MainPage() {
   /* Total */
   async function fetchTotalMostTicketsData() {
     const url = `${Config.SERVICE_URL}/statistics/total-amounts`;
-    const data = await fetchUsersDataGet(url).catch((error) => {
+    const data = await getData(url).catch((error) => {
       console.error("API request failed:", error);
       return [];
     });
@@ -46,7 +44,7 @@ export default function MainPage() {
   /* Ticket */
   async function fetchUsersMostTicketsData() {
     const url = `${Config.SERVICE_URL}/statistics/users-who-purchased-most-tickets`;
-    const data = await fetchUsersDataGet(url).catch((error) => {
+    const data = await getData(url).catch((error) => {
       console.error("API request failed:", error);
       return [];
     });
@@ -55,7 +53,7 @@ export default function MainPage() {
 
   const handleRefreshUsersMostTickets = async () => {
     const url = `${Config.SERVICE_URL}/statistics/users-who-purchased-most-tickets`;
-    const data = await fetchUsersDataGet(url).catch((error) => {
+    const data = await getData(url).catch((error) => {
       console.error("API request failed:", error);
       return [];
     });
@@ -65,7 +63,7 @@ export default function MainPage() {
   /* Expedetion */
   async function fetcTotalExpeditionsData() {
     const url = `${Config.SERVICE_URL}/statistics/completed-expeditions`;
-    const data = await fetchExpenditionsGet(url).catch((error) => {
+    const data = await getData(url).catch((error) => {
       console.error("API request failed:", error);
       return [];
     });
@@ -74,7 +72,7 @@ export default function MainPage() {
 
   const handleRefreshExpeditions = async () => {
     const url = `${Config.SERVICE_URL}/statistics/completed-expeditions`;
-    const data = await fetchExpenditionsGet(url).catch((error) => {
+    const data = await getData(url).catch((error) => {
       console.error("API request failed:", error);
       return [];
     });
@@ -84,7 +82,7 @@ export default function MainPage() {
   /* Planet */
   async function fetchUsersMostPlanetsData() {
     const url = `${Config.SERVICE_URL}/statistics/most-traveled-planet`;
-    const data = await fetchPlanetsGet(url).catch((error) => {
+    const data = await getData(url).catch((error) => {
       console.error("API request failed:", error);
       return [];
     });
@@ -93,7 +91,7 @@ export default function MainPage() {
 
   const handleRefreshPlanetsMostPopular = async () => {
     const url = `${Config.SERVICE_URL}/statistics/most-traveled-planet`;
-    const data = await fetchPlanetsGet(url).catch((error) => {
+    const data = await getData(url).catch((error) => {
       console.error("API request failed:", error);
       return [];
     });

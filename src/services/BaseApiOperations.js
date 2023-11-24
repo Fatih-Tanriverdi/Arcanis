@@ -60,10 +60,10 @@ export async function putData(url, data) {
     throw new Error("Güncelleme işlemi başarısız! Hata:" + responseData.messages);
 }
 
-export async function deleteDataById(url, id) {
+export async function deleteDataById(url) {
     const localStorageToken = localStorage.getItem("access-token");
 
-    const response = await fetch(`${url}/${id}`, {
+    const response = await fetch(`${url}`, {
         method: "DELETE",
         headers: {
             "Content-Type": "application/json",

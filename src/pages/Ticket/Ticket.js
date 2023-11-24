@@ -7,11 +7,10 @@ import { BsFillRocketTakeoffFill, BsFillArrowDownCircleFill } from "react-icons/
 import { BsCreditCard2Back, BsCashCoin, BsPeople, BsStopwatchFill, BsCoin, BsGeoAlt, BsFillClockFill, BsFillLockFill } from "react-icons/bs";
 import { useEffect, useState } from "react";
 import Config from "../../config-file.json";
-import { fetchPlanetsGet } from "../../services/PlanetService";
 import moment from 'moment';
 import buildQuery from 'odata-query';
-import { fetchTicketsGet } from "../../services/TicketService";
 import BuyTicket from "../BuyTicket/BuyTicket";
+import { getData } from "../../services/BaseApiOperations";
 
 export default function Ticket() {
 
@@ -51,7 +50,7 @@ export default function Ticket() {
         async function fetchPlanetData() {
             try {
                 const url = `${Config.SERVICE_URL}/lookups/planets`;
-                const data = await fetchPlanetsGet(url);
+                const data = await getData(url);
                 setPlanetData(data);
             } catch (error) {
                 console.error('API talebi başarısız oldu: ', error);
@@ -104,7 +103,7 @@ export default function Ticket() {
 
         const queryWithPaging = buildQuery({ filter: filterObject, count, top, skip });
         const url = `${Config.SERVICE_URL}/expenditions${queryWithPaging}`;
-        const data = await fetchTicketsGet(url)
+        const data = await getData(url)
             .catch(err => { console.log("API request failed", err); })
         if (data !== undefined && data.value !== null) {
             const totalPageCount = Math.ceil(data["@odata.count"]);

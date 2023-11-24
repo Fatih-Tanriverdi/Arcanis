@@ -7,11 +7,6 @@ export function TableListComp({ pageSearchType, props, addButtonLabel, setPageOd
 
     const [modelContent, setModelContent] = useState("");
     const [isModalVisible, setIsModalVisible] = useState(false);
-    const [dataSource, setDataSource] = useState(props.dataSource);
-
-    useEffect(() => {
-        setDataSource(props.dataSource);
-    }, [props.dataSource]);
 
     const showModall = (content) => {
         setIsModalVisible(true);
@@ -45,7 +40,7 @@ export function TableListComp({ pageSearchType, props, addButtonLabel, setPageOd
                     <Table
                         className='tableListBody'
                         columns={props.columns}
-                        dataSource={dataSource}
+                        dataSource={props.dataSource}
                         rowClassName="tableRow"
                         pagination={{
                             total: totalPageCount,
@@ -55,11 +50,12 @@ export function TableListComp({ pageSearchType, props, addButtonLabel, setPageOd
                             onChange: (page, pageSize) => {
                                 setPageOdata(page);
                                 setPageSizeOdata(pageSize);
+
                             }
                         }}
                     />
                 </div>
-                <ModelComponent isModalVisible={isModalVisible} onCancel={handleCancel} modalContent={modelContent} addTitle={modalTitle}/>
+                <ModelComponent isModalVisible={isModalVisible} onCancel={handleCancel} modalContent={modelContent} addTitle={modalTitle} />
             </div>
         </div>
     )

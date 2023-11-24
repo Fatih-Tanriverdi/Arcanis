@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import './my-ticket.css';
 import { Table } from 'antd';
-import { fetchTicketsGet } from '../../services/TicketService';
 import Config from "../../config-file.json"
 import buildQuery from 'odata-query';
+import { getData } from '../../services/BaseApiOperations';
 
 export default function MyTicket() {
 
@@ -44,7 +44,7 @@ export default function MyTicket() {
                 const expand = 'User,Expedition';
                 const queryWithPaging = buildQuery({ expand });
                 const url = `${Config.SERVICE_URL}/ticket-sales${queryWithPaging}`;
-                const data = await fetchTicketsGet(url);
+                const data = await getData(url);
                 setMyTicket(data.value);
 
             } catch (error) {

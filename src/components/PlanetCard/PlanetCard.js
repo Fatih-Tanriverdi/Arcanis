@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import './PlanetCard.css';
 import { Link } from 'react-router-dom';
-import { fetchPlanetsGet } from '../../services/PlanetService';
 import { ClipLoader } from 'react-spinners';
 import Config from "../../config-file.json"
+import { getData } from '../../services/BaseApiOperations';
 
 export function PlanetCard({ defaultImage }) {
     const [planets, setPlanets] = useState([]);
@@ -12,7 +12,7 @@ export function PlanetCard({ defaultImage }) {
     useEffect(() => {
         async function getPlanets() {
             const url = `${Config.SERVICE_URL}/planets`;
-            const data = await fetchPlanetsGet(url)
+            const data = await getData(url)
                 .catch(error => {
                     console.error('API request failed:', error);
                     return [];

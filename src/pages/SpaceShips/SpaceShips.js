@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react'
 import "./SpaceShips.css";
 import { checkToken } from '../../services/authService';
 import { TableListComp } from "../../components/TableListComp/TableListComp";
-import { deleteRocket, fetchRocketsGet } from '../../services/RocketService';
 import EditModal from '../../components/EditModal/EditUserModal';
 import { RiArrowRightSLine } from 'react-icons/ri';
 import { Button, Input, Popover } from 'antd';
 import Config from "../../config-file.json"
 import buildQuery from 'odata-query';
+import { deleteDataById, getData } from '../../services/BaseApiOperations';
 
 export default function SpaceShips() {
     const [selectedRocket, setSelectedRocket] = useState(null);
@@ -87,16 +87,13 @@ export default function SpaceShips() {
         getSpaceVehicles();
     }, [pageOdata, pageSizeOdata]);
 
-    useEffect(() => {
-        getSpaceVehicles();
-    }, [filteredSpaceShipData]);
-
     const handleDeleteRocket = (Id) => {
         const confirmDelete = window.confirm('Kullanıcıyı silmek istediğine emin misin?');
         if (!confirmDelete) {
             return;
         }
-        deleteRocket(Id)
+        const url = `${Config.SERVICE_URL}/space-vehicles/${Id}`;
+        deleteDataById(url)
             .then(() => {
                 setSpaceShipData((prevSpaceShipData) =>
                     prevSpaceShipData.filter((rocket) => rocket.Id !== Id)
@@ -156,11 +153,10 @@ export default function SpaceShips() {
 
         const queryWithFilters = buildQuery({ count, filter: filters, top, skip });
         const url = `${Config.SERVICE_URL}/space-vehicles${queryWithFilters}`;
-        const data = await fetchRocketsGet(url)
+        const data = await getData(url)
             .catch(err => {
                 console.log("API request failed", err);
             });
-
         if (data !== undefined && data.value !== null) {
             const totalPageCount = Math.ceil(data["@odata.count"]);
             setTotalPageCount(totalPageCount);
@@ -169,7 +165,7 @@ export default function SpaceShips() {
         else {
             setFilteredSpaceShipData([]);
         }
-    }
+    };
 
     return (
         <container className='spaceVehicleContainer'>

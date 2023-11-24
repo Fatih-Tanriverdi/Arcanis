@@ -2,12 +2,9 @@ import './ModalComponent.css';
 import React, { useEffect, useState } from 'react';
 import { Space, Input, Button, Modal, Select } from 'antd';
 import { AiOutlineSave } from 'react-icons/ai';
-import { fetchRocketsGet, fetchRocketsPost } from '../../services/RocketService';
-import { fetchPlanetsGet, fetchPlanetsPost } from '../../services/PlanetService';
-import { fetchExpeditionPost } from '../../services/ExpeditionService';
-import { fetchUsersPost } from '../../services/userService';
 import Config from "../../config-file.json"
 import FloatLabel from '../float-label/float-label';
+import { getData, postData } from '../../services/BaseApiOperations';
 
 export function ModelComponent({ isModalVisible, onCancel, modalContent, addTitle }) {
     const [errorMessage, setErrorMessage] = useState(null);
@@ -144,9 +141,10 @@ export function ModelComponent({ isModalVisible, onCancel, modalContent, addTitl
                 setErrorMessage(errors[field]);
             }
         } else {
+            const data = valuesRockets;
             const url = `${Config.SERVICE_URL}/space-vehicles`;
             try {
-                const data = await fetchRocketsPost(valuesRockets, url);
+                const data = await postData(url, data);
                 console.log(data);
             } catch (error) {
                 console.error("Hata:", error);
@@ -157,7 +155,7 @@ export function ModelComponent({ isModalVisible, onCancel, modalContent, addTitl
     async function fetchRocketData() {
         try {
             const url = `${Config.SERVICE_URL}/lookups/space-vehicles`;
-            const data = await fetchRocketsGet(url);
+            const data = await getData(url);
             setSpaceVehicleData(data);
         } catch (error) {
             console.error('API talebi başarısız oldu: ', error);
@@ -214,9 +212,10 @@ export function ModelComponent({ isModalVisible, onCancel, modalContent, addTitl
             return;
         }
 
+        const data = valuesUsers;
         const url = `${Config.SERVICE_URL}/users`;
         try {
-            const data = await fetchUsersPost(valuesUsers, url);
+            const data = await postData(url, data);
             console.log(data);
         } catch (error) {
             console.error("Hata:", error);
@@ -246,10 +245,10 @@ export function ModelComponent({ isModalVisible, onCancel, modalContent, addTitl
                 setErrorMessage(errors[field]);
             }
         } else {
+            const data = valuesPlanets;
             const url = `${Config.SERVICE_URL}/planets`;
             try {
-                const data = await fetchPlanetsPost(valuesPlanets, url);
-                console.log(data);
+                await postData(url, data);
             } catch (error) {
                 console.error("Error:", error);
             }
@@ -259,7 +258,7 @@ export function ModelComponent({ isModalVisible, onCancel, modalContent, addTitl
     async function fetchPlanetData() {
         try {
             const url = `${Config.SERVICE_URL}/lookups/planets`;
-            const data = await fetchPlanetsGet(url);
+            const data = await getData(url);
             setPlanetData(data);
         } catch (error) {
             console.error('API talebi başarısız oldu: ', error);
@@ -275,6 +274,7 @@ export function ModelComponent({ isModalVisible, onCancel, modalContent, addTitl
     /* EXPEDITION */
     const expeditionsPost = async () => {
         const url = `${Config.SERVICE_URL}/expenditions`;
+        const data = valuesExpeditions;
         const formattedExpeditionDate = new Date(valuesExpeditions.expeditionDate).toISOString();
         const formattedArrivalDate = new Date(valuesExpeditions.arrivalDate).toISOString();
 
@@ -286,8 +286,7 @@ export function ModelComponent({ isModalVisible, onCancel, modalContent, addTitl
         valuesExpeditions.arrivalDate = formattedArrivalDate;
 
         try {
-            const data = await fetchExpeditionPost(valuesExpeditions, url);
-            console.log(data);
+            await postData(url, data);
         } catch (error) {
             console.error("Hata:", error);
         }

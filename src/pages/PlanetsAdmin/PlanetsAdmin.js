@@ -3,12 +3,12 @@ import "./PlanetsAdmin.css";
 import { useState } from 'react';
 import { checkToken } from '../../services/authService';
 import { TableListComp } from '../../components/TableListComp/TableListComp';
-import { deletePlanet, fetchPlanetsGet } from '../../services/PlanetService';
 import EditModal from '../../components/EditModal/EditUserModal';
 import { RiArrowRightSLine } from 'react-icons/ri';
 import Config from "../../config-file.json"
 import { Button, Input, Popover } from 'antd';
 import buildQuery from 'odata-query';
+import { deleteDataById, getData } from '../../services/BaseApiOperations';
 
 export default function UsersList() {
     const [selectedPlanet, setSelectedPlanet] = useState(null);
@@ -74,16 +74,13 @@ export default function UsersList() {
         handleFilterButtonClick();
     }, [pageOdata, pageSizeOdata]);
 
-    useEffect(() => {
-        handleFilterButtonClick();
-    }, [planetsFilteredData]);
-
     const handleDeletePlanet = (Id) => {
         const confirmDelete = window.confirm('Kullanıcıyı silmek istediğine emin misin?');
         if (!confirmDelete) {
             return;
         }
-        deletePlanet(Id)
+        const url = `${Config.SERVICE_URL}/planets/${Id}`;
+        deleteDataById(url)
             .then(() => {
                 setPlanets((prevPlanetsData) =>
                     prevPlanetsData.filter((planet) => planet.Id !== Id)
@@ -119,7 +116,7 @@ export default function UsersList() {
 
         const queryWithPaging = buildQuery({ filter: filters });
         const url = `${Config.SERVICE_URL}/planets${queryWithPaging}`;
-        const data = await fetchPlanetsGet(url)
+        const data = await getData(url)
             .catch(err => {
                 console.log("API request failed", err);
             })

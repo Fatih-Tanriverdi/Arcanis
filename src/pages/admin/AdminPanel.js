@@ -12,9 +12,9 @@ import PlanetsAdmin from "../PlanetsAdmin/PlanetsAdmin";
 import Expedition from "../Expedition/Expedition";
 import { PageButton } from "../../components/pageButton/PageButton";
 import { checkToken } from "../../services/authService";
-import { fetchUsersDataGet } from "../../services/userService";
 import TicketAdmin from "../TicketAdmin/TicketAdmin";
 import Config from "../../config-file.json";
+import { getData } from "../../services/BaseApiOperations";
 
 export default function AsideHeader() {
   const [activeButton, setActiveButton] = useState("");
@@ -31,7 +31,7 @@ export default function AsideHeader() {
 
   async function getUser() {
     const url = `${Config.SERVICE_URL}/users/info`;
-    const data = await fetchUsersDataGet(url).catch((error) => {
+    const data = await getData(url).catch((error) => {
       console.error("API request failed:", error);
       return [];
     });
