@@ -7,7 +7,7 @@ export function TableListComp({ pageSearchType, props, addButtonLabel, setPageOd
 
     const [modelContent, setModelContent] = useState("");
     const [isModalVisible, setIsModalVisible] = useState(false);
-    const [dataSource, setDataSource] = useState(props.dataSource);
+    const [dataSource, setDataSource] = useState([]);
 
     useEffect(() => {
         setDataSource(props.dataSource);

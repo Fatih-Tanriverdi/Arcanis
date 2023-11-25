@@ -5,10 +5,8 @@ import { TfiHeadphoneAlt } from "react-icons/tfi";
 import { FaWallet } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import Config from "../../config-file.json";
-import { fetchPlanetsGet } from "../../services/PlanetService";
 import moment from "moment";
 import buildQuery from "odata-query";
-import { fetchTicketsGet } from "../../services/TicketService";
 import BuyTicket from "../BuyTicket/BuyTicket";
 import { displayDate } from "../../helpers/utils";
 import {
@@ -25,8 +23,9 @@ import {
     BsFillClockFill,
     BsFillLockFill,
 } from "react-icons/bs";
+import { getData } from "../../services/BaseApiOperations";
 
-export default function Ticket () {
+export default function Ticket() {
     const [planetData, setPlanetData] = useState([]);
     const [departureDate, setDepartureDate] = useState(null);
     const [firstDateFilter, setFirstDateFilter] = useState(null);
@@ -67,7 +66,7 @@ export default function Ticket () {
     async function fetchPlanetData() {
         try {
             const url = `${Config.SERVICE_URL}/lookups/planets`;
-            const data = await fetchPlanetsGet(url);
+            const data = await getData(url);
             setPlanetData(data);
         } catch (error) {
             console.error("API talebi başarısız oldu: ", error);
@@ -144,7 +143,7 @@ export default function Ticket () {
             skip,
         });
         const url = `${Config.SERVICE_URL}/expenditions${queryWithPaging}`;
-        const data = await fetchTicketsGet(url).catch((err) => {
+        const data = await getData(url).catch((err) => {
             console.log("API request failed", err);
         });
         if (data !== undefined && data.value !== null && data.value.length > 0) {

@@ -12,14 +12,15 @@
 }
 
 .tableListBody {
-    width: 100%;
+    width: 100% !important;
 }
 
-.tableListBody .ant-table-thead .ant-table-cell {
-    font-size: 0.8rem !important;
+.tableListBody .ant-table-thead {
+    top: 0 !important;
 }
 
-.tableListBody .ant-table-tbody .ant-table-cell {
+.tableListBody .ant-table-thead .ant-table-cell,
+.tableListBody .ant-table-tbody .ant-table-cell  {
     font-size: 0.8rem !important;
 }
 

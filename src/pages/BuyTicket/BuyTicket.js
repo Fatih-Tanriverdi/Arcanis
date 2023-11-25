@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import "./BuyTicket.css";
 import { Button, Table } from "antd";
-import { fetchRocketsGet } from "../../services/RocketService";
 import Config from "../../config-file.json";
 import BuyTicketModal from "../../components/buy-ticket-modal/buy-ticket-modal";
 import { displayFullDate } from "../../helpers/utils";
+import { getData } from "../../services/BaseApiOperations";
 
 export default function BuyTicket({
   ticketSalesFilter,
@@ -84,7 +84,7 @@ export default function BuyTicket({
   async function fetchRocketData() {
     try {
       const url = `${Config.SERVICE_URL}/lookups/space-vehicles`;
-      const data = await fetchRocketsGet(url);
+      const data = await getData(url);
       setSpaceVehicleData(data);
     } catch (error) {
       console.error("API talebi başarısız oldu: ", error);
@@ -129,4 +129,4 @@ export default function BuyTicket({
       />
     </div>
   );
-}
+};

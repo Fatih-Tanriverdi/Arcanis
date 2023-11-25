@@ -31,6 +31,10 @@
     color: white !important;
 }
 
+.forgetPasswordColor a {
+    color: #7465F1 !important;
+}
+
 #errorMessageLogin {
     display: flex;
     justify-content: center;

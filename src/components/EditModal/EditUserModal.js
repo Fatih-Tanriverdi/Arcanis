@@ -1,13 +1,9 @@
 import "./EditUserModal.css";
 import React, { useEffect, useState } from 'react';
 import { Modal, Input, Space, Select, Button } from 'antd';
-import { putUsers } from '../../services/userService';
-import { fetchRocketsGet, putRocket } from '../../services/RocketService';
-import { fetchPlanetsGet, putPlanet } from '../../services/PlanetService';
-import { putExpedition } from '../../services/ExpeditionService';
-import { putTicket } from '../../services/TicketService';
 import Config from "../../config-file.json"
 import FloatLabel from "../float-label/float-label";
+import { getData, putData } from "../../services/BaseApiOperations";
 
 export default function EditUserModal({ user, rocket, planet, ticket, expendition, onCancel, visible, pageType, addEditTitle, userDelete, rocketDelete, planetDelete, expeditionDelete, ticketDelete }) {
     const [editedData, setEditedData] = useState(user);
@@ -63,7 +59,9 @@ export default function EditUserModal({ user, rocket, planet, ticket, expenditio
                         return;
                     }
                 }
-                await putUsers(editedData);
+                const url = `${Config.SERVICE_URL}/users`;
+                const data = editedData;
+                await putData(url, data);
                 onCancel();
             }
             if (pageType === 'spaceShips') {
@@ -74,7 +72,9 @@ export default function EditUserModal({ user, rocket, planet, ticket, expenditio
                         return;
                     }
                 }
-                await putRocket(editRocket);
+                const url = `${Config.SERVICE_URL}/space-vehicles`;
+                const data = editRocket;
+                await putData(url, data);
                 await onCancel();
             }
             if (pageType === 'planets') {
@@ -85,7 +85,9 @@ export default function EditUserModal({ user, rocket, planet, ticket, expenditio
                         return;
                     }
                 }
-                await putPlanet(editPlanet);
+                const url = `${Config.SERVICE_URL}/planets`;
+                const data = editPlanet;
+                await putData(url, data);
                 onCancel();
             }
             if (pageType === 'expedition') {
@@ -96,7 +98,9 @@ export default function EditUserModal({ user, rocket, planet, ticket, expenditio
                         return;
                     }
                 }
-                await putExpedition(editExpedition);
+                const url = `${Config.SERVICE_URL}/expenditions`;
+                const data = editExpedition;
+                await putData(url, data);
                 onCancel();
             }
             if (pageType === 'ticketAdmin') {
@@ -107,7 +111,9 @@ export default function EditUserModal({ user, rocket, planet, ticket, expenditio
                         return;
                     }
                 }
-                await putTicket(editTicket);
+                const url = `${Config.SERVICE_URL}/ticket-sales`;
+                const data = editTicket;
+                await putData(url, data);
                 onCancel();
 
             }
@@ -144,7 +150,7 @@ export default function EditUserModal({ user, rocket, planet, ticket, expenditio
     async function fetchPlanetData() {
         try {
             const url = `${Config.SERVICE_URL}/lookups/planets`;
-            const data = await fetchPlanetsGet(url);
+            const data = await getData(url);
             setPlanetData(data);
         } catch (error) {
             console.error('API talebi başarısız oldu: ', error);
@@ -154,7 +160,7 @@ export default function EditUserModal({ user, rocket, planet, ticket, expenditio
     async function fetchRocketData() {
         try {
             const url = `${Config.SERVICE_URL}/lookups/space-vehicles`;
-            const data = await fetchRocketsGet(url);
+            const data = await getData(url);
             setSpaceVehicleData(data);
         } catch (error) {
             console.error('API talebi başarısız oldu: ', error);

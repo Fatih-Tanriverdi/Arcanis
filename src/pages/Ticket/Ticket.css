@@ -32,6 +32,8 @@
 
 .ticketSearch {
     display: flex;
+    justify-content: center !important;
+    align-items: center !important;
     flex-direction: column;
     max-height: 35rem !important;
     height: 100%;
@@ -58,7 +60,7 @@
     color: #ffffff;
     background-color: #7465F2;
     cursor: pointer;
-    margin: 2rem;
+    margin-top: 3rem;
 
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }

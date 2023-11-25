@@ -1,5 +1,5 @@
 .authRegisterContainer {
-    min-height: 40rem;
+    min-height: 35rem !important;
     height: 100% !important;
     overflow: auto !important;
 }
@@ -14,8 +14,8 @@
     color: white;
 }
 
-.accountRegister > a{
-    color: white;
+.accountRegister {
+    color: #7465F1 !important;
     font-size: 1.2rem;
     border: none;
 }

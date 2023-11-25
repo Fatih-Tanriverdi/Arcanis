@@ -4,10 +4,10 @@ import { checkToken } from '../../services/authService';
 import { TableListComp } from "../../components/TableListComp/TableListComp"
 import EditModal from '../../components/EditModal/EditUserModal';
 import { RiArrowRightSLine } from 'react-icons/ri';
-import { deleteTicket, fetchTicketsGet } from '../../services/TicketService';
 import Config from "../../config-file.json";
 import buildQuery from 'odata-query';
 import { Button, DatePicker, Input } from 'antd';
+import { deleteDataById, getData } from '../../services/BaseApiOperations';
 
 export default function TicketAdmin() {
     const [selectedTicket, setSelectedTicket] = useState(null);
@@ -67,16 +67,13 @@ export default function TicketAdmin() {
         handleFilterButtonClick();
     }, [pageOdata, pageSizeOdata]);
 
-    useEffect(() => {
-        handleFilterButtonClick();
-    }, [ticketAdminFilter])
-
     const handleDeleteTicket = (Id) => {
         const confirmDelete = window.confirm('Kullanıcıyı silmek istediğine emin misin?');
         if (!confirmDelete) {
             return;
         }
-        deleteTicket(Id)
+        const url = `${Config.SERVICE_URL}/ticket-sales/${Id}`;
+        deleteDataById(url)
             .then(() => {
                 setTicketSalesData((prevSpaceShipData) =>
                     prevSpaceShipData.filter((ticket) => ticket.Id !== Id)
@@ -127,7 +124,7 @@ export default function TicketAdmin() {
 
         const queryWithPaging = buildQuery({ filter: filters, count, top, skip, expand });
         const url = `${Config.SERVICE_URL}/ticket-sales${queryWithPaging}`;
-        const data = await fetchTicketsGet(url)
+        const data = await getData(url)
             .catch(err => { console.log("API request failed", err); })
         if (data !== undefined && data.value !== null) {
             const totalPageCount = Math.ceil(data["@odata.count"]);

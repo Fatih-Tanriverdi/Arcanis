@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 import "./SpaceShips.css";
 import { checkToken } from "../../services/authService";
 import { TableListComp } from "../../components/TableListComp/TableListComp";
-import { deleteRocket, fetchRocketsGet } from "../../services/RocketService";
 import EditModal from "../../components/EditModal/EditUserModal";
 import { RiArrowRightSLine } from "react-icons/ri";
 import { Button, Input, Popover } from "antd";
 import Config from "../../config-file.json";
 import buildQuery from "odata-query";
+import { deleteDataById, getData } from "../../services/BaseApiOperations";
 
 export default function SpaceShips() {
   const [selectedRocket, setSelectedRocket] = useState(null);
@@ -18,15 +18,14 @@ export default function SpaceShips() {
   const [filteredSpaceShipData, setFilteredSpaceShipData] = useState([]);
 
   const [maxModelYearFilter, setMaxModelYearFilter] = useState("");
-  const [maxMaxNumberOfPassengersFilter, setMaxMaxNumberOfPassengersFilter] =
-    useState("");
+  const [maxMaxNumberOfPassengersFilter, setMaxMaxNumberOfPassengersFilter] = useState("");
   const [maxAgeLimitFilter, setMaxAgeLimitFilter] = useState("");
   const [minModelYearFilter, setMinModelYearFilter] = useState("");
-  const [minMaxNumberOfPassengersFilter, setMinMaxNumberOfPassengersFilter] =
-    useState("");
+  const [minMaxNumberOfPassengersFilter, setMinMaxNumberOfPassengersFilter] = useState("");
   const [minAgeLimitFilter, setMinAgeLimitFilter] = useState("");
   const [search, setSearch] = useState("");
   const [totalPageCount, setTotalPageCount] = useState(1);
+  const [updateSpaceShipsData, setUpdateSpaceShipsData] = useState([]);
 
   const columns = [
     {
@@ -90,8 +89,21 @@ export default function SpaceShips() {
   }, [pageOdata, pageSizeOdata]);
 
   useEffect(() => {
-    getSpaceVehicles();
-  }, [filteredSpaceShipData]);
+    handleUpdateSpaceShips()
+  }, [updateSpaceShipsData])
+
+  async function handleUpdateSpaceShips () {
+    const url = `${Config.SERVICE_URL}/space-vehicles`;
+    const data = await getData(url).catch((err) => {
+      console.log("API request failed", err);
+    });
+
+    if (data !== undefined && data.value !== null) {
+      setUpdateSpaceShipsData(data.value);
+    } else {
+      setUpdateSpaceShipsData([]);
+    }
+  }
 
   const handleDeleteRocket = (Id) => {
     const confirmDelete = window.confirm(
@@ -100,7 +112,8 @@ export default function SpaceShips() {
     if (!confirmDelete) {
       return;
     }
-    deleteRocket(Id)
+    const url = `${Config.SERVICE_URL}/space-vehicles/${Id}`;
+    deleteDataById(url)
       .then(() => {
         setSpaceShipData((prevSpaceShipData) =>
           prevSpaceShipData.filter((rocket) => rocket.Id !== Id)
@@ -160,7 +173,7 @@ export default function SpaceShips() {
 
     const queryWithFilters = buildQuery({ count, filter: filters, top, skip });
     const url = `${Config.SERVICE_URL}/space-vehicles${queryWithFilters}`;
-    const data = await fetchRocketsGet(url).catch((err) => {
+    const data = await getData(url).catch((err) => {
       console.log("API request failed", err);
     });
 
