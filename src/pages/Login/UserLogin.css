@@ -79,9 +79,10 @@
     color: white !important;
 }
 
-.inputGroupUser .float-label {
-    margin-bottom: 1rem !important;
+.inputGroupUser .float-label .label-float{
+    left: 4rem !important;
 }
+
 
 /* LOGIN CONTENT */
 

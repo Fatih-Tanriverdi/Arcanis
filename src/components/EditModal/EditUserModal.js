@@ -5,7 +5,7 @@ import Config from "../../config-file.json"
 import FloatLabel from "../float-label/float-label";
 import { getData, putData } from "../../services/BaseApiOperations";
 
-export default function EditUserModal({ user, rocket, planet, ticket, expendition, onCancel, visible, pageType, addEditTitle, userDelete, rocketDelete, planetDelete, expeditionDelete, ticketDelete }) {
+export default function EditUserModal({ user, rocket, planet, ticket, expendition, onCancel, visible, pageType, addEditTitle, userDelete, rocketDelete, planetDelete, expeditionDelete, ticketDelete, onSave }) {
     const [editedData, setEditedData] = useState(user);
     const [editRocket, setEditRocket] = useState(rocket);
     const [editPlanet, setEditPlanet] = useState(planet);
@@ -62,6 +62,7 @@ export default function EditUserModal({ user, rocket, planet, ticket, expenditio
                 const url = `${Config.SERVICE_URL}/users`;
                 const data = editedData;
                 await putData(url, data);
+                await onSave(user.id, editedData);
                 onCancel();
             }
             if (pageType === 'spaceShips') {
@@ -75,7 +76,8 @@ export default function EditUserModal({ user, rocket, planet, ticket, expenditio
                 const url = `${Config.SERVICE_URL}/space-vehicles`;
                 const data = editRocket;
                 await putData(url, data);
-                await onCancel();
+                await onSave(rocket.id, editRocket);
+                onCancel();
             }
             if (pageType === 'planets') {
                 const requiredFields = ['Name', 'Sequence', 'DifficultyLevel', 'ImageUrl', 'DetailsImageUrl', 'Description'];
@@ -88,6 +90,7 @@ export default function EditUserModal({ user, rocket, planet, ticket, expenditio
                 const url = `${Config.SERVICE_URL}/planets`;
                 const data = editPlanet;
                 await putData(url, data);
+                await onSave(planet.id, editPlanet);
                 onCancel();
             }
             if (pageType === 'expedition') {
@@ -101,6 +104,7 @@ export default function EditUserModal({ user, rocket, planet, ticket, expenditio
                 const url = `${Config.SERVICE_URL}/expenditions`;
                 const data = editExpedition;
                 await putData(url, data);
+                await onSave(expendition.id, editExpedition);
                 onCancel();
             }
             if (pageType === 'ticketAdmin') {
@@ -114,8 +118,8 @@ export default function EditUserModal({ user, rocket, planet, ticket, expenditio
                 const url = `${Config.SERVICE_URL}/ticket-sales`;
                 const data = editTicket;
                 await putData(url, data);
+                await onSave(ticket.id, editTicket);
                 onCancel();
-
             }
         } catch (error) {
             setErrorText(error.Messages);

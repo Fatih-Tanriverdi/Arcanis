@@ -7,7 +7,7 @@ import { RiArrowRightSLine } from "react-icons/ri";
 import { Button, Input, Popover } from "antd";
 import Config from "../../config-file.json";
 import buildQuery from "odata-query";
-import { deleteDataById, getData } from "../../services/BaseApiOperations";
+import { deleteDataById, getData, putData } from "../../services/BaseApiOperations";
 
 export default function SpaceShips() {
   const [selectedRocket, setSelectedRocket] = useState(null);
@@ -25,7 +25,6 @@ export default function SpaceShips() {
   const [minAgeLimitFilter, setMinAgeLimitFilter] = useState("");
   const [search, setSearch] = useState("");
   const [totalPageCount, setTotalPageCount] = useState(1);
-  const [updateSpaceShipsData, setUpdateSpaceShipsData] = useState([]);
 
   const columns = [
     {
@@ -86,24 +85,20 @@ export default function SpaceShips() {
 
   useEffect(() => {
     getSpaceVehicles();
-  }, [pageOdata, pageSizeOdata]);
+  }, [pageOdata, pageSizeOdata, spaceShipData]);
 
-  useEffect(() => {
-    handleUpdateSpaceShips()
-  }, [updateSpaceShipsData])
-
-  async function handleUpdateSpaceShips () {
+  const updateRocket = (Id, updatedData) => {
     const url = `${Config.SERVICE_URL}/space-vehicles`;
-    const data = await getData(url).catch((err) => {
-      console.log("API request failed", err);
-    });
-
-    if (data !== undefined && data.value !== null) {
-      setUpdateSpaceShipsData(data.value);
-    } else {
-      setUpdateSpaceShipsData([]);
-    }
-  }
+    const data = updatedData;
+    putData(url, data)
+      .then((responseData) => {
+        console.log('Rocket güncellendi:', responseData);
+        setSpaceShipData(responseData);
+      })
+      .catch(error => {
+        console.error('Güncelleme isteği başarısız oldu:', error);
+      });
+  };
 
   const handleDeleteRocket = (Id) => {
     const confirmDelete = window.confirm(
@@ -308,6 +303,8 @@ export default function SpaceShips() {
             pageType={"spaceShips"}
             addEditTitle={"Uzay Aracı Güncelleme"}
             rocketDelete={handleDeleteRocket}
+            getSpaceVehicles={getSpaceVehicles}
+            onSave={updateRocket}
           />
         )}
       </article>

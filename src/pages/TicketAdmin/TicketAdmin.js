@@ -7,7 +7,7 @@ import { RiArrowRightSLine } from 'react-icons/ri';
 import Config from "../../config-file.json";
 import buildQuery from 'odata-query';
 import { Button, DatePicker, Input } from 'antd';
-import { deleteDataById, getData } from '../../services/BaseApiOperations';
+import { deleteDataById, getData, putData } from '../../services/BaseApiOperations';
 
 export default function TicketAdmin() {
     const [selectedTicket, setSelectedTicket] = useState(null);
@@ -65,7 +65,20 @@ export default function TicketAdmin() {
 
     useEffect(() => {
         handleFilterButtonClick();
-    }, [pageOdata, pageSizeOdata]);
+    }, [pageOdata, pageSizeOdata, ticketSalesData]);
+
+    const updateTicket = (Id, updatedData) => {
+        const url = `${Config.SERVICE_URL}/ticket-sales`;
+        const data = updatedData;
+        putData(url, data)
+            .then((responseData) => {
+                console.log('Bilet güncellendi:', responseData);
+                setTicketSalesData(responseData);
+            })
+            .catch(error => {
+                console.error('Güncelleme isteği başarısız oldu:', error);
+            });
+    };
 
     const handleDeleteTicket = (Id) => {
         const confirmDelete = window.confirm('Kullanıcıyı silmek istediğine emin misin?');
@@ -163,9 +176,30 @@ export default function TicketAdmin() {
                 </div>
             </div>
             <article className='spaceVehicleBody'>
-                <TableListComp props={{ columns: columns, dataSource: ticketAdminFilter.length ? ticketAdminFilter : ticketSalesData }} text="Ticket" pageSearchType={"ticketAdmin"} addFilterName={"Bilet Filtreleme"} setPageOdata={setPageOdata} setPageSizeOdata={setPageSizeOdata} pageOdata={pageOdata} pageSizeOdata={pageSizeOdata} totalPageCount={totalPageCount} />
+                <TableListComp
+                    props={{
+                        columns: columns,
+                        dataSource: ticketAdminFilter.length
+                            ? ticketAdminFilter
+                            : ticketSalesData
+                    }}
+                    text="Ticket"
+                    pageSearchType={"ticketAdmin"}
+                    addFilterName={"Bilet Filtreleme"}
+                    setPageOdata={setPageOdata}
+                    setPageSizeOdata={setPageSizeOdata}
+                    pageOdata={pageOdata}
+                    pageSizeOdata={pageSizeOdata}
+                    totalPageCount={totalPageCount} />
                 {isModalOpen && (
-                    <EditModal ticket={selectedTicket} onCancel={handleModalClose} visible={isModalOpen} pageType={"ticketAdmin"} addEditTitle={"Bilet Güncelleme"} ticketDelete={handleDeleteTicket} />
+                    <EditModal
+                        ticket={selectedTicket}
+                        onCancel={handleModalClose}
+                        onSave={updateTicket}
+                        visible={isModalOpen}
+                        pageType={"ticketAdmin"}
+                        addEditTitle={"Bilet Güncelleme"}
+                        ticketDelete={handleDeleteTicket} />
                 )}
             </article>
         </container>

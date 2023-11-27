@@ -7,7 +7,7 @@ import EditUserModal from "../../components/EditModal/EditUserModal";
 import Config from "../../config-file.json"
 import buildQuery from 'odata-query';
 import { Button, Select } from "antd";
-import { deleteDataById, getData } from "../../services/BaseApiOperations";
+import { deleteDataById, getData, putData } from "../../services/BaseApiOperations";
 
 export default function UsersList() {
     const [selectedUser, setSelectedUser] = useState(null);
@@ -89,11 +89,18 @@ export default function UsersList() {
 
     useEffect(() => {
         handleFilterButtonClick();
-    }, [pageOdata, pageSizeOdata]);
+    }, [pageOdata, pageSizeOdata, usersFiltersData]);
 
-    // useEffect(() => {
-    //     handleFilterButtonClick();
-    // }, [usersFiltersData]);
+    const updateUser = (id, updatedData) => {
+        putData(id, updatedData)
+            .then((responseData) => {
+                console.log('Kullanıcı güncellendi:', responseData);
+                setUsersFiltersData(responseData);
+            })
+            .catch(error => {
+                console.error('Güncelleme isteği başarısız oldu:', error);
+            });
+    };
 
     const userRole = {
         Admin: "Yönetici",
@@ -114,7 +121,7 @@ export default function UsersList() {
         deleteDataById(url)
             .then(() => {
                 setUsersFiltersData((prevUsersFilterData) =>
-                prevUsersFilterData.filter((user) => user.Id !== Id)
+                    prevUsersFilterData.filter((user) => user.Id !== Id)
                 );
             })
             .catch(error => {
@@ -205,9 +212,32 @@ export default function UsersList() {
                 </div>
             </div>
             <div className='userListBody'>
-                <TableListComp props={{ columns: columns, dataSource: usersFiltersData && usersFiltersData.length ? usersFiltersData : null }} text="users" pageSearchType={"users"} addButtonLabel={"Kullanıcı Ekle"} addFilterName={"Kullanıcı Filtreleme"} setPageOdata={setPageOdata} setPageSizeOdata={setPageSizeOdata} pageOdata={pageOdata} pageSizeOdata={pageSizeOdata} totalPageCount={totalPageCount} />
+                <TableListComp
+                    props={{
+                        columns: columns,
+                        dataSource: usersFiltersData
+                            && usersFiltersData.length
+                            ? usersFiltersData : null
+                    }}
+                    text="users"
+                    pageSearchType={"users"}
+                    addButtonLabel={"Kullanıcı Ekle"}
+                    addFilterName={"Kullanıcı Filtreleme"}
+                    setPageOdata={setPageOdata}
+                    setPageSizeOdata={setPageSizeOdata}
+                    pageOdata={pageOdata}
+                    pageSizeOdata={pageSizeOdata}
+                    totalPageCount={totalPageCount}
+                />
                 {isModalOpen && (
-                    <EditUserModal user={selectedUser} onCancel={handleModalClose} visible={isModalOpen} pageType={"users"} addEditTitle={"Kullanıcı Güncelleme"} userDelete={handleDeleteUser} />
+                    <EditUserModal
+                        user={selectedUser}
+                        onCancel={handleModalClose}
+                        onSave={updateUser}
+                        visible={isModalOpen}
+                        pageType={"users"}
+                        addEditTitle={"Kullanıcı Güncelleme"}
+                        userDelete={handleDeleteUser} />
                 )}
             </div>
         </div>

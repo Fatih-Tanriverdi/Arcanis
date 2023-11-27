@@ -59,7 +59,12 @@ export function TableListComp({ pageSearchType, props, addButtonLabel, setPageOd
                         }}
                     />
                 </div>
-                <ModelComponent isModalVisible={isModalVisible} onCancel={handleCancel} modalContent={modelContent} addTitle={modalTitle}/>
+                <ModelComponent
+                    isModalVisible={isModalVisible}
+                    onCancel={handleCancel}
+                    modalContent={modelContent}
+                    addTitle={modalTitle}
+                />
             </div>
         </div>
     )

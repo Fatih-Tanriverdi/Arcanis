@@ -32,12 +32,13 @@
 
 .SearchBarFilterBtn {
     background-color: #7465F2;
-    color: white;
+    color: white !important;
     border: none;
 }
 
 .SearchBarSpaceShipsFilterBtn {
     background-color: #7465F2;
+    color: white !important;
     border: none;
     margin: 1rem !important;
 }
@@ -45,7 +46,6 @@
 .searchInput button span {
     color: white !important;
 }
-
 
 @media screen and (min-width: 700px) {
     .searchInputPosition {

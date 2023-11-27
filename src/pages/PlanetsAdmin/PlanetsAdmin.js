@@ -8,7 +8,7 @@ import { RiArrowRightSLine } from 'react-icons/ri';
 import Config from "../../config-file.json"
 import { Button, Input, Popover } from 'antd';
 import buildQuery from 'odata-query';
-import { deleteDataById, getData } from '../../services/BaseApiOperations';
+import { deleteDataById, getData, putData } from '../../services/BaseApiOperations';
 
 export default function UsersList() {
     const [selectedPlanet, setSelectedPlanet] = useState(null);
@@ -22,7 +22,6 @@ export default function UsersList() {
     const [planetsFilteredData, setPlanetsFilteredData] = useState([]);
     const [totalPageCount, setTotalPageCount] = useState(1);
 
-    
     const columns = [
         {
             title: '',
@@ -72,7 +71,20 @@ export default function UsersList() {
 
     useEffect(() => {
         handleFilterButtonClick();
-    }, [pageOdata, pageSizeOdata]);
+    }, [pageOdata, pageSizeOdata, planets]);
+
+    const updatePlanets = (Id, updatedData) => {
+        const url = `${Config.SERVICE_URL}/planets`;
+        const data = updatedData;
+        putData(url, data)
+            .then((responseData) => {
+                console.log('Gezegen güncellendi:', responseData);
+                setPlanets(responseData);
+            })
+            .catch(error => {
+                console.error('Güncelleme isteği başarısız oldu:', error);
+            });
+    };
 
     const handleDeletePlanet = (Id) => {
         const confirmDelete = window.confirm('Kullanıcıyı silmek istediğine emin misin?');
@@ -153,9 +165,31 @@ export default function UsersList() {
                 </div>
             </div>
             <article className='planetsBody'>
-                <TableListComp props={{ columns: columns, dataSource: planetsFilteredData.length ? planetsFilteredData : planets }} text="planets" pageSearchType={"planets"} addButtonLabel={"Gezegen Ekle"} addFilterName={"Gezegen Filtreleme"} setPageOdata={setPageOdata} setPageSizeOdata={setPageSizeOdata} pageOdata={pageOdata} pageSizeOdata={pageSizeOdata} totalPageCount={totalPageCount} />
+                <TableListComp
+                    props={{
+                        columns: columns,
+                        dataSource: planetsFilteredData.length
+                            ? planetsFilteredData
+                            : planets
+                    }}
+                    text="planets"
+                    pageSearchType={"planets"}
+                    addButtonLabel={"Gezegen Ekle"}
+                    addFilterName={"Gezegen Filtreleme"}
+                    setPageOdata={setPageOdata}
+                    setPageSizeOdata={setPageSizeOdata}
+                    pageOdata={pageOdata}
+                    pageSizeOdata={pageSizeOdata}
+                    totalPageCount={totalPageCount} />
                 {isModalOpen && (
-                    <EditModal planet={selectedPlanet} onCancel={handleModalClose} visible={isModalOpen} pageType={"planets"} addEditTitle={"Gezegen Güncelleme"} planetDelete={handleDeletePlanet} />
+                    <EditModal
+                        planet={selectedPlanet}
+                        onCancel={handleModalClose}
+                        onSave={updatePlanets}
+                        visible={isModalOpen}
+                        pageType={"planets"}
+                        addEditTitle={"Gezegen Güncelleme"}
+                        planetDelete={handleDeletePlanet} />
                 )}
             </article>
         </container>

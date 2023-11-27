@@ -8,7 +8,7 @@ import { RiArrowRightSLine } from 'react-icons/ri';
 import Config from "../../config-file.json";
 import buildQuery from 'odata-query';
 import { Button, DatePicker, Input, Select } from 'antd';
-import { deleteDataById, getData } from '../../services/BaseApiOperations';
+import { deleteDataById, getData, putData } from '../../services/BaseApiOperations';
 
 export default function UsersList() {
     const [spaceVehicleData, setSpaceVehicleData] = useState([]);
@@ -27,6 +27,7 @@ export default function UsersList() {
     const [ticketPrice, setTicketPrice] = useState("");
     const [arrivalDateFilter, setArrivalDateFilter] = useState(null);
     const [expeditionDateFilter, setExpeditionDateFilter] = useState(null);
+    const [updatedExpedition, setUpdatedExpedition] = useState([]);
 
     const columns = [
         {
@@ -132,7 +133,20 @@ export default function UsersList() {
 
     useEffect(() => {
         handleFilterButtonClick();
-    }, [pageOdata, pageSizeOdata]);
+    }, [pageOdata, pageSizeOdata, updatedExpedition]);
+
+    const updateExpedition = (Id, updatedData) => {
+        const url = `${Config.SERVICE_URL}/expenditions`;
+        const data = updatedData;
+        putData(url, data)
+            .then((responseData) => {
+                console.log('Sefer güncellendi:', responseData);
+                setUpdatedExpedition(responseData);
+            })
+            .catch(error => {
+                console.error('Güncelleme isteği başarısız oldu:', error);
+            });
+    };
 
     const handleDeleteExpedition = (Id) => {
         const confirmDelete = window.confirm('Expeditioni silmek istediğinize emin misiniz?');
@@ -142,7 +156,7 @@ export default function UsersList() {
         const url = `${Config.SERVICE_URL}/expenditions/${Id}`;
         deleteDataById(url)
             .then(() => {
-                setExpeditionFilter((prevExpenditionFilterData) =>
+                setUpdatedExpedition((prevExpenditionFilterData) =>
                     prevExpenditionFilterData.filter((expendition) => expendition.Id !== Id)
                 );
             })
@@ -292,11 +306,31 @@ export default function UsersList() {
                 </div>
             </div>
             <article className='expeditionBody'>
-                <TableListComp props={{
-                    columns: columns, dataSource: expeditionFilter?.length ? expeditionFilter : null
-                }} text="expedition" pageSearchType={"expedition"} addButtonLabel={"Sefer Ekle"} addFilterName={"Sefer Filtreleme"} setPageOdata={setPageOdata} setPageSizeOdata={setPageSizeOdata} pageOdata={pageOdata} pageSizeOdata={pageSizeOdata} totalPageCount={totalPageCount} />
+                <TableListComp
+                    props={{
+                        columns: columns,
+                        dataSource: expeditionFilter.length
+                            ? expeditionFilter
+                            : updatedExpedition
+                    }}
+                    text="expedition"
+                    pageSearchType={"expedition"}
+                    addButtonLabel={"Sefer Ekle"}
+                    addFilterName={"Sefer Filtreleme"}
+                    setPageOdata={setPageOdata}
+                    setPageSizeOdata={setPageSizeOdata}
+                    pageOdata={pageOdata}
+                    pageSizeOdata={pageSizeOdata}
+                    totalPageCount={totalPageCount} />
                 {isModalOpen && (
-                    <EditUserModal expendition={selectedExpeditions} onCancel={handleModalClose} visible={isModalOpen} pageType={"expedition"} addEditTitle={"Sefer Güncelleme"} expeditionDelete={handleDeleteExpedition} />
+                    <EditUserModal
+                        expendition={selectedExpeditions}
+                        onCancel={handleModalClose}
+                        onSave={updateExpedition}
+                        visible={isModalOpen}
+                        pageType={"expedition"}
+                        addEditTitle={"Sefer Güncelleme"}
+                        expeditionDelete={handleDeleteExpedition} />
                 )}
             </article>
         </container>

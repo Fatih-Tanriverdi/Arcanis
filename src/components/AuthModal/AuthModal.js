@@ -13,7 +13,11 @@ export default function AuthModal({ isModalOpen, setIsModalOpen, setAccessToken 
         switch (pageAuthType) {
             case 'authLogin':
                 return (
-                    <UserLogin setPageAuthType={setPageAuthType} setIsModalOpen={setIsModalOpen} setAccessToken={setAccessToken}/>
+                    <UserLogin 
+                    setPageAuthType={setPageAuthType} 
+                    setIsModalOpen={setIsModalOpen} 
+                    setAccessToken={setAccessToken}
+                    />
                 );
             case 'authRegister':
                 return (
