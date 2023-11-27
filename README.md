@@ -6,19 +6,19 @@ Arcanis projesi, bilet satışı ve yönetimini içeren ekranlardan oluşmaktad�
 
 # ARCANİS ADMİN SAYFASI
 
-![Admin Ana Sayfası](/src/assets/images/AdminAnaSayfası.png);
+![Admin Ana Sayfası](/src/assets/images/AdminAnaSayfası.png)
 
 -------------------------------------
 
 # ARCANİS KULLANICILAR SAYFASI
 
-![Kullanıcılar Sayfası](/src/assets/images/AdminKullanıcılarSayfası.png);
+![Kullanıcılar Sayfası](/src/assets/images/AdminKullanıcılarSayfası.png)
 
 -------------------------------------
 
 # ARCANİS MÜŞTERİ SAYFASI
 
-![Kullanıcılar Sayfası](/src/assets/images/MüşteriSayfası.png);
+![Kullanıcılar Sayfası](/src/assets/images/MüşteriSayfası.png)
 
 -------------------------------------
 
