@@ -33,24 +33,25 @@ export default function MyTicket() {
         },
     ];
 
-    function formatDate(dateString) {
+    const formatDate = (dateString) => {
         const options = { year: 'numeric', month: 'long', day: 'numeric' };
         return new Date(dateString).toLocaleDateString(undefined, options);
-    }
+    };
+
+    const fetchData = async () => {
+        try {
+            const expand = 'User,Expedition';
+            const queryWithPaging = buildQuery({ expand });
+            const url = `${Config.SERVICE_URL}/ticket-sales${queryWithPaging}`;
+            const data = await getData(url);
+            setMyTicket(data.value);
+
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    };
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const expand = 'User,Expedition';
-                const queryWithPaging = buildQuery({ expand });
-                const url = `${Config.SERVICE_URL}/ticket-sales${queryWithPaging}`;
-                const data = await getData(url);
-                setMyTicket(data.value);
-
-            } catch (error) {
-                console.error('Error fetching data:', error);
-            }
-        };
         fetchData();
     }, []);
 

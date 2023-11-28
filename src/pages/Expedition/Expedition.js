@@ -2,8 +2,8 @@ import React, { useEffect } from 'react';
 import "./Expedition.css";
 import { useState } from 'react';
 import { checkToken } from '../../services/authService';
-import { TableListComp } from '../../components/TableListComp/TableListComp';
-import EditUserModal from '../../components/EditModal/EditUserModal';
+import { TableListComp } from '../../components/admin-table/TableListComp';
+import EditUserModal from '../../components/edit-modal/EditUserModal';
 import { RiArrowRightSLine } from 'react-icons/ri';
 import Config from "../../config-file.json";
 import buildQuery from 'odata-query';
@@ -99,12 +99,12 @@ export default function UsersList() {
     function formatDate(dateString) {
         const options = { year: 'numeric', month: 'long', day: 'numeric' };
         return new Date(dateString).toLocaleDateString(undefined, options);
-    }
+    };
     /* Sunucudan gelen veriler düzeltilerek kullanıcıya gösteriliyor*/
 
     /* LOOKUPS */
 
-    async function fetchRocketData() {
+    const fetchRocketData = async () => {
         try {
             const url = `${Config.SERVICE_URL}/lookups/space-vehicles`;
             const data = await getData(url);
@@ -112,9 +112,9 @@ export default function UsersList() {
         } catch (error) {
             console.error('API talebi başarısız oldu: ', error);
         }
-    }
+    };
 
-    async function fetchPlanetData() {
+    const fetchPlanetData = async () => {
         try {
             const url = `${Config.SERVICE_URL}/lookups/planets`;
             const data = await getData(url);
@@ -122,7 +122,7 @@ export default function UsersList() {
         } catch (error) {
             console.error('API talebi başarısız oldu: ', error);
         }
-    }
+    };
 
     useEffect(() => {
         fetchPlanetData();
@@ -199,7 +199,7 @@ export default function UsersList() {
         setSelectedArrivalPlanet(selectedPlanet ? selectedPlanet.id : value);
     };
 
-    async function handleFilterButtonClick() {
+    const handleFilterButtonClick = async () => {
 
         const count = true;
         const top = pageSizeOdata;

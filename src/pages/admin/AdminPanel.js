@@ -5,14 +5,14 @@ import { AiOutlineHome, AiOutlineRocket, AiOutlineUser } from "react-icons/ai";
 import { BiExit, BiPlanet, BiMenu } from "react-icons/bi";
 import { BsFillArrowRightSquareFill, BsTicketPerforated } from "react-icons/bs";
 import { GiPathDistance } from "react-icons/gi";
-import UsersList from "../Users/UsersList";
-import MainPage from "../main/MainPage";
-import SpaceShips from "../SpaceShips/SpaceShips";
-import PlanetsAdmin from "../PlanetsAdmin/PlanetsAdmin";
-import Expedition from "../Expedition/Expedition";
-import { PageButton } from "../../components/pageButton/PageButton";
+import UsersList from "../admin-users/UsersList";
+import MainPage from "../admin-main/MainPage";
+import SpaceShips from "../admin-space-ships/SpaceShips";
+import PlanetsAdmin from "../admin-planets/PlanetsAdmin";
+import Expedition from "../expedition/Expedition";
+import { PageButton } from "../../components/admin-page-button/PageButton";
 import { checkToken } from "../../services/authService";
-import TicketAdmin from "../TicketAdmin/TicketAdmin";
+import TicketAdmin from "../admin-ticket/TicketAdmin";
 import Config from "../../config-file.json";
 import { getData } from "../../services/BaseApiOperations";
 
@@ -29,14 +29,14 @@ export default function AsideHeader() {
     localStorage.removeItem("access-token");
   };
 
-  async function getUser() {
+  const getUser = async () => {
     const url = `${Config.SERVICE_URL}/users/info`;
     const data = await getData(url).catch((error) => {
       console.error("API request failed:", error);
       return [];
     });
     setUserInfo(data);
-  }
+  };
 
   useEffect(() => {
     const isFirstLogin = localStorage.getItem("isFirstLogin") === "true";
@@ -68,27 +68,24 @@ export default function AsideHeader() {
             <div className="adminBtnPosition">
               <PageButton
                 to="mainpage"
-                className={`adminPanelButton ${
-                  activeButton === "Anasayfa" ? "active" : ""
-                }`}
+                className={`adminPanelButton ${activeButton === "Anasayfa" ? "active" : ""
+                  }`}
                 icon={<AiOutlineHome />}
                 onClick={() => handleButtonClick("Anasayfa")}
                 text="Anasayfa"
               />
               <PageButton
                 to="userlist"
-                className={`adminPanelButton ${
-                  activeButton === "Kullanıcılar" ? "active" : ""
-                }`}
+                className={`adminPanelButton ${activeButton === "Kullanıcılar" ? "active" : ""
+                  }`}
                 icon={<AiOutlineUser />}
                 onClick={() => handleButtonClick("Kullanıcılar")}
                 text="Kullanıcılar"
               />
               <PageButton
                 to="spaceships"
-                className={`adminPanelButton ${
-                  activeButton === "Uzay Araçları" ? "active" : ""
-                }`}
+                className={`adminPanelButton ${activeButton === "Uzay Araçları" ? "active" : ""
+                  }`}
                 icon={<AiOutlineRocket />}
                 onClick={() => handleButtonClick("Uzay Araçları")}
                 text="Uzay Araçları"
@@ -98,27 +95,24 @@ export default function AsideHeader() {
                 icon={<BiPlanet />}
                 onClick={() => handleButtonClick("Gezegenler")}
                 text="Gezegenler"
-                className={`adminPanelButton ${
-                  activeButton === "Gezegenler" ? "active" : ""
-                }`}
+                className={`adminPanelButton ${activeButton === "Gezegenler" ? "active" : ""
+                  }`}
               />
               <PageButton
                 to="expedition"
                 icon={<GiPathDistance />}
                 onClick={() => handleButtonClick("Seferler")}
                 text="Seferler"
-                className={`adminPanelButton ${
-                  activeButton === "Seferler" ? "active" : ""
-                }`}
+                className={`adminPanelButton ${activeButton === "Seferler" ? "active" : ""
+                  }`}
               />
               <PageButton
                 to="ticketadmin"
                 icon={<BsTicketPerforated />}
                 onClick={() => handleButtonClick("Ticket")}
                 text="Biletler"
-                className={`adminPanelButton ${
-                  activeButton === "Ticket" ? "active" : ""
-                }`}
+                className={`adminPanelButton ${activeButton === "Ticket" ? "active" : ""
+                  }`}
               />
             </div>
             <div className="adminBtnExitBody">

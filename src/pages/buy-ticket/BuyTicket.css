@@ -1,0 +1,34 @@
+.buyTicketContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tableWrapper {
+    width: 90%;
+}
+
+.buyTicketTable {
+    margin-top: 5rem !important;
+    overflow-y: hidden !important;
+    overflow-x: hidden !important;
+}
+
+.buyTicketTable .ant-table-thead {
+    position: static !important;
+}
+
+.buyButton {
+    background-color: #7465F2 !important;
+    font-size: 1.2rem !important;
+    padding: 0.5rem !important;
+
+    &:hover {
+        background-color: #273046 !important;
+        border-color: #7465F2 !important;
+    }
+}
+
+.ant-spin-container {
+    overflow: auto !important;
+}

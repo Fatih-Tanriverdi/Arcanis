@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import Config from "../../config-file.json";
 import moment from "moment";
 import buildQuery from "odata-query";
-import BuyTicket from "../BuyTicket/BuyTicket";
+import BuyTicket from "../buy-ticket/BuyTicket";
 import { displayDate } from "../../helpers/utils";
 import {
     BsFillRocketTakeoffFill,
@@ -38,12 +38,12 @@ export default function Ticket() {
     const [selectedArrivalPlanet, setSelectedArrivalPlanet] = useState();
     const [messageApi, contextHolder] = message.useMessage();
 
-    function toggleAdditionalInfo(event) {
+    const toggleAdditionalInfo = (event) => {
         const additionalInfo = event.currentTarget.nextElementSibling;
         additionalInfo.classList.toggle(
             "ticketPageBodyQuestionsBoxAdditionalVisible"
         );
-    }
+    };
 
     const disabledDate = (current) => {
         return current && current < moment().endOf("day");
@@ -63,7 +63,7 @@ export default function Ticket() {
         filterExpedition();
     }, [pageOdata, pageSizeOdata]);
 
-    async function fetchPlanetData() {
+    const fetchPlanetData = async () => {
         try {
             const url = `${Config.SERVICE_URL}/lookups/planets`;
             const data = await getData(url);
@@ -71,7 +71,7 @@ export default function Ticket() {
         } catch (error) {
             console.error("API talebi başarısız oldu: ", error);
         }
-    }
+    };
 
     /* BUY TICKET */
 
@@ -94,14 +94,14 @@ export default function Ticket() {
         setSelectedArrivalPlanet(selectedPlanet ? selectedPlanet.id : value);
     };
 
-    function showWarningMessage(message) {
+    const showWarningMessage = (message) => {
         messageApi.open({
             type: "warning",
             content: message,
         });
-    }
+    };
 
-    async function filterExpedition() {
+    const filterExpedition = async () => {
         const count = true;
         const top = pageSizeOdata;
         const skip = (pageOdata - 1) * pageSizeOdata;

@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import "./Register.css";
 import { Link, useNavigate } from "react-router-dom";
-import AuthButton from "../../components/buttonLogin/AuthButton";
+import AuthButton from "../../components/auth-button/AuthButton";
 import { registerUser } from '../../services/authService';
 import { ClipLoader } from 'react-spinners';
-import { AuthInputEmail, AuthInputUsername, AuthInputPassword, AuthInputName, AuthInputSurname, AuthInputPhoneNumber } from '../../components/authInput/AuthInput';
+import { AuthInputEmail, AuthInputUsername, AuthInputPassword, AuthInputName, AuthInputSurname, AuthInputPhoneNumber } from '../../components/auth-input/AuthInput';
 import FloatLabel from "../../components/float-label/float-label";
 
 export default function Register({ setPageAuthType }) {

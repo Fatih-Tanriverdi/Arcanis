@@ -1,15 +1,15 @@
 import "./Customer.css";
 import { Routes, Route, Link } from "react-router-dom";
-import About from "../About/About";
-import Planets from '../Planets/Planets';
-import Iletisim from '../Communication/Iletisim';
+import About from "../about/About";
+import Planets from '../planets/Planets';
+import Iletisim from '../communication/Iletisim';
 import { useEffect, useState } from "react";
-import Ticket from "../Ticket/Ticket";
-import PlanetDetails from "../PlanetDetails/PlanetDetails";
-import AuthModal from "../../components/AuthModal/AuthModal";
-import PasswordResetScreen from "../PasswordResetScreen/PasswordResetScreen";
-import NotFoundPage from "../NotFound/NotFound";
-import BuyTicket from "../BuyTicket/BuyTicket";
+import Ticket from "../ticket/Ticket";
+import PlanetDetails from "../planet-details/PlanetDetails";
+import AuthModal from "../../components/auth-modal/AuthModal";
+import PasswordResetScreen from "../password-reset/PasswordResetScreen";
+import NotFoundPage from "../not-found/NotFound";
+import BuyTicket from "../buy-ticket/BuyTicket";
 import MyTicket from "../my-ticket/my-ticket";
 import { BiMenu } from "react-icons/bi";
 

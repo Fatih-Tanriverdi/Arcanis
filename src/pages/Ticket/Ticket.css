@@ -63,12 +63,13 @@
     margin-top: 3rem;
 
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+
+    &:hover {
+        background-color: #161D30;
+        transition: 0.1s all ease-in;
+    }
 }
 
-.ticketBtnStyle>button:hover {
-    background-color: #161D30;
-    transition: 0.1s all ease-in;
-}
 
 .ticketSearch .ant-select {
     border-bottom: 0.1rem solid #7465F2;
@@ -261,7 +262,7 @@
     padding: 2rem;
 }
 
-.ticketPageBodyQuestionsBox > h3 {
+.ticketPageBodyQuestionsBox>h3 {
     display: flex;
     justify-content: center;
     align-items: flex-start;
@@ -383,6 +384,7 @@
 /* FOOTER CONTAİNER */
 
 @media screen and (min-width: 700px) {
+
     .ticketPageBodyPosition,
     .ticketPageFooterContainer {
         flex-direction: row;
@@ -450,7 +452,7 @@
         margin-left: 6rem;
     }
 
-    .ticketPageBodyQuestionsBox > h3 {
+    .ticketPageBodyQuestionsBox>h3 {
         font-size: 2rem !important;
     }
 }
@@ -493,7 +495,7 @@
     }
 
     .ticketSearch .ant-select,
-    .ticketSearch .ant-picker-range  {
+    .ticketSearch .ant-picker-range {
         width: 40rem !important;
     }
 
@@ -511,7 +513,7 @@
         margin-left: 6rem;
     }
 
-    .ticketPageBodyQuestionsBox > h3 {
+    .ticketPageBodyQuestionsBox>h3 {
         font-size: 2rem !important;
     }
 }

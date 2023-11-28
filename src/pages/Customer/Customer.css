@@ -21,18 +21,18 @@ body {
     background-size: cover;
     background-attachment: fixed;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-}
 
-#customerPageContainer::after {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #161D30;
-    background-size: cover;
-    z-index: -1;
+    &::after {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #161D30;
+        background-size: cover;
+        z-index: -1;
+    }
 }
 
 /* HEADER */
@@ -106,11 +106,11 @@ body {
     text-decoration: none;
     display: block;
     border-radius: 0.5rem !important;
-}
 
-.dropdown-content a:hover {
-    background-color: #7465F2;
-    color: white;
+    &:hover {
+        background-color: #7465F2;
+        color: white;
+    }
 }
 
 .dropdown:hover .dropdown-content {
