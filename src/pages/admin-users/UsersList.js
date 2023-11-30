@@ -14,6 +14,7 @@ export default function UsersList() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [pageOdata, setPageOdata] = useState(1);
     const [pageSizeOdata, setPageSizeOdata] = useState(10);
+    const [usersData, setUsersData] = useState([]);
 
     const [usersFiltersData, setUsersFiltersData] = useState([]);
     const [userRoleType, setUserRoleType] = useState(null);
@@ -85,17 +86,14 @@ export default function UsersList() {
 
     useEffect(() => {
         checkToken();
-    }, []);
-
-    useEffect(() => {
         handleFilterButtonClick();
-    }, [pageOdata, pageSizeOdata, usersFiltersData]);
+    }, [pageOdata, pageSizeOdata, usersData]);
 
     const updateUser = (id, updatedData) => {
         putData(id, updatedData)
             .then((responseData) => {
                 console.log('Kullanıcı güncellendi:', responseData);
-                setUsersFiltersData(responseData);
+                setUsersData(responseData);
             })
             .catch(error => {
                 console.error('Güncelleme isteği başarısız oldu:', error);

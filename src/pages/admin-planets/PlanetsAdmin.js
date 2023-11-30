@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
 import "./PlanetsAdmin.css";
+import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { checkToken } from '../../services/authService';
 import { TableListComp } from '../../components/admin-table/TableListComp';
@@ -67,9 +67,6 @@ export default function UsersList() {
 
     useEffect(() => {
         checkToken();
-    }, []);
-
-    useEffect(() => {
         handleFilterButtonClick();
     }, [pageOdata, pageSizeOdata, planets]);
 

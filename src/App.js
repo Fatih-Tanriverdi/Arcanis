@@ -10,7 +10,7 @@ import Planets from "./pages/planets/Planets";
 import About from "./pages/about/About";
 import Iletisim from "./pages/communication/Iletisim";
 import PlanetDetails from "./pages/planet-details/PlanetDetails";
-import Expedition from "./pages/expedition/Expedition";
+import Expedition from "./pages/admin-expedition/Expedition";
 import TicketAdmin from "./pages/admin-ticket/TicketAdmin";
 import NotFoundPage from "./pages/not-found/NotFound";
 import PasswordResetScreen from "./pages/password-reset/PasswordResetScreen";

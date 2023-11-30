@@ -82,7 +82,7 @@ export function AuthInputPhoneNumber(props) {
             name="phoneNumber"
             value={props.value}
             onChange={props.onChange}
-            type="text"
+            type="tel"
             prefix={<AiOutlinePhone className="site-form-item-icon" />}
         />
     )

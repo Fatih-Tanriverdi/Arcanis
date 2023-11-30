@@ -61,9 +61,6 @@ export default function TicketAdmin() {
 
     useEffect(() => {
         checkToken();
-    }, []);
-
-    useEffect(() => {
         handleFilterButtonClick();
     }, [pageOdata, pageSizeOdata, ticketSalesData]);
 

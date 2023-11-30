@@ -35,7 +35,7 @@
     justify-content: center !important;
     align-items: center !important;
     flex-direction: column;
-    max-height: 35rem !important;
+    min-height: 30rem !important;
     height: 100%;
     max-width: 30rem !important;
     width: 100%;

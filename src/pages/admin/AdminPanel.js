@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
 import "./AdminPanel.css";
-import { Routes, Route, Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Routes, Route, Link, useNavigate } from "react-router-dom";
 import { AiOutlineHome, AiOutlineRocket, AiOutlineUser } from "react-icons/ai";
 import { BiExit, BiPlanet, BiMenu } from "react-icons/bi";
 import { BsFillArrowRightSquareFill, BsTicketPerforated } from "react-icons/bs";
@@ -9,7 +9,7 @@ import UsersList from "../admin-users/UsersList";
 import MainPage from "../admin-main/MainPage";
 import SpaceShips from "../admin-space-ships/SpaceShips";
 import PlanetsAdmin from "../admin-planets/PlanetsAdmin";
-import Expedition from "../expedition/Expedition";
+import Expedition from "../admin-expedition/Expedition";
 import { PageButton } from "../../components/admin-page-button/PageButton";
 import { checkToken } from "../../services/authService";
 import TicketAdmin from "../admin-ticket/TicketAdmin";
@@ -19,6 +19,7 @@ import { getData } from "../../services/BaseApiOperations";
 export default function AsideHeader() {
   const [activeButton, setActiveButton] = useState("");
   const [userInfo, setUserInfo] = useState({});
+  const navigate = useNavigate();
 
   const handleButtonClick = (buttonText) => {
     setActiveButton(buttonText);
@@ -27,6 +28,7 @@ export default function AsideHeader() {
 
   const handleLogout = () => {
     localStorage.removeItem("access-token");
+    navigate("/");
   };
 
   const getUser = async () => {

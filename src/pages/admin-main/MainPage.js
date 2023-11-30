@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
 import "./MainPage.css";
+import React, { useEffect, useState } from "react";
 import { checkToken } from "../../services/authService";
 import { TfiStatsUp } from "react-icons/tfi";
 import { LiaUserSolid } from "react-icons/lia";
