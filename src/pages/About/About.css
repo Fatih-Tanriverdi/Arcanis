@@ -1,14 +1,26 @@
-.about-page-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center; 
-    justify-content: center; 
-    height: 100%;
-    width: 100%;
-    background-color: #273046;
+.logo-about {
+    height: 30rem !important;
+    width: 90% !important;
+    margin-top: 5rem !important;
+    object-fit: cover !important;
+    border-radius: 3rem !important;
+    box-sizing: border-box !important;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
-.about-page-body {
-    flex: 1;
+.about-comment {
+    background-color: #273046 !important;
+    border-radius: 3rem !important;
+    margin: 5rem 20rem 5rem 20rem !important;
+    padding: 3rem !important;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.9) 0px 8px 16px -8px;
+}
+
+.about-comment > h1 {
+    border-bottom: 1px solid #7465F2;
+}
+
+.about-comment > p {
+    line-height: 3rem !important;
 }
 

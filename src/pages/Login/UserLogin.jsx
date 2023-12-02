@@ -1,14 +1,14 @@
 import "./UserLogin.css";
-import AuthButton from "../../components/auth-button/AuthButton.js";
+import AuthButton from "../../components/auth-button/AuthButton.jsx";
 import "../../components/auth-input/AuthInput.css";
 import { useNavigate, Link } from "react-router-dom";
 import { useState } from "react";
 import { Checkbox, Input } from 'antd';
-import { login } from '../../services/authService.js';
+import { login } from '../../services/authService';
 import { AiOutlineUser } from "react-icons/ai";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { ClipLoader } from 'react-spinners';
-import FloatLabel from "../../components/float-label/float-label.js";
+import FloatLabel from "../../components/float-label/float-label.jsx";
 
 export default function App({ setPageAuthType, setIsModalOpen, setAccessToken }) {
     const navigate = useNavigate();

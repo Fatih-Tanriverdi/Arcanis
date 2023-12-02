@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
 import "./TicketAdmin.css";
+import React, { useEffect, useState } from 'react'
 import { checkToken } from '../../services/authService';
 import { TableListComp } from "../../components/admin-table/TableListComp"
 import EditModal from '../../components/edit-modal/EditUserModal';
