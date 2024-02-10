@@ -207,19 +207,19 @@ export default function UsersList() {
 
         const filterObject = {};
 
-        if (arrivalDateFilter) {
+        if (arrivalDateFilter != null) {
             filterObject.arrivalDate = { ge: new Date(arrivalDateFilter) };
         }
-        if (expeditionDateFilter) {
+        if (expeditionDateFilter != null) {
             filterObject.expeditionDate = { ge: new Date(expeditionDateFilter) };
         }
-        if (selectedSpaceVehicle) {
+        if (selectedSpaceVehicle != null) {
             filterObject.spaceVehicleId = { eq: { type: 'guid', value: selectedSpaceVehicle } };
         }
-        if (selectedDeparturePlanet) {
+        if (selectedDeparturePlanet != null) {
             filterObject.departurePlanetId = { eq: { type: 'guid', value: selectedDeparturePlanet } };
         }
-        if (selectedArrivalPlanet) {
+        if (selectedArrivalPlanet != null) {
             filterObject.arrivalPlanetId = { eq: { type: 'guid', value: selectedArrivalPlanet } };
         }
 

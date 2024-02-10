@@ -1,4 +1,4 @@
-import "./AdminPanel.css";
+import "./AdminPanel.scss";
 import React, { useEffect, useState } from "react";
 import { Routes, Route, Link, useNavigate } from "react-router-dom";
 import { AiOutlineHome, AiOutlineRocket, AiOutlineUser } from "react-icons/ai";

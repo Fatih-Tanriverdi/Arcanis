@@ -116,10 +116,10 @@ export default function UsersList() {
         const DifficultyLevel = parseInt(difficultyLevelFilter);
 
         const filters = {};
-        if (Sequence) {
+        if (Sequence > 0) {
             filters.Sequence = Sequence;
         }
-        if (DifficultyLevel) {
+        if (DifficultyLevel > 0) {
             filters.DifficultyLevel = DifficultyLevel;
         }
 

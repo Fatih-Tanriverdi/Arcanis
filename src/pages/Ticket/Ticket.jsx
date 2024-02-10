@@ -11,7 +11,6 @@ import BuyTicket from "../buy-ticket/BuyTicket";
 import { displayDate } from "../../helpers/utils";
 import {
     BsFillRocketTakeoffFill,
-    BsFillArrowDownCircleFill,
 } from "react-icons/bs";
 import {
     BsCreditCard2Back,
@@ -37,13 +36,23 @@ export default function Ticket() {
     const [selectedDeparturePlanet, setSelectedDeparturePlanet] = useState();
     const [selectedArrivalPlanet, setSelectedArrivalPlanet] = useState();
     const [messageApi, contextHolder] = message.useMessage();
+    const [expandingBox, setExpandingBox] = useState(null);
 
-    const toggleAdditionalInfo = (event) => {
-        const additionalInfo = event.currentTarget.nextElementSibling;
-        additionalInfo.classList.toggle(
-            "ticketPageBodyQuestionsBoxAdditionalVisible"
-        );
+    const handleBoxExpand = (index) => {
+        if (index === expandingBox) {
+            setExpandingBox(null);
+        } else {
+            setExpandingBox(index);
+        }
     };
+
+    const initialData = [
+        { title: "Arcanis'de hangi roketler bulunuyor?", content: "Arcanis'de SpaceX, Blue Origin, Virgin Galaactic gibi Evrenin dört bir yanına seferler düzenleyen yüzlerce Uzay Seyahati firmasına ulaşabilirsiniz." },
+        { title: "Arcanis'de biletini nasıl satın alabilirim?", content: "Arcanis'den Roket bileti satın almak için web sitemizi veya mobil uygulamalarımızı kullanabilirsiniz. Seyahat etmek istediğiniz yeri ve tarihi girdikten sonra tüm seferleri karşılaştırabilir, size uygun sefer için yolcu ve kart bilgilerinizi girerek biletinizi satın alabilirsiniz." },
+        { title: "Arcanis'de bilet satın alırken komisyon ödenir mi?", content: "Arcanis komisyon ücreti almaz. Arcanis'i kullanarak otobüs bileti alırken sadece biletinizin fiyatını ödersiniz." },
+        { title: "Arcanis'de biletimi iptal edilebilir miyim?", content: "Roket biletinizi firmaların belirlediği iptal koşulları doğrultusunda iptal edebilirsiniz. İptal koşulları satın alma sırasında size bildirilir." },
+        { title: "Arcanis'de bilet iadem ne zaman gerçekleşir?", content: "İptal işleminiz onaylandıktan sonra ücret iadesi, hiçbir kesinti olmadan bankanıza aktarılır. Ödediğiniz tutar bankanızın iade prosedürlerine bağlı olarak 7 iş günü içerisinde hesabınıza yansır. Bankamatik kartları ile yapılan işlemlerde bu süreç 1-20 iş gününü bulabilir. İade süreci tamamen bankanıza bağlıdır ve Arcanis'in müdahale etme hakkı yoktur." },
+    ];
 
     const disabledDate = (current) => {
         return current && current < moment().endOf("day");
@@ -117,7 +126,7 @@ export default function Ticket() {
             return;
         }
 
-        if (selectedArrivalPlanet) {
+        if (selectedArrivalPlanet !== undefined) {
             filterObject.ArrivalPlanetId = {
                 eq: { type: "guid", value: selectedArrivalPlanet },
             };
@@ -313,81 +322,24 @@ export default function Ticket() {
                             Sıkça Sorulan Sorular
                         </h1>
                         <div className="ticketPageBodyQuestions">
-                            <div className="ticketPageBodyQuestionsBox">
-                                <h3>Arcanis'de hangi roketler bulunuyor?</h3>
-                                <i
-                                    className="ticketPageBodyQuestionsBoxSvg"
-                                    onClick={toggleAdditionalInfo}
+                            {initialData.map((item, index) => (
+                                <div
+                                    key={index}
+                                    className={`ticketPageBodyQuestionsBox ${index === expandingBox ? "expanded" : ""
+                                        }`}
                                 >
-                                    <BsFillArrowDownCircleFill />
-                                </i>
-                                <div className="ticketPageBodyQuestionsBoxAdditional">
-                                    Arcanis'de SpaceX, Blue Origin, Virgin Galaactic gibi Evrenin
-                                    dört bir yanına seferler düzenleyen yüzlerce Uzay Seyahati
-                                    firmasına ulaşabilirsiniz.
+                                    <div className="ticketPageBodyQuestionsBoxTitle">
+                                        <h3>{item.title}</h3>
+                                        <i
+                                            className="ticketPageBodyQuestionsBoxSvg"
+                                            onClick={() => handleBoxExpand(index)}
+                                        >
+                                            {index === expandingBox ? "-" : "+"}
+                                        </i>
+                                    </div>
+                                    <div className="ticketPageBodyQuestionsBoxContent">{item.content}</div>
                                 </div>
-                            </div>
-                            <div className="ticketPageBodyQuestionsBox">
-                                <h3>Arcanis'de biletini nasıl satın alabilirim?</h3>
-                                <i
-                                    className="ticketPageBodyQuestionsBoxSvg"
-                                    onClick={toggleAdditionalInfo}
-                                >
-                                    <BsFillArrowDownCircleFill />
-                                </i>
-                                <div className="ticketPageBodyQuestionsBoxAdditional">
-                                    Arcanis'den Roket bileti satın almak için web sitemizi veya
-                                    mobil uygulamalarımızı kullanabilirsiniz. Seyahat etmek
-                                    istediğiniz yeri ve tarihi girdikten sonra tüm seferleri
-                                    karşılaştırabilir, size uygun sefer için yolcu ve kart
-                                    bilgilerinizi girerek biletinizi satın alabilirsiniz.
-                                </div>
-                            </div>
-                            <div className="ticketPageBodyQuestionsBox">
-                                <h3>Arcanis'de bilet satın alırken komisyon ödenir mi?</h3>
-                                <i
-                                    className="ticketPageBodyQuestionsBoxSvg"
-                                    onClick={toggleAdditionalInfo}
-                                >
-                                    <BsFillArrowDownCircleFill />
-                                </i>
-                                <div className="ticketPageBodyQuestionsBoxAdditional">
-                                    Arcanis komisyon ücreti almaz. Arcanis'i kullanarak otobüs
-                                    bileti alırken sadece biletinizin fiyatını ödersiniz.
-                                </div>
-                            </div>
-                            <div className="ticketPageBodyQuestionsBox">
-                                <h3>Arcanis'de biletimi iptal edilebilir miyim?</h3>
-                                <i
-                                    className="ticketPageBodyQuestionsBoxSvg"
-                                    onClick={toggleAdditionalInfo}
-                                >
-                                    <BsFillArrowDownCircleFill />
-                                </i>
-                                <div className="ticketPageBodyQuestionsBoxAdditional">
-                                    Roket biletinizi firmaların belirlediği iptal koşulları
-                                    doğrultusunda iptal edebilirsiniz. İptal koşulları satın alma
-                                    sırasında size bildirilir.
-                                </div>
-                            </div>
-                            <div className="ticketPageBodyQuestionsBox">
-                                <h3>Arcanis'de bilet iadem ne zaman gerçekleşir?</h3>
-                                <i
-                                    className="ticketPageBodyQuestionsBoxSvg"
-                                    onClick={toggleAdditionalInfo}
-                                >
-                                    <BsFillArrowDownCircleFill />
-                                </i>
-                                <div className="ticketPageBodyQuestionsBoxAdditional">
-                                    İptal işleminiz onaylandıktan sonra ücret iadesi, hiçbir
-                                    kesinti olmadan bankanıza aktarılır. Ödediğiniz tutar
-                                    bankanızın iade prosedürlerine bağlı olarak 7 iş günü
-                                    içerisinde hesabınıza yansır. Bankamatik kartları ile yapılan
-                                    işlemlerde bu süreç 1-20 iş gününü bulabilir. İade süreci
-                                    tamamen bankanıza bağlıdır ve Arcanis'in müdahale etme hakkı
-                                    yoktur.
-                                </div>
-                            </div>
+                            ))}
                         </div>
                         <div className="ticketPageFooterPromo">
                             <div className="ticketPagePromoContainer">

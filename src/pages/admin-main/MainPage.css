@@ -242,7 +242,7 @@
     .mainPageBox1,
     .mainPageBox2,
     .mainPageBox3 {
-        min-height: 44.5rem;
+        height: 43rem;
         margin-top: 1rem;
     }
 
@@ -254,7 +254,7 @@
     }
 
     .mainPageBox2 {
-        min-height: 44.5rem;
+        height: 43rem;
         margin-left: 1rem;
         margin-right: 1rem;
     }

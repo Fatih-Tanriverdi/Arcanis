@@ -125,10 +125,10 @@ export default function TicketAdmin() {
         if (seatNumber > 0) {
             filters.SeatNumber = parseInt(seatNumber);
         }
-        if (orderDateStart) {
+        if (orderDateStart != null) {
             filters.OrderDate = { ge: new Date(orderDateStart) };
         }
-        if (orderDateEnd) {
+        if (orderDateEnd != null) {
             filters.OrderDate = { le: new Date(orderDateEnd) };
         }
 

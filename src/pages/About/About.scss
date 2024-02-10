@@ -9,18 +9,30 @@
 }
 
 .about-comment {
+    width: 90% !important;
     background-color: #273046 !important;
     border-radius: 3rem !important;
-    margin: 5rem 20rem 5rem 20rem !important;
+    margin: 2rem !important;
     padding: 3rem !important;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.9) 0px 8px 16px -8px;
+
+    & > h1 {
+        border-bottom: 1px solid #7465F2 !important;
+    }
+
+    & > p {
+        line-height: 3rem !important;
+    }
 }
 
-.about-comment > h1 {
-    border-bottom: 1px solid #7465F2;
+@media screen and (min-width: 700px) {
+    .about-comment {
+        margin: 5rem 20rem 5rem 5rem !important;
+    }
 }
 
-.about-comment > p {
-    line-height: 3rem !important;
+@media screen and (min-width: 1200px) {
+    .about-comment {
+        margin: 5rem 20rem 0rem 8rem !important;
+    }
 }
-
